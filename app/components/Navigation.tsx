@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, MapPin, ChevronDown, Bot, Search, Sparkles, Zap } from 'lucide-react'
+import { X, MapPin, ChevronDown, Bot, Search, Sparkles, Zap } from 'lucide-react'
 import AISearchBar from './AISearchBar'
 import ThemeToggle from './ThemeToggle'
 
@@ -41,11 +41,7 @@ const Navigation = () => {
     }
   ]
 
-  // Flatten for mobile menu
-  const allNavItems = [
-    ...mainNavItems,
-    ...dropdownGroups.flatMap(group => group.items)
-  ]
+
 
   return (
     <nav className="bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-xl sticky top-0 z-50 border-b border-gray-100 dark:border-gray-700">
@@ -135,7 +131,7 @@ const Navigation = () => {
                     </div>
                   </div>
 
-                  {dropdownGroups.map((group, groupIndex) => (
+                  {dropdownGroups.map((group) => (
                     <div key={group.title} className="border-t border-gray-100 dark:border-gray-700 pt-3">
                       <div className="px-4 py-2">
                         <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
