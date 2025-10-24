@@ -4,7 +4,7 @@ import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import AIChatbot from './components/AIChatbot'
 import { ThemeProvider } from './contexts/ThemeContext'
-import PWAInstaller from './components/PWAInstaller'
+// import PWAInstaller from './components/PWAInstaller'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://stewsguide.com'),
@@ -96,7 +96,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <AIChatbot />
-          <PWAInstaller />
+          {/* <PWAInstaller /> */}
         </ThemeProvider>
         <script
           dangerouslySetInnerHTML={{
