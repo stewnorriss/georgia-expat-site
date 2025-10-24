@@ -2,14 +2,17 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, MapPin, ChevronDown } from 'lucide-react'
+import { Menu, X, MapPin, ChevronDown, Bot, Search, Sparkles, Zap } from 'lucide-react'
+import AISearchBar from './AISearchBar'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [showAISearch, setShowAISearch] = useState(false)
 
   const mainNavItems = [
     { href: '/', label: 'Home' },
+    { href: '/recommendations', label: 'Recommendations' },
     { href: '/restaurants', label: 'Restaurants' },
     { href: '/places', label: 'Places' },
     { href: '/transport', label: 'Transport' },
@@ -60,9 +63,9 @@ const Navigation = () => {
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-2xl text-gray-900 group-hover:text-red-600 transition-colors duration-200">
-                  Tbilisi Expat Guide
+                  Stew's Guide To Tbilisi
                 </span>
-                <span className="text-xs text-gray-500 font-medium">Your Gateway to Georgia</span>
+<span className="text-xs text-gray-500 font-medium">Your Personal AI-Powered Gateway</span>
               </div>
             </Link>
           </div>
@@ -79,6 +82,19 @@ const Navigation = () => {
                 <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-red-600 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
               </Link>
             ))}
+            
+            {/* AI Search Button */}
+            <button
+              onClick={() => setShowAISearch(!showAISearch)}
+              className="flex items-center text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-blue-50 group relative"
+            >
+              <Search className="h-4 w-4 mr-1" />
+              Stew's AI Search
+              <div className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                <Sparkles className="h-2 w-2" />
+              </div>
+            </button>
+
             <div 
               className="relative"
               onMouseEnter={() => setIsDropdownOpen(true)}
@@ -92,8 +108,36 @@ const Navigation = () => {
                 isDropdownOpen ? 'opacity-100 visible transform translate-y-0' : 'opacity-0 invisible transform -translate-y-2'
               }`}>
                 <div className="py-3">
+                  {/* AI Features Section */}
+                  <div className="px-4 py-2 border-b border-gray-100">
+                    <h3 className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2 flex items-center">
+                      <Bot className="h-3 w-3 mr-1" />
+                      AI Features
+                    </h3>
+                    <div className="space-y-1">
+                      <Link
+                        href="/recommendations"
+                        className="flex items-center w-full px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 rounded-lg transition-all duration-200 group"
+                      >
+                        <Sparkles className="h-4 w-4 mr-3 text-blue-500" />
+                        Smart Recommendations
+                        <span className="ml-auto text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">New</span>
+                      </Link>
+                      <button className="flex items-center w-full px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 rounded-lg transition-all duration-200 group">
+                        <Bot className="h-4 w-4 mr-3 text-purple-500" />
+                        Stew's AI Assistant
+                        <span className="ml-auto text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">24/7</span>
+                      </button>
+                      <button className="flex items-center w-full px-3 py-2 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 rounded-lg transition-all duration-200 group">
+                        <Zap className="h-4 w-4 mr-3 text-yellow-500" />
+                        Personalized Content
+                        <span className="ml-auto text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full">AI</span>
+                      </button>
+                    </div>
+                  </div>
+
                   {dropdownGroups.map((group, groupIndex) => (
-                    <div key={group.title} className={`${groupIndex > 0 ? 'border-t border-gray-100 pt-3' : ''}`}>
+                    <div key={group.title} className="border-t border-gray-100 pt-3">
                       <div className="px-4 py-2">
                         <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
                           {group.title}
@@ -107,6 +151,13 @@ const Navigation = () => {
                             >
                               <span className="w-2 h-2 bg-red-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                               {item.label}
+                              {/* AI Enhancement Badges */}
+                              {item.href === '/language' && (
+                                <span className="ml-auto text-xs bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded">AI</span>
+                              )}
+                              {item.href === '/culture' && (
+                                <span className="ml-auto text-xs bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded">Enhanced</span>
+                              )}
                             </Link>
                           ))}
                         </div>
@@ -185,6 +236,34 @@ const Navigation = () => {
           </div>
         </div>
       </div>
+
+      {/* AI Search Overlay */}
+      {showAISearch && (
+        <div className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-lg z-40">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <Bot className="h-6 w-6 text-blue-600 mr-2" />
+                <h3 className="text-lg font-semibold text-gray-900">Stew's AI-Powered Search</h3>
+                <span className="ml-2 text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white px-2 py-1 rounded-full">
+                  Beta
+                </span>
+              </div>
+              <button
+                onClick={() => setShowAISearch(false)}
+                className="text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <AISearchBar />
+            <div className="mt-4 flex items-center justify-center text-sm text-gray-500">
+              <Sparkles className="h-4 w-4 mr-1" />
+              <span>Powered by advanced AI • Understands context and provides personalized results</span>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import { Stethoscope, Phone, MapPin, Clock } from 'lucide-react'
 
 const MedicalPage = () => {

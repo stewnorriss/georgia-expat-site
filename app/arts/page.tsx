@@ -1,3 +1,5 @@
+'use client'
+
 import { Palette, MapPin, Clock, Star } from 'lucide-react'
 
 const ArtsPage = () => {

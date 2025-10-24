@@ -1,3 +1,5 @@
+'use client'
+
 import { Dumbbell, MapPin, Clock, DollarSign } from 'lucide-react'
 
 const SportsPage = () => {

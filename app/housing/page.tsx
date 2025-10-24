@@ -1,3 +1,5 @@
+'use client'
+
 import { Home, MapPin, DollarSign, Wifi, Car } from 'lucide-react'
 
 const HousingPage = () => {

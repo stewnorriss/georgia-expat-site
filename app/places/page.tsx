@@ -1,3 +1,5 @@
+'use client'
+
 import { MapPin, Clock, Camera, Star } from 'lucide-react'
 
 const PlacesPage = () => {

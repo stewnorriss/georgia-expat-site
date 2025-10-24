@@ -1,3 +1,5 @@
+'use client'
+
 import { Bed, Star, Wifi, Car } from 'lucide-react'
 
 const AccommodationPage = () => {
