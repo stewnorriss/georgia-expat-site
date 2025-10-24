@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Menu, X, MapPin, ChevronDown, Bot, Search, Sparkles, Zap } from 'lucide-react'
 import AISearchBar from './AISearchBar'
+import ThemeToggle from './ThemeToggle'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -71,17 +72,20 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative text-gray-700 hover:text-red-600 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-red-50 group"
+                className="relative text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 group"
               >
                 {item.label}
-                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-red-600 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-red-600 dark:bg-red-400 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
               </Link>
             ))}
+            
+            {/* Theme Toggle */}
+            <ThemeToggle />
             
             {/* AI Search Button */}
             <button
               onClick={() => setShowAISearch(!showAISearch)}
-              className="flex items-center text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-blue-50 group relative"
+              className="flex items-center text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 group relative"
             >
               <Search className="h-4 w-4 mr-1" />
               Stew's AI Search

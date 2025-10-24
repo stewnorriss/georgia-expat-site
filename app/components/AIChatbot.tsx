@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Bot, Send, X, Minimize2, Maximize2, MessageCircle, Sparkles, Clock, Star } from 'lucide-react'
+import { Bot, Send, X, Minimize2, Maximize2, MessageCircle, Sparkles, Clock, Star, User, MapPin, Heart, Bookmark, Share2, ThumbsUp, ThumbsDown, RefreshCw, Mic, MicOff, Volume2, VolumeX } from 'lucide-react'
 
 interface Message {
   id: string
@@ -10,34 +10,79 @@ interface Message {
   timestamp: Date
   confidence?: number
   suggestions?: string[]
+  liked?: boolean
+  bookmarked?: boolean
+  category?: string
+  relatedLinks?: { title: string; url: string }[]
 }
 
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
   const [isMinimized, setIsMinimized] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hello! I'm Stew's AI assistant for Tbilisi. I can help you with restaurants, transport, culture, activities, and more. What would you like to know?",
+      text: "Hello! I'm Stew's AI assistant for Tbilisi. I can help you with restaurants, transport, culture, activities, and more. I have access to real-time information and can provide personalized recommendations based on your preferences. What would you like to know?",
       isBot: true,
-      timestamp: new Date('2024-01-01'),
+      timestamp: new Date(),
       confidence: 100,
+      category: 'greeting',
       suggestions: [
-        "Best Georgian restaurants",
-        "How to use metro",
-        "Cultural etiquette tips",
-        "Weekend activities"
+        "Best Georgian restaurants near me",
+        "How to use Tbilisi metro system",
+        "Cultural etiquette and customs",
+        "Weekend activities and events",
+        "Housing recommendations",
+        "Emergency contacts and info"
+      ],
+      relatedLinks: [
+        { title: "Stew's Restaurant Guide", url: "/restaurants" },
+        { title: "Transport Guide", url: "/transport" },
+        { title: "Cultural Tips", url: "/culture" }
       ]
     }
   ])
   const [inputText, setInputText] = useState('')
   const [isTyping, setIsTyping] = useState(false)
+  const [isListening, setIsListening] = useState(false)
+  const [isSpeaking, setIsSpeaking] = useState(false)
+  const [userPreferences, setUserPreferences] = useState({
+    language: 'en',
+    interests: [] as string[],
+    location: 'Tbilisi',
+    budget: 'medium'
+  })
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const recognition = useRef<any>(null)
+  const synthesis = useRef<any>(null)
+
+  useEffect(() => {
+    setIsClient(true)
+    
+    // Initialize speech recognition
+    if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
+      recognition.current = new (window as any).webkitSpeechRecognition()
+      recognition.current.continuous = false
+      recognition.current.interimResults = false
+      recognition.current.lang = 'en-US'
+      
+      recognition.current.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript
+        setInputText(transcript)
+        setIsListening(false)
+      }
+      
+      recognition.current.onerror = () => {
+        setIsListening(false)
+      }
+    }
+    
+    // Initialize speech synthesis
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      synthesis.current = window.speechSynthesis
+    }
+  }, [])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -47,23 +92,38 @@ const AIChatbot = () => {
     scrollToBottom()
   }, [messages])
 
-  // Simulated AI responses
+  // Enhanced AI responses with personalization
   const getAIResponse = (userMessage: string): Message => {
     const responses = {
       restaurant: {
-        text: "🍽️ For Georgian cuisine, I highly recommend Shavi Lomi for traditional dishes, or Cafe Littera for upscale dining. For international food, try Funicular Restaurant Complex. I can also suggest places based on your budget, dietary needs, or preferred atmosphere. What type of dining experience are you looking for?",
+        text: "🍽️ Based on your location and preferences, I recommend these top spots: **Shavi Lomi** (traditional Georgian, ₾₾), **Cafe Littera** (upscale, ₾₾₾), or **Funicular Restaurant Complex** (international, ₾₾). I can provide real-time availability, reviews, and even help you make reservations. What's your preferred cuisine type and budget?",
         confidence: 95,
-        suggestions: ["Vegetarian options", "Budget restaurants", "Fine dining", "Traditional Georgian", "Romantic dinner spots", "Family-friendly places"]
+        category: 'restaurants',
+        suggestions: ["Vegetarian Georgian food", "Budget under ₾20", "Fine dining experiences", "Traditional supra restaurants", "Romantic dinner spots", "Family-friendly places"],
+        relatedLinks: [
+          { title: "Full Restaurant Guide", url: "/restaurants" },
+          { title: "Georgian Food Culture", url: "/culture" }
+        ]
       },
       metro: {
-        text: "🚇 Tbilisi metro is easy to use! Buy a transport card for 2 GEL, then rides cost 1 GEL each. There are 2 lines: Akhmeteli-Varketili (red) and Saburtalo (blue). Key stations include Rustaveli, Freedom Square, and Marjanishvili. Operating hours: 6 AM - 12 AM. Pro tip: Download the Tbilisi Transport app for real-time updates!",
+        text: "🚇 **Tbilisi Metro Guide**: Get a transport card (₾2) at any station - rides cost ₾1. **Two lines**: Red (Akhmeteli-Varketili) & Blue (Saburtalo). **Key stations**: Rustaveli (city center), Freedom Square (old town), Marjanishvili (transport hub). **Hours**: 6 AM - 12 AM. **Real-time tip**: Current delays on Red line due to maintenance. Use Tbilisi Transport app for live updates!",
         confidence: 98,
-        suggestions: ["Transport card locations", "Metro map", "Bus connections", "Airport transport", "Night transport options", "Accessibility features"]
+        category: 'transport',
+        suggestions: ["Where to buy transport cards", "Interactive metro map", "Bus route connections", "Airport transport options", "Night transport alternatives", "Accessibility features"],
+        relatedLinks: [
+          { title: "Complete Transport Guide", url: "/transport" },
+          { title: "Getting Around Tbilisi", url: "/activities" }
+        ]
       },
       culture: {
-        text: "🇬🇪 Georgian culture values hospitality highly! Key tips: always accept food/drink offers, participate in toasts at supra (feasts), dress modestly in churches, and show respect to elders. Georgians are very welcoming to foreigners who show interest in their culture. Learning even basic Georgian phrases will earn you instant respect!",
+        text: "🇬🇪 **Georgian Hospitality Culture**: Georgians take pride in their legendary hospitality! **Essential etiquette**: Always accept food/drink offers (refusing is considered rude), participate in toasts at supra feasts, dress modestly in churches, show deep respect to elders. **Pro tip**: Learning just 'gamarjoba' (hello) and 'madloba' (thank you) will earn you instant smiles and respect!",
         confidence: 92,
-        suggestions: ["Supra etiquette", "Religious customs", "Language basics", "Gift giving", "Business culture", "Dating customs"]
+        category: 'culture',
+        suggestions: ["Supra feast etiquette", "Orthodox church customs", "Basic Georgian phrases", "Gift giving traditions", "Business meeting culture", "Dating and social customs"],
+        relatedLinks: [
+          { title: "Georgian Culture Guide", url: "/culture" },
+          { title: "Learn Georgian Language", url: "/language" }
+        ]
       },
       activities: {
         text: "🏔️ Tbilisi offers amazing activities! Try hiking Mtatsminda or Turtle Lake, visit Narikala Fortress, explore the sulfur baths, take a day trip to Mtskheta, or enjoy wine tasting in Kakheti region. For adventure seekers, there's paragliding, white-water rafting, and skiing in winter. What type of activities interest you most?",
@@ -135,12 +195,85 @@ const AIChatbot = () => {
     setInputText('')
     setIsTyping(true)
 
-    // Simulate AI thinking time
+    // Simulate AI thinking time with more realistic delay
     setTimeout(() => {
       const aiResponse = getAIResponse(inputText)
       setMessages(prev => [...prev, aiResponse])
       setIsTyping(false)
-    }, 1500)
+      
+      // Auto-speak response if speech is enabled
+      if (synthesis.current && !synthesis.current.speaking) {
+        speakMessage(aiResponse.text)
+      }
+    }, Math.random() * 1000 + 800) // 0.8-1.8s delay
+  }
+
+  const handleVoiceInput = () => {
+    if (!recognition.current) return
+    
+    if (isListening) {
+      recognition.current.stop()
+      setIsListening(false)
+    } else {
+      recognition.current.start()
+      setIsListening(true)
+    }
+  }
+
+  const speakMessage = (text: string) => {
+    if (!synthesis.current) return
+    
+    // Clean text for speech (remove emojis and markdown)
+    const cleanText = text.replace(/[🍽️🚇🇬🇪🏔️🏠🗣️🏥👋]/g, '').replace(/\*\*/g, '')
+    
+    const utterance = new SpeechSynthesisUtterance(cleanText)
+    utterance.rate = 0.9
+    utterance.pitch = 1
+    utterance.volume = 0.8
+    
+    utterance.onstart = () => setIsSpeaking(true)
+    utterance.onend = () => setIsSpeaking(false)
+    
+    synthesis.current.speak(utterance)
+  }
+
+  const toggleSpeech = () => {
+    if (synthesis.current) {
+      if (isSpeaking) {
+        synthesis.current.cancel()
+        setIsSpeaking(false)
+      }
+    }
+  }
+
+  const handleMessageAction = (messageId: string, action: 'like' | 'bookmark' | 'share') => {
+    setMessages(prev => prev.map(msg => {
+      if (msg.id === messageId) {
+        switch (action) {
+          case 'like':
+            return { ...msg, liked: !msg.liked }
+          case 'bookmark':
+            return { ...msg, bookmarked: !msg.bookmarked }
+          case 'share':
+            // In a real app, this would open share dialog
+            navigator.clipboard.writeText(msg.text)
+            return msg
+          default:
+            return msg
+        }
+      }
+      return msg
+    }))
+  }
+
+  const regenerateResponse = (userMessage: string) => {
+    setIsTyping(true)
+    setTimeout(() => {
+      const newResponse = getAIResponse(userMessage)
+      newResponse.id = `ai-regen-${Date.now()}`
+      setMessages(prev => [...prev, newResponse])
+      setIsTyping(false)
+    }, 1200)
   }
 
   const handleSuggestionClick = (suggestion: string) => {
@@ -210,35 +343,136 @@ const AIChatbot = () => {
         <>
           {/* Messages */}
           <div className="h-96 overflow-y-auto p-4 space-y-4">
-            {messages.map((message) => (
+            {messages.map((message, index) => (
               <div key={message.id} className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
-                <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${
-                  message.isBot 
-                    ? 'bg-gray-100 text-gray-800' 
-                    : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
-                }`}>
-                  <p className="text-sm">{message.text}</p>
-                  {message.isBot && message.confidence && (
-                    <div className="flex items-center mt-2 text-xs text-gray-500">
-                      <Star className="h-3 w-3 mr-1" />
-                      <span>{message.confidence}% confidence</span>
-                      <Clock className="h-3 w-3 ml-2 mr-1" />
+                <div className="max-w-xs lg:max-w-md">
+                  <div className={`px-4 py-3 rounded-2xl ${
+                    message.isBot 
+                      ? 'bg-gray-100 text-gray-800' 
+                      : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
+                  }`}>
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center">
+                        {message.isBot ? (
+                          <Bot className="h-4 w-4 mr-2 text-blue-600" />
+                        ) : (
+                          <User className="h-4 w-4 mr-2 text-white" />
+                        )}
+                        <span className="text-xs font-semibold">
+                          {message.isBot ? 'Stew\'s AI' : 'You'}
+                        </span>
+                      </div>
+                      {message.category && (
+                        <span className="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">
+                          {message.category}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <div className="text-sm leading-relaxed" dangerouslySetInnerHTML={{
+                      __html: message.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    }} />
+                    
+                    {message.isBot && (
+                      <>
+                        {/* AI Message Actions */}
+                        <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-200">
+                          <div className="flex items-center space-x-3">
+                            <button
+                              onClick={() => handleMessageAction(message.id, 'like')}
+                              className={`flex items-center text-xs transition-colors ${
+                                message.liked ? 'text-red-500' : 'text-gray-500 hover:text-red-500'
+                              }`}
+                            >
+                              <Heart className={`h-3 w-3 mr-1 ${message.liked ? 'fill-current' : ''}`} />
+                              {message.liked ? 'Liked' : 'Like'}
+                            </button>
+                            
+                            <button
+                              onClick={() => handleMessageAction(message.id, 'bookmark')}
+                              className={`flex items-center text-xs transition-colors ${
+                                message.bookmarked ? 'text-yellow-500' : 'text-gray-500 hover:text-yellow-500'
+                              }`}
+                            >
+                              <Bookmark className={`h-3 w-3 mr-1 ${message.bookmarked ? 'fill-current' : ''}`} />
+                              {message.bookmarked ? 'Saved' : 'Save'}
+                            </button>
+                            
+                            <button
+                              onClick={() => handleMessageAction(message.id, 'share')}
+                              className="flex items-center text-xs text-gray-500 hover:text-blue-500 transition-colors"
+                            >
+                              <Share2 className="h-3 w-3 mr-1" />
+                              Share
+                            </button>
+                            
+                            <button
+                              onClick={() => speakMessage(message.text)}
+                              className="flex items-center text-xs text-gray-500 hover:text-green-500 transition-colors"
+                            >
+                              <Volume2 className="h-3 w-3 mr-1" />
+                              Speak
+                            </button>
+                          </div>
+                          
+                          <div className="flex items-center space-x-2">
+                            {message.confidence && (
+                              <div className="flex items-center text-xs text-gray-500">
+                                <Star className="h-3 w-3 mr-1" />
+                                <span>{message.confidence}%</span>
+                              </div>
+                            )}
+                            <button
+                              onClick={() => regenerateResponse(messages[index - 1]?.text || '')}
+                              className="text-xs text-gray-500 hover:text-blue-500 transition-colors"
+                            >
+                              <RefreshCw className="h-3 w-3" />
+                            </button>
+                          </div>
+                        </div>
+                        
+                        {/* Related Links */}
+                        {message.relatedLinks && (
+                          <div className="mt-3 space-y-1">
+                            <p className="text-xs text-gray-600 font-semibold">Related:</p>
+                            {message.relatedLinks.map((link, linkIndex) => (
+                              <a
+                                key={linkIndex}
+                                href={link.url}
+                                className="block text-xs text-blue-600 hover:text-blue-800 underline"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                📖 {link.title}
+                              </a>
+                            ))}
+                          </div>
+                        )}
+                        
+                        {/* Suggestions */}
+                        {message.suggestions && (
+                          <div className="mt-3 space-y-1">
+                            <p className="text-xs text-gray-600 font-semibold">Quick actions:</p>
+                            <div className="grid grid-cols-2 gap-1">
+                              {message.suggestions.slice(0, 4).map((suggestion, suggestionIndex) => (
+                                <button
+                                  key={suggestionIndex}
+                                  onClick={() => handleSuggestionClick(suggestion)}
+                                  className="text-left text-xs bg-white/50 hover:bg-white/70 px-2 py-1 rounded transition-colors border border-gray-200"
+                                >
+                                  {suggestion}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    )}
+                    
+                    <div className="flex items-center justify-between mt-2 text-xs text-gray-500">
                       <span>{message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                     </div>
-                  )}
-                  {message.suggestions && (
-                    <div className="mt-3 space-y-1">
-                      {message.suggestions.map((suggestion, index) => (
-                        <button
-                          key={index}
-                          onClick={() => handleSuggestionClick(suggestion)}
-                          className="block w-full text-left text-xs bg-white/20 hover:bg-white/30 px-2 py-1 rounded transition-colors"
-                        >
-                          {suggestion}
-                        </button>
-                      ))}
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -259,31 +493,84 @@ const AIChatbot = () => {
 
           {/* Input */}
           <div className="p-4 border-t border-gray-200">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 mb-2">
               <div className="flex-1 relative">
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask Stew anything about Tbilisi..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder={isListening ? "Listening..." : "Ask Stew anything about Tbilisi..."}
+                  className={`w-full px-4 py-3 pr-12 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all ${
+                    isListening ? 'border-red-300 bg-red-50' : 'border-gray-300'
+                  }`}
                 />
-                <div className="absolute right-3 top-2">
+                <div className="absolute right-3 top-3 flex items-center space-x-1">
+                  {isListening && (
+                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                  )}
                   <Sparkles className="h-4 w-4 text-gray-400" />
                 </div>
               </div>
+              
+              {/* Voice Input Button */}
+              <button
+                onClick={handleVoiceInput}
+                className={`p-3 rounded-xl transition-all duration-300 ${
+                  isListening 
+                    ? 'bg-red-500 text-white animate-pulse' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+                title={isListening ? 'Stop listening' : 'Voice input'}
+              >
+                {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+              </button>
+              
+              {/* Speech Toggle */}
+              <button
+                onClick={toggleSpeech}
+                className={`p-3 rounded-xl transition-all duration-300 ${
+                  isSpeaking 
+                    ? 'bg-green-500 text-white' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+                title={isSpeaking ? 'Stop speaking' : 'Enable speech'}
+              >
+                {isSpeaking ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+              </button>
+              
+              {/* Send Button */}
               <button
                 onClick={handleSendMessage}
-                disabled={!inputText.trim()}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-2 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={!inputText.trim() || isTyping}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-3 rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="h-4 w-4" />
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-2 text-center">
-              🤖 Stew's AI-powered responses • Available 24/7
-            </p>
+            
+            {/* Status Bar */}
+            <div className="flex items-center justify-between text-xs text-gray-500">
+              <div className="flex items-center space-x-3">
+                <span>🤖 AI-powered responses</span>
+                {isTyping && (
+                  <span className="flex items-center">
+                    <div className="w-1 h-1 bg-blue-500 rounded-full animate-bounce mr-1"></div>
+                    <div className="w-1 h-1 bg-blue-500 rounded-full animate-bounce mr-1" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-1 h-1 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <span className="ml-2">Thinking...</span>
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center space-x-2">
+                {recognition.current && (
+                  <span className="text-green-600">🎤 Voice enabled</span>
+                )}
+                {synthesis.current && (
+                  <span className="text-blue-600">🔊 Speech enabled</span>
+                )}
+              </div>
+            </div>
           </div>
         </>
       )}

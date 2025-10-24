@@ -1,7 +1,20 @@
 {
-  "/sports/page": "app/sports/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/activities/page": "app/activities/page.js",
   "/accommodation/page": "app/accommodation/page.js",
-  "/page": "app/page.js",
+  "/blog/admin/page": "app/blog/admin/page.js",
+  "/arts/page": "app/arts/page.js",
+  "/culture/page": "app/culture/page.js",
+  "/offline/page": "app/offline/page.js",
+  "/blog/[id]/page": "app/blog/[id]/page.js",
+  "/blog/page": "app/blog/page.js",
   "/housing/page": "app/housing/page.js",
+  "/page": "app/page.js",
+  "/restaurants/page": "app/restaurants/page.js",
+  "/language/page": "app/language/page.js",
+  "/places/page": "app/places/page.js",
+  "/medical/page": "app/medical/page.js",
+  "/recommendations/page": "app/recommendations/page.js",
+  "/sports/page": "app/sports/page.js",
   "/transport/page": "app/transport/page.js"
 }
