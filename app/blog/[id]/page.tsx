@@ -33,7 +33,7 @@ const BlogPostPage = () => {
       date: '2024-10-20',
       readTime: '5 min read',
       category: 'Personal',
-      featuredImage: '/api/placeholder/800/400',
+      featuredImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop&crop=center',
       hasImages: true,
       hasVideo: false
     },
@@ -60,7 +60,7 @@ const BlogPostPage = () => {
       date: '2024-10-18',
       readTime: '7 min read',
       category: 'Food & Drink',
-      featuredImage: '/api/placeholder/800/400',
+      featuredImage: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=400&fit=crop&crop=center',
       hasImages: true,
       hasVideo: false
     },
@@ -92,7 +92,7 @@ const BlogPostPage = () => {
       date: '2024-10-15',
       readTime: '6 min read',
       category: 'Language',
-      featuredImage: '/api/placeholder/800/400',
+      featuredImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop&crop=center',
       hasImages: false,
       hasVideo: true
     }

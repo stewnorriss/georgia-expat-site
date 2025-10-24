@@ -21,7 +21,7 @@ const BlogPage = () => {
       published: true,
       hasImages: true,
       hasVideo: false,
-      image: '/api/placeholder/400/250'
+      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop&crop=center'
     },
     {
       id: 2,
@@ -34,7 +34,7 @@ const BlogPage = () => {
       published: true,
       hasImages: true,
       hasVideo: false,
-      image: '/api/placeholder/400/250'
+      image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=250&fit=crop&crop=center'
     },
     {
       id: 3,
@@ -47,7 +47,7 @@ const BlogPage = () => {
       published: true,
       hasImages: false,
       hasVideo: true,
-      image: '/api/placeholder/400/250'
+      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=250&fit=crop&crop=center'
     },
     {
       id: 4,
@@ -60,7 +60,7 @@ const BlogPage = () => {
       published: false,
       hasImages: true,
       hasVideo: true,
-      image: '/api/placeholder/400/250'
+      image: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=400&h=250&fit=crop&crop=center'
     }
   ])
 

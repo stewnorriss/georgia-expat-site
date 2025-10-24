@@ -35,7 +35,7 @@ export default function BlogAdmin() {
       readTime: '5 min read',
       hasImages: true,
       hasVideo: false,
-      featuredImage: '/api/placeholder/600/400'
+      featuredImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop&crop=center'
     },
     {
       id: 2,
