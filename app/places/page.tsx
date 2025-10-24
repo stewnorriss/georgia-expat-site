@@ -12,7 +12,8 @@ const PlacesPage = () => {
       description: 'Ancient 4th-century fortress overlooking Tbilisi with panoramic city views.',
       highlights: ['City Views', 'Historical Architecture', 'Cable Car Access'],
       bestTime: 'Sunset',
-      website: 'tbilisi.gov.ge/page/narikala-fortress'
+      website: 'tbilisi.gov.ge/page/narikala-fortress',
+      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop&crop=center'
     },
     {
       name: 'Old Town (Dzveli Kalaki)',
@@ -22,7 +23,8 @@ const PlacesPage = () => {
       description: 'Charming cobblestone streets with traditional architecture, cafes, and shops.',
       highlights: ['Traditional Architecture', 'Local Shops', 'Restaurants'],
       bestTime: 'Morning or Evening',
-      website: 'georgia.travel/en/discover-georgia/tbilisi/old-town'
+      website: 'georgia.travel/en/discover-georgia/tbilisi/old-town',
+      image: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=800&h=450&fit=crop&crop=center'
     },
     {
       name: 'Sulfur Baths (Abanotubani)',
@@ -32,7 +34,8 @@ const PlacesPage = () => {
       description: 'Historic sulfur baths where Tbilisi was founded, offering relaxation and tradition.',
       highlights: ['Thermal Baths', 'Historical Significance', 'Relaxation'],
       bestTime: 'Afternoon',
-      website: 'abanotubani.ge'
+      website: 'abanotubani.ge',
+      image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=450&fit=crop&crop=center'
     },
     {
       name: 'Bridge of Peace',
@@ -42,7 +45,8 @@ const PlacesPage = () => {
       description: 'Stunning modern pedestrian bridge with LED light displays at night.',
       highlights: ['Modern Design', 'Night Illumination', 'River Views'],
       bestTime: 'Night',
-      website: 'tbilisi.gov.ge/page/bridge-of-peace'
+      website: 'tbilisi.gov.ge/page/bridge-of-peace',
+      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop&crop=center'
     },
     {
       name: 'Mtatsminda Park',
@@ -52,7 +56,8 @@ const PlacesPage = () => {
       description: 'Amusement park on Mount Mtatsminda with rides, restaurants, and city views.',
       highlights: ['Amusement Rides', 'Panoramic Views', 'Family Fun'],
       bestTime: 'Afternoon/Evening',
-      website: 'mtatsmindapark.ge'
+      website: 'mtatsmindapark.ge',
+      image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=450&fit=crop&crop=center'
     },
     {
       name: 'Georgian National Museum',
@@ -62,7 +67,8 @@ const PlacesPage = () => {
       description: 'Comprehensive museum showcasing Georgian history, culture, and archaeology.',
       highlights: ['Historical Artifacts', 'Cultural Exhibits', 'Educational'],
       bestTime: 'Morning',
-      website: 'museum.ge'
+      website: 'museum.ge',
+      image: 'https://images.unsplash.com/photo-1566127992631-137a642a90f4?w=800&h=450&fit=crop&crop=center'
     }
   ]
 
@@ -116,7 +122,7 @@ const PlacesPage = () => {
                 <div 
                   className="w-full h-full bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center hover:scale-105 transition-transform duration-300"
                   style={{
-                    backgroundImage: `url('https://picsum.photos/800/450?random=${index + 500}')`,
+                    backgroundImage: `url('${place.image}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

@@ -8,6 +8,17 @@ const RestaurantsPage = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [favorites, setFavorites] = useState<string[]>([])
 
+  const getRestaurantImage = (name: string, index: number) => {
+    const restaurantImages: { [key: string]: string } = {
+      'Shavi Lomi': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=400&fit=crop&crop=center',
+      'Barbarestan': 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop&crop=center',
+      'Cafe Littera': 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=400&fit=crop&crop=center',
+      'Funicular Restaurant Complex': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop&crop=center',
+      'Azarphesha': 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=400&fit=crop&crop=center'
+    }
+    return restaurantImages[name] || `https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=400&fit=crop&crop=center&sig=${index}`
+  }
+
   const filters = [
     { id: 'all', name: 'All Restaurants', count: 21 },
     { id: 'georgian', name: 'Georgian', count: 12 },
@@ -310,7 +321,7 @@ const RestaurantsPage = () => {
                 <div 
                   className="w-full h-full bg-gradient-to-br from-red-500 to-orange-600 flex items-center justify-center hover:scale-105 transition-transform duration-300"
                   style={{
-                    backgroundImage: `url('https://picsum.photos/800/400?random=${index + 400}')`,
+                    backgroundImage: `url('${getRestaurantImage(restaurant.name, index)}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

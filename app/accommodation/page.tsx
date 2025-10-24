@@ -3,6 +3,15 @@
 import { Bed, Star, Wifi, Car, Globe, ExternalLink } from 'lucide-react'
 
 const AccommodationPage = () => {
+  const getHotelImage = (name: string, index: number) => {
+    const hotelImages: { [key: string]: string } = {
+      'Rooms Hotel Tbilisi': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop&crop=center',
+      'Stamba Hotel': 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&h=400&fit=crop&crop=center',
+      'Fabrika Tbilisi': 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=400&fit=crop&crop=center'
+    }
+    return hotelImages[name] || `https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop&crop=center&sig=${index}`
+  }
+
   const hotels = [
     {
       name: 'Rooms Hotel Tbilisi',
@@ -54,7 +63,7 @@ const AccommodationPage = () => {
                 <div 
                   className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center hover:scale-105 transition-transform duration-300"
                   style={{
-                    backgroundImage: `url('https://picsum.photos/800/400?random=${index + 100}')`,
+                    backgroundImage: `url('${getHotelImage(hotel.name, index)}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
