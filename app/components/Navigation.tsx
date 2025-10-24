@@ -12,7 +12,7 @@ const Navigation = () => {
 
   const mainNavItems = [
     { href: '/', label: 'Home' },
-    { href: '/recommendations', label: 'AI Recommendations' },
+    { href: '/recommendations', label: 'Recommendations' },
     { href: '/restaurants', label: 'Restaurants' },
     { href: '/places', label: 'Places to Visit' },
     { href: '/accommodation', label: 'Hotels & Stays' },
