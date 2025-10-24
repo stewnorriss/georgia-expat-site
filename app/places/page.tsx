@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, Clock, Camera, Star } from 'lucide-react'
+import { MapPin, Clock, Camera, Star, Globe, ExternalLink } from 'lucide-react'
 
 const PlacesPage = () => {
   const places = [
@@ -11,7 +11,8 @@ const PlacesPage = () => {
       visitTime: '2-3 hours',
       description: 'Ancient 4th-century fortress overlooking Tbilisi with panoramic city views.',
       highlights: ['City Views', 'Historical Architecture', 'Cable Car Access'],
-      bestTime: 'Sunset'
+      bestTime: 'Sunset',
+      website: 'tbilisi.gov.ge/page/narikala-fortress'
     },
     {
       name: 'Old Town (Dzveli Kalaki)',
@@ -20,7 +21,8 @@ const PlacesPage = () => {
       visitTime: 'Half day',
       description: 'Charming cobblestone streets with traditional architecture, cafes, and shops.',
       highlights: ['Traditional Architecture', 'Local Shops', 'Restaurants'],
-      bestTime: 'Morning or Evening'
+      bestTime: 'Morning or Evening',
+      website: 'georgia.travel/en/discover-georgia/tbilisi/old-town'
     },
     {
       name: 'Sulfur Baths (Abanotubani)',
@@ -29,7 +31,8 @@ const PlacesPage = () => {
       visitTime: '2-4 hours',
       description: 'Historic sulfur baths where Tbilisi was founded, offering relaxation and tradition.',
       highlights: ['Thermal Baths', 'Historical Significance', 'Relaxation'],
-      bestTime: 'Afternoon'
+      bestTime: 'Afternoon',
+      website: 'abanotubani.ge'
     },
     {
       name: 'Bridge of Peace',
@@ -38,7 +41,8 @@ const PlacesPage = () => {
       visitTime: '30 minutes',
       description: 'Stunning modern pedestrian bridge with LED light displays at night.',
       highlights: ['Modern Design', 'Night Illumination', 'River Views'],
-      bestTime: 'Night'
+      bestTime: 'Night',
+      website: 'tbilisi.gov.ge/page/bridge-of-peace'
     },
     {
       name: 'Mtatsminda Park',
@@ -47,7 +51,8 @@ const PlacesPage = () => {
       visitTime: 'Half day',
       description: 'Amusement park on Mount Mtatsminda with rides, restaurants, and city views.',
       highlights: ['Amusement Rides', 'Panoramic Views', 'Family Fun'],
-      bestTime: 'Afternoon/Evening'
+      bestTime: 'Afternoon/Evening',
+      website: 'mtatsmindapark.ge'
     },
     {
       name: 'Georgian National Museum',
@@ -56,7 +61,8 @@ const PlacesPage = () => {
       visitTime: '2-3 hours',
       description: 'Comprehensive museum showcasing Georgian history, culture, and archaeology.',
       highlights: ['Historical Artifacts', 'Cultural Exhibits', 'Educational'],
-      bestTime: 'Morning'
+      bestTime: 'Morning',
+      website: 'museum.ge'
     }
   ]
 
@@ -163,10 +169,22 @@ const PlacesPage = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Best Time to Visit:</h4>
-                    <div className="flex items-center text-gray-600">
+                    <div className="flex items-center text-gray-600 mb-3">
                       <Camera className="h-4 w-4 mr-2" />
                       <span>{place.bestTime}</span>
                     </div>
+                    {place.website && (
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Website:</h4>
+                        <div className="flex items-center text-gray-600">
+                          <Globe className="h-4 w-4 mr-2 text-purple-500" />
+                          <a href={`https://${place.website}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                            {place.website}
+                            <ExternalLink className="h-3 w-3 ml-1" />
+                          </a>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

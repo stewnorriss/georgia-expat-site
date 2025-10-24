@@ -1,6 +1,6 @@
 'use client'
 
-import { Bed, Star, Wifi, Car } from 'lucide-react'
+import { Bed, Star, Wifi, Car, Globe, ExternalLink } from 'lucide-react'
 
 const AccommodationPage = () => {
   const hotels = [
@@ -10,7 +10,8 @@ const AccommodationPage = () => {
       rating: 4.8,
       priceRange: '$150-300',
       location: 'Vera',
-      amenities: ['Free WiFi', 'Restaurant', 'Bar', 'Gym', 'Rooftop Terrace']
+      amenities: ['Free WiFi', 'Restaurant', 'Bar', 'Gym', 'Rooftop Terrace'],
+      website: 'roomshotels.com/tbilisi'
     },
     {
       name: 'Stamba Hotel',
@@ -18,7 +19,8 @@ const AccommodationPage = () => {
       rating: 4.9,
       priceRange: '$200-400',
       location: 'Vera',
-      amenities: ['Free WiFi', 'Restaurant', 'Bar', 'Spa', 'Library']
+      amenities: ['Free WiFi', 'Restaurant', 'Bar', 'Spa', 'Library'],
+      website: 'stambahotel.com'
     },
     {
       name: 'Fabrika Tbilisi',
@@ -26,7 +28,8 @@ const AccommodationPage = () => {
       rating: 4.6,
       priceRange: '$30-120',
       location: 'Marjanishvili',
-      amenities: ['Free WiFi', 'Co-working', 'Bar', 'Events', 'Shared Kitchen']
+      amenities: ['Free WiFi', 'Co-working', 'Bar', 'Events', 'Shared Kitchen'],
+      website: 'fabrikatbilisi.com'
     }
   ]
 
@@ -92,13 +95,25 @@ const AccommodationPage = () => {
                     <span className="text-green-600 font-semibold">{hotel.priceRange}</span>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {hotel.amenities.map((amenity, idx) => (
                     <span key={idx} className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">
                       {amenity}
                     </span>
                   ))}
                 </div>
+                {hotel.website && (
+                  <div className="flex items-center text-gray-600">
+                    <Globe className="h-4 w-4 mr-2 text-purple-500" />
+                    <div>
+                      <div className="font-semibold">Website</div>
+                      <a href={`https://${hotel.website}`} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline flex items-center">
+                        {hotel.website}
+                        <ExternalLink className="h-3 w-3 ml-1" />
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}

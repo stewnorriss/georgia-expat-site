@@ -1,6 +1,6 @@
 'use client'
 
-import { Dumbbell, MapPin, Clock, DollarSign } from 'lucide-react'
+import { Dumbbell, MapPin, Clock, DollarSign, Globe, ExternalLink } from 'lucide-react'
 
 const SportsPage = () => {
   const gyms = [
@@ -9,14 +9,16 @@ const SportsPage = () => {
       type: 'Premium Gym Chain',
       locations: ['Galleria Tbilisi', 'East Point', 'Mall of Georgia'],
       priceRange: '150-300 GEL/month',
-      facilities: ['Modern Equipment', 'Pool', 'Group Classes', 'Sauna', 'Personal Training']
+      facilities: ['Modern Equipment', 'Pool', 'Group Classes', 'Sauna', 'Personal Training'],
+      website: 'worldclass.ge'
     },
     {
       name: 'Fitness Time',
       type: 'Mid-range Gym',
       locations: ['Multiple locations'],
       priceRange: '80-150 GEL/month',
-      facilities: ['Cardio Equipment', 'Weight Training', 'Group Classes', 'Locker Rooms']
+      facilities: ['Cardio Equipment', 'Weight Training', 'Group Classes', 'Locker Rooms'],
+      website: 'fitnesstime.ge'
     }
   ]
 
@@ -38,7 +40,7 @@ const SportsPage = () => {
             <div key={index} className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">{gym.name}</h3>
               <p className="text-lg text-yellow-600 mb-4">{gym.type}</p>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-3">Locations:</h4>
                   <ul className="space-y-1">
@@ -55,6 +57,30 @@ const SportsPage = () => {
                   <p className="text-green-600 font-semibold">{gym.priceRange}</p>
                 </div>
               </div>
+              
+              <div className="mb-4">
+                <h4 className="font-semibold text-gray-900 mb-3">Facilities:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {gym.facilities.map((facility, idx) => (
+                    <span key={idx} className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
+                      {facility}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {gym.website && (
+                <div className="flex items-center text-gray-600">
+                  <Globe className="h-4 w-4 mr-2 text-purple-500" />
+                  <div>
+                    <div className="font-semibold">Website</div>
+                    <a href={`https://${gym.website}`} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline flex items-center">
+                      {gym.website}
+                      <ExternalLink className="h-3 w-3 ml-1" />
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
