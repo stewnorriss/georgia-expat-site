@@ -1,6 +1,6 @@
 'use client'
 
-import { Stethoscope, Phone, MapPin, Clock } from 'lucide-react'
+import { Stethoscope, Phone, MapPin, Clock, Globe, ExternalLink } from 'lucide-react'
 
 const MedicalPage = () => {
   const hospitals = [
@@ -10,7 +10,8 @@ const MedicalPage = () => {
       services: ['Emergency Care', 'General Medicine', 'Specialists', 'Diagnostics'],
       languages: ['Georgian', 'English', 'Russian'],
       location: 'Multiple locations',
-      emergency: '24/7'
+      emergency: '24/7',
+      website: 'aversi.ge'
     },
     {
       name: 'New Hospitals (Evex)',
@@ -18,7 +19,8 @@ const MedicalPage = () => {
       services: ['Emergency Care', 'Surgery', 'Maternity', 'Cardiology'],
       languages: ['Georgian', 'English'],
       location: 'Multiple locations',
-      emergency: '24/7'
+      emergency: '24/7',
+      website: 'evex.ge'
     },
     {
       name: 'Acad. O. Aladashvili Clinic',
@@ -26,7 +28,8 @@ const MedicalPage = () => {
       services: ['Emergency Care', 'General Medicine', 'Surgery'],
       languages: ['Georgian', 'Limited English'],
       location: 'Vera',
-      emergency: '24/7'
+      emergency: '24/7',
+      website: 'hospital.ge'
     }
   ]
 
@@ -127,6 +130,15 @@ const MedicalPage = () => {
                         <Clock className="h-4 w-4 mr-1" />
                         <span>Emergency: {hospital.emergency}</span>
                       </div>
+                      {hospital.website && (
+                        <div className="flex items-center">
+                          <Globe className="h-4 w-4 mr-1 text-purple-500" />
+                          <a href={`https://${hospital.website}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                            {hospital.website}
+                            <ExternalLink className="h-3 w-3 ml-1" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
