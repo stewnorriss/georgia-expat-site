@@ -12,35 +12,30 @@ const Navigation = () => {
 
   const mainNavItems = [
     { href: '/', label: 'Home' },
-    { href: '/recommendations', label: 'Recommendations' },
+    { href: '/recommendations', label: 'AI Recommendations' },
     { href: '/restaurants', label: 'Restaurants' },
-    { href: '/places', label: 'Places' },
-    { href: '/transport', label: 'Transport' },
-    { href: '/housing', label: 'Housing' },
+    { href: '/places', label: 'Places to Visit' },
+    { href: '/accommodation', label: 'Hotels & Stays' },
     { href: '/blog', label: 'Blog' },
   ]
 
   const dropdownGroups = [
     {
-      title: 'Culture & Language',
+      title: 'Living Essentials',
+      items: [
+        { href: '/transport', label: 'Getting Around' },
+        { href: '/housing', label: 'Housing & Rentals' },
+        { href: '/medical', label: 'Healthcare & Medical' },
+      ]
+    },
+    {
+      title: 'Culture & Activities',
       items: [
         { href: '/culture', label: 'Georgian Culture' },
         { href: '/language', label: 'Learn Georgian' },
         { href: '/arts', label: 'Arts & Museums' },
-      ]
-    },
-    {
-      title: 'Activities & Lifestyle',
-      items: [
-        { href: '/activities', label: 'Adventures' },
+        { href: '/activities', label: 'Adventures & Activities' },
         { href: '/sports', label: 'Sports & Fitness' },
-        { href: '/accommodation', label: 'Hotels & Stays' },
-      ]
-    },
-    {
-      title: 'Essential Services',
-      items: [
-        { href: '/medical', label: 'Healthcare' },
       ]
     }
   ]
