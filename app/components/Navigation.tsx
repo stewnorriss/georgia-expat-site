@@ -41,8 +41,6 @@ const Navigation = () => {
     }
   ]
 
-
-
   return (
     <nav className="bg-gradient-to-r from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-xl sticky top-0 z-50 border-b border-gray-100 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
