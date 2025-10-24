@@ -94,7 +94,7 @@ export default function BlogAdmin() {
         images: newPost.images || [],
         videos: newPost.videos || [],
         hasImages: (newPost.images && newPost.images.length > 0) || !!newPost.featuredImage,
-        hasVideo: newPost.videos && newPost.videos.length > 0
+        hasVideo: !!(newPost.videos && newPost.videos.length > 0)
       }
       
       setPosts([post, ...posts])
