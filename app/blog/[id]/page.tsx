@@ -3,102 +3,14 @@
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { Calendar, User, Clock, ArrowLeft, Tag, Image, Video, Edit } from 'lucide-react'
+import { useBlog } from '../../contexts/BlogContext'
 
 const BlogPostPage = () => {
   const params = useParams()
-  const postId = params.id
-
-  // Sample blog posts data (in a real app, this would come from a database or API)
-  const posts = {
-    '1': {
-      id: 1,
-      title: 'My First Week in Tbilisi',
-      content: `
-        <h2>Arriving in Georgia's Capital</h2>
-        <p>After months of planning and anticipation, I've finally made it to Tbilisi! The journey here was long but worth every minute. As I stepped off the plane at Shota Rustaveli Tbilisi International Airport, I could feel the excitement building.</p>
-        
-        <h3>First Impressions</h3>
-        <p>Walking through the streets of Old Town for the first time was absolutely magical. The cobblestone streets, the mix of ancient and modern architecture, and the incredible hospitality of the Georgian people immediately made me feel welcome.</p>
-        
-        <h3>The Food Scene</h3>
-        <p>I've already tried khachapuri (the cheese-filled bread that Georgia is famous for) and khinkali (traditional soup dumplings). Every meal has been an adventure, and I'm excited to explore more of the incredible Georgian cuisine.</p>
-        
-        <h3>Language Challenges</h3>
-        <p>Georgian script looks like beautiful art, but it's definitely challenging to learn! I've managed to master "gamarjoba" (hello) and "madloba" (thank you), which has earned me smiles from locals.</p>
-        
-        <h3>What's Next</h3>
-        <p>I'm planning to explore more neighborhoods, find a good coffee shop to work from, and maybe take some Georgian language lessons. This is just the beginning of what I know will be an incredible journey.</p>
-      `,
-      author: 'Stew Norriss',
-      date: '2024-10-20',
-      readTime: '5 min read',
-      category: 'Personal',
-      featuredImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop&crop=center',
-      hasImages: true,
-      hasVideo: false
-    },
-    '2': {
-      id: 2,
-      title: 'Best Coffee Shops I\'ve Discovered',
-      content: `
-        <h2>A Coffee Lover's Guide to Tbilisi</h2>
-        <p>As someone who can't function without good coffee, finding the best cafes in Tbilisi has been a top priority. After extensive "research" (aka drinking lots of coffee), here are my favorites so far.</p>
-        
-        <h3>Stamba Cafe</h3>
-        <p>Located in the trendy Stamba Hotel, this cafe serves some of the best specialty coffee in the city. The industrial-chic atmosphere and perfectly crafted lattes make it my go-to spot for morning work sessions.</p>
-        
-        <h3>Cafe Leila</h3>
-        <p>A cozy neighborhood gem with amazing Georgian coffee and homemade pastries. The owner, Leila, always greets me with a smile and is helping me practice my Georgian!</p>
-        
-        <h3>Prospero's Books & Caliban's Coffee</h3>
-        <p>A bookstore-cafe combo that's perfect for rainy afternoons. Great coffee, English books, and a quiet atmosphere for reading or writing. Plus, they have the best carrot cake in town.</p>
-        
-        <h3>The Hunt Continues</h3>
-        <p>I'm still exploring and discovering new spots every week. If you have recommendations, let me know! The coffee culture here is thriving, and I'm excited to try every single cafe in the city.</p>
-      `,
-      author: 'Stew Norriss',
-      date: '2024-10-18',
-      readTime: '7 min read',
-      category: 'Food & Drink',
-      featuredImage: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=400&fit=crop&crop=center',
-      hasImages: true,
-      hasVideo: false
-    },
-    '3': {
-      id: 3,
-      title: 'Learning Georgian: My Journey So Far',
-      content: `
-        <h2>Tackling One of the World's Most Unique Languages</h2>
-        <p>Georgian is unlike any language I've ever encountered. With its own unique script and complex grammar, it's been both challenging and fascinating to learn.</p>
-        
-        <h3>The Georgian Alphabet</h3>
-        <p>The Georgian script (called Mkhedruli) has 33 letters and looks absolutely beautiful. Each letter is like a small work of art. I've been practicing writing them every day, and slowly but surely, I'm getting the hang of it.</p>
-        
-        <h3>Basic Phrases I've Mastered</h3>
-        <ul>
-          <li><strong>Gamarjoba</strong> (გამარჯობა) - Hello</li>
-          <li><strong>Madloba</strong> (მადლობა) - Thank you</li>
-          <li><strong>Bodishi</strong> (ბოდიში) - Sorry/Excuse me</li>
-          <li><strong>Nakhvamdis</strong> (ნახვამდის) - Goodbye</li>
-        </ul>
-        
-        <h3>The Challenges</h3>
-        <p>Georgian grammar is incredibly complex, with cases, verb conjugations, and sentence structures that are completely different from English. But every small victory feels amazing!</p>
-        
-        <h3>My Learning Strategy</h3>
-        <p>I'm using a combination of language apps, local tutors, and most importantly, trying to practice with locals whenever possible. Georgians are incredibly patient and encouraging when they see foreigners trying to learn their language.</p>
-      `,
-      author: 'Stew Norriss',
-      date: '2024-10-15',
-      readTime: '6 min read',
-      category: 'Language',
-      featuredImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop&crop=center',
-      hasImages: false,
-      hasVideo: true
-    }
-  }
-
-  const post = posts[postId as keyof typeof posts]
+  const postId = parseInt(params.id as string)
+  const { getPost } = useBlog()
+  
+  const post = getPost(postId)
 
   if (!post) {
     return (
@@ -106,13 +18,19 @@ const BlogPostPage = () => {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Post Not Found</h1>
           <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
-          <Link href="/blog" className="text-blue-600 hover:text-blue-800 font-semibold">
-            ← Back to Blog
+          <Link 
+            href="/blog"
+            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Blog
           </Link>
         </div>
       </div>
     )
   }
+
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -248,10 +166,10 @@ const BlogPostPage = () => {
         <div className="mt-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">More from Stew's Blog</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {Object.values(posts)
+            {useBlog().getPublishedPosts()
               .filter(p => p.id !== post.id)
               .slice(0, 2)
-              .map((relatedPost) => (
+              .map((relatedPost: any) => (
                 <Link
                   key={relatedPost.id}
                   href={`/blog/${relatedPost.id}`}

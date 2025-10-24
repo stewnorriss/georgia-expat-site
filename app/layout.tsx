@@ -4,6 +4,7 @@ import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import AIChatbot from './components/AIChatbot'
 import { ThemeProvider } from './contexts/ThemeContext'
+import { BlogProvider } from './contexts/BlogContext'
 // import PWAInstaller from './components/PWAInstaller'
 
 export const metadata: Metadata = {
@@ -87,16 +88,45 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#dc2626" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme') || 'system';
+                  var resolvedTheme = theme;
+                  
+                  if (theme === 'system') {
+                    resolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  }
+                  
+                  document.documentElement.classList.add(resolvedTheme);
+                  
+                  // Update meta theme-color
+                  var metaThemeColor = document.querySelector('meta[name="theme-color"]');
+                  if (metaThemeColor) {
+                    metaThemeColor.setAttribute('content', resolvedTheme === 'dark' ? '#1f2937' : '#ffffff');
+                  }
+                } catch (e) {
+                  // Fallback to light theme
+                  document.documentElement.classList.add('light');
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body className="font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
         <ThemeProvider>
-          <Navigation />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
-          <AIChatbot />
-          {/* <PWAInstaller /> */}
+          <BlogProvider>
+            <Navigation />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+            <AIChatbot />
+            {/* <PWAInstaller /> */}
+          </BlogProvider>
         </ThemeProvider>
         <script
           dangerouslySetInnerHTML={{

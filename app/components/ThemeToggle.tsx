@@ -3,10 +3,19 @@
 import { useTheme } from '../contexts/ThemeContext'
 import { Sun, Moon, Monitor } from 'lucide-react'
 import { useState } from 'react'
+import { useIsClient } from '../hooks/useIsClient'
 
 export default function ThemeToggle() {
   const { theme, setTheme, resolvedTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
+  const isClient = useIsClient()
+
+  // Prevent hydration mismatch by not rendering until client-side
+  if (!isClient) {
+    return (
+      <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 w-9 h-9 animate-pulse" />
+    )
+  }
 
   const themes = [
     { value: 'light', label: 'Light', icon: Sun },

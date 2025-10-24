@@ -1,60 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Plus, Edit, Trash2, Save, X, Eye, Calendar, User, Tag, Image, Video, Upload, FileText, Camera, Play } from 'lucide-react'
 import Link from 'next/link'
-
-interface BlogPost {
-  id: number
-  title: string
-  excerpt: string
-  content: string
-  author: string
-  date: string
-  category: string
-  published: boolean
-  readTime: string
-  featuredImage?: string
-  images?: string[]
-  videos?: string[]
-  hasImages: boolean
-  hasVideo: boolean
-}
+import { useBlog } from '../../contexts/BlogContext'
+import { useSearchParams } from 'next/navigation'
 
 export default function BlogAdmin() {
-  const [posts, setPosts] = useState<BlogPost[]>([
-    {
-      id: 1,
-      title: 'My First Week in Tbilisi',
-      excerpt: 'Just arrived in Georgia\'s capital and I\'m already falling in love...',
-      content: 'Full content here...',
-      author: 'Stew Norriss',
-      date: '2024-10-20',
-      category: 'Personal',
-      published: true,
-      readTime: '5 min read',
-      hasImages: true,
-      hasVideo: false,
-      featuredImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop&crop=center'
-    },
-    {
-      id: 2,
-      title: 'Best Coffee Shops I\'ve Discovered',
-      excerpt: 'As a coffee enthusiast, I\'ve been exploring Tbilisi\'s amazing cafe scene...',
-      content: 'Full content here...',
-      author: 'Stew Norriss',
-      date: '2024-10-18',
-      category: 'Food & Drink',
-      published: true,
-      readTime: '7 min read',
-      hasImages: true,
-      hasVideo: false
-    }
-  ])
-
+  const { 
+    posts, 
+    createPost, 
+    updatePost, 
+    deletePost, 
+    togglePublished 
+  } = useBlog()
+  
+  const searchParams = useSearchParams()
+  const editId = searchParams.get('edit')
+  
   const [showNewPostForm, setShowNewPostForm] = useState(false)
-  const [editingPost, setEditingPost] = useState<BlogPost | null>(null)
-  const [newPost, setNewPost] = useState<Partial<BlogPost>>({
+  const [editingPost, setEditingPost] = useState<any>(null)
+  const [newPost, setNewPost] = useState<any>({
+
     title: '',
     excerpt: '',
     content: '',
@@ -67,6 +34,30 @@ export default function BlogAdmin() {
     hasVideo: false
   })
 
+  // Handle edit mode from URL parameter
+  useEffect(() => {
+    if (editId) {
+      const postToEdit = posts.find(p => p.id === parseInt(editId))
+      if (postToEdit) {
+        setEditingPost(postToEdit)
+        setNewPost({
+          title: postToEdit.title,
+          excerpt: postToEdit.excerpt,
+          content: postToEdit.content,
+          author: postToEdit.author,
+          category: postToEdit.category,
+          published: postToEdit.published,
+          featuredImage: postToEdit.featuredImage,
+          images: postToEdit.images || [],
+          videos: postToEdit.videos || [],
+          hasImages: postToEdit.hasImages,
+          hasVideo: postToEdit.hasVideo
+        })
+        setShowNewPostForm(true)
+      }
+    }
+  }, [editId, posts])
+
   const categories = [
     'Personal',
     'Travel', 
@@ -78,18 +69,15 @@ export default function BlogAdmin() {
     'Adventures'
   ]
 
-  const handleCreatePost = () => {
+  const handleSavePost = () => {
     if (newPost.title && newPost.excerpt && newPost.content) {
-      const post: BlogPost = {
-        id: Date.now(),
+      const postData = {
         title: newPost.title,
         excerpt: newPost.excerpt,
         content: newPost.content,
         author: newPost.author || 'Stew Norriss',
-        date: new Date().toISOString().split('T')[0],
         category: newPost.category || 'Personal',
         published: newPost.published || false,
-        readTime: `${Math.ceil(newPost.content.split(' ').length / 200)} min read`,
         featuredImage: newPost.featuredImage,
         images: newPost.images || [],
         videos: newPost.videos || [],
@@ -97,7 +85,15 @@ export default function BlogAdmin() {
         hasVideo: !!(newPost.videos && newPost.videos.length > 0)
       }
       
-      setPosts([post, ...posts])
+      if (editingPost) {
+        // Update existing post
+        updatePost(editingPost.id, postData)
+      } else {
+        // Create new post
+        createPost(postData)
+      }
+      
+      // Reset form
       setNewPost({
         title: '',
         excerpt: '',
@@ -110,20 +106,60 @@ export default function BlogAdmin() {
         hasImages: false,
         hasVideo: false
       })
+      setEditingPost(null)
       setShowNewPostForm(false)
+      
+      // Clear URL parameter if editing
+      if (editId) {
+        window.history.replaceState({}, '', '/blog/admin')
+      }
     }
   }
 
   const handleDeletePost = (id: number) => {
     if (confirm('Are you sure you want to delete this post?')) {
-      setPosts(posts.filter(post => post.id !== id))
+      deletePost(id)
     }
   }
 
-  const togglePublished = (id: number) => {
-    setPosts(posts.map(post => 
-      post.id === id ? { ...post, published: !post.published } : post
-    ))
+  const handleEditPost = (post: any) => {
+    setEditingPost(post)
+    setNewPost({
+      title: post.title,
+      excerpt: post.excerpt,
+      content: post.content,
+      author: post.author,
+      category: post.category,
+      published: post.published,
+      featuredImage: post.featuredImage,
+      images: post.images || [],
+      videos: post.videos || [],
+      hasImages: post.hasImages,
+      hasVideo: post.hasVideo
+    })
+    setShowNewPostForm(true)
+  }
+
+  const handleCancelEdit = () => {
+    setEditingPost(null)
+    setNewPost({
+      title: '',
+      excerpt: '',
+      content: '',
+      author: 'Stew Norriss',
+      category: 'Personal',
+      published: false,
+      images: [],
+      videos: [],
+      hasImages: false,
+      hasVideo: false
+    })
+    setShowNewPostForm(false)
+    
+    // Clear URL parameter if editing
+    if (editId) {
+      window.history.replaceState({}, '', '/blog/admin')
+    }
   }
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -258,9 +294,11 @@ export default function BlogAdmin() {
             <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6 border-b bg-gradient-to-r from-blue-50 to-purple-50">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold text-gray-900">Create New Blog Post</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {editingPost ? 'Edit Blog Post' : 'Create New Blog Post'}
+                  </h2>
                   <button
-                    onClick={() => setShowNewPostForm(false)}
+                    onClick={handleCancelEdit}
                     className="text-gray-400 hover:text-gray-600"
                   >
                     <X className="h-6 w-6" />
@@ -362,7 +400,7 @@ export default function BlogAdmin() {
                     </div>
                     {newPost.images && newPost.images.length > 0 && (
                       <div className="mt-3 grid grid-cols-3 gap-2">
-                        {newPost.images.map((img, idx) => (
+                        {newPost.images.map((img: string, idx: number) => (
                           <div key={idx} className="aspect-square bg-gray-100 rounded border overflow-hidden">
                             <img src={img} alt={`Upload ${idx + 1}`} className="w-full h-full object-cover" />
                           </div>
@@ -390,7 +428,7 @@ export default function BlogAdmin() {
                     </div>
                     {newPost.videos && newPost.videos.length > 0 && (
                       <div className="mt-3 space-y-2">
-                        {newPost.videos.map((video, idx) => (
+                        {newPost.videos.map((video: string, idx: number) => (
                           <div key={idx} className="bg-gray-100 rounded p-3 flex items-center">
                             <Play className="h-4 w-4 text-gray-600 mr-2" />
                             <span className="text-sm text-gray-600">Video {idx + 1} uploaded</span>
@@ -431,17 +469,17 @@ export default function BlogAdmin() {
               
               <div className="p-6 border-t bg-gray-50 flex justify-end space-x-3">
                 <button
-                  onClick={() => setShowNewPostForm(false)}
+                  onClick={handleCancelEdit}
                   className="px-6 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
-                  onClick={handleCreatePost}
+                  onClick={handleSavePost}
                   className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center font-semibold"
                 >
                   <Save className="h-4 w-4 mr-2" />
-                  Create Post
+                  {editingPost ? 'Update Post' : 'Create Post'}
                 </button>
               </div>
             </div>
@@ -511,7 +549,11 @@ export default function BlogAdmin() {
                     >
                       {post.published ? 'Unpublish' : 'Publish'}
                     </button>
-                    <button className="p-2 text-gray-400 hover:text-blue-600 transition-colors">
+                    <button 
+                      onClick={() => handleEditPost(post)}
+                      className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
+                      title="Edit post"
+                    >
                       <Edit className="h-4 w-4" />
                     </button>
                     <button

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Bot, Send, X, Minimize2, Maximize2, MessageCircle, Sparkles, Clock, Star, User, MapPin, Heart, Bookmark, Share2, ThumbsUp, ThumbsDown, RefreshCw, Mic, MicOff, Volume2, VolumeX } from 'lucide-react'
+import { useIsClient } from '../hooks/useIsClient'
 
 interface Message {
   id: string
@@ -18,10 +19,26 @@ interface Message {
 
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [isClient, setIsClient] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([
-    {
+  const isClient = useIsClient()
+  const [messages, setMessages] = useState<Message[]>([])
+  const [inputText, setInputText] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
+  const [isListening, setIsListening] = useState(false)
+  const [isSpeaking, setIsSpeaking] = useState(false)
+  const [userPreferences, setUserPreferences] = useState({
+    language: 'en',
+    interests: [] as string[],
+    location: 'Tbilisi',
+    budget: 'medium'
+  })
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const recognition = useRef<any>(null)
+  const synthesis = useRef<any>(null)
+
+  useEffect(() => {
+    // Initialize welcome message
+    setMessages([{
       id: '1',
       text: "Hello! I'm Stew's AI assistant for Tbilisi. I can help you with restaurants, transport, culture, activities, and more. I have access to real-time information and can provide personalized recommendations based on your preferences. What would you like to know?",
       isBot: true,
@@ -41,25 +58,8 @@ const AIChatbot = () => {
         { title: "Transport Guide", url: "/transport" },
         { title: "Cultural Tips", url: "/culture" }
       ]
-    }
-  ])
-  const [inputText, setInputText] = useState('')
-  const [isTyping, setIsTyping] = useState(false)
-  const [isListening, setIsListening] = useState(false)
-  const [isSpeaking, setIsSpeaking] = useState(false)
-  const [userPreferences, setUserPreferences] = useState({
-    language: 'en',
-    interests: [] as string[],
-    location: 'Tbilisi',
-    budget: 'medium'
-  })
-  const messagesEndRef = useRef<HTMLDivElement>(null)
-  const recognition = useRef<any>(null)
-  const synthesis = useRef<any>(null)
+    }])
 
-  useEffect(() => {
-    setIsClient(true)
-    
     // Initialize speech recognition
     if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
       recognition.current = new (window as any).webkitSpeechRecognition()

@@ -3,82 +3,48 @@
 import { useState } from 'react'
 import { Calendar, User, Clock, ArrowRight, BookOpen, Plus, Image, Video, Edit, Trash2, Eye, Search, Filter } from 'lucide-react'
 import Link from 'next/link'
+import { useBlog } from '../contexts/BlogContext'
 
 const BlogPage = () => {
+  const { posts: allPosts, getPublishedPosts, searchPosts, getPostsByCategory } = useBlog()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
 
-  // Personal blog posts - these would come from a database in a real app
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: 'My First Week in Tbilisi',
-      excerpt: 'Just arrived in Georgia\'s capital and I\'m already falling in love with this incredible city. Here are my first impressions...',
-      author: 'Stew Norriss',
-      date: '2024-10-20',
-      readTime: '5 min read',
-      category: 'Personal',
-      published: true,
-      hasImages: true,
-      hasVideo: false,
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop&crop=center'
-    },
-    {
-      id: 2,
-      title: 'Best Coffee Shops I\'ve Discovered',
-      excerpt: 'As a coffee enthusiast, I\'ve been exploring Tbilisi\'s amazing cafe scene. Here are my top picks so far...',
-      author: 'Stew Norriss',
-      date: '2024-10-18',
-      readTime: '7 min read',
-      category: 'Food & Drink',
-      published: true,
-      hasImages: true,
-      hasVideo: false,
-      image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=250&fit=crop&crop=center'
-    },
-    {
-      id: 3,
-      title: 'Learning Georgian: My Journey So Far',
-      excerpt: 'Tackling one of the world\'s most unique languages. Here\'s what I\'ve learned about learning Georgian...',
-      author: 'Stew Norriss',
-      date: '2024-10-15',
-      readTime: '6 min read',
-      category: 'Language',
-      published: true,
-      hasImages: false,
-      hasVideo: true,
-      image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=250&fit=crop&crop=center'
-    },
-    {
-      id: 4,
-      title: 'Exploring Old Town Tbilisi',
-      excerpt: 'A photo and video journey through the historic heart of the city. The architecture here is absolutely stunning...',
-      author: 'Stew Norriss',
-      date: '2024-10-12',
-      readTime: '4 min read',
-      category: 'Travel',
-      published: false,
-      hasImages: true,
-      hasVideo: true,
-      image: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=400&h=250&fit=crop&crop=center'
+  // Get published posts
+  const publishedPosts = getPublishedPosts()
+  
+  // Filter posts based on search and category
+  const getFilteredPosts = () => {
+    let filteredPosts = publishedPosts
+    
+    if (searchQuery) {
+      filteredPosts = searchPosts(searchQuery).filter(post => post.published)
     }
-  ])
+    
+    if (selectedCategory !== 'all') {
+      // Convert category value back to display name for filtering
+      const categoryName = categories.find(cat => cat.value === selectedCategory)?.label
+      if (categoryName) {
+        filteredPosts = filteredPosts.filter(post => post.category === categoryName)
+      }
+    }
+    
+    return filteredPosts
+  }
+  
+  const posts = getFilteredPosts()
+  
+  // Get unique categories from published posts with counts
+  const categoryList = ['all', ...Array.from(new Set(publishedPosts.map(post => post.category)))]
+  const categories = categoryList.map(cat => ({
+    value: cat === 'all' ? 'all' : cat.toLowerCase().replace(' & ', '-').replace(' ', '-'),
+    label: cat === 'all' ? 'All Posts' : cat,
+    count: cat === 'all' ? publishedPosts.length : publishedPosts.filter(p => p.category === cat).length
+  }))
 
-  const categories = [
-    { value: 'all', label: 'All Posts', count: posts.length },
-    { value: 'personal', label: 'Personal', count: posts.filter(p => p.category === 'Personal').length },
-    { value: 'travel', label: 'Travel', count: posts.filter(p => p.category === 'Travel').length },
-    { value: 'food-drink', label: 'Food & Drink', count: posts.filter(p => p.category === 'Food & Drink').length },
-    { value: 'language', label: 'Language', count: posts.filter(p => p.category === 'Language').length },
-    { value: 'culture', label: 'Culture', count: posts.filter(p => p.category === 'Culture').length }
-  ]
 
-  const filteredPosts = selectedCategory === 'all' 
-    ? posts 
-    : posts.filter(post => post.category.toLowerCase().replace(' & ', '-').replace(' ', '-') === selectedCategory)
 
-  const publishedPosts = filteredPosts.filter(post => post.published)
-  const draftPosts = filteredPosts.filter(post => !post.published)
+  // Posts are already filtered to published only in getFilteredPosts
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -158,7 +124,7 @@ const BlogPage = () => {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">Drafts</span>
-                  <span className="font-bold text-yellow-600">{draftPosts.length}</span>
+                  <span className="font-bold text-yellow-600">{allPosts.filter(p => !p.published).length}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-gray-600">With Images</span>
@@ -215,7 +181,7 @@ const BlogPage = () => {
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-2xl font-bold text-gray-900">
                 {selectedCategory === 'all' ? 'All Posts' : categories.find(c => c.value === selectedCategory)?.label}
-                <span className="text-gray-500 text-lg ml-2">({filteredPosts.length})</span>
+                <span className="text-gray-500 text-lg ml-2">({posts.length})</span>
               </h2>
               <Link 
                 href="/blog/admin"
@@ -226,7 +192,7 @@ const BlogPage = () => {
               </Link>
             </div>
 
-            {filteredPosts.length === 0 ? (
+            {posts.length === 0 ? (
               <div className="bg-white rounded-lg shadow-md p-12 text-center">
                 <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">No posts yet</h3>
@@ -241,7 +207,7 @@ const BlogPage = () => {
               </div>
             ) : (
               <div className="grid gap-8">
-                {filteredPosts.map((post, index) => (
+                {posts.map((post: any, index: number) => (
                   <article key={index} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group">
                     <div className="md:flex">
                       <div className="md:w-1/3">
