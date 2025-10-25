@@ -132,15 +132,38 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                      console.log('SW registered: ', registration);
-                    })
-                    .catch(function(registrationError) {
-                      console.log('SW registration failed: ', registrationError);
+                // Only register service worker in production (when served from https or localhost:3000 in production)
+                const isProduction = location.protocol === 'https:' || location.hostname === 'localhost';
+                const isDevelopment = location.hostname === 'localhost' && location.port === '3000';
+                
+                if (isProduction && !isDevelopment) {
+                  window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js')
+                      .then(function(registration) {
+                        console.log('SW registered: ', registration);
+                      })
+                      .catch(function(registrationError) {
+                        console.log('SW registration failed: ', registrationError);
+                      });
+                  });
+                } else {
+                  // Unregister service worker in development to prevent caching issues
+                  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                    for(let registration of registrations) {
+                      registration.unregister();
+                      console.log('SW unregistered for development');
+                    }
+                  });
+                  
+                  // Clear all caches in development
+                  if ('caches' in window) {
+                    caches.keys().then(function(names) {
+                      names.forEach(function(name) {
+                        caches.delete(name);
+                      });
                     });
-                });
+                  }
+                }
               }
             `,
           }}

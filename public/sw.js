@@ -134,46 +134,45 @@ async function handleApiRequest(request) {
   }
 }
 
-// Handle page requests - stale while revalidate strategy
+// Handle page requests - network first strategy for better development experience
 async function handlePageRequest(request) {
   try {
-    const cachedResponse = await caches.match(request)
-    const networkResponsePromise = fetch(request)
-
-    if (cachedResponse) {
-      // Return cached version immediately, update in background
-      networkResponsePromise
-        .then(networkResponse => {
-          if (networkResponse.ok) {
-            const cache = caches.open(DYNAMIC_CACHE)
-            cache.then(c => c.put(request, networkResponse))
-          }
-        })
-        .catch(() => {
-          // Network failed, but we have cached version
-        })
-      
-      return cachedResponse
-    }
-
-    // No cached version, wait for network
-    const networkResponse = await networkResponsePromise
+    // Always try network first for HTML pages
+    const networkResponse = await fetch(request)
     if (networkResponse.ok) {
+      // Only cache successful responses
       const cache = await caches.open(DYNAMIC_CACHE)
       cache.put(request, networkResponse.clone())
     }
     return networkResponse
   } catch (error) {
-    console.log('Service Worker: Page request failed', error)
+    console.log('Service Worker: Page request failed, trying cache', error)
     
-    // Try to return cached version
+    // Try to return cached version only if network fails
     const cachedResponse = await caches.match(request)
     if (cachedResponse) {
       return cachedResponse
     }
     
-    // Return offline page
-    return caches.match('/offline') || new Response('Offline', { status: 503 })
+    // Return offline page as last resort
+    return caches.match('/offline') || new Response(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Offline - Stew's Guide</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <body>
+          <h1>You're Offline</h1>
+          <p>Please check your internet connection and try again.</p>
+          <button onclick="window.location.reload()">Retry</button>
+        </body>
+      </html>
+    `, { 
+      status: 503,
+      headers: { 'Content-Type': 'text/html' }
+    })
   }
 }
 
