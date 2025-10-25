@@ -192,20 +192,46 @@ const AIChatbot = () => {
     }
 
     setMessages(prev => [...prev, userMessage])
+    const currentInput = inputText
     setInputText('')
     setIsTyping(true)
 
-    // Simulate AI thinking time with more realistic delay
-    setTimeout(() => {
-      const aiResponse = getAIResponse(inputText)
-      setMessages(prev => [...prev, aiResponse])
+    try {
+      // Use the new AI service for enhanced responses
+      const { aiService } = await import('../services/aiService')
+      const response = await aiService.generateResponse(currentInput)
+      
+      const botMessage: Message = {
+        id: `ai-${Date.now()}`,
+        text: response.text,
+        isBot: true,
+        timestamp: new Date(),
+        confidence: response.confidence,
+        suggestions: response.suggestions,
+        category: response.category,
+        relatedLinks: response.relatedLinks
+      }
+      
+      setMessages(prev => [...prev, botMessage])
       setIsTyping(false)
       
       // Auto-speak response if speech is enabled
       if (synthesis.current && !synthesis.current.speaking) {
-        speakMessage(aiResponse.text)
+        speakMessage(response.text)
       }
-    }, Math.random() * 1000 + 800) // 0.8-1.8s delay
+    } catch (error) {
+      console.error('AI Service Error:', error)
+      // Fallback to original response system
+      setTimeout(() => {
+        const aiResponse = getAIResponse(currentInput)
+        setMessages(prev => [...prev, aiResponse])
+        setIsTyping(false)
+        
+        if (synthesis.current && !synthesis.current.speaking) {
+          speakMessage(aiResponse.text)
+        }
+      }, Math.random() * 1000 + 800)
+    }
   }
 
   const handleVoiceInput = () => {
@@ -218,6 +244,64 @@ const AIChatbot = () => {
       recognition.current.start()
       setIsListening(true)
     }
+  }
+
+  const handleMessageAction = (messageId: string, action: 'like' | 'bookmark' | 'share') => {
+    setMessages(prev => prev.map(msg => {
+      if (msg.id === messageId) {
+        switch (action) {
+          case 'like':
+            return { ...msg, liked: !msg.liked }
+          case 'bookmark':
+            return { ...msg, bookmarked: !msg.bookmarked }
+          case 'share':
+            if (navigator.share) {
+              navigator.share({
+                title: 'Stew\'s AI Response',
+                text: msg.text,
+                url: window.location.href
+              })
+            } else {
+              navigator.clipboard.writeText(msg.text)
+            }
+            return msg
+          default:
+            return msg
+        }
+      }
+      return msg
+    }))
+  }
+
+  const regenerateResponse = async (userMessage: string) => {
+    if (!userMessage) return
+    
+    setIsTyping(true)
+    try {
+      const { aiService } = await import('../services/aiService')
+      const response = await aiService.generateResponse(userMessage)
+      
+      const botMessage: Message = {
+        id: `ai-regen-${Date.now()}`,
+        text: response.text,
+        isBot: true,
+        timestamp: new Date(),
+        confidence: response.confidence,
+        suggestions: response.suggestions,
+        category: response.category,
+        relatedLinks: response.relatedLinks
+      }
+      
+      setMessages(prev => [...prev, botMessage])
+      setIsTyping(false)
+    } catch (error) {
+      console.error('Regeneration Error:', error)
+      setIsTyping(false)
+    }
+  }
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setInputText(suggestion)
   }
 
   const speakMessage = (text: string) => {
@@ -246,39 +330,7 @@ const AIChatbot = () => {
     }
   }
 
-  const handleMessageAction = (messageId: string, action: 'like' | 'bookmark' | 'share') => {
-    setMessages(prev => prev.map(msg => {
-      if (msg.id === messageId) {
-        switch (action) {
-          case 'like':
-            return { ...msg, liked: !msg.liked }
-          case 'bookmark':
-            return { ...msg, bookmarked: !msg.bookmarked }
-          case 'share':
-            // In a real app, this would open share dialog
-            navigator.clipboard.writeText(msg.text)
-            return msg
-          default:
-            return msg
-        }
-      }
-      return msg
-    }))
-  }
 
-  const regenerateResponse = (userMessage: string) => {
-    setIsTyping(true)
-    setTimeout(() => {
-      const newResponse = getAIResponse(userMessage)
-      newResponse.id = `ai-regen-${Date.now()}`
-      setMessages(prev => [...prev, newResponse])
-      setIsTyping(false)
-    }, 1200)
-  }
-
-  const handleSuggestionClick = (suggestion: string) => {
-    setInputText(suggestion)
-  }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
