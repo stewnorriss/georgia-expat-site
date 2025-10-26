@@ -158,13 +158,175 @@ const defaultPosts: BlogPost[] = [
     date: '2024-10-12',
     readTime: '4 min read',
     category: 'Travel',
-    published: false,
+    published: true,
     hasImages: true,
     hasVideo: true,
     featuredImage: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=800&h=400&fit=crop&crop=center',
     tags: ['old-town', 'architecture', 'photography', 'travel'],
     createdAt: '2024-10-12T16:00:00Z',
     updatedAt: '2024-10-12T16:00:00Z'
+  },
+  {
+    id: 5,
+    title: 'Finding an Apartment in Tbilisi: A Guide for Expats',
+    excerpt: 'The ins and outs of apartment hunting in Georgia\'s capital. What I wish I knew before I started looking...',
+    content: `<h2>Navigating Tbilisi's Rental Market</h2>
+<p>Finding the right apartment in Tbilisi can be challenging, but with the right approach and knowledge, you can find a great place to call home. Here's what I learned during my apartment hunt.</p>
+
+<h3>Popular Neighborhoods for Expats</h3>
+<p><strong>Vake:</strong> Upscale area with modern amenities, great for families and professionals. Expect higher prices but excellent infrastructure.</p>
+<p><strong>Saburtalo:</strong> More affordable option with good transport links. Popular with young professionals and students.</p>
+<p><strong>Old Town:</strong> Historic charm but can be noisy. Perfect if you want to be in the heart of the action.</p>
+<p><strong>Vera:</strong> Quiet residential area with a mix of old and new buildings. Good balance of price and location.</p>
+
+<h3>What to Expect</h3>
+<ul>
+<li>Most rentals are unfurnished or partially furnished</li>
+<li>Utilities are usually separate (around 100-200 GEL per month)</li>
+<li>First month + deposit (usually 1-2 months) required upfront</li>
+<li>Many landlords prefer cash payments</li>
+</ul>
+
+<h3>Red Flags to Avoid</h3>
+<p>Be wary of apartments without proper heating, unreliable hot water, or in buildings with elevator issues. Always visit in person and ask about utility costs.</p>
+
+<h3>My Recommendation</h3>
+<p>Take your time, visit multiple places, and don't be afraid to negotiate. The Georgian rental market is quite flexible, and landlords are often willing to work with good tenants.</p>`,
+    author: 'Stew Norriss',
+    date: '2024-10-10',
+    readTime: '8 min read',
+    category: 'Living',
+    published: true,
+    hasImages: true,
+    hasVideo: false,
+    featuredImage: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=400&fit=crop&crop=center',
+    tags: ['apartment-hunting', 'housing', 'expat-tips', 'neighborhoods'],
+    createdAt: '2024-10-10T11:00:00Z',
+    updatedAt: '2024-10-10T11:00:00Z'
+  },
+  {
+    id: 6,
+    title: 'Georgian Wine Culture: A Beginner\'s Guide',
+    excerpt: 'Discovering the world\'s oldest wine tradition. From qvevri to chacha, here\'s everything you need to know...',
+    content: `<h2>8,000 Years of Winemaking Tradition</h2>
+<p>Georgia is considered the birthplace of wine, with archaeological evidence of winemaking dating back 8,000 years. As someone who's always enjoyed wine, diving into Georgian wine culture has been absolutely fascinating.</p>
+
+<h3>The Qvevri Method</h3>
+<p>Traditional Georgian wine is made in large clay vessels called qvevri, which are buried underground. This ancient method creates wines with unique flavors and characteristics you won't find anywhere else in the world.</p>
+
+<h3>Must-Try Georgian Wines</h3>
+<p><strong>Saperavi:</strong> A bold red wine that's Georgia's signature grape. Rich, full-bodied, and perfect with Georgian cuisine.</p>
+<p><strong>Rkatsiteli:</strong> A versatile white wine that can be dry or sweet. Great for beginners to Georgian wine.</p>
+<p><strong>Mtsvane:</strong> A crisp white wine with floral notes. Perfect for summer evenings.</p>
+
+<h3>Wine Regions to Visit</h3>
+<p><strong>Kakheti:</strong> The main wine region, home to most of Georgia's vineyards. Perfect for day trips from Tbilisi.</p>
+<p><strong>Kartli:</strong> Closer to Tbilisi, with some excellent smaller wineries.</p>
+
+<h3>Chacha: Georgia's National Spirit</h3>
+<p>Made from grape pomace, chacha is Georgia's answer to grappa. It's strong (40-70% alcohol) and often homemade. Approach with caution!</p>
+
+<h3>Wine Etiquette</h3>
+<p>Georgians take their wine seriously. When invited to a supra (traditional feast), expect elaborate toasts and lots of wine. It's considered rude to refuse, but you can always just sip.</p>`,
+    author: 'Stew Norriss',
+    date: '2024-10-08',
+    readTime: '6 min read',
+    category: 'Food & Drink',
+    published: true,
+    hasImages: true,
+    hasVideo: false,
+    featuredImage: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&h=400&fit=crop&crop=center',
+    tags: ['wine', 'culture', 'qvevri', 'chacha', 'kakheti'],
+    createdAt: '2024-10-08T15:00:00Z',
+    updatedAt: '2024-10-08T15:00:00Z'
+  },
+  {
+    id: 7,
+    title: 'Public Transport in Tbilisi: Metro, Buses, and More',
+    excerpt: 'Getting around the city like a local. Everything you need to know about Tbilisi\'s public transport system...',
+    content: `<h2>Navigating Tbilisi's Transport Network</h2>
+<p>Tbilisi has a surprisingly efficient public transport system once you understand how it works. Here's your complete guide to getting around the city without a car.</p>
+
+<h3>The Metro System</h3>
+<p>Tbilisi's metro has two lines and is incredibly affordable (just 1 GEL per ride). The stations are beautifully decorated Soviet-era architecture worth seeing in their own right. Key stations for tourists:</p>
+<ul>
+<li><strong>Rustaveli:</strong> City center, near many attractions</li>
+<li><strong>Avlabari:</strong> Close to Old Town and Narikala Fortress</li>
+<li><strong>Station Square:</strong> Main railway station and bus terminal</li>
+</ul>
+
+<h3>City Buses</h3>
+<p>The bus network covers the entire city. Most buses are modern and air-conditioned. Use the same transport card as the metro (1 GEL per ride). Google Maps works well for bus routes and timing.</p>
+
+<h3>Marshrutkas (Minibuses)</h3>
+<p>These Soviet-era minibuses are an adventure in themselves. They're cheap (0.80 GEL) but can be crowded and confusing for newcomers. Great for reaching areas not covered by regular buses.</p>
+
+<h3>The Transport Card</h3>
+<p>Get a MetroMoney card from any metro station. You can load money and use it for metro, buses, and even some cable cars. Much more convenient than carrying exact change.</p>
+
+<h3>Taxis and Ride-Sharing</h3>
+<p>Bolt is the most popular ride-sharing app. Taxis are affordable, but always use the app to avoid overcharging. A typical ride across the city costs 5-15 GEL.</p>
+
+<h3>Pro Tips</h3>
+<ul>
+<li>Download the Tbilisi Transport app for real-time bus tracking</li>
+<li>Metro runs until midnight on weekdays, 1 AM on weekends</li>
+<li>Rush hours are 8-10 AM and 6-8 PM - expect crowds</li>
+<li>Keep your transport card handy - you'll use it more than you think</li>
+</ul>`,
+    author: 'Stew Norriss',
+    date: '2024-10-05',
+    readTime: '7 min read',
+    category: 'Living',
+    published: true,
+    hasImages: false,
+    hasVideo: true,
+    featuredImage: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&h=400&fit=crop&crop=center',
+    tags: ['transport', 'metro', 'buses', 'getting-around', 'practical-tips'],
+    createdAt: '2024-10-05T12:00:00Z',
+    updatedAt: '2024-10-05T12:00:00Z'
+  },
+  {
+    id: 8,
+    title: 'Weekend Trip to Mtskheta: Georgia\'s Ancient Capital',
+    excerpt: 'A day trip to one of Georgia\'s most important historical sites. UNESCO World Heritage sites and incredible history...',
+    content: `<h2>Stepping Back 1,500 Years</h2>
+<p>Just 20 kilometers from Tbilisi lies Mtskheta, the ancient capital of Georgia and one of the country's most important historical and religious sites. This UNESCO World Heritage site is perfect for a day trip.</p>
+
+<h3>Getting There</h3>
+<p>Take a marshrutka from Didube Bus Station (2 GEL, 30 minutes) or drive/take a taxi (about 45 minutes depending on traffic). I recommend going early in the morning to avoid crowds and heat.</p>
+
+<h3>Svetitskhoveli Cathedral</h3>
+<p>This 11th-century cathedral is said to house Christ's robe and is one of the most sacred places in Georgia. The architecture is breathtaking, and the religious significance is palpable. Entry is free, but dress modestly.</p>
+
+<h3>Jvari Monastery</h3>
+<p>Perched on a hilltop overlooking the confluence of two rivers, this 6th-century monastery offers stunning views of Mtskheta and the surrounding valley. The short hike up is worth it for the panoramic views.</p>
+
+<h3>Local Food</h3>
+<p>Try the local specialty - Mtskheta khachapuri, which has a slightly different preparation than Tbilisi versions. There are several good restaurants near the cathedral with traditional Georgian cuisine.</p>
+
+<h3>What to Bring</h3>
+<ul>
+<li>Comfortable walking shoes</li>
+<li>Sun protection (limited shade)</li>
+<li>Camera (the views are incredible)</li>
+<li>Modest clothing for religious sites</li>
+<li>Water bottle</li>
+</ul>
+
+<h3>My Experience</h3>
+<p>Walking through Mtskheta felt like traveling through time. The combination of ancient architecture, religious significance, and natural beauty makes it one of my favorite places in Georgia. It's a perfect introduction to Georgian history and culture.</p>`,
+    author: 'Stew Norriss',
+    date: '2024-10-03',
+    readTime: '5 min read',
+    category: 'Travel',
+    published: true,
+    hasImages: true,
+    hasVideo: false,
+    featuredImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop&crop=center',
+    tags: ['mtskheta', 'day-trip', 'history', 'unesco', 'svetitskhoveli'],
+    createdAt: '2024-10-03T14:00:00Z',
+    updatedAt: '2024-10-03T14:00:00Z'
   }
 ]
 

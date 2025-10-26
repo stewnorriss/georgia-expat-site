@@ -26,7 +26,9 @@ import {
   Car,
   Train,
   Phone,
-  Globe
+  Globe,
+  ExternalLink,
+  Info
 } from 'lucide-react'
 
 const ActivitiesPage = () => {
@@ -80,7 +82,10 @@ const ActivitiesPage = () => {
           cost: '15 GEL',
           description: 'Beautiful terraced gardens with rare plant species',
           bestTime: 'Spring-Summer',
-          tips: 'Wear comfortable shoes, bring camera for waterfall'
+          tips: 'Wear comfortable shoes, bring camera for waterfall',
+          phone: '+995 32 272 70 58',
+          website: 'nbg.ge',
+          address: '1 Botanikuri St, Tbilisi 0105'
         }
       ]
     },
@@ -97,7 +102,10 @@ const ActivitiesPage = () => {
           cost: '50-80 GEL (transport + guide)',
           description: 'UNESCO World Heritage site, former capital of Georgia',
           bestTime: 'Year-round',
-          tips: 'Combine with Jvari Monastery, try local khachapuri'
+          tips: 'Combine with Jvari Monastery, try local khachapuri',
+          phone: '+995 32 272 74 79',
+          website: 'mtskheta.gov.ge',
+          address: 'Mtskheta, 20km from Tbilisi'
         },
         {
           name: 'Jvari Monastery',
@@ -470,6 +478,35 @@ const ActivitiesPage = () => {
                         <div className="mt-2 p-2 bg-blue-50 rounded text-xs text-blue-700">
                           <strong>💡 Tip:</strong> {activity.tips}
                         </div>
+                        
+                        {/* Contact Information */}
+                        {(activity.phone || activity.website || activity.address) && (
+                          <div className="mt-3 pt-3 border-t border-gray-200">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
+                              {activity.address && (
+                                <div className="flex items-center">
+                                  <MapPin className="h-3 w-3 text-red-500 mr-1" />
+                                  <span className="text-gray-600">{activity.address}</span>
+                                </div>
+                              )}
+                              {activity.phone && (
+                                <div className="flex items-center">
+                                  <Phone className="h-3 w-3 text-green-500 mr-1" />
+                                  <span className="text-gray-600">{activity.phone}</span>
+                                </div>
+                              )}
+                              {activity.website && (
+                                <div className="flex items-center">
+                                  <Globe className="h-3 w-3 text-purple-500 mr-1" />
+                                  <a href={`https://${activity.website}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                                    {activity.website}
+                                    <ExternalLink className="h-2 w-2 ml-1" />
+                                  </a>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>

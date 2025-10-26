@@ -1,6 +1,6 @@
 'use client'
 
-import { Bed, Star, Wifi, Car, Globe, ExternalLink } from 'lucide-react'
+import { Bed, Star, Wifi, Car, Globe, ExternalLink, MapPin, Phone, Clock, DollarSign } from 'lucide-react'
 
 const AccommodationPage = () => {
   const getHotelImage = (name: string, index: number) => {
@@ -19,8 +19,13 @@ const AccommodationPage = () => {
       rating: 4.8,
       priceRange: '$150-300',
       location: 'Vera',
+      address: '14 Merab Kostava Street, Tbilisi 0108',
+      phone: '+995 32 202 02 02',
+      website: 'roomshotels.com/tbilisi',
+      checkIn: '15:00',
+      checkOut: '12:00',
       amenities: ['Free WiFi', 'Restaurant', 'Bar', 'Gym', 'Rooftop Terrace'],
-      website: 'roomshotels.com/tbilisi'
+      description: 'Stylish boutique hotel in the heart of Vera district with contemporary design and excellent service.'
     },
     {
       name: 'Stamba Hotel',
@@ -28,8 +33,13 @@ const AccommodationPage = () => {
       rating: 4.9,
       priceRange: '$200-400',
       location: 'Vera',
+      address: '14 Mikheil Tsinamdzgvrishvili Street, Tbilisi 0160',
+      phone: '+995 32 202 04 04',
+      website: 'stambahotel.com',
+      checkIn: '15:00',
+      checkOut: '12:00',
       amenities: ['Free WiFi', 'Restaurant', 'Bar', 'Spa', 'Library'],
-      website: 'stambahotel.com'
+      description: 'Award-winning design hotel in a converted Soviet publishing house with unique architecture and luxury amenities.'
     },
     {
       name: 'Fabrika Tbilisi',
@@ -37,8 +47,55 @@ const AccommodationPage = () => {
       rating: 4.6,
       priceRange: '$30-120',
       location: 'Marjanishvili',
+      address: '8 Egnate Ninoshvili Street, Tbilisi 0102',
+      phone: '+995 32 292 29 29',
+      website: 'fabrikatbilisi.com',
+      checkIn: '14:00',
+      checkOut: '11:00',
       amenities: ['Free WiFi', 'Co-working', 'Bar', 'Events', 'Shared Kitchen'],
-      website: 'fabrikatbilisi.com'
+      description: 'Creative hostel and hotel in a former Soviet sewing factory, popular with digital nomads and young travelers.'
+    },
+    {
+      name: 'Radisson Blu Iveria Hotel',
+      type: 'Luxury Hotel',
+      rating: 4.7,
+      priceRange: '$180-350',
+      location: 'City Center',
+      address: '1 Rose Revolution Square, Tbilisi 0108',
+      phone: '+995 32 240 22 00',
+      website: 'radissonhotels.com/tbilisi',
+      checkIn: '15:00',
+      checkOut: '12:00',
+      amenities: ['Free WiFi', 'Pool', 'Spa', 'Multiple Restaurants', 'Casino'],
+      description: 'Iconic luxury hotel with panoramic city views and comprehensive facilities in the heart of Tbilisi.'
+    },
+    {
+      name: 'Tbilisi Marriott Hotel',
+      type: 'Business Hotel',
+      rating: 4.5,
+      priceRange: '$160-280',
+      location: 'Rustaveli Avenue',
+      address: '13 Rustaveli Avenue, Tbilisi 0108',
+      phone: '+995 32 277 92 00',
+      website: 'marriott.com/tbilisi',
+      checkIn: '15:00',
+      checkOut: '12:00',
+      amenities: ['Free WiFi', 'Business Center', 'Fitness Center', 'Restaurant', 'Meeting Rooms'],
+      description: 'International business hotel on famous Rustaveli Avenue with modern amenities and professional service.'
+    },
+    {
+      name: 'Ambassadori Tbilisi Hotel',
+      type: 'Luxury Hotel',
+      rating: 4.6,
+      priceRange: '$140-250',
+      location: 'Rustaveli Avenue',
+      address: '13 Shota Rustaveli Avenue, Tbilisi 0108',
+      phone: '+995 32 277 60 60',
+      website: 'ambassadori.ge',
+      checkIn: '14:00',
+      checkOut: '12:00',
+      amenities: ['Free WiFi', 'Spa', 'Pool', 'Restaurant', 'Casino'],
+      description: 'Elegant hotel on Rustaveli Avenue offering luxury accommodations with traditional Georgian hospitality.'
     }
   ]
 
@@ -91,38 +148,68 @@ const AccommodationPage = () => {
               </div>
               <div className="p-6">
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                  <div>
+                  <div className="flex-1">
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">{hotel.name}</h3>
                     <p className="text-lg text-indigo-600 mb-2">{hotel.type}</p>
-                    <p className="text-gray-600">{hotel.location}</p>
+                    <p className="text-gray-700 mb-4">{hotel.description}</p>
                   </div>
-                  <div className="flex items-center space-x-4">
+                  <div className="flex flex-col items-end space-y-2">
                     <div className="flex items-center">
                       <Star className="h-5 w-5 text-yellow-400 fill-current" />
-                      <span className="ml-1 font-semibold">{hotel.rating}</span>
+                      <span className="ml-1 font-semibold text-lg">{hotel.rating}</span>
                     </div>
-                    <span className="text-green-600 font-semibold">{hotel.priceRange}</span>
+                    <span className="text-green-600 font-semibold text-lg">{hotel.priceRange}</span>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {hotel.amenities.map((amenity, idx) => (
-                    <span key={idx} className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">
-                      {amenity}
-                    </span>
-                  ))}
-                </div>
-                {hotel.website && (
+
+                {/* Hotel Details Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                   <div className="flex items-center text-gray-600">
-                    <Globe className="h-4 w-4 mr-2 text-purple-500" />
+                    <MapPin className="h-4 w-4 mr-2 text-red-500" />
                     <div>
-                      <div className="font-semibold">Website</div>
-                      <a href={`https://${hotel.website}`} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline flex items-center">
-                        {hotel.website}
-                        <ExternalLink className="h-3 w-3 ml-1" />
-                      </a>
+                      <div className="font-semibold">{hotel.location}</div>
+                      <div className="text-sm">{hotel.address}</div>
                     </div>
                   </div>
-                )}
+                  <div className="flex items-center text-gray-600">
+                    <Phone className="h-4 w-4 mr-2 text-green-500" />
+                    <div>
+                      <div className="font-semibold">Phone</div>
+                      <div className="text-sm">{hotel.phone}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center text-gray-600">
+                    <Clock className="h-4 w-4 mr-2 text-blue-500" />
+                    <div>
+                      <div className="font-semibold">Check-in/out</div>
+                      <div className="text-sm">{hotel.checkIn} / {hotel.checkOut}</div>
+                    </div>
+                  </div>
+                  {hotel.website && (
+                    <div className="flex items-center text-gray-600">
+                      <Globe className="h-4 w-4 mr-2 text-purple-500" />
+                      <div>
+                        <div className="font-semibold">Website</div>
+                        <a href={`https://${hotel.website}`} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline flex items-center">
+                          {hotel.website}
+                          <ExternalLink className="h-3 w-3 ml-1" />
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Amenities */}
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2">Amenities:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {hotel.amenities.map((amenity, idx) => (
+                      <span key={idx} className="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">
+                        {amenity}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
