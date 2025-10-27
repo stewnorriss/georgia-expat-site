@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { MapPin, Mail, Heart } from 'lucide-react'
+import LiveCurrencyRate from './LiveCurrencyRate'
 
 const Footer = () => {
   return (
@@ -28,19 +29,26 @@ const Footer = () => {
               <li><Link href="/places" className="text-gray-300 hover:text-white">Places to Visit</Link></li>
               <li><Link href="/transport" className="text-gray-300 hover:text-white">Transport</Link></li>
               <li><Link href="/housing" className="text-gray-300 hover:text-white">Housing</Link></li>
+              <li><Link href="/currency" className="text-gray-300 hover:text-white">Currency & Banking</Link></li>
               <li><Link href="/language" className="text-gray-300 hover:text-white">Learn Georgian</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-semibold text-lg mb-4">Resources</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 mb-4">
               <li><Link href="/culture" className="text-gray-300 hover:text-white">Georgian Culture</Link></li>
               <li><Link href="/medical" className="text-gray-300 hover:text-white">Healthcare</Link></li>
               <li><Link href="/activities" className="text-gray-300 hover:text-white">Activities</Link></li>
               <li><Link href="/blog" className="text-gray-300 hover:text-white">Expat Blog</Link></li>
               <li><Link href="/arts" className="text-gray-300 hover:text-white">Arts & Culture</Link></li>
             </ul>
+            
+            {/* Live Currency Rate Widget */}
+            <div>
+              <h4 className="font-semibold text-sm mb-2 text-gray-300">Live Exchange Rate</h4>
+              <LiveCurrencyRate />
+            </div>
           </div>
         </div>
 

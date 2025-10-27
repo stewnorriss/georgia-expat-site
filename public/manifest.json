@@ -1,7 +1,7 @@
 {
   "name": "Stew's Guide To Tbilisi",
   "short_name": "Stew's Tbilisi",
-  "description": "Your personal AI-powered companion for expat life in Georgia's capital",
+  "description": "My guide to expat life in Georgia's capital",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

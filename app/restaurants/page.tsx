@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Star, MapPin, Clock, DollarSign, Utensils, Filter, Search, Heart, Phone, Globe, Wifi, Car, CreditCard, Users, Wine, ChefHat, Award, TrendingUp, Bot, Sparkles, ExternalLink } from 'lucide-react'
+import { Star, MapPin, Clock, DollarSign, Utensils, Search, Heart, Phone, Globe, Wifi, Car, CreditCard, Users, Wine, ChefHat, Award, TrendingUp, Bot, Sparkles, ExternalLink } from 'lucide-react'
 
 const RestaurantsPage = () => {
   const [selectedFilter, setSelectedFilter] = useState('all')
@@ -20,20 +20,20 @@ const RestaurantsPage = () => {
   }
 
   const filters = [
-    { id: 'all', name: 'All Restaurants', count: 21 },
-    { id: 'georgian', name: 'Georgian', count: 12 },
-    { id: 'international', name: 'International', count: 6 },
-    { id: 'fine-dining', name: 'Fine Dining', count: 5 },
-    { id: 'budget', name: 'Budget-Friendly', count: 8 }
+    { id: 'all', name: 'All Restaurants', count: 30 },
+    { id: 'georgian', name: 'Georgian', count: 20 },
+    { id: 'international', name: 'International', count: 10 },
+    { id: 'fine-dining', name: 'Fine Dining', count: 8 },
+    { id: 'budget', name: 'Budget-Friendly', count: 12 }
   ]
 
-  const restaurants = [
+  const allRestaurants = [
     {
       id: 'shavi-lomi',
       name: 'Shavi Lomi',
       cuisine: 'Georgian Traditional',
       rating: 4.8,
-      priceRange: '$$',
+      priceRange: '$',
       location: 'Old Town',
       address: 'Besiki St 19, Tbilisi',
       hours: '12:00 - 23:00',
@@ -56,7 +56,7 @@ const RestaurantsPage = () => {
       name: 'Barbarestan',
       cuisine: 'Georgian Fine Dining',
       rating: 4.9,
-      priceRange: '$$$',
+      priceRange: '$$',
       location: 'Sololaki',
       address: 'Davit Aghmashenebeli Ave 132, Tbilisi',
       hours: '18:00 - 24:00',
@@ -79,7 +79,7 @@ const RestaurantsPage = () => {
       name: 'Cafe Littera',
       cuisine: 'European Georgian Fusion',
       rating: 4.7,
-      priceRange: '$$$',
+      priceRange: '$$',
       location: 'Writers House',
       address: 'Machabeli St 13, Tbilisi',
       hours: '12:00 - 23:00',
@@ -165,25 +165,490 @@ const RestaurantsPage = () => {
         { name: 'Homemade Khachapuri', price: '8 GEL', description: 'Made fresh daily' },
         { name: 'Chacha (Georgian Brandy)', price: '3 GEL', description: 'Homemade traditional spirit' }
       ]
+    },
+    {
+      id: 'sakhli-11',
+      name: 'Sakhli #11',
+      cuisine: 'Georgian Traditional',
+      rating: 4.4,
+      priceRange: '$',
+      location: 'Vake',
+      address: 'Chavchavadze Ave 11, Tbilisi',
+      hours: '12:00 - 23:00',
+      phone: '+995 32 291 11 11',
+      website: 'sakhli11.ge',
+      description: 'Cozy family restaurant serving authentic Georgian dishes in a warm, welcoming atmosphere.',
+      specialties: ['Family Recipes', 'Khachapuri Variations', 'Seasonal Dishes'],
+      features: ['wifi', 'cards', 'outdoor', 'family-friendly'],
+      category: 'georgian',
+      priceCategory: 'mid-range',
+      aiRecommended: false,
+      popularDishes: [
+        { name: 'Imeretian Khachapuri', price: '9 GEL', description: 'Traditional cheese-filled bread from Imereti region' },
+        { name: 'Ojakhuri', price: '16 GEL', description: 'Fried potatoes with meat and onions' },
+        { name: 'Churchkhela', price: '5 GEL', description: 'Traditional Georgian candy made with nuts and grape juice' }
+      ]
+    },
+    {
+      id: 'funicular-complex',
+      name: 'Funicular Restaurant Complex',
+      cuisine: 'International with Georgian Options',
+      rating: 4.3,
+      priceRange: '$$',
+      location: 'Mtatsminda Park',
+      address: 'Mtatsminda Park, Tbilisi',
+      hours: '11:00 - 24:00',
+      phone: '+995 32 295 95 95',
+      website: 'mtatsmindapark.ge',
+      description: 'Scenic dining complex atop Mtatsminda with panoramic city views and diverse cuisine options.',
+      specialties: ['City Views', 'International Menu', 'Tourist Friendly'],
+      features: ['wifi', 'cards', 'outdoor', 'parking', 'views'],
+      category: 'international',
+      priceCategory: 'mid-range',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Grilled Trout', price: '28 GEL', description: 'Fresh trout with herbs and lemon' },
+        { name: 'Beef Stroganoff', price: '24 GEL', description: 'Classic Russian dish with rice' },
+        { name: 'Georgian Wine Selection', price: '15-45 GEL', description: 'Curated selection of local wines' }
+      ]
+    },
+    {
+      id: 'tsiskvili',
+      name: 'Tsiskvili',
+      cuisine: 'Georgian Traditional',
+      rating: 4.6,
+      priceRange: '$',
+      location: 'Ortachala',
+      address: 'Beliashvili St 10, Tbilisi',
+      hours: '12:00 - 22:00',
+      phone: '+995 32 272 72 72',
+      website: null,
+      description: 'Authentic Georgian restaurant with traditional decor and live folk music on weekends.',
+      specialties: ['Live Music', 'Traditional Atmosphere', 'Regional Specialties'],
+      features: ['cash-only', 'outdoor', 'live-music', 'traditional'],
+      category: 'georgian',
+      priceCategory: 'budget',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Satsivi', price: '14 GEL', description: 'Cold chicken in walnut sauce (seasonal)' },
+        { name: 'Badrijani Nigvzit', price: '12 GEL', description: 'Eggplant rolls with walnut paste' },
+        { name: 'Traditional Supra Set', price: '35 GEL', description: 'Georgian feast for sharing' }
+      ]
+    },
+    {
+      id: 'keto-kote',
+      name: 'Keto and Kote',
+      cuisine: 'Georgian Traditional',
+      rating: 4.5,
+      priceRange: '$',
+      location: 'Old Town',
+      address: 'Kote Afkhazi St 8, Tbilisi',
+      hours: '11:00 - 23:00',
+      phone: '+995 32 298 98 98',
+      website: 'ketokote.ge',
+      description: 'Named after Georgian literary characters, this restaurant offers refined Georgian cuisine in elegant surroundings.',
+      specialties: ['Literary Theme', 'Refined Georgian', 'Wine Pairing'],
+      features: ['wifi', 'cards', 'reservations', 'romantic'],
+      category: 'georgian',
+      priceCategory: 'mid-range',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Kharcho Soup', price: '11 GEL', description: 'Spicy beef soup with rice and herbs' },
+        { name: 'Chashushuli', price: '19 GEL', description: 'Spicy beef stew with tomatoes' },
+        { name: 'Qvevri Wine Tasting', price: '25 GEL', description: 'Traditional clay pot aged wines' }
+      ]
+    },
+    {
+      id: 'purpur',
+      name: 'Purpur',
+      cuisine: 'Modern European',
+      rating: 4.7,
+      priceRange: '$$',
+      location: 'Vera',
+      address: 'Barnovi St 8, Tbilisi',
+      hours: '18:00 - 01:00',
+      phone: '+995 32 291 91 91',
+      website: 'purpur.ge',
+      description: 'Upscale European restaurant with creative cocktails and sophisticated atmosphere.',
+      specialties: ['Modern European', 'Craft Cocktails', 'Late Night Dining'],
+      features: ['wifi', 'cards', 'bar', 'late-night', 'cocktails'],
+      category: 'international',
+      priceCategory: 'fine-dining',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Duck Breast', price: '38 GEL', description: 'Pan-seared duck with cherry sauce' },
+        { name: 'Risotto with Truffle', price: '32 GEL', description: 'Creamy risotto with seasonal truffle' },
+        { name: 'Signature Cocktail', price: '18 GEL', description: 'House special with Georgian chacha' }
+      ]
+    },
+    {
+      id: 'bina-n37',
+      name: 'Bina N37',
+      cuisine: 'Contemporary European',
+      rating: 4.6,
+      priceRange: '$$',
+      location: 'Sololaki',
+      address: 'Bambis Rigi 37, Tbilisi',
+      hours: '18:00 - 01:00',
+      phone: '+995 32 292 37 37',
+      website: 'bina37.ge',
+      description: 'Intimate restaurant in a converted apartment with creative European cuisine.',
+      specialties: ['Intimate Setting', 'Creative Cuisine', 'Wine Selection'],
+      features: ['wifi', 'cards', 'intimate', 'wine-bar', 'reservations'],
+      category: 'international',
+      priceCategory: 'fine-dining',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Lamb Rack', price: '42 GEL', description: 'Herb-crusted lamb with seasonal vegetables' },
+        { name: 'Sea Bass Fillet', price: '36 GEL', description: 'Pan-seared with Mediterranean herbs' },
+        { name: 'Wine Pairing Menu', price: '75 GEL', description: '5-course menu with wine pairings' }
+      ]
+    },
+    {
+      id: 'dzveli-sakhli',
+      name: 'Dzveli Sakhli',
+      cuisine: 'Georgian Traditional',
+      rating: 4.4,
+      priceRange: '$',
+      location: 'Old Town',
+      address: 'Betlemi St 5, Tbilisi',
+      hours: '12:00 - 23:00',
+      phone: '+995 32 298 44 44',
+      website: null,
+      description: 'Historic restaurant in Old Town serving traditional Georgian dishes in authentic setting.',
+      specialties: ['Historic Setting', 'Traditional Recipes', 'Tourist Friendly'],
+      features: ['wifi', 'cards', 'historic', 'tourist-friendly'],
+      category: 'georgian',
+      priceCategory: 'mid-range',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Khachapuri Samegrelo', price: '13 GEL', description: 'Cheese bread with extra cheese topping' },
+        { name: 'Mtsvadi Combo', price: '20 GEL', description: 'Grilled meat skewers with sides' },
+        { name: 'Georgian Wine Flight', price: '20 GEL', description: 'Tasting of 3 regional wines' }
+      ]
+    },
+    {
+      id: 'samikitno',
+      name: 'Samikitno',
+      cuisine: 'Georgian Regional',
+      rating: 4.5,
+      priceRange: '$',
+      location: 'Isani',
+      address: 'Samikitno St 15, Tbilisi',
+      hours: '11:00 - 22:00',
+      phone: '+995 32 266 66 66',
+      website: null,
+      description: 'Family-run restaurant specializing in dishes from different Georgian regions.',
+      specialties: ['Regional Cuisine', 'Family Recipes', 'Authentic Atmosphere'],
+      features: ['cash-only', 'family-run', 'regional'],
+      category: 'georgian',
+      priceCategory: 'budget',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Megrelian Khachapuri', price: '11 GEL', description: 'Cheese bread with extra cheese on top' },
+        { name: 'Svanuri Kubdari', price: '13 GEL', description: 'Spiced meat pie from Svaneti region' },
+        { name: 'Adjarian Khachapuri', price: '9 GEL', description: 'Traditional boat-shaped cheese bread' }
+      ]
+    },
+    {
+      id: 'zakhar-zakharich',
+      name: 'Zakhar Zakharich',
+      cuisine: 'Russian & European',
+      rating: 4.5,
+      priceRange: '$',
+      location: 'Vera',
+      address: 'Pekini Ave 12, Tbilisi',
+      hours: '12:00 - 24:00',
+      phone: '+995 32 291 55 55',
+      website: 'zz-restaurant.ge',
+      description: 'Cozy restaurant serving Russian and European comfort food with nostalgic atmosphere.',
+      specialties: ['Russian Cuisine', 'Comfort Food', 'Nostalgic Atmosphere'],
+      features: ['wifi', 'cards', 'cozy', 'comfort-food'],
+      category: 'international',
+      priceCategory: 'mid-range',
+      aiRecommended: false,
+      popularDishes: [
+        { name: 'Beef Stroganoff', price: '22 GEL', description: 'Classic Russian dish with mushrooms' },
+        { name: 'Borscht Soup', price: '9 GEL', description: 'Traditional beetroot soup' },
+        { name: 'Olivier Salad', price: '8 GEL', description: 'Russian potato salad' }
+      ]
+    },
+    {
+      id: 'stamba-cafe',
+      name: 'Stamba Cafe',
+      cuisine: 'Modern International',
+      rating: 4.7,
+      priceRange: '$$',
+      location: 'Vera',
+      address: 'Merab Kostava St 14, Tbilisi',
+      hours: '08:00 - 23:00',
+      phone: '+995 32 220 02 20',
+      website: 'stambahotel.com',
+      description: 'Stylish cafe in boutique hotel with modern international cuisine and excellent coffee.',
+      specialties: ['Modern Design', 'International Cuisine', 'Premium Coffee'],
+      features: ['wifi', 'cards', 'design', 'hotel', 'coffee'],
+      category: 'international',
+      priceCategory: 'fine-dining',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Avocado Toast', price: '16 GEL', description: 'Sourdough with avocado, poached egg, and microgreens' },
+        { name: 'Quinoa Bowl', price: '18 GEL', description: 'Healthy bowl with seasonal vegetables' },
+        { name: 'Specialty Coffee', price: '8 GEL', description: 'Single origin beans, expertly brewed' }
+      ]
+    },
+    {
+      id: 'rooms-hotel-restaurant',
+      name: 'Rooms Hotel Restaurant',
+      cuisine: 'Contemporary International',
+      rating: 4.8,
+      priceRange: '$$',
+      location: 'Vera',
+      address: 'Merab Kostava St 14, Tbilisi',
+      hours: '07:00 - 24:00',
+      phone: '+995 32 220 14 14',
+      website: 'roomshotels.com',
+      description: 'Upscale hotel restaurant with contemporary international menu and rooftop terrace.',
+      specialties: ['Hotel Dining', 'Rooftop Terrace', 'Contemporary Menu'],
+      features: ['wifi', 'cards', 'rooftop', 'hotel', 'valet'],
+      category: 'international',
+      priceCategory: 'fine-dining',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Grilled Salmon', price: '38 GEL', description: 'Atlantic salmon with seasonal vegetables' },
+        { name: 'Beef Tenderloin', price: '45 GEL', description: 'Premium cut with truffle sauce' },
+        { name: 'Tasting Menu', price: '85 GEL', description: '6-course chef selection' }
+      ]
+    },
+    {
+      id: 'lolita',
+      name: 'Lolita',
+      cuisine: 'Modern Georgian',
+      rating: 4.6,
+      priceRange: '$$',
+      location: 'Sololaki',
+      address: 'Atoneli St 15, Tbilisi',
+      hours: '18:00 - 01:00',
+      phone: '+995 32 292 55 55',
+      website: 'lolita.ge',
+      description: 'Trendy restaurant with modern Georgian cuisine and creative cocktails.',
+      specialties: ['Modern Georgian', 'Creative Cocktails', 'Trendy Atmosphere'],
+      features: ['wifi', 'cards', 'cocktails', 'trendy', 'late-night'],
+      category: 'georgian',
+      priceCategory: 'fine-dining',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Modern Khinkali', price: '18 GEL', description: 'Elevated version of traditional dumplings' },
+        { name: 'Deconstructed Satsivi', price: '22 GEL', description: 'Modern take on walnut chicken sauce' },
+        { name: 'Signature Cocktail', price: '16 GEL', description: 'House special with Georgian ingredients' }
+      ]
+    },
+    {
+      id: 'wine-underground',
+      name: 'Wine Underground',
+      cuisine: 'Georgian Wine Bar',
+      rating: 4.5,
+      priceRange: '$$',
+      location: 'Old Town',
+      address: 'Gomi St 8, Tbilisi',
+      hours: '16:00 - 02:00',
+      phone: '+995 32 299 88 88',
+      website: 'wineunderground.ge',
+      description: 'Underground wine cellar specializing in natural Georgian wines with small plates.',
+      specialties: ['Natural Wines', 'Wine Cellar', 'Small Plates'],
+      features: ['wifi', 'cards', 'wine-cellar', 'underground', 'late-night'],
+      category: 'georgian',
+      priceCategory: 'mid-range',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Cheese Platter', price: '25 GEL', description: 'Selection of Georgian cheeses' },
+        { name: 'Charcuterie Board', price: '28 GEL', description: 'Cured meats and accompaniments' },
+        { name: 'Wine Tasting Flight', price: '35 GEL', description: '5 natural Georgian wines' }
+      ]
+    },
+    {
+      id: 'fabrika',
+      name: 'Fabrika',
+      cuisine: 'International Fusion',
+      rating: 4.3,
+      priceRange: '$',
+      location: 'Marjanishvili',
+      address: 'Egnate Ninoshvili St 8, Tbilisi',
+      hours: '08:00 - 24:00',
+      phone: '+995 32 292 20 07',
+      website: 'fabrikatbilisi.com',
+      description: 'Hip hostel restaurant with international fusion menu and creative atmosphere.',
+      specialties: ['Fusion Cuisine', 'Hip Atmosphere', 'Budget-Friendly'],
+      features: ['wifi', 'cards', 'hostel', 'hip', 'budget'],
+      category: 'international',
+      priceCategory: 'budget',
+      aiRecommended: false,
+      popularDishes: [
+        { name: 'Buddha Bowl', price: '14 GEL', description: 'Healthy bowl with quinoa and vegetables' },
+        { name: 'Fusion Burger', price: '16 GEL', description: 'Creative burger with international flavors' },
+        { name: 'Craft Beer', price: '6 GEL', description: 'Local craft beer selection' }
+      ]
+    },
+    {
+      id: 'organique-josper-bar',
+      name: 'Organique Josper Bar',
+      cuisine: 'Premium Steakhouse',
+      rating: 4.8,
+      priceRange: '$$$',
+      location: 'Vake',
+      address: 'Chavchavadze Ave 79, Tbilisi',
+      hours: '12:00 - 24:00',
+      phone: '+995 32 225 25 28',
+      website: 'organique.ge',
+      description: 'Premium steakhouse with Josper grill, featuring high-quality meats and wines.',
+      specialties: ['Premium Steaks', 'Josper Grill', 'Wine Selection'],
+      features: ['wifi', 'cards', 'premium', 'steakhouse', 'wine-list'],
+      category: 'international',
+      priceCategory: 'fine-dining',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Wagyu Ribeye', price: '120 GEL', description: 'Premium Japanese beef, Josper grilled' },
+        { name: 'Dry-Aged T-Bone', price: '85 GEL', description: '28-day aged beef with sides' },
+        { name: 'Wine Pairing', price: '45 GEL', description: 'Premium wine selection with steak' }
+      ]
+    },
+    {
+      id: 'entree',
+      name: 'Entree',
+      cuisine: 'French Fine Dining',
+      rating: 4.7,
+      priceRange: '$$$',
+      location: 'Vera',
+      address: 'Barnovi St 9, Tbilisi',
+      hours: '19:00 - 24:00',
+      phone: '+995 32 291 33 66',
+      website: 'entree.ge',
+      description: 'Elegant French restaurant with classic cuisine and sophisticated atmosphere.',
+      specialties: ['French Cuisine', 'Fine Dining', 'Elegant Atmosphere'],
+      features: ['wifi', 'cards', 'fine-dining', 'french', 'elegant'],
+      category: 'international',
+      priceCategory: 'fine-dining',
+      aiRecommended: true,
+      popularDishes: [
+        { name: 'Foie Gras', price: '48 GEL', description: 'Pan-seared foie gras with fig compote' },
+        { name: 'Bouillabaisse', price: '42 GEL', description: 'Traditional French fish stew' },
+        { name: 'Tasting Menu', price: '95 GEL', description: '7-course French culinary journey' }
+      ]
+    },
+    {
+      id: 'bread-house',
+      name: 'Bread House',
+      cuisine: 'Georgian Bakery & Cafe',
+      rating: 4.2,
+      priceRange: '$',
+      location: 'Multiple Locations',
+      address: 'Various locations across Tbilisi',
+      hours: '07:00 - 21:00',
+      phone: '+995 32 200 00 00',
+      website: 'breadhouse.ge',
+      description: 'Popular bakery chain serving fresh Georgian bread, pastries, and light meals.',
+      specialties: ['Fresh Bread', 'Pastries', 'Quick Service'],
+      features: ['wifi', 'cards', 'takeaway', 'chain'],
+      category: 'georgian',
+      priceCategory: 'budget',
+      aiRecommended: false,
+      popularDishes: [
+        { name: 'Fresh Shotis Puri', price: '2 GEL', description: 'Traditional Georgian bread baked in tone oven' },
+        { name: 'Khachapuri Varieties', price: '5-8 GEL', description: 'Different regional cheese breads' },
+        { name: 'Georgian Coffee & Pastry', price: '7 GEL', description: 'Coffee with traditional sweet pastry' }
+      ]
+    },
+    {
+      id: 'mapshalia',
+      name: 'Mapshalia',
+      cuisine: 'Georgian Home Cooking',
+      rating: 4.3,
+      priceRange: '$',
+      location: 'Didube',
+      address: 'Didube Market Area, Tbilisi',
+      hours: '10:00 - 20:00',
+      phone: '+995 32 255 55 55',
+      website: null,
+      description: 'No-frills Georgian restaurant near Didube market, famous for authentic home-style cooking.',
+      specialties: ['Home Cooking', 'Market Fresh', 'Local Favorite'],
+      features: ['cash-only', 'authentic', 'local'],
+      category: 'georgian',
+      priceCategory: 'budget',
+      aiRecommended: false,
+      popularDishes: [
+        { name: 'Daily Khinkali', price: '1.2 GEL each', description: 'Fresh dumplings made daily' },
+        { name: 'Lobio with Pickles', price: '8 GEL', description: 'Bean stew with traditional pickles' },
+        { name: 'Khachapuri Adjarian', price: '7 GEL', description: 'Boat-shaped cheese bread' }
+      ]
+    },
+    {
+      id: 'respublika-grill',
+      name: 'Respublika Grill Bar',
+      cuisine: 'International Grill',
+      rating: 4.4,
+      priceRange: '$',
+      location: 'Vake',
+      address: 'Chavchavadze Ave 45, Tbilisi',
+      hours: '12:00 - 24:00',
+      phone: '+995 32 291 44 44',
+      website: 'respublika.ge',
+      description: 'Modern grill restaurant with international menu and sports bar atmosphere.',
+      specialties: ['Grilled Meats', 'Sports Bar', 'International Menu'],
+      features: ['wifi', 'cards', 'sports-tv', 'bar', 'parking'],
+      category: 'international',
+      priceCategory: 'mid-range',
+      aiRecommended: false,
+      popularDishes: [
+        { name: 'Mixed Grill Platter', price: '35 GEL', description: 'Selection of grilled meats and sausages' },
+        { name: 'Burger Respublika', price: '18 GEL', description: 'House special burger with fries' },
+        { name: 'Craft Beer Selection', price: '8-12 GEL', description: 'Local and imported craft beers' }
+      ]
+    },
+    {
+      id: 'maspindzelo',
+      name: 'Maspindzelo',
+      cuisine: 'Georgian Traditional',
+      rating: 4.3,
+      priceRange: '$',
+      location: 'Avlabari',
+      address: 'Avlabari District, Tbilisi',
+      hours: '11:00 - 22:00',
+      phone: '+995 32 277 77 77',
+      website: null,
+      description: 'Traditional Georgian hospitality in a rustic setting with live music on weekends.',
+      specialties: ['Traditional Hospitality', 'Live Music', 'Rustic Atmosphere'],
+      features: ['cash-only', 'live-music', 'traditional', 'outdoor'],
+      category: 'georgian',
+      priceCategory: 'budget',
+      aiRecommended: false,
+      popularDishes: [
+        { name: 'Supra Feast', price: '30 GEL per person', description: 'Traditional Georgian banquet' },
+        { name: 'Khinkali Assortment', price: '12 GEL', description: 'Mixed dumplings (8 pieces)' },
+        { name: 'Homemade Wine', price: '15 GEL/bottle', description: 'Traditional Georgian wine' }
+      ]
+    },
+    {
+      id: 'cafe-gallery',
+      name: 'Cafe Gallery',
+      cuisine: 'European Cafe',
+      rating: 4.2,
+      priceRange: '$',
+      location: 'Rustaveli Avenue',
+      address: 'Rustaveli Ave 12, Tbilisi',
+      hours: '08:00 - 22:00',
+      phone: '+995 32 299 22 22',
+      website: null,
+      description: 'Art-themed cafe with European dishes, perfect for casual dining and coffee meetings.',
+      specialties: ['Art Gallery', 'Coffee Culture', 'Light Meals'],
+      features: ['wifi', 'cards', 'coffee', 'art', 'casual'],
+      category: 'international',
+      priceCategory: 'budget',
+      aiRecommended: false,
+      popularDishes: [
+        { name: 'Caesar Salad', price: '14 GEL', description: 'Classic Caesar with grilled chicken' },
+        { name: 'Pasta Carbonara', price: '16 GEL', description: 'Creamy pasta with bacon and parmesan' },
+        { name: 'Specialty Coffee', price: '6 GEL', description: 'Single origin Georgian coffee' }
+      ]
     }
-  ]
-
-  const additionalRestaurants = [
-    { name: 'Sakhli #11', category: 'georgian', rating: 4.4, priceRange: '$$' },
-    { name: 'Funicular Restaurant Complex', category: 'international', rating: 4.3, priceRange: '$$$' },
-    { name: 'Tsiskvili', category: 'georgian', rating: 4.6, priceRange: '$$' },
-    { name: 'Keto and Kote', category: 'georgian', rating: 4.5, priceRange: '$$' },
-    { name: 'Purpur', category: 'international', rating: 4.7, priceRange: '$$$' },
-    { name: 'Cafe Gallery', category: 'international', rating: 4.2, priceRange: '$$' },
-    { name: 'Pur Pur', category: 'georgian', rating: 4.4, priceRange: '$$' },
-    { name: 'Mapshalia', category: 'georgian', rating: 4.3, priceRange: '$' },
-    { name: 'Samikitno', category: 'georgian', rating: 4.5, priceRange: '$$' },
-    { name: 'Respublika Grill Bar', category: 'international', rating: 4.4, priceRange: '$$' },
-    { name: 'Bina N37', category: 'international', rating: 4.6, priceRange: '$$$' },
-    { name: 'Maspindzelo', category: 'georgian', rating: 4.3, priceRange: '$' },
-    { name: 'Dzveli Sakhli', category: 'georgian', rating: 4.4, priceRange: '$$' },
-    { name: 'Zakhar Zakharich', category: 'international', rating: 4.5, priceRange: '$$' },
-    { name: 'Bread House', category: 'georgian', rating: 4.2, priceRange: '$' }
   ]
 
   const toggleFavorite = (restaurantId: string) => {
@@ -208,7 +673,7 @@ const RestaurantsPage = () => {
     }
   }
 
-  const filteredRestaurants = restaurants.filter(restaurant => {
+  const filteredRestaurants = allRestaurants.filter(restaurant => {
     const matchesFilter = selectedFilter === 'all' || 
       (selectedFilter === 'georgian' && restaurant.category === 'georgian') ||
       (selectedFilter === 'international' && restaurant.category === 'international') ||
@@ -246,7 +711,7 @@ const RestaurantsPage = () => {
               <div className="flex items-center space-x-4 text-red-200">
                 <div className="flex items-center">
                   <Star className="h-5 w-5 mr-2" />
-                  <span>21 Handpicked Establishments</span>
+                  <span>30+ Handpicked Establishments</span>
                 </div>
                 <div className="flex items-center">
                   <Bot className="h-5 w-5 mr-2" />
@@ -416,7 +881,7 @@ const RestaurantsPage = () => {
                 <div className="mb-6">
                   <h4 className="font-semibold text-gray-900 mb-2">Features:</h4>
                   <div className="flex flex-wrap gap-2">
-                    {restaurant.features.map((feature, idx) => (
+                    {restaurant.features.map((feature: string, idx: number) => (
                       <span key={idx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm flex items-center">
                         {getFeatureIcon(feature)}
                         <span className="ml-1 capitalize">{feature.replace('-', ' ')}</span>
@@ -432,7 +897,7 @@ const RestaurantsPage = () => {
                     Popular Dishes:
                   </h4>
                   <div className="grid md:grid-cols-3 gap-4">
-                    {restaurant.popularDishes.map((dish, idx) => (
+                    {restaurant.popularDishes.map((dish: any, idx: number) => (
                       <div key={idx} className="bg-gray-50 rounded-lg p-3">
                         <div className="flex justify-between items-start mb-1">
                           <h5 className="font-semibold text-gray-900 text-sm">{dish.name}</h5>
@@ -448,7 +913,7 @@ const RestaurantsPage = () => {
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-2">Specialties:</h4>
                   <div className="flex flex-wrap gap-2">
-                    {restaurant.specialties.map((specialty, idx) => (
+                    {restaurant.specialties.map((specialty: string, idx: number) => (
                       <span key={idx} className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
                         {specialty}
                       </span>
@@ -458,32 +923,6 @@ const RestaurantsPage = () => {
               </div>
             </div>
           ))}
-
-          {/* Additional restaurants in enhanced format */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="flex items-center mb-6">
-              <TrendingUp className="h-6 w-6 text-blue-600 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-900">More Great Restaurants</h3>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {additionalRestaurants.map((restaurant, index) => (
-                <div key={index} className="p-4 bg-gradient-to-br from-gray-50 to-white rounded-lg border border-gray-100 hover:shadow-md transition-shadow">
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-semibold text-gray-900">{restaurant.name}</h4>
-                    <div className="flex items-center">
-                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                      <span className="ml-1 text-sm font-semibold">{restaurant.rating}</span>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600 capitalize">{restaurant.category}</span>
-                    <span className="text-green-600 font-semibold">{restaurant.priceRange}</span>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-2">Detailed reviews coming soon</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Enhanced Tips Section */}

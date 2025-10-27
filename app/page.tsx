@@ -106,6 +106,14 @@ const HomePage = () => {
       href: '/restaurants'
     },
     {
+      title: 'Live Currency Converter',
+      description: 'Real-time GEL to GBP exchange rates with banking tips',
+      action: 'Convert Currency',
+      icon: <TrendingUp className="h-5 w-5" />,
+      color: 'bg-green-500',
+      href: '/currency'
+    },
+    {
       title: 'Intelligent Route Planner',
       description: 'AI optimizes your daily commute and travel routes',
       action: 'Plan Route',
@@ -120,14 +128,6 @@ const HomePage = () => {
       icon: <Brain className="h-5 w-5" />,
       color: 'bg-pink-500',
       href: '/language'
-    },
-    {
-      title: 'Cultural Assistant',
-      description: 'AI helps navigate Georgian customs and etiquette',
-      action: 'Get Guidance',
-      icon: <Users className="h-5 w-5" />,
-      color: 'bg-orange-500',
-      href: '/culture'
     }
   ]
 
@@ -282,11 +282,10 @@ const HomePage = () => {
                 Welcome to Stew's Guide To Tbilisi
               </h2>
               <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto leading-relaxed">
-                Your personal AI-powered companion for expat life in Georgia's capital. 
+                My guide to expat life in Georgia's capital. 
                 Experience <span className="text-yellow-300 font-semibold">authentic Georgian culture</span>, 
                 discover <span className="text-yellow-300 font-semibold">hidden gems</span>, and navigate 
-                <span className="text-yellow-300 font-semibold">daily life</span> with Stew's curated recommendations 
-                and intelligent assistance.
+                <span className="text-yellow-300 font-semibold">daily life</span>.
               </p>
             </>
           }>
@@ -298,11 +297,10 @@ const HomePage = () => {
             </h2>
             
             <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto animate-slide-in-up leading-relaxed" style={{ animationDelay: '0.4s' }}>
-              Your personal AI-powered companion for expat life in Georgia's capital. 
+              My guide to expat life in Georgia's capital. 
               Experience <span className="text-yellow-300 font-semibold">authentic Georgian culture</span>, 
               discover <span className="text-yellow-300 font-semibold">hidden gems</span>, and navigate 
-              <span className="text-yellow-300 font-semibold">daily life</span> with Stew's curated recommendations 
-              and intelligent assistance.
+              <span className="text-yellow-300 font-semibold">daily life</span>.
             </p>
           </ClientOnlyWrapper>
           
