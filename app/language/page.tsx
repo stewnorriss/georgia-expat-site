@@ -175,7 +175,7 @@ const CulturePage = () => {
             </div>
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Georgian Culture & Traditions
+                Learn Georgian Language
               </h1>
               <div className="flex items-center space-x-4 text-purple-200">
                 <div className="flex items-center">
@@ -190,8 +190,8 @@ const CulturePage = () => {
             </div>
           </div>
           <p className="text-xl max-w-3xl">
-            Discover the rich cultural heritage of Georgia through interactive guides, practical tips, 
-            and AI-powered insights to help you navigate social customs with confidence.
+            Master Georgian with interactive lessons, pronunciation guides, and cultural context. 
+            Our AI adapts to your learning pace and provides personalized feedback.
           </p>
         </div>
       </div>
