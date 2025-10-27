@@ -1,190 +1,121 @@
 'use client'
 
 import { useState } from 'react'
-import { 
-  Users, 
-  Heart, 
-  Gift, 
-  Music, 
-  Wine, 
-  Church, 
-  Calendar, 
-  BookOpen, 
-  Star, 
-  Globe, 
-  Camera, 
-  Coffee,
-  Crown,
-  Utensils,
-  Home,
-  Clock,
-  MapPin,
-  Award,
-  MessageCircle,
-  Bot,
-  Sparkles,
-  TrendingUp,
-  Play,
-  Volume2,
-  ChevronDown,
-  ChevronUp,
-  Info,
-  AlertCircle,
-  CheckCircle,
-  Filter
-} from 'lucide-react'
+import { MessageCircle, Volume2, BookOpen, Users, Play, Video, Clock, Award, Bot, Sparkles, TrendingUp, CheckCircle, RotateCcw, Target, Brain, Zap, Globe } from 'lucide-react'
 
-const CulturePage = () => {
-  const [expandedTradition, setExpandedTradition] = useState<string | null>(null)
-  const [selectedCategory, setSelectedCategory] = useState('all')
+export default function LanguagePage() {
+  const [selectedLesson, setSelectedLesson] = useState<number | null>(null)
+  const [completedLessons, setCompletedLessons] = useState<number[]>([])
+  const [currentStreak] = useState(7)
+  const [selectedDifficulty, setSelectedDifficulty] = useState('all')
 
-  const categories = [
-    { id: 'all', name: 'All Traditions', icon: <Globe className="h-4 w-4" /> },
-    { id: 'dining', name: 'Dining & Food', icon: <Utensils className="h-4 w-4" /> },
-    { id: 'social', name: 'Social Customs', icon: <Users className="h-4 w-4" /> },
-    { id: 'religious', name: 'Religious', icon: <Church className="h-4 w-4" /> },
-    { id: 'celebrations', name: 'Celebrations', icon: <Calendar className="h-4 w-4" /> }
+  const difficulties = [
+    { id: 'all', name: 'All Levels', count: 29 },
+    { id: 'Beginner', name: 'Beginner', count: 15 },
+    { id: 'Intermediate', name: 'Intermediate', count: 10 },
+    { id: 'Advanced', name: 'Advanced', count: 4 }
   ]
 
-  const traditions = [
+  const lessons = [
     {
-      id: 'supra',
-      title: 'Georgian Supra (Feast)',
-      description: 'Traditional Georgian feast with elaborate toasts, wine, and hospitality.',
-      importance: 'Central to Georgian social life',
-      tips: 'Accept invitations graciously, participate in toasts, pace yourself with wine',
-      icon: <Utensils className="h-6 w-6" />,
-      category: 'dining',
-      difficulty: 'Moderate',
-      commonMistakes: [
-        'Refusing wine or toasts',
-        'Leaving before the tamada signals the end',
-        'Not participating in group toasts'
-      ],
-      details: [
-        'Can last 4-8 hours with multiple courses',
-        'Each toast has specific meaning and order',
-        'Wine is sacred - never refuse a toast',
-        'Guests are seated by importance and age',
-        'The tamada (toastmaster) controls the flow',
-        'Traditional songs often accompany the feast'
-      ],
+      lesson: 1,
+      title: 'Basic Greetings & Introductions',
+      georgian: 'გამარჯობა (gamarjoba)',
+      english: 'Hello',
+      difficulty: 'Beginner',
+      category: 'Greetings',
+      duration: '15 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 5,
       phrases: [
-        { georgian: 'გაუმარჯოს!', english: 'Cheers!', pronunciation: 'gau-mar-jos!', audio: true },
-        { georgian: 'მადლობა სუფრისთვის', english: 'Thank you for the feast', pronunciation: 'mad-lo-ba sup-ris-tvis', audio: true },
-        { georgian: 'ძალიან გემრიელია', english: 'It\'s very delicious', pronunciation: 'dza-li-an gem-ri-e-li-a', audio: false }
+        { georgian: 'გამარჯობა', english: 'Hello', pronunciation: 'ga-mar-jo-ba', difficulty: 'easy' },
+        { georgian: 'მე ვარ...', english: 'I am...', pronunciation: 'me var...', difficulty: 'easy' },
+        { georgian: 'სახელი მქვია...', english: 'My name is...', pronunciation: 'sa-khe-li mk-vi-a...', difficulty: 'medium' }
       ],
-      aiInsights: 'Based on expat experiences, participating in supra is the fastest way to integrate into Georgian society. 89% of expats who attended supra reported feeling more connected to Georgian culture.'
+      culturalNotes: 'Georgians greet with enthusiasm. A firm handshake and eye contact show respect.',
+      aiInsights: 'This lesson has 94% completion rate among expats. Master these phrases for immediate social benefits.'
     },
     {
-      id: 'tamada',
-      title: 'Tamada (Toastmaster)',
-      description: 'The person who leads toasts at Georgian feasts and celebrations.',
-      importance: 'Highly respected role in Georgian culture',
-      tips: 'Listen respectfully to toasts, wait for your turn to speak',
-      icon: <Crown className="h-6 w-6" />,
-      category: 'dining',
-      difficulty: 'Advanced',
-      commonMistakes: [
-        'Interrupting the tamada',
-        'Making toasts out of order',
-        'Not standing for important toasts'
-      ],
-      details: [
-        'Usually the most respected male at the table',
-        'Controls the flow and topics of conversation',
-        'Decides when to eat, drink, and speak',
-        'Often chosen for eloquence and wisdom',
-        'Can be a woman in modern, progressive families',
-        'Role passed down through generations'
-      ],
+      lesson: 2,
+      title: 'Politeness & Thank You',
+      georgian: 'მადლობა (madloba)',
+      english: 'Thank you',
+      difficulty: 'Beginner',
+      category: 'Politeness',
+      duration: '12 min',
+      hasAudio: true,
+      hasVideo: false,
+      aiRecommended: true,
+      practiceExercises: 4,
       phrases: [
-        { georgian: 'ტამადა', english: 'Toastmaster', pronunciation: 'ta-ma-da', audio: true },
-        { georgian: 'თქვენი ჯანმრთელობისთვის', english: 'To your health', pronunciation: 'tkven-i jan-mrt-e-lo-bis-tvis', audio: true }
+        { georgian: 'მადლობა', english: 'Thank you', pronunciation: 'mad-lo-ba', difficulty: 'easy' },
+        { georgian: 'დიდი მადლობა', english: 'Thank you very much', pronunciation: 'di-di mad-lo-ba', difficulty: 'medium' }
       ],
-      aiInsights: 'Foreign guests are rarely expected to be tamada, but showing respect for the role increases cultural acceptance by 76% according to expat surveys.'
-    },
-    {
-      id: 'hospitality',
-      title: 'Georgian Hospitality (Stumari)',
-      description: 'Guests are considered a gift from God and treated with utmost respect.',
-      importance: 'Core value of Georgian identity',
-      tips: 'Accept offers graciously, bring small gifts, show appreciation',
-      icon: <Heart className="h-6 w-6" />,
-      category: 'social',
-      difficulty: 'Easy',
-      commonMistakes: [
-        'Refusing food or drink offers',
-        'Not reciprocating hospitality',
-        'Being too formal or distant'
-      ],
-      details: [
-        'Guests are sacred in Georgian culture',
-        'Hosts will offer their best food and wine',
-        'Refusing hospitality can be offensive',
-        'Even strangers are welcomed warmly',
-        'Hospitality extends to business relationships',
-        'Children learn hospitality from early age'
-      ],
-      phrases: [
-        { georgian: 'სტუმარი', english: 'Guest', pronunciation: 'stu-ma-ri', audio: true },
-        { georgian: 'კეთილი იყოს თქვენი მობრძანება', english: 'Welcome', pronunciation: 'ke-ti-li i-yos tkven-i mo-br-dza-ne-ba', audio: true },
-        { georgian: 'მადლობა მასპინძლობისთვის', english: 'Thank you for the hospitality', pronunciation: 'mad-lo-ba mas-pin-dzlo-bis-tvis', audio: false }
-      ],
-      aiInsights: 'Expats who embrace Georgian hospitality report 3x higher satisfaction with their Georgian experience and form deeper local friendships.'
+      culturalNotes: 'Politeness is highly valued. Using these phrases shows respect and cultural awareness.',
+      aiInsights: 'Expats who master politeness phrases report 78% better interactions with locals.'
     }
   ]
 
-  const filteredTraditions = traditions.filter(tradition => 
-    selectedCategory === 'all' || tradition.category === selectedCategory
+  const filteredLessons = lessons.filter(lesson => 
+    selectedDifficulty === 'all' || lesson.difficulty === selectedDifficulty
   )
 
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty) {
-      case 'Easy': return 'bg-green-100 text-green-800'
-      case 'Moderate': return 'bg-yellow-100 text-yellow-800'
-      case 'Advanced': return 'bg-red-100 text-red-800'
-      default: return 'bg-gray-100 text-gray-800'
-    }
+  const toggleLessonCompletion = (lessonNumber: number) => {
+    setCompletedLessons(prev => 
+      prev.includes(lessonNumber) 
+        ? prev.filter(l => l !== lessonNumber)
+        : [...prev, lessonNumber]
+    )
   }
 
   const playPronunciation = (text: string) => {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(text)
       utterance.lang = 'ka-GE'
-      utterance.rate = 0.8
+      utterance.rate = 0.7
       speechSynthesis.speak(utterance)
     }
   }
 
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case 'easy': return 'bg-green-100 text-green-800'
+      case 'medium': return 'bg-yellow-100 text-yellow-800'
+      case 'hard': return 'bg-red-100 text-red-800'
+      default: return 'bg-gray-100 text-gray-800'
+    }
+  }
+
+  const getProgressPercentage = () => {
+    return Math.round((completedLessons.length / lessons.length) * 100)
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Enhanced Header */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-pink-600 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 10 L40 20 L30 30 L20 20 Z M10 30 L20 40 L10 50 L0 40 Z M50 30 L60 40 L50 50 L40 40 Z'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
+      <div className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-red-600 text-white py-16 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center mb-6">
             <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Users className="h-12 w-12 text-white" />
+              <MessageCircle className="h-12 w-12 text-white" />
             </div>
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2">
                 Learn Georgian Language
               </h1>
-              <div className="flex items-center space-x-4 text-purple-200">
+              <div className="flex items-center space-x-4 text-pink-200">
                 <div className="flex items-center">
-                  <Heart className="h-5 w-5 mr-2" />
-                  <span>Ancient Hospitality Traditions</span>
+                  <BookOpen className="h-5 w-5 mr-2" />
+                  <span>29 Interactive Lessons</span>
                 </div>
                 <div className="flex items-center">
                   <Bot className="h-5 w-5 mr-2" />
-                  <span>AI-Enhanced Cultural Guide</span>
+                  <span>AI-Powered Learning</span>
+                </div>
+                <div className="flex items-center">
+                  <Target className="h-5 w-5 mr-2" />
+                  <span>{currentStreak} Day Streak</span>
                 </div>
               </div>
             </div>
@@ -197,166 +128,262 @@ const CulturePage = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Category Filter */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-          <div className="flex items-center mb-4">
-            <Filter className="h-5 w-5 text-purple-600 mr-2" />
-            <h2 className="text-lg font-semibold text-gray-900">Explore by Category</h2>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center px-4 py-2 rounded-lg font-semibold transition-colors ${
-                  selectedCategory === category.id
-                    ? 'bg-purple-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {category.icon}
-                <span className="ml-2">{category.name}</span>
-              </button>
-            ))}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <TrendingUp className="h-6 w-6 text-green-600 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900">Progress</h3>
+              </div>
+              <span className="text-2xl font-bold text-green-600">{getProgressPercentage()}%</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+              <div 
+                className="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all duration-300"
+                style={{ width: `${getProgressPercentage()}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-gray-600">{completedLessons.length} of {lessons.length} lessons completed</p>
           </div>
 
-          {/* AI Cultural Insights */}
-          <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
-            <div className="flex items-center mb-2">
-              <Bot className="h-5 w-5 text-blue-600 mr-2" />
-              <span className="font-semibold text-gray-700">Stew's Cultural AI Insights</span>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <Zap className="h-6 w-6 text-orange-600 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900">Streak</h3>
+              </div>
+              <span className="text-2xl font-bold text-orange-600">{currentStreak}</span>
             </div>
+            <div className="flex items-center space-x-1 mb-2">
+              {Array.from({ length: 7 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`w-4 h-4 rounded-full ${i < currentStreak ? 'bg-orange-500' : 'bg-gray-200'}`}
+                ></div>
+              ))}
+            </div>
+            <p className="text-sm text-gray-600">Keep it up! Daily practice improves retention by 85%</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <Brain className="h-6 w-6 text-purple-600 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900">AI Insights</h3>
+              </div>
+              <Bot className="h-6 w-6 text-purple-600" />
+            </div>
+            <p className="text-sm text-gray-600 mb-2">
+              Your strongest area: <span className="font-semibold text-purple-600">Greetings</span>
+            </p>
             <p className="text-sm text-gray-600">
-              Georgian culture emphasizes hospitality (stumari), respect for elders, and communal dining. 
-              {filteredTraditions.length} traditions match your current filter. 
-              Most important for expats: supra etiquette (95% relevance) and basic hospitality customs (89% relevance).
+              Focus on: <span className="font-semibold text-red-600">Numbers & Directions</span>
             </p>
           </div>
         </div>
 
-        {/* Enhanced Traditions */}
-        <div className="space-y-8">
-          {filteredTraditions.map((tradition, index) => (
-            <div key={tradition.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-              {/* Tradition Header */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <Globe className="h-5 w-5 text-pink-600 mr-2" />
+              <h2 className="text-lg font-semibold text-gray-900">Choose Your Level</h2>
+            </div>
+            <div className="flex items-center text-sm text-gray-500">
+              <Clock className="h-4 w-4 mr-1" />
+              <span>Avg. 15-25 min per lesson</span>
+            </div>
+          </div>
+          
+          <div className="flex flex-wrap gap-3 mb-4">
+            {difficulties.map((difficulty) => (
+              <button
+                key={difficulty.id}
+                onClick={() => setSelectedDifficulty(difficulty.id)}
+                className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
+                  selectedDifficulty === difficulty.id
+                    ? 'bg-pink-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {difficulty.name} ({difficulty.count})
+              </button>
+            ))}
+          </div>
+
+          <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+            <div className="flex items-center mb-2">
+              <Sparkles className="h-5 w-5 text-blue-600 mr-2" />
+              <span className="font-semibold text-gray-700">Stew AI Learning Tips</span>
+            </div>
+            <p className="text-sm text-gray-600">
+              Based on your progress, focus on practical phrases first. Georgian has 33 letters but pronunciation is consistent. 
+              Practice 15 minutes daily for optimal retention. {filteredLessons.length} lessons match your current filter.
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          {filteredLessons.map((lesson) => (
+            <div key={lesson.lesson} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="p-6 border-b border-gray-200">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-purple-100 text-purple-600 p-3 rounded-lg">
-                      {tradition.icon}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="relative">
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-white ${
+                        completedLessons.includes(lesson.lesson) 
+                          ? 'bg-green-500' 
+                          : 'bg-pink-500'
+                      }`}>
+                        {completedLessons.includes(lesson.lesson) ? 
+                          <CheckCircle className="h-6 w-6" /> : 
+                          lesson.lesson
+                        }
+                      </div>
+                      {lesson.aiRecommended && (
+                        <div className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white p-1 rounded-full">
+                          <Sparkles className="h-3 w-3" />
+                        </div>
+                      )}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{tradition.title}</h3>
-                      <p className="text-gray-600 mb-3">{tradition.description}</p>
-                      <div className="flex items-center space-x-4">
-                        <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getDifficultyColor(tradition.difficulty)}`}>
-                          {tradition.difficulty}
+                      <h3 className="text-xl font-bold text-gray-900 mb-1">{lesson.title}</h3>
+                      <div className="flex items-center space-x-4 text-sm text-gray-600">
+                        <span className="capitalize">{lesson.difficulty}</span>
+                        <span>{lesson.category}</span>
+                        <span className="flex items-center">
+                          <Clock className="h-4 w-4 mr-1" />
+                          {lesson.duration}
                         </span>
-                        <span className="text-sm text-gray-500 capitalize">{tradition.category}</span>
+                        <span className="flex items-center">
+                          <Target className="h-4 w-4 mr-1" />
+                          {lesson.practiceExercises} exercises
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <button
-                    onClick={() => setExpandedTradition(expandedTradition === tradition.id ? null : tradition.id)}
-                    className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    {expandedTradition === tradition.id ? 
-                      <ChevronUp className="h-5 w-5" /> : 
-                      <ChevronDown className="h-5 w-5" />
-                    }
-                  </button>
+                  
+                  <div className="flex items-center space-x-3">
+                    {lesson.hasAudio && (
+                      <div className="bg-blue-100 text-blue-600 p-2 rounded-lg">
+                        <Volume2 className="h-4 w-4" />
+                      </div>
+                    )}
+                    {lesson.hasVideo && (
+                      <div className="bg-red-100 text-red-600 p-2 rounded-lg">
+                        <Video className="h-4 w-4" />
+                      </div>
+                    )}
+                    <button
+                      onClick={() => setSelectedLesson(selectedLesson === lesson.lesson ? null : lesson.lesson)}
+                      className="bg-pink-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-pink-700 transition-colors"
+                    >
+                      {selectedLesson === lesson.lesson ? 'Close' : 'Start Lesson'}
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              {/* Expanded Content */}
-              {expandedTradition === tradition.id && (
+              {selectedLesson === lesson.lesson && (
                 <div className="p-6 space-y-6">
-                  {/* Importance & Tips */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-blue-50 rounded-lg p-4">
-                      <div className="flex items-center mb-2">
-                        <Info className="h-4 w-4 text-blue-600 mr-2" />
-                        <h4 className="font-semibold text-gray-900">Why It Matters</h4>
-                      </div>
-                      <p className="text-sm text-gray-700">{tradition.importance}</p>
-                    </div>
-                    <div className="bg-green-50 rounded-lg p-4">
-                      <div className="flex items-center mb-2">
-                        <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
-                        <h4 className="font-semibold text-gray-900">Practical Tips</h4>
-                      </div>
-                      <p className="text-sm text-gray-700">{tradition.tips}</p>
-                    </div>
-                  </div>
-
-                  {/* Common Mistakes */}
-                  <div className="bg-red-50 rounded-lg p-4">
-                    <div className="flex items-center mb-3">
-                      <AlertCircle className="h-4 w-4 text-red-600 mr-2" />
-                      <h4 className="font-semibold text-gray-900">Common Mistakes to Avoid</h4>
-                    </div>
-                    <ul className="space-y-1">
-                      {tradition.commonMistakes.map((mistake, idx) => (
-                        <li key={idx} className="text-sm text-gray-700 flex items-start">
-                          <span className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                          {mistake}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Detailed Information */}
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                      <BookOpen className="h-4 w-4 mr-2" />
-                      Detailed Guide
-                    </h4>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {tradition.details.map((detail, idx) => (
-                        <div key={idx} className="bg-gray-50 rounded-lg p-3">
-                          <p className="text-sm text-gray-700">{detail}</p>
+                  <div className="bg-gradient-to-r from-pink-50 to-red-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-2">Key Phrase</h4>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="georgian-text text-2xl font-bold text-gray-900 mb-1">
+                          {lesson.georgian}
                         </div>
-                      ))}
+                        <div className="text-gray-700">{lesson.english}</div>
+                      </div>
+                      <button
+                        onClick={() => playPronunciation(lesson.georgian)}
+                        className="p-3 bg-pink-100 text-pink-600 rounded-lg hover:bg-pink-200 transition-colors"
+                      >
+                        <Volume2 className="h-5 w-5" />
+                      </button>
                     </div>
                   </div>
 
-                  {/* Georgian Phrases */}
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
+                    <h4 className="font-semibold text-gray-900 mb-4 flex items-center">
                       <MessageCircle className="h-4 w-4 mr-2" />
-                      Useful Georgian Phrases
+                      Practice Phrases
                     </h4>
-                    <div className="space-y-3">
-                      {tradition.phrases.map((phrase, idx) => (
-                        <div key={idx} className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="georgian-text text-lg font-semibold text-gray-900">
-                              {phrase.georgian}
+                    <div className="grid gap-3">
+                      {lesson.phrases.map((phrase, idx) => (
+                        <div key={idx} className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-3 mb-2">
+                                <div className="georgian-text text-lg font-semibold text-gray-900">
+                                  {phrase.georgian}
+                                </div>
+                                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getDifficultyColor(phrase.difficulty)}`}>
+                                  {phrase.difficulty}
+                                </span>
+                              </div>
+                              <div className="text-gray-700 mb-1">{phrase.english}</div>
+                              <div className="text-sm text-gray-500 italic">{phrase.pronunciation}</div>
                             </div>
-                            {phrase.audio && (
-                              <button
-                                onClick={() => playPronunciation(phrase.pronunciation)}
-                                className="p-2 bg-purple-100 text-purple-600 rounded-lg hover:bg-purple-200 transition-colors"
-                                title="Play pronunciation"
-                              >
-                                <Volume2 className="h-4 w-4" />
-                              </button>
-                            )}
+                            <button
+                              onClick={() => playPronunciation(phrase.pronunciation)}
+                              className="p-2 bg-pink-100 text-pink-600 rounded-lg hover:bg-pink-200 transition-colors ml-4"
+                            >
+                              <Play className="h-4 w-4" />
+                            </button>
                           </div>
-                          <div className="text-gray-700 mb-1">{phrase.english}</div>
-                          <div className="text-sm text-gray-500 italic">{phrase.pronunciation}</div>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* AI Insights */}
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
-                    <div className="flex items-center mb-2">
-                      <Sparkles className="h-4 w-4 text-blue-600 mr-2" />
-                      <h4 className="font-semibold text-gray-900">AI Cultural Insight</h4>
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                      <Users className="h-4 w-4 mr-2" />
+                      Cultural Context
+                    </h4>
+                    <p className="text-gray-700">{lesson.culturalNotes}</p>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                      <Bot className="h-4 w-4 mr-2" />
+                      AI Learning Insight
+                    </h4>
+                    <p className="text-gray-700">{lesson.aiInsights}</p>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                    <button
+                      onClick={() => toggleLessonCompletion(lesson.lesson)}
+                      className={`flex items-center px-4 py-2 rounded-lg font-semibold transition-colors ${
+                        completedLessons.includes(lesson.lesson)
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      {completedLessons.includes(lesson.lesson) ? (
+                        <>
+                          <CheckCircle className="h-4 w-4 mr-2" />
+                          Completed
+                        </>
+                      ) : (
+                        <>
+                          <Target className="h-4 w-4 mr-2" />
+                          Mark Complete
+                        </>
+                      )}
+                    </button>
+                    
+                    <div className="flex items-center space-x-3">
+                      <button className="flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold hover:bg-blue-200 transition-colors">
+                        <RotateCcw className="h-4 w-4 mr-2" />
+                        Practice Again
+                      </button>
+                      <button className="flex items-center px-4 py-2 bg-pink-600 text-white rounded-lg font-semibold hover:bg-pink-700 transition-colors">
+                        <Play className="h-4 w-4 mr-2" />
+                        Start Exercises
+                      </button>
                     </div>
-                    <p className="text-sm text-gray-700">{tradition.aiInsights}</p>
                   </div>
                 </div>
               )}
@@ -364,96 +391,41 @@ const CulturePage = () => {
           ))}
         </div>
 
-        {/* Cultural Calendar */}
-        <div className="mt-12 bg-white rounded-xl shadow-lg p-6">
-          <div className="flex items-center mb-6">
-            <Calendar className="h-6 w-6 text-purple-600 mr-3" />
-            <h3 className="text-2xl font-bold text-gray-900">Georgian Cultural Calendar</h3>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { month: 'January', event: 'New Year & Orthodox Christmas', date: '1st & 7th' },
-              { month: 'March', event: 'Mother\'s Day', date: '3rd' },
-              { month: 'April', event: 'Orthodox Easter', date: 'Variable' },
-              { month: 'May', event: 'Independence Day', date: '26th' },
-              { month: 'August', event: 'Mariamoba (Assumption)', date: '28th' },
-              { month: 'October', event: 'Svetitskhovloba', date: '14th' },
-              { month: 'November', event: 'Giorgoba (St. George)', date: '23rd' },
-              { month: 'December', event: 'New Wine Festival', date: 'Various' }
-            ].map((item, index) => (
-              <div key={index} className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4">
-                <h4 className="font-semibold text-purple-900 mb-1">{item.month}</h4>
-                <p className="text-sm text-gray-700 mb-1">{item.event}</p>
-                <p className="text-xs text-gray-500">{item.date}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Cultural Integration Tips */}
         <div className="mt-12 grid md:grid-cols-2 gap-8">
           <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6">
             <div className="flex items-center mb-4">
-              <TrendingUp className="h-6 w-6 text-green-600 mr-3" />
-              <h3 className="text-xl font-bold text-gray-900">Integration Success Tips</h3>
+              <Award className="h-6 w-6 text-green-600 mr-3" />
+              <h3 className="text-xl font-bold text-gray-900">Learning Tips</h3>
             </div>
             <ul className="space-y-3 text-gray-700">
               <li className="flex items-start">
                 <CheckCircle className="h-4 w-4 mt-1 mr-2 text-green-600" />
-                <span>Learn basic Georgian greetings and thank you phrases</span>
+                <span>Practice pronunciation daily - Georgian is phonetic</span>
               </li>
               <li className="flex items-start">
                 <CheckCircle className="h-4 w-4 mt-1 mr-2 text-green-600" />
-                <span>Accept invitations to supra and family gatherings</span>
+                <span>Learn the 33-letter Georgian alphabet gradually</span>
               </li>
               <li className="flex items-start">
                 <CheckCircle className="h-4 w-4 mt-1 mr-2 text-green-600" />
-                <span>Show interest in Georgian history and traditions</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="h-4 w-4 mt-1 mr-2 text-green-600" />
-                <span>Respect religious customs and dress codes</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircle className="h-4 w-4 mt-1 mr-2 text-green-600" />
-                <span>Be patient with language barriers and cultural differences</span>
+                <span>Focus on practical phrases for daily situations</span>
               </li>
             </ul>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
             <div className="flex items-center mb-4">
-              <Award className="h-6 w-6 text-blue-600 mr-3" />
-              <h3 className="text-xl font-bold text-gray-900">Cultural Milestones</h3>
+              <Globe className="h-6 w-6 text-purple-600 mr-3" />
+              <h3 className="text-xl font-bold text-gray-900">Additional Resources</h3>
             </div>
             <div className="space-y-4">
               <div className="bg-white/50 rounded-lg p-3">
-                <div className="flex items-center mb-1">
-                  <Star className="h-4 w-4 text-yellow-500 mr-2" />
-                  <span className="font-semibold text-sm">First Month</span>
-                </div>
-                <p className="text-sm text-gray-600">Learn basic greetings and dining etiquette</p>
+                <h4 className="font-semibold text-gray-900 mb-1">Language Exchange Meetups</h4>
+                <p className="text-sm text-gray-600">Weekly gatherings at cafes around Tbilisi</p>
               </div>
               <div className="bg-white/50 rounded-lg p-3">
-                <div className="flex items-center mb-1">
-                  <Star className="h-4 w-4 text-yellow-500 mr-2" />
-                  <span className="font-semibold text-sm">Three Months</span>
-                </div>
-                <p className="text-sm text-gray-600">Attend your first supra and understand toasting</p>
-              </div>
-              <div className="bg-white/50 rounded-lg p-3">
-                <div className="flex items-center mb-1">
-                  <Star className="h-4 w-4 text-yellow-500 mr-2" />
-                  <span className="font-semibold text-sm">Six Months</span>
-                </div>
-                <p className="text-sm text-gray-600">Navigate religious holidays and cultural events</p>
-              </div>
-              <div className="bg-white/50 rounded-lg p-3">
-                <div className="flex items-center mb-1">
-                  <Star className="h-4 w-4 text-yellow-500 mr-2" />
-                  <span className="font-semibold text-sm">One Year</span>
-                </div>
-                <p className="text-sm text-gray-600">Feel comfortable in most Georgian social situations</p>
+                <h4 className="font-semibold text-gray-900 mb-1">Georgian Language Schools</h4>
+                <p className="text-sm text-gray-600">TLG, International House, and university programs</p>
               </div>
             </div>
           </div>
@@ -462,5 +434,3 @@ const CulturePage = () => {
     </div>
   )
 }
-
-export default CulturePage
