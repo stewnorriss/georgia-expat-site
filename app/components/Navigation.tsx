@@ -2,11 +2,11 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { X, MapPin, ChevronDown, Bot, Search, Sparkles, Zap } from 'lucide-react'
+import { X, MapPin, ChevronDown, Bot, Search, Sparkles } from 'lucide-react'
 import AISearchBar from './AISearchBar'
 import ThemeToggle from './ThemeToggle'
 
-const CategoryDropdown = ({ category, index }: { category: any, index: number }) => {
+const CategoryDropdown = ({ category }: { category: any }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -68,7 +68,7 @@ const Navigation = () => {
 
   const mainNavItems = [
     { href: '/', label: 'Home' },
-    { href: '/recommendations', label: 'AI Recommendations' },
+    { href: '/recommendations', label: 'Recommendations' },
     { href: '/blog', label: 'Blog' },
   ]
 
@@ -142,11 +142,10 @@ const Navigation = () => {
             ))}
 
             {/* Category Dropdowns */}
-            {navigationCategories.map((category, categoryIndex) => (
+            {navigationCategories.map((category) => (
               <CategoryDropdown 
                 key={category.title}
                 category={category}
-                index={categoryIndex}
               />
             ))}
             
