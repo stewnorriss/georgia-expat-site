@@ -6,38 +6,101 @@ import { X, MapPin, ChevronDown, Bot, Search, Sparkles, Zap } from 'lucide-react
 import AISearchBar from './AISearchBar'
 import ThemeToggle from './ThemeToggle'
 
+const CategoryDropdown = ({ category, index }: { category: any, index: number }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div 
+      className="relative"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <button className="flex items-center text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 group relative overflow-hidden">
+        <span className="relative z-10 mr-1">{category.icon}</span>
+        <span className="relative z-10">{category.title}</span>
+        <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 relative z-10 ${isOpen ? 'rotate-180' : ''}`} />
+        <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </button>
+      <div className={`absolute left-0 mt-2 w-80 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-2xl border border-red-100/50 dark:border-red-800/30 transition-all duration-300 ${
+        isOpen ? 'opacity-100 visible transform translate-y-0' : 'opacity-0 invisible transform -translate-y-2'
+      }`}>
+        <div className="p-4">
+          <div className="flex items-center mb-4">
+            <span className="text-2xl mr-3">{category.icon}</span>
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white">{category.title}</h3>
+          </div>
+          <div className="space-y-2">
+            {category.items.map((item: any) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block p-3 rounded-lg hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
+                      {item.label}
+                    </h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      {item.description}
+                    </p>
+                  </div>
+                  {/* Special badges */}
+                  {item.href === '/language' && (
+                    <span className="ml-2 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full">AI</span>
+                  )}
+                  {item.href === '/recommendations' && (
+                    <span className="ml-2 text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full">Smart</span>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [showAISearch, setShowAISearch] = useState(false)
 
   const mainNavItems = [
     { href: '/', label: 'Home' },
-    { href: '/recommendations', label: 'Recommendations' },
-    { href: '/restaurants', label: 'Restaurants' },
-    { href: '/places', label: 'Places to Visit' },
-    { href: '/accommodation', label: 'Hotels & Stays' },
+    { href: '/recommendations', label: 'AI Recommendations' },
     { href: '/blog', label: 'Blog' },
   ]
 
-  const dropdownGroups = [
+  const navigationCategories = [
     {
-      title: 'Living Essentials',
+      title: 'Explore & Eat',
+      icon: '🍽️',
       items: [
-        { href: '/transport', label: 'Getting Around' },
-        { href: '/housing', label: 'Housing & Rentals' },
-        { href: '/medical', label: 'Healthcare & Medical' },
-        { href: '/currency', label: 'Currency & Banking' },
+        { href: '/restaurants', label: 'Restaurants & Dining', description: 'Best places to eat in Tbilisi' },
+        { href: '/places', label: 'Places to Visit', description: 'Tourist attractions & hidden gems' },
+        { href: '/accommodation', label: 'Hotels & Stays', description: 'Where to stay in the city' },
+        { href: '/activities', label: 'Adventures & Activities', description: 'Things to do and experiences' },
       ]
     },
     {
-      title: 'Culture & Activities',
+      title: 'Living Essentials',
+      icon: '🏠',
       items: [
-        { href: '/culture', label: 'Georgian Culture' },
-        { href: '/language', label: 'Learn Georgian' },
-        { href: '/arts', label: 'Arts & Museums' },
-        { href: '/activities', label: 'Adventures & Activities' },
-        { href: '/sports', label: 'Sports & Fitness' },
+        { href: '/housing', label: 'Housing & Rentals', description: 'Find your perfect home' },
+        { href: '/transport', label: 'Getting Around', description: 'Transportation options' },
+        { href: '/medical', label: 'Healthcare & Medical', description: 'Medical services & hospitals' },
+        { href: '/currency', label: 'Currency & Banking', description: 'Money matters & banking' },
+      ]
+    },
+    {
+      title: 'Culture & Learning',
+      icon: '🎭',
+      items: [
+        { href: '/culture', label: 'Georgian Culture', description: 'Traditions, customs & history' },
+        { href: '/language', label: 'Learn Georgian', description: 'Interactive language lessons' },
+        { href: '/arts', label: 'Arts & Museums', description: 'Cultural venues & exhibitions' },
+        { href: '/sports', label: 'Sports & Fitness', description: 'Gyms, sports & outdoor activities' },
       ]
     }
   ]
@@ -77,6 +140,15 @@ const Navigation = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
             ))}
+
+            {/* Category Dropdowns */}
+            {navigationCategories.map((category, categoryIndex) => (
+              <CategoryDropdown 
+                key={category.title}
+                category={category}
+                index={categoryIndex}
+              />
+            ))}
             
             {/* Theme Toggle */}
             <ThemeToggle />
@@ -88,85 +160,11 @@ const Navigation = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <Search className="h-4 w-4 mr-2 relative z-10 group-hover:scale-110 transition-transform duration-200" />
-              <span className="relative z-10">Stew's AI Search</span>
+              <span className="relative z-10">AI Search</span>
               <div className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse shadow-sm">
                 <Sparkles className="h-2.5 w-2.5" />
               </div>
             </button>
-
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              onMouseLeave={() => setIsDropdownOpen(false)}
-            >
-              <button className="flex items-center text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 group relative overflow-hidden">
-                <span className="relative z-10">More</span>
-                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 relative z-10 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </button>
-              <div className={`absolute right-0 mt-2 w-80 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-2xl border border-red-100/50 dark:border-red-800/30 transition-all duration-300 ${
-                isDropdownOpen ? 'opacity-100 visible transform translate-y-0' : 'opacity-0 invisible transform -translate-y-2'
-              }`}>
-                <div className="py-3">
-                  {/* AI Features Section */}
-                  <div className="px-4 py-3 border-b border-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-800/30 dark:to-purple-800/30 bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-900/20 dark:to-purple-900/20">
-                    <h3 className="text-xs font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent uppercase tracking-wider mb-3 flex items-center">
-                      <Bot className="h-4 w-4 mr-2 text-blue-500" />
-                      🤖 AI-Powered Features
-                    </h3>
-                    <div className="space-y-1">
-                      <Link
-                        href="/recommendations"
-                        className="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200 group"
-                      >
-                        <Sparkles className="h-4 w-4 mr-3 text-blue-500" />
-                        Smart Recommendations
-                        <span className="ml-auto text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded-full">New</span>
-                      </Link>
-                      <button className="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200 group">
-                        <Bot className="h-4 w-4 mr-3 text-purple-500" />
-                        Stew's AI Assistant
-                        <span className="ml-auto text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-0.5 rounded-full">24/7</span>
-                      </button>
-                      <button className="flex items-center w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200 group">
-                        <Zap className="h-4 w-4 mr-3 text-yellow-500" />
-                        Personalized Content
-                        <span className="ml-auto text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-0.5 rounded-full">AI</span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {dropdownGroups.map((group) => (
-                    <div key={group.title} className="border-t border-gray-100 dark:border-gray-700 pt-3">
-                      <div className="px-4 py-2">
-                        <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
-                          {group.title}
-                        </h3>
-                        <div className="space-y-1">
-                          {group.items.map((item) => (
-                            <Link
-                              key={item.href}
-                              href={item.href}
-                              className="flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-all duration-200 group"
-                            >
-                              <span className="w-2 h-2 bg-red-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-                              {item.label}
-                              {/* AI Enhancement Badges */}
-                              {item.href === '/language' && (
-                                <span className="ml-auto text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-1.5 py-0.5 rounded">AI</span>
-                              )}
-                              {item.href === '/culture' && (
-                                <span className="ml-auto text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-1.5 py-0.5 rounded">Enhanced</span>
-                              )}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -221,23 +219,33 @@ const Navigation = () => {
               ))}
             </div>
 
-            {/* Grouped Dropdown Items */}
-            {dropdownGroups.map((group, groupIndex) => (
-              <div key={group.title} className="mb-4">
-                <h3 className="px-4 py-2 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  {group.title}
-                </h3>
+            {/* Category Groups */}
+            {navigationCategories.map((category, groupIndex) => (
+              <div key={category.title} className="mb-4">
+                <div className="flex items-center px-4 py-2">
+                  <span className="text-lg mr-2">{category.icon}</span>
+                  <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300">
+                    {category.title}
+                  </h3>
+                </div>
                 <div className="space-y-1">
-                  {group.items.map((item, itemIndex) => (
+                  {category.items.map((item, itemIndex) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex items-center px-6 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 rounded-lg transition-all duration-200 group ml-2"
+                      className="flex items-start px-6 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 rounded-lg transition-all duration-200 group ml-2"
                       onClick={() => setIsOpen(false)}
                       style={{ animationDelay: `${(mainNavItems.length + groupIndex * 3 + itemIndex) * 50}ms` }}
                     >
-                      <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
-                      {item.label}
+                      <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
+                      <div className="flex-1">
+                        <div className="font-semibold">{item.label}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">{item.description}</div>
+                      </div>
+                      {/* Special badges for mobile */}
+                      {item.href === '/language' && (
+                        <span className="ml-2 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full">AI</span>
+                      )}
                     </Link>
                   ))}
                 </div>
