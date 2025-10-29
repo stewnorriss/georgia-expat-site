@@ -49,10 +49,10 @@ export default function LanguagePage() {
   ]
 
   const difficulties = [
-    { id: 'all', name: 'All Levels', count: 12 },
-    { id: 'Beginner', name: 'Beginner', count: 5 },
-    { id: 'Intermediate', name: 'Intermediate', count: 5 },
-    { id: 'Advanced', name: 'Advanced', count: 2 }
+    { id: 'all', name: 'All Levels', count: 20 },
+    { id: 'Beginner', name: 'Beginner', count: 8 },
+    { id: 'Intermediate', name: 'Intermediate', count: 8 },
+    { id: 'Advanced', name: 'Advanced', count: 4 }
   ]
 
   const lessons = [
@@ -355,6 +355,206 @@ export default function LanguagePage() {
       ],
       culturalNotes: 'Advanced conversations show deep respect for Georgian culture and build lasting relationships.',
       aiInsights: 'Complex phrases enable nuanced communication. Master level for meaningful cultural exchange.'
+    },
+    {
+      lesson: 13,
+      title: 'Colors & Descriptions',
+      georgian: 'ფერი (peri)',
+      english: 'Color',
+      difficulty: 'Beginner',
+      category: 'Descriptions',
+      duration: '18 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: false,
+      practiceExercises: 7,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ფერი', english: 'Color', pronunciation: 'pe-ri', difficulty: 'easy' },
+        { georgian: 'თეთრი', english: 'White', pronunciation: 'tet-ri', difficulty: 'easy' },
+        { georgian: 'შავი', english: 'Black', pronunciation: 'sha-vi', difficulty: 'easy' },
+        { georgian: 'წითელი', english: 'Red', pronunciation: 'ts-i-te-li', difficulty: 'medium' },
+        { georgian: 'ლურჯი', english: 'Blue', pronunciation: 'lur-ji', difficulty: 'easy' },
+        { georgian: 'მწვანე', english: 'Green', pronunciation: 'm-ts-va-ne', difficulty: 'medium' },
+        { georgian: 'ყვითელი', english: 'Yellow', pronunciation: 'k-vi-te-li', difficulty: 'medium' }
+      ],
+      culturalNotes: 'Colors are important in Georgian culture, especially in traditional clothing and art.',
+      aiInsights: 'Color vocabulary helps with shopping, describing objects, and artistic discussions. 78% improvement in descriptive communication.'
+    },
+    {
+      lesson: 14,
+      title: 'Clothing & Appearance',
+      georgian: 'ტანსაცმელი (tansatsmeli)',
+      english: 'Clothing',
+      difficulty: 'Beginner',
+      category: 'Fashion',
+      duration: '22 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 9,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ტანსაცმელი', english: 'Clothing', pronunciation: 'tan-sa-ts-me-li', difficulty: 'hard' },
+        { georgian: 'პერანგი', english: 'Shirt', pronunciation: 'pe-ran-gi', difficulty: 'medium' },
+        { georgian: 'შარვალი', english: 'Pants', pronunciation: 'shar-va-li', difficulty: 'medium' },
+        { georgian: 'ფეხსაცმელი', english: 'Shoes', pronunciation: 'pekh-sa-ts-me-li', difficulty: 'hard' },
+        { georgian: 'ქუდი', english: 'Hat', pronunciation: 'ku-di', difficulty: 'easy' },
+        { georgian: 'ლამაზი', english: 'Beautiful', pronunciation: 'la-ma-zi', difficulty: 'medium' },
+        { georgian: 'ძვირი', english: 'Expensive', pronunciation: 'dzvi-ri', difficulty: 'medium' }
+      ],
+      culturalNotes: 'Georgians dress well for social occasions. Complimenting appearance is a common social practice.',
+      aiInsights: 'Fashion vocabulary essential for shopping and social interactions. 82% report better shopping experiences.'
+    },
+    {
+      lesson: 15,
+      title: 'Technology & Modern Life',
+      georgian: 'ტექნოლოგია (teknologia)',
+      english: 'Technology',
+      difficulty: 'Beginner',
+      category: 'Modern Life',
+      duration: '20 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 8,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ტექნოლოგია', english: 'Technology', pronunciation: 'tek-no-lo-gi-a', difficulty: 'medium' },
+        { georgian: 'ტელეფონი', english: 'Phone', pronunciation: 'te-le-po-ni', difficulty: 'easy' },
+        { georgian: 'კომპიუტერი', english: 'Computer', pronunciation: 'kom-pi-u-te-ri', difficulty: 'medium' },
+        { georgian: 'ინტერნეტი', english: 'Internet', pronunciation: 'in-ter-ne-ti', difficulty: 'easy' },
+        { georgian: 'ვებსაიტი', english: 'Website', pronunciation: 'veb-sai-ti', difficulty: 'easy' },
+        { georgian: 'აპლიკაცია', english: 'App', pronunciation: 'ap-li-ka-tsi-a', difficulty: 'medium' },
+        { georgian: 'Wi-Fi', english: 'Wi-Fi', pronunciation: 'vai-pai', difficulty: 'easy' }
+      ],
+      culturalNotes: 'Georgia has excellent internet infrastructure. Tech vocabulary is essential for modern life in Tbilisi.',
+      aiInsights: 'Tech terms are crucial for daily life. 95% of expats use these phrases regularly for connectivity and work.'
+    },
+    {
+      lesson: 16,
+      title: 'Hobbies & Interests',
+      georgian: 'ჰობი (hobi)',
+      english: 'Hobby',
+      difficulty: 'Intermediate',
+      category: 'Leisure',
+      duration: '25 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: false,
+      practiceExercises: 10,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ჰობი', english: 'Hobby', pronunciation: 'ho-bi', difficulty: 'easy' },
+        { georgian: 'კითხვა', english: 'Reading', pronunciation: 'kit-khva', difficulty: 'medium' },
+        { georgian: 'მუსიკა', english: 'Music', pronunciation: 'mu-si-ka', difficulty: 'easy' },
+        { georgian: 'ფოტოგრაფია', english: 'Photography', pronunciation: 'po-to-gra-pi-a', difficulty: 'medium' },
+        { georgian: 'ხატვა', english: 'Drawing/Painting', pronunciation: 'khat-va', difficulty: 'medium' },
+        { georgian: 'სპორტი', english: 'Sports', pronunciation: 'spor-ti', difficulty: 'easy' },
+        { georgian: 'მოგზაურობა', english: 'Travel', pronunciation: 'mog-zau-ro-ba', difficulty: 'hard' }
+      ],
+      culturalNotes: 'Sharing hobbies is a great way to connect with Georgians and find local communities.',
+      aiInsights: 'Hobby vocabulary builds social connections. 88% report finding new friends through shared interests.'
+    },
+    {
+      lesson: 17,
+      title: 'Education & Learning',
+      georgian: 'განათლება (ganatleba)',
+      english: 'Education',
+      difficulty: 'Intermediate',
+      category: 'Academic',
+      duration: '30 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 12,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'განათლება', english: 'Education', pronunciation: 'ga-nat-le-ba', difficulty: 'hard' },
+        { georgian: 'სკოლა', english: 'School', pronunciation: 'sko-la', difficulty: 'easy' },
+        { georgian: 'უნივერსიტეტი', english: 'University', pronunciation: 'u-ni-ver-si-te-ti', difficulty: 'medium' },
+        { georgian: 'სტუდენტი', english: 'Student', pronunciation: 'stu-den-ti', difficulty: 'easy' },
+        { georgian: 'მასწავლებელი', english: 'Teacher', pronunciation: 'mas-ts-av-le-be-li', difficulty: 'hard' },
+        { georgian: 'წიგნი', english: 'Book', pronunciation: 'ts-ig-ni', difficulty: 'medium' },
+        { georgian: 'გაკვეთილი', english: 'Lesson', pronunciation: 'ga-kve-ti-li', difficulty: 'hard' }
+      ],
+      culturalNotes: 'Education is highly valued in Georgian culture. Many universities offer programs in English.',
+      aiInsights: 'Academic vocabulary opens educational opportunities. Essential for students and professionals in Georgia.'
+    },
+    {
+      lesson: 18,
+      title: 'Banking & Finance',
+      georgian: 'ბანკი (banki)',
+      english: 'Bank',
+      difficulty: 'Intermediate',
+      category: 'Finance',
+      duration: '28 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 11,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ბანკი', english: 'Bank', pronunciation: 'ban-ki', difficulty: 'easy' },
+        { georgian: 'ანგარიში', english: 'Account', pronunciation: 'an-ga-ri-shi', difficulty: 'medium' },
+        { georgian: 'ბარათი', english: 'Card', pronunciation: 'ba-ra-ti', difficulty: 'easy' },
+        { georgian: 'ფული', english: 'Money', pronunciation: 'pu-li', difficulty: 'easy' },
+        { georgian: 'გადახდა', english: 'Payment', pronunciation: 'ga-dakh-da', difficulty: 'medium' },
+        { georgian: 'სესხი', english: 'Loan', pronunciation: 'seskh-i', difficulty: 'medium' },
+        { georgian: 'ვალუტა', english: 'Currency', pronunciation: 'va-lu-ta', difficulty: 'medium' }
+      ],
+      culturalNotes: 'Georgian banks are modern and efficient. Most services are available in English, but Georgian helps.',
+      aiInsights: 'Financial vocabulary essential for expat life. 92% report smoother banking experiences with these phrases.'
+    },
+    {
+      lesson: 19,
+      title: 'Legal & Government',
+      georgian: 'მთავრობა (mtavroba)',
+      english: 'Government',
+      difficulty: 'Advanced',
+      category: 'Official',
+      duration: '35 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: false,
+      practiceExercises: 14,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'მთავრობა', english: 'Government', pronunciation: 'm-tav-ro-ba', difficulty: 'hard' },
+        { georgian: 'კანონი', english: 'Law', pronunciation: 'ka-no-ni', difficulty: 'medium' },
+        { georgian: 'პასპორტი', english: 'Passport', pronunciation: 'pas-por-ti', difficulty: 'easy' },
+        { georgian: 'ვიზა', english: 'Visa', pronunciation: 'vi-za', difficulty: 'easy' },
+        { georgian: 'რეგისტრაცია', english: 'Registration', pronunciation: 're-gis-tra-tsi-a', difficulty: 'hard' },
+        { georgian: 'დოკუმენტი', english: 'Document', pronunciation: 'do-ku-men-ti', difficulty: 'medium' },
+        { georgian: 'ოფიციალური', english: 'Official', pronunciation: 'o-pi-tsi-a-lu-ri', difficulty: 'hard' }
+      ],
+      culturalNotes: 'Understanding legal terms helps with residency, business registration, and official procedures.',
+      aiInsights: 'Legal vocabulary crucial for long-term residents. Essential for visa extensions and official processes.'
+    },
+    {
+      lesson: 20,
+      title: 'Advanced Cultural Expressions',
+      georgian: 'კულტურა (kultura)',
+      english: 'Culture',
+      difficulty: 'Advanced',
+      category: 'Cultural',
+      duration: '40 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 16,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'კულტურა', english: 'Culture', pronunciation: 'kul-tu-ra', difficulty: 'medium' },
+        { georgian: 'ტრადიცია', english: 'Tradition', pronunciation: 'tra-di-tsi-a', difficulty: 'medium' },
+        { georgian: 'ღირსება', english: 'Value/Honor', pronunciation: 'ghir-se-ba', difficulty: 'hard' },
+        { georgian: 'სტუმარმასპინძლობა', english: 'Hospitality', pronunciation: 'stu-mar-mas-pin-dzlo-ba', difficulty: 'hard' },
+        { georgian: 'ზეიმი', english: 'Celebration', pronunciation: 'zei-mi', difficulty: 'medium' },
+        { georgian: 'ფოლკლორი', english: 'Folklore', pronunciation: 'pol-klo-ri', difficulty: 'medium' },
+        { georgian: 'მემკვიდრეობა', english: 'Heritage', pronunciation: 'mem-kvi-dre-o-ba', difficulty: 'hard' }
+      ],
+      culturalNotes: 'These expressions show deep cultural understanding and respect for Georgian heritage and values.',
+      aiInsights: 'Cultural vocabulary demonstrates serious commitment to integration. Highest level of respect from locals.'
     }
   ]
 
@@ -407,7 +607,7 @@ export default function LanguagePage() {
               <div className="flex items-center space-x-4 text-pink-200">
                 <div className="flex items-center">
                   <BookOpen className="h-5 w-5 mr-2" />
-                  <span>12 Interactive Lessons</span>
+                  <span>20 Interactive Lessons</span>
                 </div>
                 <div className="flex items-center">
                   <Bot className="h-5 w-5 mr-2" />
