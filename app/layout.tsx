@@ -1,52 +1,52 @@
-import type { Metadata, Viewport } from 'next'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
-import AIChatbot from './components/AIChatbot'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { BlogProvider } from './contexts/BlogContext'
-// import PWAInstaller from './components/PWAInstaller'
+import ThemeToggle from './components/ThemeToggle'
+import PWAInstaller from './components/PWAInstaller'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://stewsguide.com'),
-  title: "Stew's Guide To Tbilisi - Your Personal AI-Powered Guide to Living in Georgia",
-  description: "Stew's AI-enhanced comprehensive guide for English expats living in Tbilisi, Georgia. Personal recommendations, smart insights, and 24/7 AI assistance for restaurants, places, transport, housing, culture, and more.",
-  keywords: 'Stew, Tbilisi, Georgia, expat guide, AI assistant, personal recommendations, Georgian culture, restaurants, transport, housing',
-  authors: [{ name: 'Stew Norriss' }],
-  creator: 'Stew Norriss',
-  publisher: 'Stew\'s Guide To Tbilisi',
+  title: 'Tbilisi Expat Guide | Stew\'s Complete Guide to Living in Georgia',
+  description: 'Comprehensive expat guide to Tbilisi, Georgia. Discover restaurants, housing, culture, language lessons, day trips, emergency contacts, and AI-powered recommendations for expat life.',
+  keywords: 'Tbilisi, Georgia, expat guide, living in Tbilisi, Georgian restaurants, housing Tbilisi, learn Georgian, expat community, digital nomad Georgia, Tbilisi travel',
+  authors: [{ name: 'Stew' }],
+  creator: 'Stew',
+  publisher: 'Tbilisi Expat Guide',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  manifest: '/manifest.json',
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'Stew\'s Tbilisi',
+  metadataBase: new URL('https://tbilisi-expat-guide.com'),
+  alternates: {
+    canonical: '/',
   },
   openGraph: {
-    type: 'website',
+    title: 'Tbilisi Expat Guide | Complete Guide to Living in Georgia',
+    description: 'AI-powered expat guide with restaurants, housing, culture, language lessons, and community resources for living in Tbilisi, Georgia',
+    url: 'https://tbilisi-expat-guide.com',
+    siteName: 'Tbilisi Expat Guide',
     locale: 'en_US',
-    url: '/',
-    siteName: 'Stew\'s Guide To Tbilisi',
-    title: 'Stew\'s Guide To Tbilisi - AI-Powered Expat Guide',
-    description: 'Your personal AI assistant for living in Tbilisi, Georgia. Get smart recommendations for restaurants, transport, culture, and more.',
+    type: 'website',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Stew\'s Guide To Tbilisi',
+        alt: 'Tbilisi Expat Guide',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stew\'s Guide To Tbilisi - AI-Powered Expat Guide',
-    description: 'Your personal AI assistant for living in Tbilisi, Georgia.',
-    images: ['/og-image.png'],
+    title: 'Tbilisi Expat Guide | Living in Georgia',
+    description: 'Complete AI-powered guide for expats in Tbilisi, Georgia',
+    images: ['/twitter-image.jpg'],
   },
   robots: {
     index: true,
@@ -59,17 +59,10 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-}
-
-export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#1f2937' },
-  ],
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+  },
 }
 
 export default function RootLayout({
@@ -78,96 +71,28 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#dc2626" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('theme') || 'system';
-                  var resolvedTheme = theme;
-                  
-                  if (theme === 'system') {
-                    resolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                  }
-                  
-                  document.documentElement.classList.add(resolvedTheme);
-                  
-                  // Update meta theme-color
-                  var metaThemeColor = document.querySelector('meta[name="theme-color"]');
-                  if (metaThemeColor) {
-                    metaThemeColor.setAttribute('content', resolvedTheme === 'dark' ? '#1f2937' : '#ffffff');
-                  }
-                } catch (e) {
-                  // Fallback to light theme
-                  document.documentElement.classList.add('light');
-                }
-              })();
-            `,
-          }}
-        />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <meta name="theme-color" content="#dc2626" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
-      <body className="font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
+      <body className={inter.className}>
         <ThemeProvider>
           <BlogProvider>
-            <Navigation />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <Footer />
-            <AIChatbot />
-            {/* <PWAInstaller /> */}
+            <div className="flex flex-col min-h-screen">
+              <Navigation />
+              <ThemeToggle />
+              <PWAInstaller />
+              <main className="flex-grow">
+                {children}
+              </main>
+              <Footer />
+            </div>
           </BlogProvider>
         </ThemeProvider>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                // Only register service worker in production (when served from https or localhost:3000 in production)
-                const isProduction = location.protocol === 'https:' || location.hostname === 'localhost';
-                const isDevelopment = location.hostname === 'localhost' && location.port === '3000';
-                
-                if (isProduction && !isDevelopment) {
-                  window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/sw.js')
-                      .then(function(registration) {
-                        console.log('SW registered: ', registration);
-                      })
-                      .catch(function(registrationError) {
-                        console.log('SW registration failed: ', registrationError);
-                      });
-                  });
-                } else {
-                  // Unregister service worker in development to prevent caching issues
-                  navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                    for(let registration of registrations) {
-                      registration.unregister();
-                      console.log('SW unregistered for development');
-                    }
-                  });
-                  
-                  // Clear all caches in development
-                  if ('caches' in window) {
-                    caches.keys().then(function(names) {
-                      names.forEach(function(name) {
-                        caches.delete(name);
-                      });
-                    });
-                  }
-                }
-              }
-            `,
-          }}
-        />
       </body>
     </html>
   )

@@ -69,6 +69,8 @@ const Navigation = () => {
   const mainNavItems = [
     { href: '/', label: 'Home' },
     { href: '/recommendations', label: 'Recommendations' },
+    { href: '/tools', label: 'Interactive Tools' },
+    { href: '/community', label: 'Community & Events' },
     { href: '/blog', label: 'Blog' },
   ]
 
@@ -81,6 +83,8 @@ const Navigation = () => {
         { href: '/places', label: 'Places to Visit', description: 'Tourist attractions & hidden gems' },
         { href: '/accommodation', label: 'Hotels & Stays', description: 'Where to stay in the city' },
         { href: '/activities', label: 'Adventures & Activities', description: 'Things to do and experiences' },
+        { href: '/daytrips', label: 'Day Trips & Getaways', description: 'Weekend adventures from Tbilisi' },
+        { href: '/shopping', label: 'Shopping & Retail', description: 'Supermarkets, tech, books & specialty stores' },
       ]
     },
     {
@@ -91,6 +95,7 @@ const Navigation = () => {
         { href: '/transport', label: 'Getting Around', description: 'Transportation options' },
         { href: '/medical', label: 'Healthcare & Medical', description: 'Medical services & hospitals' },
         { href: '/currency', label: 'Currency & Banking', description: 'Money matters & banking' },
+        { href: '/legal', label: 'Legal & Bureaucracy', description: 'Visas, taxes & official procedures' },
       ]
     },
     {
@@ -101,6 +106,13 @@ const Navigation = () => {
         { href: '/language', label: 'Learn Georgian', description: 'Interactive language lessons' },
         { href: '/arts', label: 'Arts & Museums', description: 'Cultural venues & exhibitions' },
         { href: '/sports', label: 'Sports & Fitness', description: 'Gyms, sports & outdoor activities' },
+      ]
+    },
+    {
+      title: 'Safety & Support',
+      icon: '🚨',
+      items: [
+        { href: '/emergency', label: 'Emergency & Safety', description: 'Emergency contacts & safety tips' },
       ]
     }
   ]
@@ -119,8 +131,16 @@ const Navigation = () => {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse shadow-sm"></div>
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-2xl bg-gradient-to-r from-gray-900 via-red-700 to-gray-900 dark:from-white dark:via-red-400 dark:to-white bg-clip-text text-transparent group-hover:from-red-600 group-hover:via-red-500 group-hover:to-red-600 transition-all duration-300">
-                  Stew's Guide To Tbilisi
+                <div className="flex items-baseline space-x-2">
+                  <span className="font-bold text-xl text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-all duration-300">
+                    Tbilisi
+                  </span>
+                  <span className="font-semibold text-lg text-gray-700 dark:text-gray-300 group-hover:text-red-500 dark:group-hover:text-red-400 transition-all duration-300">
+                    Expat Guide
+                  </span>
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-500 italic group-hover:text-red-500 dark:group-hover:text-red-400 transition-all duration-300">
+                  by Stew
                 </span>
               </div>
             </Link>

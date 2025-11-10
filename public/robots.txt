@@ -1,0 +1,38 @@
+# Robots.txt for Tbilisi Expat Guide
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://tbilisi-expat-guide.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /blog/admin
+
+# Allow all content pages
+Allow: /restaurants
+Allow: /housing
+Allow: /transport
+Allow: /culture
+Allow: /language
+Allow: /activities
+Allow: /places
+Allow: /accommodation
+Allow: /sports
+Allow: /medical
+Allow: /arts
+Allow: /blog
+Allow: /recommendations
+Allow: /tools
+Allow: /emergency
+Allow: /legal
+Allow: /daytrips
+Allow: /shopping
+Allow: /community
+Allow: /currency

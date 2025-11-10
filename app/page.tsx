@@ -28,7 +28,8 @@ import {
   Filter,
   ArrowRight,
   Heart,
-  Award
+  Award,
+  ShoppingBag
 } from 'lucide-react'
 import { TbilisiSkyline, GeorgianWineBottle, Khachapuri, GeorgianPattern } from './components/GeorgianIllustrations'
 import ClientOnlyWrapper from './components/ClientOnlyWrapper'
@@ -148,16 +149,18 @@ const HomePage = () => {
     {
       icon: <Utensils className="h-8 w-8" />,
       title: 'Restaurants',
-      description: '21 featured dining establishments from traditional Georgian cuisine to international favorites',
+      description: 'Enhanced dining guide with filters, dietary options, and delivery apps',
       href: '/restaurants',
-      color: 'bg-red-500'
+      color: 'bg-red-500',
+      badge: 'Enhanced'
     },
     {
       icon: <MapPin className="h-8 w-8" />,
-      title: 'Places to Visit',
-      description: '28 tourist destinations and attractions in and around Tbilisi',
-      href: '/places',
-      color: 'bg-blue-500'
+      title: 'Day Trips & Getaways',
+      description: 'Weekend adventures from Batumi to Kazbegi with detailed travel guides',
+      href: '/daytrips',
+      color: 'bg-blue-500',
+      badge: 'New'
     },
     {
       icon: <Car className="h-8 w-8" />,
@@ -183,9 +186,10 @@ const HomePage = () => {
     {
       icon: <MessageCircle className="h-8 w-8" />,
       title: 'Language',
-      description: '29 Georgian language lessons to help you communicate with locals',
+      description: '20 Georgian language lessons with interactive features and AI insights',
       href: '/language',
-      color: 'bg-pink-500'
+      color: 'bg-pink-500',
+      badge: 'Enhanced'
     },
     {
       icon: <Mountain className="h-8 w-8" />,
@@ -228,6 +232,38 @@ const HomePage = () => {
       description: '30 comprehensive guides covering all aspects of expat life in Georgia',
       href: '/blog',
       color: 'bg-gray-600'
+    },
+    {
+      icon: <Zap className="h-8 w-8" />,
+      title: 'Interactive Tools',
+      description: 'Cost calculator, neighborhood comparison, and AI-powered recommendations',
+      href: '/tools',
+      color: 'bg-purple-600',
+      badge: 'New'
+    },
+    {
+      icon: <Target className="h-8 w-8" />,
+      title: 'Emergency & Safety',
+      description: 'Essential emergency contacts, safety tips, and embassy information',
+      href: '/emergency',
+      color: 'bg-red-700',
+      badge: 'New'
+    },
+    {
+      icon: <Globe className="h-8 w-8" />,
+      title: 'Legal & Bureaucracy',
+      description: 'Visa requirements, tax information, and official procedures guide',
+      href: '/legal',
+      color: 'bg-blue-700',
+      badge: 'New'
+    },
+    {
+      icon: <ShoppingBag className="h-8 w-8" />,
+      title: 'Shopping & Retail',
+      description: 'Supermarkets, technology stores, bookshops, music stores, and specialty markets',
+      href: '/shopping',
+      color: 'bg-pink-600',
+      badge: 'New'
     }
   ]
 

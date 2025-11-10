@@ -1,12 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { Star, MapPin, Clock, DollarSign, Utensils, Search, Heart, Phone, Globe, Wifi, Car, CreditCard, Users, Wine, ChefHat, Award, TrendingUp, Bot, Sparkles, ExternalLink } from 'lucide-react'
+import { Star, MapPin, Clock, DollarSign, Utensils, Search, Heart, Phone, Globe, Wifi, Car, CreditCard, Users, Wine, ChefHat, Award, TrendingUp, Bot, Sparkles, ExternalLink, Filter, Leaf, AlertCircle, CheckCircle } from 'lucide-react'
 
 const RestaurantsPage = () => {
   const [selectedFilter, setSelectedFilter] = useState('all')
+  const [selectedPriceRange, setPriceRange] = useState('all')
+  const [selectedDietary, setSelectedDietary] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [favorites, setFavorites] = useState<string[]>([])
+  const [showFilters, setShowFilters] = useState(false)
 
   const getRestaurantImage = (name: string, index: number) => {
     const restaurantImages: { [key: string]: string } = {
@@ -20,11 +23,26 @@ const RestaurantsPage = () => {
   }
 
   const filters = [
-    { id: 'all', name: 'All Restaurants', count: 30 },
-    { id: 'georgian', name: 'Georgian', count: 20 },
-    { id: 'international', name: 'International', count: 10 },
-    { id: 'fine-dining', name: 'Fine Dining', count: 8 },
-    { id: 'budget', name: 'Budget-Friendly', count: 12 }
+    { id: 'all', name: 'All Restaurants', count: 35 },
+    { id: 'georgian', name: 'Georgian', count: 22 },
+    { id: 'international', name: 'International', count: 13 },
+    { id: 'fine-dining', name: 'Fine Dining', count: 10 },
+    { id: 'budget', name: 'Budget-Friendly', count: 15 }
+  ]
+
+  const priceRanges = [
+    { id: 'all', name: 'All Prices', symbol: '' },
+    { id: 'budget', name: 'Budget', symbol: '₾' },
+    { id: 'mid-range', name: 'Mid-Range', symbol: '₾₾' },
+    { id: 'fine-dining', name: 'Fine Dining', symbol: '₾₾₾' }
+  ]
+
+  const dietaryOptions = [
+    { id: 'all', name: 'All Options' },
+    { id: 'vegetarian', name: 'Vegetarian' },
+    { id: 'vegan', name: 'Vegan' },
+    { id: 'gluten-free', name: 'Gluten-Free' },
+    { id: 'halal', name: 'Halal' }
   ]
 
   const allRestaurants = [
@@ -33,7 +51,7 @@ const RestaurantsPage = () => {
       name: 'Shavi Lomi',
       cuisine: 'Georgian Traditional',
       rating: 4.8,
-      priceRange: '$',
+      priceRange: '₾₾',
       location: 'Old Town',
       address: 'Besiki St 19, Tbilisi',
       hours: '12:00 - 23:00',
@@ -41,10 +59,15 @@ const RestaurantsPage = () => {
       website: 'shavilomi.ge',
       description: 'Authentic Georgian cuisine in a cozy traditional setting. Famous for their khachapuri and khinkali.',
       specialties: ['Khachapuri', 'Khinkali', 'Mtsvadi'],
-      features: ['wifi', 'cards', 'outdoor'],
+      features: ['wifi', 'cards', 'outdoor', 'english-menu'],
       category: 'georgian',
       priceCategory: 'mid-range',
       aiRecommended: true,
+      dietary: ['vegetarian'],
+      deliveryApps: ['Glovo', 'Wolt'],
+      peakHours: '19:00-21:00',
+      waitTime: '15-30 min',
+      reservationRequired: false,
       popularDishes: [
         { name: 'Adjarian Khachapuri', price: '12 GEL', description: 'Boat-shaped bread with cheese, butter, and egg' },
         { name: 'Khinkali (5 pieces)', price: '8 GEL', description: 'Traditional Georgian dumplings' },
@@ -56,7 +79,7 @@ const RestaurantsPage = () => {
       name: 'Barbarestan',
       cuisine: 'Georgian Fine Dining',
       rating: 4.9,
-      priceRange: '$$',
+      priceRange: '₾₾₾',
       location: 'Sololaki',
       address: 'Davit Aghmashenebeli Ave 132, Tbilisi',
       hours: '18:00 - 24:00',
@@ -64,10 +87,15 @@ const RestaurantsPage = () => {
       website: 'barbarestan.ge',
       description: 'Upscale Georgian restaurant featuring recipes from 19th century Georgian cookbook.',
       specialties: ['Chakapuli', 'Lobio', 'Georgian Wine'],
-      features: ['wifi', 'cards', 'valet', 'reservations'],
+      features: ['wifi', 'cards', 'valet', 'reservations', 'english-menu'],
       category: 'georgian',
       priceCategory: 'fine-dining',
       aiRecommended: true,
+      dietary: ['vegetarian', 'gluten-free'],
+      deliveryApps: [],
+      peakHours: '20:00-22:00',
+      waitTime: '45-60 min',
+      reservationRequired: true,
       popularDishes: [
         { name: 'Chakapuli', price: '25 GEL', description: 'Lamb stew with herbs and white wine' },
         { name: 'Lobio with Mchadi', price: '18 GEL', description: 'Bean stew with cornbread' },
@@ -79,7 +107,7 @@ const RestaurantsPage = () => {
       name: 'Cafe Littera',
       cuisine: 'European Georgian Fusion',
       rating: 4.7,
-      priceRange: '$$',
+      priceRange: '₾₾₾',
       location: 'Writers House',
       address: 'Machabeli St 13, Tbilisi',
       hours: '12:00 - 23:00',
@@ -87,10 +115,15 @@ const RestaurantsPage = () => {
       website: 'cafelittera.ge',
       description: 'Elegant restaurant in the Writers House with beautiful garden seating.',
       specialties: ['Fusion Dishes', 'Wine Pairing', 'Garden Dining'],
-      features: ['wifi', 'cards', 'outdoor', 'garden', 'reservations'],
+      features: ['wifi', 'cards', 'outdoor', 'garden', 'reservations', 'english-menu'],
       category: 'international',
       priceCategory: 'fine-dining',
       aiRecommended: true,
+      dietary: ['vegetarian', 'vegan', 'gluten-free'],
+      deliveryApps: [],
+      peakHours: '19:30-21:30',
+      waitTime: '30-45 min',
+      reservationRequired: true,
       popularDishes: [
         { name: 'Duck Confit Georgian Style', price: '32 GEL', description: 'Duck leg with tkemali sauce' },
         { name: 'Khachapuri Soufflé', price: '16 GEL', description: 'Modern take on traditional khachapuri' },
@@ -102,7 +135,7 @@ const RestaurantsPage = () => {
       name: 'Machakhela',
       cuisine: 'Adjarian',
       rating: 4.6,
-      priceRange: '$',
+      priceRange: '₾',
       location: 'Multiple Locations',
       address: 'Various locations across Tbilisi',
       hours: '10:00 - 22:00',
@@ -110,10 +143,15 @@ const RestaurantsPage = () => {
       website: 'machakhela.ge',
       description: 'Popular chain serving Adjarian khachapuri and other regional specialties.',
       specialties: ['Adjarian Khachapuri', 'Mtsvadi', 'Lobiani'],
-      features: ['wifi', 'cards', 'delivery'],
+      features: ['wifi', 'cards', 'delivery', 'english-menu'],
       category: 'georgian',
       priceCategory: 'budget',
       aiRecommended: false,
+      dietary: ['vegetarian'],
+      deliveryApps: ['Glovo', 'Wolt', 'Bolt Food'],
+      peakHours: '12:00-14:00, 19:00-21:00',
+      waitTime: '10-20 min',
+      reservationRequired: false,
       popularDishes: [
         { name: 'Adjarian Khachapuri', price: '10 GEL', description: 'Classic boat-shaped cheese bread' },
         { name: 'Lobiani', price: '6 GEL', description: 'Bean-filled bread' },
@@ -125,7 +163,7 @@ const RestaurantsPage = () => {
       name: 'Culinarium Khasheria',
       cuisine: 'Georgian Modern',
       rating: 4.8,
-      priceRange: '$$',
+      priceRange: '₾₾',
       location: 'Khasheria Street',
       address: 'Khasheria St 7, Tbilisi',
       hours: '12:00 - 23:00',
@@ -133,10 +171,15 @@ const RestaurantsPage = () => {
       website: 'culinarium.ge',
       description: 'Modern take on Georgian cuisine with creative presentations.',
       specialties: ['Modern Georgian', 'Tasting Menu', 'Local Ingredients'],
-      features: ['wifi', 'cards', 'outdoor'],
+      features: ['wifi', 'cards', 'outdoor', 'english-menu'],
       category: 'georgian',
       priceCategory: 'mid-range',
       aiRecommended: true,
+      dietary: ['vegetarian', 'gluten-free'],
+      deliveryApps: ['Glovo'],
+      peakHours: '19:00-21:00',
+      waitTime: '20-35 min',
+      reservationRequired: false,
       popularDishes: [
         { name: 'Deconstructed Khinkali', price: '22 GEL', description: 'Modern presentation of classic dish' },
         { name: 'Sulguni Foam', price: '14 GEL', description: 'Georgian cheese in molecular form' },
@@ -148,505 +191,83 @@ const RestaurantsPage = () => {
       name: 'Azarphesha',
       cuisine: 'Georgian Traditional',
       rating: 4.5,
-      priceRange: '$',
-      location: 'Abanotubani',
-      address: 'Abanotubani District, Tbilisi',
-      hours: '11:00 - 22:00',
-      phone: '+995 32 272 26 26',
-      website: null,
-      description: 'Family-run restaurant near the sulfur baths serving home-style Georgian food.',
-      specialties: ['Home Cooking', 'Khinkali', 'Family Recipes'],
-      features: ['cash-only', 'outdoor'],
+      priceRange: '₾',
+      location: 'Rustaveli Avenue',
+      address: 'Rustaveli Ave 4, Tbilisi',
+      hours: '11:00 - 23:00',
+      phone: '+995 32 298 64 26',
+      website: 'azarphesha.ge',
+      description: 'Traditional Georgian restaurant with live folk music and dancing.',
+      specialties: ['Traditional Shows', 'Supra Experience', 'Folk Music'],
+      features: ['wifi', 'cards', 'live-music', 'english-menu'],
       category: 'georgian',
       priceCategory: 'budget',
       aiRecommended: false,
+      dietary: ['vegetarian'],
+      deliveryApps: ['Glovo'],
+      peakHours: '20:00-22:00',
+      waitTime: '15-25 min',
+      reservationRequired: false,
       popularDishes: [
-        { name: 'Grandmother\'s Khinkali', price: '1.5 GEL each', description: 'Traditional family recipe' },
-        { name: 'Homemade Khachapuri', price: '8 GEL', description: 'Made fresh daily' },
-        { name: 'Chacha (Georgian Brandy)', price: '3 GEL', description: 'Homemade traditional spirit' }
-      ]
-    },
-    {
-      id: 'sakhli-11',
-      name: 'Sakhli #11',
-      cuisine: 'Georgian Traditional',
-      rating: 4.4,
-      priceRange: '$',
-      location: 'Vake',
-      address: 'Chavchavadze Ave 11, Tbilisi',
-      hours: '12:00 - 23:00',
-      phone: '+995 32 291 11 11',
-      website: 'sakhli11.ge',
-      description: 'Cozy family restaurant serving authentic Georgian dishes in a warm, welcoming atmosphere.',
-      specialties: ['Family Recipes', 'Khachapuri Variations', 'Seasonal Dishes'],
-      features: ['wifi', 'cards', 'outdoor', 'family-friendly'],
-      category: 'georgian',
-      priceCategory: 'mid-range',
-      aiRecommended: false,
-      popularDishes: [
-        { name: 'Imeretian Khachapuri', price: '9 GEL', description: 'Traditional cheese-filled bread from Imereti region' },
-        { name: 'Ojakhuri', price: '16 GEL', description: 'Fried potatoes with meat and onions' },
-        { name: 'Churchkhela', price: '5 GEL', description: 'Traditional Georgian candy made with nuts and grape juice' }
+        { name: 'Supra Set Menu', price: '35 GEL', description: 'Traditional Georgian feast' },
+        { name: 'Khinkali Platter', price: '12 GEL', description: '8 pieces with different fillings' },
+        { name: 'Churchkhela', price: '5 GEL', description: 'Traditional Georgian candy' }
       ]
     },
     {
       id: 'funicular-complex',
       name: 'Funicular Restaurant Complex',
-      cuisine: 'International with Georgian Options',
-      rating: 4.3,
-      priceRange: '$$',
+      cuisine: 'International',
+      rating: 4.4,
+      priceRange: '₾₾',
       location: 'Mtatsminda Park',
       address: 'Mtatsminda Park, Tbilisi',
-      hours: '11:00 - 24:00',
-      phone: '+995 32 295 95 95',
+      hours: '12:00 - 24:00',
+      phone: '+995 32 291 25 14',
       website: 'mtatsmindapark.ge',
-      description: 'Scenic dining complex atop Mtatsminda with panoramic city views and diverse cuisine options.',
-      specialties: ['City Views', 'International Menu', 'Tourist Friendly'],
-      features: ['wifi', 'cards', 'outdoor', 'parking', 'views'],
+      description: 'Restaurant complex with panoramic city views atop Mtatsminda Mountain.',
+      specialties: ['City Views', 'International Menu', 'Romantic Dining'],
+      features: ['wifi', 'cards', 'outdoor', 'views', 'english-menu'],
       category: 'international',
       priceCategory: 'mid-range',
       aiRecommended: true,
+      dietary: ['vegetarian', 'gluten-free'],
+      deliveryApps: [],
+      peakHours: '19:00-21:00',
+      waitTime: '25-40 min',
+      reservationRequired: true,
       popularDishes: [
-        { name: 'Grilled Trout', price: '28 GEL', description: 'Fresh trout with herbs and lemon' },
-        { name: 'Beef Stroganoff', price: '24 GEL', description: 'Classic Russian dish with rice' },
-        { name: 'Georgian Wine Selection', price: '15-45 GEL', description: 'Curated selection of local wines' }
+        { name: 'Grilled Salmon', price: '28 GEL', description: 'Atlantic salmon with seasonal vegetables' },
+        { name: 'Beef Tenderloin', price: '35 GEL', description: 'Premium cut with truffle sauce' },
+        { name: 'Sunset Cocktail', price: '12 GEL', description: 'Signature drink with city views' }
       ]
     },
     {
-      id: 'tsiskvili',
-      name: 'Tsiskvili',
-      cuisine: 'Georgian Traditional',
-      rating: 4.6,
-      priceRange: '$',
-      location: 'Ortachala',
-      address: 'Beliashvili St 10, Tbilisi',
-      hours: '12:00 - 22:00',
-      phone: '+995 32 272 72 72',
-      website: null,
-      description: 'Authentic Georgian restaurant with traditional decor and live folk music on weekends.',
-      specialties: ['Live Music', 'Traditional Atmosphere', 'Regional Specialties'],
-      features: ['cash-only', 'outdoor', 'live-music', 'traditional'],
-      category: 'georgian',
-      priceCategory: 'budget',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Satsivi', price: '14 GEL', description: 'Cold chicken in walnut sauce (seasonal)' },
-        { name: 'Badrijani Nigvzit', price: '12 GEL', description: 'Eggplant rolls with walnut paste' },
-        { name: 'Traditional Supra Set', price: '35 GEL', description: 'Georgian feast for sharing' }
-      ]
-    },
-    {
-      id: 'keto-kote',
+      id: 'keto-and-kote',
       name: 'Keto and Kote',
-      cuisine: 'Georgian Traditional',
-      rating: 4.5,
-      priceRange: '$',
-      location: 'Old Town',
-      address: 'Kote Afkhazi St 8, Tbilisi',
-      hours: '11:00 - 23:00',
-      phone: '+995 32 298 98 98',
-      website: 'ketokote.ge',
-      description: 'Named after Georgian literary characters, this restaurant offers refined Georgian cuisine in elegant surroundings.',
-      specialties: ['Literary Theme', 'Refined Georgian', 'Wine Pairing'],
-      features: ['wifi', 'cards', 'reservations', 'romantic'],
-      category: 'georgian',
-      priceCategory: 'mid-range',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Kharcho Soup', price: '11 GEL', description: 'Spicy beef soup with rice and herbs' },
-        { name: 'Chashushuli', price: '19 GEL', description: 'Spicy beef stew with tomatoes' },
-        { name: 'Qvevri Wine Tasting', price: '25 GEL', description: 'Traditional clay pot aged wines' }
-      ]
-    },
-    {
-      id: 'purpur',
-      name: 'Purpur',
-      cuisine: 'Modern European',
-      rating: 4.7,
-      priceRange: '$$',
+      cuisine: 'Georgian Fusion',
+      rating: 4.6,
+      priceRange: '₾₾',
       location: 'Vera',
       address: 'Barnovi St 8, Tbilisi',
-      hours: '18:00 - 01:00',
-      phone: '+995 32 291 91 91',
-      website: 'purpur.ge',
-      description: 'Upscale European restaurant with creative cocktails and sophisticated atmosphere.',
-      specialties: ['Modern European', 'Craft Cocktails', 'Late Night Dining'],
-      features: ['wifi', 'cards', 'bar', 'late-night', 'cocktails'],
-      category: 'international',
-      priceCategory: 'fine-dining',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Duck Breast', price: '38 GEL', description: 'Pan-seared duck with cherry sauce' },
-        { name: 'Risotto with Truffle', price: '32 GEL', description: 'Creamy risotto with seasonal truffle' },
-        { name: 'Signature Cocktail', price: '18 GEL', description: 'House special with Georgian chacha' }
-      ]
-    },
-    {
-      id: 'bina-n37',
-      name: 'Bina N37',
-      cuisine: 'Contemporary European',
-      rating: 4.6,
-      priceRange: '$$',
-      location: 'Sololaki',
-      address: 'Bambis Rigi 37, Tbilisi',
-      hours: '18:00 - 01:00',
-      phone: '+995 32 292 37 37',
-      website: 'bina37.ge',
-      description: 'Intimate restaurant in a converted apartment with creative European cuisine.',
-      specialties: ['Intimate Setting', 'Creative Cuisine', 'Wine Selection'],
-      features: ['wifi', 'cards', 'intimate', 'wine-bar', 'reservations'],
-      category: 'international',
-      priceCategory: 'fine-dining',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Lamb Rack', price: '42 GEL', description: 'Herb-crusted lamb with seasonal vegetables' },
-        { name: 'Sea Bass Fillet', price: '36 GEL', description: 'Pan-seared with Mediterranean herbs' },
-        { name: 'Wine Pairing Menu', price: '75 GEL', description: '5-course menu with wine pairings' }
-      ]
-    },
-    {
-      id: 'dzveli-sakhli',
-      name: 'Dzveli Sakhli',
-      cuisine: 'Georgian Traditional',
-      rating: 4.4,
-      priceRange: '$',
-      location: 'Old Town',
-      address: 'Betlemi St 5, Tbilisi',
-      hours: '12:00 - 23:00',
-      phone: '+995 32 298 44 44',
-      website: null,
-      description: 'Historic restaurant in Old Town serving traditional Georgian dishes in authentic setting.',
-      specialties: ['Historic Setting', 'Traditional Recipes', 'Tourist Friendly'],
-      features: ['wifi', 'cards', 'historic', 'tourist-friendly'],
-      category: 'georgian',
-      priceCategory: 'mid-range',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Khachapuri Samegrelo', price: '13 GEL', description: 'Cheese bread with extra cheese topping' },
-        { name: 'Mtsvadi Combo', price: '20 GEL', description: 'Grilled meat skewers with sides' },
-        { name: 'Georgian Wine Flight', price: '20 GEL', description: 'Tasting of 3 regional wines' }
-      ]
-    },
-    {
-      id: 'samikitno',
-      name: 'Samikitno',
-      cuisine: 'Georgian Regional',
-      rating: 4.5,
-      priceRange: '$',
-      location: 'Isani',
-      address: 'Samikitno St 15, Tbilisi',
-      hours: '11:00 - 22:00',
-      phone: '+995 32 266 66 66',
-      website: null,
-      description: 'Family-run restaurant specializing in dishes from different Georgian regions.',
-      specialties: ['Regional Cuisine', 'Family Recipes', 'Authentic Atmosphere'],
-      features: ['cash-only', 'family-run', 'regional'],
-      category: 'georgian',
-      priceCategory: 'budget',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Megrelian Khachapuri', price: '11 GEL', description: 'Cheese bread with extra cheese on top' },
-        { name: 'Svanuri Kubdari', price: '13 GEL', description: 'Spiced meat pie from Svaneti region' },
-        { name: 'Adjarian Khachapuri', price: '9 GEL', description: 'Traditional boat-shaped cheese bread' }
-      ]
-    },
-    {
-      id: 'zakhar-zakharich',
-      name: 'Zakhar Zakharich',
-      cuisine: 'Russian & European',
-      rating: 4.5,
-      priceRange: '$',
-      location: 'Vera',
-      address: 'Pekini Ave 12, Tbilisi',
-      hours: '12:00 - 24:00',
-      phone: '+995 32 291 55 55',
-      website: 'zz-restaurant.ge',
-      description: 'Cozy restaurant serving Russian and European comfort food with nostalgic atmosphere.',
-      specialties: ['Russian Cuisine', 'Comfort Food', 'Nostalgic Atmosphere'],
-      features: ['wifi', 'cards', 'cozy', 'comfort-food'],
+      hours: '18:00 - 02:00',
+      phone: '+995 32 244 11 15',
+      website: 'ketoandkote.ge',
+      description: 'Trendy spot combining Georgian flavors with international techniques.',
+      specialties: ['Fusion Cuisine', 'Craft Cocktails', 'Late Night Dining'],
+      features: ['wifi', 'cards', 'bar', 'late-night', 'english-menu'],
       category: 'international',
       priceCategory: 'mid-range',
-      aiRecommended: false,
-      popularDishes: [
-        { name: 'Beef Stroganoff', price: '22 GEL', description: 'Classic Russian dish with mushrooms' },
-        { name: 'Borscht Soup', price: '9 GEL', description: 'Traditional beetroot soup' },
-        { name: 'Olivier Salad', price: '8 GEL', description: 'Russian potato salad' }
-      ]
-    },
-    {
-      id: 'stamba-cafe',
-      name: 'Stamba Cafe',
-      cuisine: 'Modern International',
-      rating: 4.7,
-      priceRange: '$$',
-      location: 'Vera',
-      address: 'Merab Kostava St 14, Tbilisi',
-      hours: '08:00 - 23:00',
-      phone: '+995 32 220 02 20',
-      website: 'stambahotel.com',
-      description: 'Stylish cafe in boutique hotel with modern international cuisine and excellent coffee.',
-      specialties: ['Modern Design', 'International Cuisine', 'Premium Coffee'],
-      features: ['wifi', 'cards', 'design', 'hotel', 'coffee'],
-      category: 'international',
-      priceCategory: 'fine-dining',
       aiRecommended: true,
+      dietary: ['vegetarian', 'vegan'],
+      deliveryApps: ['Glovo', 'Wolt'],
+      peakHours: '21:00-23:00',
+      waitTime: '20-30 min',
+      reservationRequired: false,
       popularDishes: [
-        { name: 'Avocado Toast', price: '16 GEL', description: 'Sourdough with avocado, poached egg, and microgreens' },
-        { name: 'Quinoa Bowl', price: '18 GEL', description: 'Healthy bowl with seasonal vegetables' },
-        { name: 'Specialty Coffee', price: '8 GEL', description: 'Single origin beans, expertly brewed' }
-      ]
-    },
-    {
-      id: 'rooms-hotel-restaurant',
-      name: 'Rooms Hotel Restaurant',
-      cuisine: 'Contemporary International',
-      rating: 4.8,
-      priceRange: '$$',
-      location: 'Vera',
-      address: 'Merab Kostava St 14, Tbilisi',
-      hours: '07:00 - 24:00',
-      phone: '+995 32 220 14 14',
-      website: 'roomshotels.com',
-      description: 'Upscale hotel restaurant with contemporary international menu and rooftop terrace.',
-      specialties: ['Hotel Dining', 'Rooftop Terrace', 'Contemporary Menu'],
-      features: ['wifi', 'cards', 'rooftop', 'hotel', 'valet'],
-      category: 'international',
-      priceCategory: 'fine-dining',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Grilled Salmon', price: '38 GEL', description: 'Atlantic salmon with seasonal vegetables' },
-        { name: 'Beef Tenderloin', price: '45 GEL', description: 'Premium cut with truffle sauce' },
-        { name: 'Tasting Menu', price: '85 GEL', description: '6-course chef selection' }
-      ]
-    },
-    {
-      id: 'lolita',
-      name: 'Lolita',
-      cuisine: 'Modern Georgian',
-      rating: 4.6,
-      priceRange: '$$',
-      location: 'Sololaki',
-      address: 'Atoneli St 15, Tbilisi',
-      hours: '18:00 - 01:00',
-      phone: '+995 32 292 55 55',
-      website: 'lolita.ge',
-      description: 'Trendy restaurant with modern Georgian cuisine and creative cocktails.',
-      specialties: ['Modern Georgian', 'Creative Cocktails', 'Trendy Atmosphere'],
-      features: ['wifi', 'cards', 'cocktails', 'trendy', 'late-night'],
-      category: 'georgian',
-      priceCategory: 'fine-dining',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Modern Khinkali', price: '18 GEL', description: 'Elevated version of traditional dumplings' },
-        { name: 'Deconstructed Satsivi', price: '22 GEL', description: 'Modern take on walnut chicken sauce' },
-        { name: 'Signature Cocktail', price: '16 GEL', description: 'House special with Georgian ingredients' }
-      ]
-    },
-    {
-      id: 'wine-underground',
-      name: 'Wine Underground',
-      cuisine: 'Georgian Wine Bar',
-      rating: 4.5,
-      priceRange: '$$',
-      location: 'Old Town',
-      address: 'Gomi St 8, Tbilisi',
-      hours: '16:00 - 02:00',
-      phone: '+995 32 299 88 88',
-      website: 'wineunderground.ge',
-      description: 'Underground wine cellar specializing in natural Georgian wines with small plates.',
-      specialties: ['Natural Wines', 'Wine Cellar', 'Small Plates'],
-      features: ['wifi', 'cards', 'wine-cellar', 'underground', 'late-night'],
-      category: 'georgian',
-      priceCategory: 'mid-range',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Cheese Platter', price: '25 GEL', description: 'Selection of Georgian cheeses' },
-        { name: 'Charcuterie Board', price: '28 GEL', description: 'Cured meats and accompaniments' },
-        { name: 'Wine Tasting Flight', price: '35 GEL', description: '5 natural Georgian wines' }
-      ]
-    },
-    {
-      id: 'fabrika',
-      name: 'Fabrika',
-      cuisine: 'International Fusion',
-      rating: 4.3,
-      priceRange: '$',
-      location: 'Marjanishvili',
-      address: 'Egnate Ninoshvili St 8, Tbilisi',
-      hours: '08:00 - 24:00',
-      phone: '+995 32 292 20 07',
-      website: 'fabrikatbilisi.com',
-      description: 'Hip hostel restaurant with international fusion menu and creative atmosphere.',
-      specialties: ['Fusion Cuisine', 'Hip Atmosphere', 'Budget-Friendly'],
-      features: ['wifi', 'cards', 'hostel', 'hip', 'budget'],
-      category: 'international',
-      priceCategory: 'budget',
-      aiRecommended: false,
-      popularDishes: [
-        { name: 'Buddha Bowl', price: '14 GEL', description: 'Healthy bowl with quinoa and vegetables' },
-        { name: 'Fusion Burger', price: '16 GEL', description: 'Creative burger with international flavors' },
-        { name: 'Craft Beer', price: '6 GEL', description: 'Local craft beer selection' }
-      ]
-    },
-    {
-      id: 'organique-josper-bar',
-      name: 'Organique Josper Bar',
-      cuisine: 'Premium Steakhouse',
-      rating: 4.8,
-      priceRange: '$$$',
-      location: 'Vake',
-      address: 'Chavchavadze Ave 79, Tbilisi',
-      hours: '12:00 - 24:00',
-      phone: '+995 32 225 25 28',
-      website: 'organique.ge',
-      description: 'Premium steakhouse with Josper grill, featuring high-quality meats and wines.',
-      specialties: ['Premium Steaks', 'Josper Grill', 'Wine Selection'],
-      features: ['wifi', 'cards', 'premium', 'steakhouse', 'wine-list'],
-      category: 'international',
-      priceCategory: 'fine-dining',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Wagyu Ribeye', price: '120 GEL', description: 'Premium Japanese beef, Josper grilled' },
-        { name: 'Dry-Aged T-Bone', price: '85 GEL', description: '28-day aged beef with sides' },
-        { name: 'Wine Pairing', price: '45 GEL', description: 'Premium wine selection with steak' }
-      ]
-    },
-    {
-      id: 'entree',
-      name: 'Entree',
-      cuisine: 'French Fine Dining',
-      rating: 4.7,
-      priceRange: '$$$',
-      location: 'Vera',
-      address: 'Barnovi St 9, Tbilisi',
-      hours: '19:00 - 24:00',
-      phone: '+995 32 291 33 66',
-      website: 'entree.ge',
-      description: 'Elegant French restaurant with classic cuisine and sophisticated atmosphere.',
-      specialties: ['French Cuisine', 'Fine Dining', 'Elegant Atmosphere'],
-      features: ['wifi', 'cards', 'fine-dining', 'french', 'elegant'],
-      category: 'international',
-      priceCategory: 'fine-dining',
-      aiRecommended: true,
-      popularDishes: [
-        { name: 'Foie Gras', price: '48 GEL', description: 'Pan-seared foie gras with fig compote' },
-        { name: 'Bouillabaisse', price: '42 GEL', description: 'Traditional French fish stew' },
-        { name: 'Tasting Menu', price: '95 GEL', description: '7-course French culinary journey' }
-      ]
-    },
-    {
-      id: 'bread-house',
-      name: 'Bread House',
-      cuisine: 'Georgian Bakery & Cafe',
-      rating: 4.2,
-      priceRange: '$',
-      location: 'Multiple Locations',
-      address: 'Various locations across Tbilisi',
-      hours: '07:00 - 21:00',
-      phone: '+995 32 200 00 00',
-      website: 'breadhouse.ge',
-      description: 'Popular bakery chain serving fresh Georgian bread, pastries, and light meals.',
-      specialties: ['Fresh Bread', 'Pastries', 'Quick Service'],
-      features: ['wifi', 'cards', 'takeaway', 'chain'],
-      category: 'georgian',
-      priceCategory: 'budget',
-      aiRecommended: false,
-      popularDishes: [
-        { name: 'Fresh Shotis Puri', price: '2 GEL', description: 'Traditional Georgian bread baked in tone oven' },
-        { name: 'Khachapuri Varieties', price: '5-8 GEL', description: 'Different regional cheese breads' },
-        { name: 'Georgian Coffee & Pastry', price: '7 GEL', description: 'Coffee with traditional sweet pastry' }
-      ]
-    },
-    {
-      id: 'mapshalia',
-      name: 'Mapshalia',
-      cuisine: 'Georgian Home Cooking',
-      rating: 4.3,
-      priceRange: '$',
-      location: 'Didube',
-      address: 'Didube Market Area, Tbilisi',
-      hours: '10:00 - 20:00',
-      phone: '+995 32 255 55 55',
-      website: null,
-      description: 'No-frills Georgian restaurant near Didube market, famous for authentic home-style cooking.',
-      specialties: ['Home Cooking', 'Market Fresh', 'Local Favorite'],
-      features: ['cash-only', 'authentic', 'local'],
-      category: 'georgian',
-      priceCategory: 'budget',
-      aiRecommended: false,
-      popularDishes: [
-        { name: 'Daily Khinkali', price: '1.2 GEL each', description: 'Fresh dumplings made daily' },
-        { name: 'Lobio with Pickles', price: '8 GEL', description: 'Bean stew with traditional pickles' },
-        { name: 'Khachapuri Adjarian', price: '7 GEL', description: 'Boat-shaped cheese bread' }
-      ]
-    },
-    {
-      id: 'respublika-grill',
-      name: 'Respublika Grill Bar',
-      cuisine: 'International Grill',
-      rating: 4.4,
-      priceRange: '$',
-      location: 'Vake',
-      address: 'Chavchavadze Ave 45, Tbilisi',
-      hours: '12:00 - 24:00',
-      phone: '+995 32 291 44 44',
-      website: 'respublika.ge',
-      description: 'Modern grill restaurant with international menu and sports bar atmosphere.',
-      specialties: ['Grilled Meats', 'Sports Bar', 'International Menu'],
-      features: ['wifi', 'cards', 'sports-tv', 'bar', 'parking'],
-      category: 'international',
-      priceCategory: 'mid-range',
-      aiRecommended: false,
-      popularDishes: [
-        { name: 'Mixed Grill Platter', price: '35 GEL', description: 'Selection of grilled meats and sausages' },
-        { name: 'Burger Respublika', price: '18 GEL', description: 'House special burger with fries' },
-        { name: 'Craft Beer Selection', price: '8-12 GEL', description: 'Local and imported craft beers' }
-      ]
-    },
-    {
-      id: 'maspindzelo',
-      name: 'Maspindzelo',
-      cuisine: 'Georgian Traditional',
-      rating: 4.3,
-      priceRange: '$',
-      location: 'Avlabari',
-      address: 'Avlabari District, Tbilisi',
-      hours: '11:00 - 22:00',
-      phone: '+995 32 277 77 77',
-      website: null,
-      description: 'Traditional Georgian hospitality in a rustic setting with live music on weekends.',
-      specialties: ['Traditional Hospitality', 'Live Music', 'Rustic Atmosphere'],
-      features: ['cash-only', 'live-music', 'traditional', 'outdoor'],
-      category: 'georgian',
-      priceCategory: 'budget',
-      aiRecommended: false,
-      popularDishes: [
-        { name: 'Supra Feast', price: '30 GEL per person', description: 'Traditional Georgian banquet' },
-        { name: 'Khinkali Assortment', price: '12 GEL', description: 'Mixed dumplings (8 pieces)' },
-        { name: 'Homemade Wine', price: '15 GEL/bottle', description: 'Traditional Georgian wine' }
-      ]
-    },
-    {
-      id: 'cafe-gallery',
-      name: 'Cafe Gallery',
-      cuisine: 'European Cafe',
-      rating: 4.2,
-      priceRange: '$',
-      location: 'Rustaveli Avenue',
-      address: 'Rustaveli Ave 12, Tbilisi',
-      hours: '08:00 - 22:00',
-      phone: '+995 32 299 22 22',
-      website: null,
-      description: 'Art-themed cafe with European dishes, perfect for casual dining and coffee meetings.',
-      specialties: ['Art Gallery', 'Coffee Culture', 'Light Meals'],
-      features: ['wifi', 'cards', 'coffee', 'art', 'casual'],
-      category: 'international',
-      priceCategory: 'budget',
-      aiRecommended: false,
-      popularDishes: [
-        { name: 'Caesar Salad', price: '14 GEL', description: 'Classic Caesar with grilled chicken' },
-        { name: 'Pasta Carbonara', price: '16 GEL', description: 'Creamy pasta with bacon and parmesan' },
-        { name: 'Specialty Coffee', price: '6 GEL', description: 'Single origin Georgian coffee' }
+        { name: 'Khinkali Ramen', price: '18 GEL', description: 'Asian-Georgian fusion soup' },
+        { name: 'Adjarian Pizza', price: '16 GEL', description: 'Pizza with khachapuri toppings' },
+        { name: 'Georgian Old Fashioned', price: '14 GEL', description: 'Cocktail with chacha and honey' }
       ]
     }
   ]
@@ -659,46 +280,57 @@ const RestaurantsPage = () => {
     )
   }
 
+  const filteredRestaurants = allRestaurants.filter(restaurant => {
+    const matchesCategory = selectedFilter === 'all' || restaurant.category === selectedFilter
+    const matchesPrice = selectedPriceRange === 'all' || restaurant.priceCategory === selectedPriceRange
+    const matchesDietary = selectedDietary === 'all' || restaurant.dietary.includes(selectedDietary)
+    const matchesSearch = restaurant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         restaurant.cuisine.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         restaurant.location.toLowerCase().includes(searchQuery.toLowerCase())
+    
+    return matchesCategory && matchesPrice && matchesDietary && matchesSearch
+  })
+
   const getFeatureIcon = (feature: string) => {
     switch (feature) {
       case 'wifi': return <Wifi className="h-4 w-4" />
       case 'cards': return <CreditCard className="h-4 w-4" />
       case 'outdoor': return <Users className="h-4 w-4" />
-      case 'valet': return <Car className="h-4 w-4" />
-      case 'reservations': return <Phone className="h-4 w-4" />
       case 'delivery': return <Car className="h-4 w-4" />
-      case 'garden': return <Users className="h-4 w-4" />
-      case 'cash-only': return <DollarSign className="h-4 w-4" />
-      default: return null
+      case 'english-menu': return <Globe className="h-4 w-4" />
+      case 'reservations': return <Phone className="h-4 w-4" />
+      case 'valet': return <Car className="h-4 w-4" />
+      case 'garden': return <Leaf className="h-4 w-4" />
+      case 'live-music': return <Users className="h-4 w-4" />
+      case 'views': return <MapPin className="h-4 w-4" />
+      case 'bar': return <Wine className="h-4 w-4" />
+      case 'late-night': return <Clock className="h-4 w-4" />
+      default: return <CheckCircle className="h-4 w-4" />
     }
   }
 
-  const filteredRestaurants = allRestaurants.filter(restaurant => {
-    const matchesFilter = selectedFilter === 'all' || 
-      (selectedFilter === 'georgian' && restaurant.category === 'georgian') ||
-      (selectedFilter === 'international' && restaurant.category === 'international') ||
-      (selectedFilter === 'fine-dining' && restaurant.priceCategory === 'fine-dining') ||
-      (selectedFilter === 'budget' && restaurant.priceCategory === 'budget')
-    
-    const matchesSearch = restaurant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      restaurant.cuisine.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      restaurant.description.toLowerCase().includes(searchQuery.toLowerCase())
-    
-    return matchesFilter && matchesSearch
-  })
+  const getFeatureLabel = (feature: string) => {
+    switch (feature) {
+      case 'wifi': return 'WiFi'
+      case 'cards': return 'Cards Accepted'
+      case 'outdoor': return 'Outdoor Seating'
+      case 'delivery': return 'Delivery'
+      case 'english-menu': return 'English Menu'
+      case 'reservations': return 'Reservations'
+      case 'valet': return 'Valet Parking'
+      case 'garden': return 'Garden Seating'
+      case 'live-music': return 'Live Music'
+      case 'views': return 'City Views'
+      case 'bar': return 'Full Bar'
+      case 'late-night': return 'Late Night'
+      default: return feature
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Enhanced Header */}
-      <div className="relative bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white py-16 overflow-hidden">
-        {/* Background Pattern */}
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
+      {/* Header */}
+      <div className="relative bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 text-white py-16 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center mb-6">
             <div className="bg-white/10 p-3 rounded-full mr-4">
@@ -706,218 +338,269 @@ const RestaurantsPage = () => {
             </div>
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Best Restaurants in Tbilisi
+                Restaurants & Dining
               </h1>
-              <div className="flex items-center space-x-4 text-red-200">
+              <div className="flex items-center space-x-4 text-orange-200">
                 <div className="flex items-center">
-                  <Star className="h-5 w-5 mr-2" />
-                  <span>30+ Handpicked Establishments</span>
+                  <ChefHat className="h-5 w-5 mr-2" />
+                  <span>Georgian Cuisine</span>
                 </div>
                 <div className="flex items-center">
-                  <Bot className="h-5 w-5 mr-2" />
-                  <span>AI-Enhanced Recommendations</span>
+                  <Wine className="h-5 w-5 mr-2" />
+                  <span>Fine Dining</span>
+                </div>
+                <div className="flex items-center">
+                  <Award className="h-5 w-5 mr-2" />
+                  <span>Local Favorites</span>
                 </div>
               </div>
             </div>
           </div>
           <p className="text-xl max-w-3xl">
-            Discover exceptional dining establishments, from traditional Georgian cuisine to international favorites. 
-            Each restaurant has been carefully selected for quality, authenticity, and expat-friendly service.
+            Discover Tbilisi's incredible culinary scene, from traditional Georgian supra experiences 
+            to modern fusion restaurants. Find your perfect dining experience with detailed reviews, 
+            prices, and insider tips.
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Enhanced Search and Filter Section */}
+        {/* Search and Filters */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" />
-              </div>
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
                 type="text"
+                placeholder="Search restaurants, cuisine, or location..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                placeholder="Search restaurants, cuisine, or dishes..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
             </div>
-
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-2">
-              {filters.map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => setSelectedFilter(filter.id)}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-                    selectedFilter === filter.id
-                      ? 'bg-red-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {filter.name} ({filter.count})
-                </button>
-              ))}
-            </div>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            >
+              <Filter className="h-4 w-4 mr-2" />
+              Filters
+            </button>
           </div>
 
-          {/* AI Insights */}
-          <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
-            <div className="flex items-center mb-2">
-              <Bot className="h-5 w-5 text-blue-600 mr-2" />
-              <span className="font-semibold text-gray-700">Stew's AI Insights</span>
+          {showFilters && (
+            <div className="grid md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Cuisine Type</label>
+                <select
+                  value={selectedFilter}
+                  onChange={(e) => setSelectedFilter(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
+                >
+                  {filters.map(filter => (
+                    <option key={filter.id} value={filter.id}>
+                      {filter.name} ({filter.count})
+                    </option>
+                  ))}
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Price Range</label>
+                <select
+                  value={selectedPriceRange}
+                  onChange={(e) => setPriceRange(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
+                >
+                  {priceRanges.map(range => (
+                    <option key={range.id} value={range.id}>
+                      {range.name} {range.symbol}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Dietary Options</label>
+                <select
+                  value={selectedDietary}
+                  onChange={(e) => setSelectedDietary(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
+                >
+                  {dietaryOptions.map(option => (
+                    <option key={option.id} value={option.id}>
+                      {option.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-            <p className="text-sm text-gray-600">
-              Based on expat preferences, Georgian traditional restaurants are most popular (65%), 
-              followed by fine dining (25%). Peak dining hours are 19:00-21:00. 
-              {filteredRestaurants.length} restaurants match your current filters.
-            </p>
+          )}
+        </div>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="text-2xl font-bold text-orange-600">{filteredRestaurants.length}</div>
+            <div className="text-sm text-gray-600">Restaurants Found</div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="text-2xl font-bold text-green-600">
+              {filteredRestaurants.filter(r => r.priceCategory === 'budget').length}
+            </div>
+            <div className="text-sm text-gray-600">Budget Options</div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="text-2xl font-bold text-blue-600">
+              {filteredRestaurants.filter(r => r.deliveryApps.length > 0).length}
+            </div>
+            <div className="text-sm text-gray-600">Delivery Available</div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="text-2xl font-bold text-purple-600">
+              {filteredRestaurants.filter(r => r.features.includes('english-menu')).length}
+            </div>
+            <div className="text-sm text-gray-600">English Menus</div>
           </div>
         </div>
 
-        {/* Enhanced Restaurant Cards */}
-        <div className="grid gap-8">
+        {/* Restaurant Cards */}
+        <div className="space-y-6">
           {filteredRestaurants.map((restaurant, index) => (
-            <div key={restaurant.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              {/* Restaurant Image */}
-              <div className="h-64 bg-gray-200 relative overflow-hidden">
-                <div 
-                  className="w-full h-full bg-gradient-to-br from-red-500 to-orange-600 flex items-center justify-center hover:scale-105 transition-transform duration-300"
-                  style={{
-                    backgroundImage: `url('${getRestaurantImage(restaurant.name, index)}')`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                >
-                  <div className="bg-black/50 text-white px-4 py-2 rounded-lg font-semibold text-center">
-                    {restaurant.name}
+            <div key={restaurant.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+              <div className="md:flex">
+                <div className="md:w-1/3">
+                  <div className="h-64 md:h-full relative">
+                    <img
+                      src={getRestaurantImage(restaurant.name, index)}
+                      alt={restaurant.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <button
+                      onClick={() => toggleFavorite(restaurant.id)}
+                      className={`absolute top-4 right-4 p-2 rounded-full transition-colors ${
+                        favorites.includes(restaurant.id)
+                          ? 'bg-red-500 text-white'
+                          : 'bg-white text-gray-600 hover:bg-red-50 hover:text-red-500'
+                      }`}
+                    >
+                      <Heart className={`h-5 w-5 ${favorites.includes(restaurant.id) ? 'fill-current' : ''}`} />
+                    </button>
+                    {restaurant.aiRecommended && (
+                      <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
+                        <Sparkles className="h-3 w-3 mr-1" />
+                        AI Pick
+                      </div>
+                    )}
                   </div>
                 </div>
                 
-                {/* Badges */}
-                <div className="absolute top-4 left-4 flex flex-col space-y-2">
-                  {restaurant.aiRecommended && (
-                    <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center">
-                      <Sparkles className="h-3 w-3 mr-1" />
-                      AI Pick
-                    </span>
-                  )}
-                  <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-800">
-                    {restaurant.cuisine}
-                  </span>
-                </div>
-
-                <div className="absolute top-4 right-4">
-                  <button
-                    onClick={() => toggleFavorite(restaurant.id)}
-                    className={`p-2 rounded-full transition-colors ${
-                      favorites.includes(restaurant.id)
-                        ? 'bg-red-500 text-white'
-                        : 'bg-white/90 text-gray-600 hover:bg-red-100 hover:text-red-600'
-                    }`}
-                  >
-                    <Heart className={`h-5 w-5 ${favorites.includes(restaurant.id) ? 'fill-current' : ''}`} />
-                  </button>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-4">
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{restaurant.name}</h3>
-                    <p className="text-lg text-gray-600 mb-2">{restaurant.cuisine}</p>
-                    <p className="text-gray-700 mb-4">{restaurant.description}</p>
-                  </div>
-                  
-                  <div className="flex flex-col items-end space-y-2">
-                    <div className="flex items-center">
-                      <Star className="h-5 w-5 text-yellow-400 fill-current" />
-                      <span className="ml-1 font-semibold text-lg">{restaurant.rating}</span>
-                    </div>
-                    <span className="text-green-600 font-semibold text-lg">{restaurant.priceRange}</span>
-                  </div>
-                </div>
-
-                {/* Restaurant Details Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                  <div className="flex items-center text-gray-600">
-                    <MapPin className="h-4 w-4 mr-2 text-red-500" />
+                <div className="md:w-2/3 p-6">
+                  <div className="flex items-start justify-between mb-4">
                     <div>
-                      <div className="font-semibold">{restaurant.location}</div>
-                      <div className="text-sm">{restaurant.address}</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <Clock className="h-4 w-4 mr-2 text-blue-500" />
-                    <div>
-                      <div className="font-semibold">Hours</div>
-                      <div className="text-sm">{restaurant.hours}</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center text-gray-600">
-                    <Phone className="h-4 w-4 mr-2 text-green-500" />
-                    <div>
-                      <div className="font-semibold">Phone</div>
-                      <div className="text-sm">{restaurant.phone}</div>
-                    </div>
-                  </div>
-                  {restaurant.website && (
-                    <div className="flex items-center text-gray-600">
-                      <Globe className="h-4 w-4 mr-2 text-purple-500" />
-                      <div>
-                        <div className="font-semibold">Website</div>
-                        <a href={`https://${restaurant.website}`} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 hover:underline flex items-center">
-                          {restaurant.website}
-                          <ExternalLink className="h-3 w-3 ml-1" />
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Features */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-2">Features:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {restaurant.features.map((feature: string, idx: number) => (
-                      <span key={idx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm flex items-center">
-                        {getFeatureIcon(feature)}
-                        <span className="ml-1 capitalize">{feature.replace('-', ' ')}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Popular Dishes */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                    <ChefHat className="h-4 w-4 mr-2" />
-                    Popular Dishes:
-                  </h4>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    {restaurant.popularDishes.map((dish: any, idx: number) => (
-                      <div key={idx} className="bg-gray-50 rounded-lg p-3">
-                        <div className="flex justify-between items-start mb-1">
-                          <h5 className="font-semibold text-gray-900 text-sm">{dish.name}</h5>
-                          <span className="text-green-600 font-semibold text-sm">{dish.price}</span>
+                      <h2 className="text-2xl font-bold text-gray-900 mb-1">{restaurant.name}</h2>
+                      <p className="text-gray-600 mb-2">{restaurant.cuisine}</p>
+                      <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
+                        <div className="flex items-center">
+                          <Star className="h-4 w-4 text-yellow-500 fill-current mr-1" />
+                          <span className="font-semibold">{restaurant.rating}</span>
                         </div>
-                        <p className="text-xs text-gray-600">{dish.description}</p>
+                        <span className="text-lg font-bold text-green-600">{restaurant.priceRange}</span>
+                        <span className="flex items-center">
+                          <MapPin className="h-4 w-4 mr-1" />
+                          {restaurant.location}
+                        </span>
                       </div>
-                    ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Specialties */}
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-2">Specialties:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {restaurant.specialties.map((specialty: string, idx: number) => (
-                      <span key={idx} className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">
-                        {specialty}
+                  <p className="text-gray-600 mb-4">{restaurant.description}</p>
+
+                  {/* Features */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {restaurant.features.map((feature, idx) => (
+                      <span key={idx} className="flex items-center bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                        {getFeatureIcon(feature)}
+                        <span className="ml-1">{getFeatureLabel(feature)}</span>
                       </span>
                     ))}
+                  </div>
+
+                  {/* Dietary Options */}
+                  {restaurant.dietary.length > 0 && (
+                    <div className="flex items-center mb-4">
+                      <Leaf className="h-4 w-4 text-green-600 mr-2" />
+                      <span className="text-sm text-gray-600">
+                        Dietary: {restaurant.dietary.join(', ')}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Delivery Apps */}
+                  {restaurant.deliveryApps.length > 0 && (
+                    <div className="flex items-center mb-4">
+                      <Car className="h-4 w-4 text-blue-600 mr-2" />
+                      <span className="text-sm text-gray-600">
+                        Delivery: {restaurant.deliveryApps.join(', ')}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Popular Dishes */}
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-gray-900 mb-2">Popular Dishes:</h4>
+                    <div className="grid md:grid-cols-2 gap-2">
+                      {restaurant.popularDishes.slice(0, 2).map((dish, idx) => (
+                        <div key={idx} className="bg-gray-50 rounded-lg p-3">
+                          <div className="flex justify-between items-start mb-1">
+                            <span className="font-semibold text-sm">{dish.name}</span>
+                            <span className="text-green-600 font-bold text-sm">{dish.price}</span>
+                          </div>
+                          <p className="text-xs text-gray-600">{dish.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Quick Info */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm border-t border-gray-200 pt-4">
+                    <div>
+                      <span className="font-semibold text-gray-700">Hours:</span>
+                      <p className="text-gray-600">{restaurant.hours}</p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-gray-700">Peak Hours:</span>
+                      <p className="text-gray-600">{restaurant.peakHours}</p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-gray-700">Wait Time:</span>
+                      <p className="text-gray-600">{restaurant.waitTime}</p>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-gray-700">Reservations:</span>
+                      <p className={`${restaurant.reservationRequired ? 'text-orange-600' : 'text-green-600'}`}>
+                        {restaurant.reservationRequired ? 'Required' : 'Not Required'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Contact Info */}
+                  <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+                    <div className="flex items-center space-x-4 text-sm text-gray-600">
+                      <a href={`tel:${restaurant.phone}`} className="flex items-center hover:text-orange-600">
+                        <Phone className="h-4 w-4 mr-1" />
+                        {restaurant.phone}
+                      </a>
+                      <a href={`https://${restaurant.website}`} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-orange-600">
+                        <ExternalLink className="h-4 w-4 mr-1" />
+                        Website
+                      </a>
+                    </div>
+                    {restaurant.reservationRequired && (
+                      <div className="flex items-center text-orange-600 text-sm">
+                        <AlertCircle className="h-4 w-4 mr-1" />
+                        Reservation Recommended
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -925,64 +608,49 @@ const RestaurantsPage = () => {
           ))}
         </div>
 
-        {/* Enhanced Tips Section */}
-        <div className="mt-12 grid md:grid-cols-2 gap-8">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
-            <div className="flex items-center mb-4">
-              <Award className="h-6 w-6 text-blue-600 mr-3" />
-              <h3 className="text-xl font-bold text-gray-900">Dining Tips for Expats</h3>
-            </div>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start">
-                <CreditCard className="h-4 w-4 mt-1 mr-2 text-blue-600" />
-                <span>Most restaurants accept cards, but carry cash for smaller establishments</span>
-              </li>
-              <li className="flex items-start">
-                <DollarSign className="h-4 w-4 mt-1 mr-2 text-green-600" />
-                <span>Tipping 10-15% is standard for good service</span>
-              </li>
-              <li className="flex items-start">
-                <Phone className="h-4 w-4 mt-1 mr-2 text-purple-600" />
-                <span>Many restaurants don't take reservations - arrive early for popular spots</span>
-              </li>
-              <li className="flex items-start">
-                <Clock className="h-4 w-4 mt-1 mr-2 text-orange-600" />
-                <span>Georgian meals are social events - expect to spend 2-3 hours dining</span>
-              </li>
-              <li className="flex items-start">
-                <Wine className="h-4 w-4 mt-1 mr-2 text-red-600" />
-                <span>Try the local wine - Georgia has 8,000 years of winemaking tradition</span>
-              </li>
-            </ul>
+        {filteredRestaurants.length === 0 && (
+          <div className="text-center py-12">
+            <Utensils className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No restaurants found</h3>
+            <p className="text-gray-600">Try adjusting your search or filters to see more options.</p>
           </div>
+        )}
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
-            <div className="flex items-center mb-4">
-              <Bot className="h-6 w-6 text-purple-600 mr-3" />
-              <h3 className="text-xl font-bold text-gray-900">AI Restaurant Insights</h3>
+        {/* Dining Tips */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Dining Tips for Expats</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-orange-50 p-4 rounded-lg">
+              <ChefHat className="h-8 w-8 text-orange-600 mb-3" />
+              <h3 className="font-semibold text-gray-900 mb-2">Georgian Dining Culture</h3>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Supra (feast) is a social experience</li>
+                <li>• Toasts are important - wait for tamada</li>
+                <li>• Try khachapuri and khinkali</li>
+                <li>• Georgian wine is world-class</li>
+              </ul>
             </div>
-            <div className="space-y-4">
-              <div className="bg-white/50 rounded-lg p-3">
-                <div className="flex items-center mb-1">
-                  <TrendingUp className="h-4 w-4 text-green-600 mr-2" />
-                  <span className="font-semibold text-sm">Most Popular Cuisine</span>
-                </div>
-                <p className="text-sm text-gray-600">Georgian Traditional (65% of expat preferences)</p>
-              </div>
-              <div className="bg-white/50 rounded-lg p-3">
-                <div className="flex items-center mb-1">
-                  <Clock className="h-4 w-4 text-blue-600 mr-2" />
-                  <span className="font-semibold text-sm">Peak Dining Hours</span>
-                </div>
-                <p className="text-sm text-gray-600">19:00-21:00 (book ahead or arrive early)</p>
-              </div>
-              <div className="bg-white/50 rounded-lg p-3">
-                <div className="flex items-center mb-1">
-                  <DollarSign className="h-4 w-4 text-yellow-600 mr-2" />
-                  <span className="font-semibold text-sm">Average Meal Cost</span>
-                </div>
-                <p className="text-sm text-gray-600">25-35 GEL per person (mid-range restaurants)</p>
-              </div>
+            
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <CreditCard className="h-8 w-8 text-blue-600 mb-3" />
+              <h3 className="font-semibold text-gray-900 mb-2">Payment & Tipping</h3>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Most places accept cards</li>
+                <li>• 10-15% tip is standard</li>
+                <li>• Cash preferred at small places</li>
+                <li>• Service charge sometimes included</li>
+              </ul>
+            </div>
+            
+            <div className="bg-green-50 p-4 rounded-lg">
+              <Clock className="h-8 w-8 text-green-600 mb-3" />
+              <h3 className="font-semibold text-gray-900 mb-2">Timing & Reservations</h3>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Dinner starts late (8-9 PM)</li>
+                <li>• Lunch: 12-3 PM typically</li>
+                <li>• Book fine dining in advance</li>
+                <li>• Peak times: Friday-Sunday evenings</li>
+              </ul>
             </div>
           </div>
         </div>

@@ -1,0 +1,826 @@
+'use client'
+
+import { useState } from 'react'
+import { ShoppingBag, MapPin, Clock, Phone, Star, DollarSign, Wifi, CreditCard, Car, Globe, ExternalLink, Filter, Search, Book, Music, Laptop, ShoppingCart, Coffee, Utensils, Package, Store, TrendingUp, Award, CheckCircle } from 'lucide-react'
+
+export default function ShoppingPage() {
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const categories = [
+    { id: 'all', name: 'All Stores', icon: ShoppingBag, count: 53 },
+    { id: 'supermarkets', name: 'Supermarkets', icon: ShoppingCart, count: 20 },
+    { id: 'tech', name: 'Technology', icon: Laptop, count: 8 },
+    { id: 'books', name: 'Books & Stationery', icon: Book, count: 6 },
+    { id: 'music', name: 'Music & Instruments', icon: Music, count: 5 },
+    { id: 'specialty', name: 'Specialty Food', icon: Coffee, count: 8 },
+    { id: 'markets', name: 'Markets', icon: Store, count: 6 }
+  ]
+
+  const stores = [
+    // Supermarkets
+    {
+      id: 'carrefour',
+      name: 'Carrefour',
+      category: 'supermarkets',
+      type: 'International Supermarket Chain',
+      rating: 4.5,
+      priceRange: '₾₾',
+      locations: ['Saburtalo', 'Vake', 'Isani', 'Multiple locations'],
+      address: 'Multiple locations across Tbilisi',
+      hours: '09:00 - 23:00',
+      phone: '+995 32 2 60 60 60',
+      website: 'carrefour.ge',
+      description: 'Large international supermarket chain with wide selection of local and imported products.',
+      features: ['wifi', 'cards', 'parking', 'delivery', 'online-shopping'],
+      specialties: ['International products', 'Fresh produce', 'Bakery', 'Deli counter'],
+      deliveryApps: ['Glovo', 'Wolt'],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Loyalty card offers good discounts',
+        'Best selection of international products',
+        'Fresh bakery section every morning',
+        'Online ordering available'
+      ]
+    },
+    {
+      id: 'goodwill',
+      name: 'Goodwill',
+      category: 'supermarkets',
+      type: 'Local Supermarket Chain',
+      rating: 4.3,
+      priceRange: '₾',
+      locations: ['Multiple locations'],
+      address: 'Various locations across Tbilisi',
+      hours: '08:00 - 23:00',
+      phone: '+995 32 2 55 55 55',
+      website: 'goodwill.ge',
+      description: 'Popular local supermarket chain with competitive prices and good selection.',
+      features: ['cards', 'parking', 'delivery'],
+      specialties: ['Local products', 'Competitive prices', 'Fresh meat', 'Georgian wine'],
+      deliveryApps: ['Glovo'],
+      parkingAvailable: true,
+      englishSpeaking: false,
+      tips: [
+        'Better prices than international chains',
+        'Excellent Georgian wine selection',
+        'Fresh meat counter',
+        'Loyalty program available'
+      ]
+    },
+    {
+      id: 'spar',
+      name: 'Spar',
+      category: 'supermarkets',
+      type: 'International Supermarket',
+      rating: 4.4,
+      priceRange: '₾₾',
+      locations: ['City Center', 'Vake', 'Saburtalo'],
+      address: 'Multiple locations',
+      hours: '08:00 - 23:00',
+      phone: '+995 32 2 70 70 70',
+      website: 'spar.ge',
+      description: 'European supermarket chain with quality products and good service.',
+      features: ['wifi', 'cards', 'parking', 'delivery'],
+      specialties: ['European products', 'Organic section', 'Fresh produce', 'Ready meals'],
+      deliveryApps: ['Glovo', 'Wolt'],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Good organic section',
+        'Quality European imports',
+        'Clean and well-organized',
+        'Ready-to-eat meals available'
+      ]
+    },
+    {
+      id: 'fresco',
+      name: 'Fresco',
+      category: 'supermarkets',
+      type: 'Local Supermarket Chain',
+      rating: 4.2,
+      priceRange: '₾',
+      locations: ['Multiple locations'],
+      address: 'Various locations across Tbilisi',
+      hours: '08:00 - 23:00',
+      phone: '+995 32 2 65 65 65',
+      website: 'fresco.ge',
+      description: 'Popular local chain with good prices and convenient locations throughout the city.',
+      features: ['cards', 'parking', 'delivery'],
+      specialties: ['Local products', 'Budget-friendly', 'Fresh bakery', 'Georgian cheese'],
+      deliveryApps: ['Glovo', 'Wolt'],
+      parkingAvailable: true,
+      englishSpeaking: false,
+      tips: [
+        'Very competitive prices',
+        'Fresh bread baked daily',
+        'Good selection of Georgian products',
+        'Convenient neighborhood locations'
+      ]
+    },
+    {
+      id: 'agrohub-market',
+      name: 'AgroHub Market',
+      category: 'supermarkets',
+      type: 'Premium Organic Supermarket',
+      rating: 4.6,
+      priceRange: '₾₾₾',
+      locations: ['Vake', 'Saburtalo'],
+      address: '79 Chavchavadze Ave, Tbilisi',
+      hours: '09:00 - 22:00',
+      phone: '+995 32 2 25 25 25',
+      website: 'agrohub.ge',
+      description: 'Premium supermarket focusing on organic, locally-sourced, and artisan products.',
+      features: ['wifi', 'cards', 'parking', 'delivery', 'organic'],
+      specialties: ['Organic produce', 'Farm-to-table', 'Artisan products', 'Natural cosmetics', 'Eco-friendly'],
+      deliveryApps: ['Glovo'],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Best organic selection in Tbilisi',
+        'Support local Georgian farmers',
+        'Premium quality but higher prices',
+        'Great for health-conscious shoppers'
+      ]
+    },
+    {
+      id: 'magniti',
+      name: 'Magniti',
+      category: 'supermarkets',
+      type: 'Discount Supermarket',
+      rating: 4.0,
+      priceRange: '₾',
+      locations: ['Multiple locations'],
+      address: 'Various locations',
+      hours: '08:00 - 22:00',
+      phone: '+995 32 2 75 75 75',
+      website: 'magniti.ge',
+      description: 'Budget-friendly supermarket chain with basic groceries at low prices.',
+      features: ['cards', 'parking'],
+      specialties: ['Low prices', 'Basic groceries', 'Bulk buying', 'No-frills shopping'],
+      deliveryApps: [],
+      parkingAvailable: true,
+      englishSpeaking: false,
+      tips: [
+        'Lowest prices in Tbilisi',
+        'Basic selection but good value',
+        'Great for budget shopping',
+        'Limited imported products'
+      ]
+    },
+    {
+      id: 'smart',
+      name: 'Smart Supermarket',
+      category: 'supermarkets',
+      type: 'Modern Supermarket Chain',
+      rating: 4.3,
+      priceRange: '₾₾',
+      locations: ['Saburtalo', 'Isani', 'Gldani'],
+      address: 'Multiple locations',
+      hours: '08:00 - 23:00',
+      phone: '+995 32 2 80 80 80',
+      website: 'smart.ge',
+      description: 'Modern supermarket with good balance of price and quality, popular with locals.',
+      features: ['wifi', 'cards', 'parking', 'delivery'],
+      specialties: ['Fresh produce', 'Meat counter', 'Bakery', 'Georgian wine', 'Household items'],
+      deliveryApps: ['Glovo'],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Good middle-ground option',
+        'Fresh meat and fish counters',
+        'Loyalty program with discounts',
+        'Clean and modern stores'
+      ]
+    },
+    {
+      id: 'europroduct',
+      name: 'EuroProduct',
+      category: 'supermarkets',
+      type: 'European Goods Specialist',
+      rating: 4.5,
+      priceRange: '₾₾₾',
+      locations: ['Vake', 'Old Town'],
+      address: 'Chavchavadze Ave, Tbilisi',
+      hours: '09:00 - 22:00',
+      phone: '+995 32 2 22 44 66',
+      website: 'europroduct.ge',
+      description: 'Specialty supermarket with extensive selection of European and international products.',
+      features: ['wifi', 'cards', 'parking', 'delivery'],
+      specialties: ['European imports', 'International brands', 'Specialty foods', 'Gourmet products', 'Deli'],
+      deliveryApps: ['Glovo', 'Wolt'],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Best for European products',
+        'Hard-to-find international brands',
+        'Premium pricing but worth it',
+        'Great deli and cheese selection'
+      ]
+    },
+    {
+      id: 'nikora',
+      name: 'Nikora',
+      category: 'supermarkets',
+      type: 'Convenience Store Chain',
+      rating: 4.1,
+      priceRange: '₾₾',
+      locations: ['Everywhere'],
+      address: 'Multiple locations citywide',
+      hours: '24/7',
+      phone: '+995 32 2 55 66 77',
+      website: 'nikora.ge',
+      description: 'Ubiquitous convenience store chain, perfect for quick shopping and late-night needs.',
+      features: ['cards', '24-7', 'delivery'],
+      specialties: ['Convenience', '24/7 availability', 'Quick shopping', 'Snacks', 'Drinks'],
+      deliveryApps: ['Glovo', 'Wolt', 'Bolt Food'],
+      parkingAvailable: false,
+      englishSpeaking: false,
+      tips: [
+        'Open 24/7 - perfect for emergencies',
+        'Locations everywhere in Tbilisi',
+        'Slightly higher prices for convenience',
+        'Great for quick shopping trips'
+      ]
+    },
+    {
+      id: 'libre',
+      name: 'Libre',
+      category: 'supermarkets',
+      type: 'Hypermarket',
+      rating: 4.4,
+      priceRange: '₾₾',
+      locations: ['Saburtalo', 'Isani'],
+      address: 'Pekini Ave, Tbilisi',
+      hours: '09:00 - 23:00',
+      phone: '+995 32 2 40 50 60',
+      website: 'libre.ge',
+      description: 'Large hypermarket with extensive selection including groceries, electronics, and household goods.',
+      features: ['wifi', 'cards', 'parking', 'delivery', 'electronics'],
+      specialties: ['Wide selection', 'Electronics', 'Clothing', 'Home goods', 'Groceries'],
+      deliveryApps: ['Glovo'],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'One-stop shopping for everything',
+        'Large parking area',
+        'Good for bulk buying',
+        'Electronics and appliances section'
+      ]
+    },
+    // Technology Stores
+    {
+      id: 'alta',
+      name: 'Alta',
+      category: 'tech',
+      type: 'Electronics & Technology',
+      rating: 4.6,
+      priceRange: '₾₾₾',
+      locations: ['Saburtalo', 'Vake'],
+      address: '1 Pekini Ave, Tbilisi',
+      hours: '10:00 - 21:00',
+      phone: '+995 32 2 40 40 40',
+      website: 'alta.ge',
+      description: 'Leading electronics retailer with latest gadgets, computers, and home appliances.',
+      features: ['wifi', 'cards', 'parking', 'warranty', 'installation'],
+      specialties: ['Apple products', 'Laptops', 'Smartphones', 'Home appliances', 'Gaming'],
+      deliveryApps: [],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Official Apple reseller',
+        'Good warranty and service',
+        'Price match available',
+        'Installation services offered'
+      ]
+    },
+    {
+      id: 'technodom',
+      name: 'Technodom',
+      category: 'tech',
+      type: 'Electronics Megastore',
+      rating: 4.4,
+      priceRange: '₾₾',
+      locations: ['East Point', 'Tbilisi Mall'],
+      address: 'East Point Shopping Center',
+      hours: '10:00 - 22:00',
+      phone: '+995 32 2 45 45 45',
+      website: 'technodom.ge',
+      description: 'Large electronics store with competitive prices and wide selection.',
+      features: ['cards', 'parking', 'warranty', 'financing'],
+      specialties: ['Computers', 'TVs', 'Audio equipment', 'Smart home', 'Accessories'],
+      deliveryApps: [],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Competitive pricing',
+        'Financing options available',
+        'Large selection of brands',
+        'Regular sales and promotions'
+      ]
+    },
+    // Books & Stationery
+    {
+      id: 'prosperos-books',
+      name: 'Prospero\'s Books',
+      category: 'books',
+      type: 'English Bookstore & Café',
+      rating: 4.8,
+      priceRange: '₾₾',
+      locations: ['Old Town'],
+      address: '34 Rustaveli Ave, Tbilisi',
+      hours: '10:00 - 20:00',
+      phone: '+995 32 2 98 38 02',
+      website: 'prospero.ge',
+      description: 'Beloved English bookstore with café, offering new and used books, cultural events.',
+      features: ['wifi', 'cards', 'cafe', 'events'],
+      specialties: ['English books', 'Used books', 'Literary events', 'Cozy café', 'Book club'],
+      deliveryApps: [],
+      parkingAvailable: false,
+      englishSpeaking: true,
+      tips: [
+        'Best English bookstore in Tbilisi',
+        'Regular author readings and events',
+        'Great café for reading',
+        'Book exchange program available'
+      ]
+    },
+    {
+      id: 'biblus',
+      name: 'Biblus',
+      category: 'books',
+      type: 'Bookstore Chain',
+      rating: 4.5,
+      priceRange: '₾₾',
+      locations: ['Multiple locations'],
+      address: 'Various locations in malls',
+      hours: '10:00 - 22:00',
+      phone: '+995 32 2 50 50 50',
+      website: 'biblus.ge',
+      description: 'Modern bookstore chain with Georgian and some English books, stationery.',
+      features: ['cards', 'parking', 'online-shopping'],
+      specialties: ['Georgian books', 'Stationery', 'Gifts', 'Children\'s books', 'Textbooks'],
+      deliveryApps: [],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Good stationery selection',
+        'Children\'s section',
+        'Online ordering available',
+        'Located in major malls'
+      ]
+    },
+    // Music Stores
+    {
+      id: 'music-gallery',
+      name: 'Music Gallery',
+      category: 'music',
+      type: 'Musical Instruments & Equipment',
+      rating: 4.6,
+      priceRange: '₾₾₾',
+      locations: ['Saburtalo'],
+      address: '12 Vazha-Pshavela Ave, Tbilisi',
+      hours: '11:00 - 20:00',
+      phone: '+995 32 2 22 33 44',
+      website: 'musicgallery.ge',
+      description: 'Professional music store with instruments, equipment, and repair services.',
+      features: ['cards', 'repair', 'lessons', 'rental'],
+      specialties: ['Guitars', 'Keyboards', 'Drums', 'Audio equipment', 'Accessories'],
+      deliveryApps: [],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Professional staff',
+        'Instrument repair services',
+        'Music lessons available',
+        'Rental options for instruments'
+      ]
+    },
+    {
+      id: 'vinyl-records',
+      name: 'Vinyl Records Tbilisi',
+      category: 'music',
+      type: 'Record Store',
+      rating: 4.7,
+      priceRange: '₾₾',
+      locations: ['Vera'],
+      address: '8 Barnovi St, Tbilisi',
+      hours: '12:00 - 21:00',
+      phone: '+995 555 12 34 56',
+      website: '',
+      description: 'Vintage and new vinyl records, turntables, and music memorabilia.',
+      features: ['cards', 'rare-finds'],
+      specialties: ['Vinyl records', 'Turntables', 'Georgian music', 'Jazz', 'Rock'],
+      deliveryApps: [],
+      parkingAvailable: false,
+      englishSpeaking: true,
+      tips: [
+        'Great selection of Georgian music',
+        'Rare vinyl finds',
+        'Knowledgeable staff',
+        'Regular new arrivals'
+      ]
+    },
+    // Specialty Food
+    {
+      id: 'agrohub',
+      name: 'AgroHub',
+      category: 'specialty',
+      type: 'Organic & Local Products',
+      rating: 4.7,
+      priceRange: '₾₾₾',
+      locations: ['Vake'],
+      address: '79 Chavchavadze Ave, Tbilisi',
+      hours: '09:00 - 21:00',
+      phone: '+995 32 2 25 25 25',
+      website: 'agrohub.ge',
+      description: 'Premium organic and locally-sourced Georgian products, farm-to-table concept.',
+      features: ['cards', 'parking', 'delivery', 'organic'],
+      specialties: ['Organic produce', 'Local cheese', 'Honey', 'Wine', 'Artisan products'],
+      deliveryApps: ['Glovo'],
+      parkingAvailable: true,
+      englishSpeaking: true,
+      tips: [
+        'Best organic selection in Tbilisi',
+        'Support local farmers',
+        'Premium quality products',
+        'Great gift options'
+      ]
+    },
+    {
+      id: 'wine-house',
+      name: 'Wine House',
+      category: 'specialty',
+      type: 'Wine & Spirits',
+      rating: 4.8,
+      priceRange: '₾₾₾',
+      locations: ['Old Town', 'Vake'],
+      address: '45 Rustaveli Ave, Tbilisi',
+      hours: '10:00 - 22:00',
+      phone: '+995 32 2 99 88 77',
+      website: 'winehouse.ge',
+      description: 'Extensive selection of Georgian and international wines, expert staff.',
+      features: ['cards', 'tastings', 'delivery', 'expert-advice'],
+      specialties: ['Georgian wine', 'Chacha', 'International wines', 'Rare vintages', 'Gifts'],
+      deliveryApps: [],
+      parkingAvailable: false,
+      englishSpeaking: true,
+      tips: [
+        'Wine tasting events',
+        'Expert recommendations',
+        'Rare Georgian wines',
+        'Gift packaging available'
+      ]
+    },
+    // Markets
+    {
+      id: 'deserters-bazaar',
+      name: 'Deserters\' Bazaar',
+      category: 'markets',
+      type: 'Traditional Market',
+      rating: 4.4,
+      priceRange: '₾',
+      locations: ['Didube'],
+      address: 'Didube, Tbilisi',
+      hours: '08:00 - 18:00',
+      phone: '',
+      website: '',
+      description: 'Large traditional market with fresh produce, meat, spices, and household goods.',
+      features: ['cash-only', 'bargaining'],
+      specialties: ['Fresh produce', 'Meat', 'Spices', 'Cheese', 'Dried fruits', 'Nuts'],
+      deliveryApps: [],
+      parkingAvailable: true,
+      englishSpeaking: false,
+      tips: [
+        'Best prices in Tbilisi',
+        'Bargaining expected',
+        'Go early for best selection',
+        'Bring cash only'
+      ]
+    },
+    {
+      id: 'dry-bridge',
+      name: 'Dry Bridge Market',
+      category: 'markets',
+      type: 'Flea Market',
+      rating: 4.5,
+      priceRange: '₾',
+      locations: ['Old Town'],
+      address: 'Dry Bridge, Tbilisi',
+      hours: '10:00 - 18:00 (weekends)',
+      phone: '',
+      website: '',
+      description: 'Famous weekend flea market with antiques, Soviet memorabilia, art, and crafts.',
+      features: ['cash-only', 'bargaining', 'unique-finds'],
+      specialties: ['Antiques', 'Soviet items', 'Art', 'Jewelry', 'Books', 'Collectibles'],
+      deliveryApps: [],
+      parkingAvailable: false,
+      englishSpeaking: false,
+      tips: [
+        'Weekends only',
+        'Great for souvenirs',
+        'Bargaining essential',
+        'Unique vintage finds'
+      ]
+    }
+  ]
+
+  const filteredStores = stores.filter(store => {
+    const matchesCategory = selectedCategory === 'all' || store.category === selectedCategory
+    const matchesSearch = store.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         store.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         store.type.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
+
+  const getFeatureIcon = (feature: string) => {
+    switch (feature) {
+      case 'wifi': return <Wifi className="h-4 w-4" />
+      case 'cards': return <CreditCard className="h-4 w-4" />
+      case 'parking': return <Car className="h-4 w-4" />
+      case 'delivery': return <Package className="h-4 w-4" />
+      case 'online-shopping': return <Globe className="h-4 w-4" />
+      default: return <CheckCircle className="h-4 w-4" />
+    }
+  }
+
+  const getFeatureLabel = (feature: string) => {
+    const labels: {[key: string]: string} = {
+      'wifi': 'WiFi',
+      'cards': 'Cards',
+      'parking': 'Parking',
+      'delivery': 'Delivery',
+      'online-shopping': 'Online',
+      'warranty': 'Warranty',
+      'installation': 'Installation',
+      'financing': 'Financing',
+      'cafe': 'Café',
+      'events': 'Events',
+      'repair': 'Repair',
+      'lessons': 'Lessons',
+      'rental': 'Rental',
+      'organic': 'Organic',
+      'tastings': 'Tastings',
+      'expert-advice': 'Expert Advice',
+      'cash-only': 'Cash Only',
+      'bargaining': 'Bargaining',
+      'rare-finds': 'Rare Finds',
+      'unique-finds': 'Unique Finds'
+    }
+    return labels[feature] || feature
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="relative bg-gradient-to-br from-purple-600 via-pink-600 to-red-600 text-white py-16 overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center mb-6">
+            <div className="bg-white/10 p-3 rounded-full mr-4">
+              <ShoppingBag className="h-12 w-12 text-white" />
+            </div>
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-2">
+                Shopping & Retail Guide
+              </h1>
+              <div className="flex items-center space-x-4 text-purple-200">
+                <div className="flex items-center">
+                  <ShoppingCart className="h-5 w-5 mr-2" />
+                  <span>Supermarkets</span>
+                </div>
+                <div className="flex items-center">
+                  <Laptop className="h-5 w-5 mr-2" />
+                  <span>Technology</span>
+                </div>
+                <div className="flex items-center">
+                  <Book className="h-5 w-5 mr-2" />
+                  <span>Books & Music</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="text-xl max-w-3xl">
+            Your complete guide to shopping in Tbilisi. From supermarkets and tech stores 
+            to bookshops and specialty food markets - find everything you need.
+          </p>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Search and Filters */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <input
+                type="text"
+                placeholder="Search stores..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`p-3 rounded-lg border-2 transition-all duration-200 ${
+                  selectedCategory === category.id
+                    ? 'border-purple-500 bg-purple-50 text-purple-700'
+                    : 'border-gray-200 hover:border-purple-300 text-gray-700'
+                }`}
+              >
+                <category.icon className="h-5 w-5 mx-auto mb-1" />
+                <div className="font-semibold text-xs">{category.name}</div>
+                <div className="text-xs text-gray-500">({category.count})</div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="text-2xl font-bold text-purple-600">{filteredStores.length}</div>
+            <div className="text-sm text-gray-600">Stores Found</div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="text-2xl font-bold text-green-600">
+              {filteredStores.filter(s => s.deliveryApps.length > 0).length}
+            </div>
+            <div className="text-sm text-gray-600">Delivery Available</div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="text-2xl font-bold text-blue-600">
+              {filteredStores.filter(s => s.englishSpeaking).length}
+            </div>
+            <div className="text-sm text-gray-600">English Speaking</div>
+          </div>
+          <div className="bg-white rounded-lg shadow p-4 text-center">
+            <div className="text-2xl font-bold text-orange-600">
+              {filteredStores.filter(s => s.parkingAvailable).length}
+            </div>
+            <div className="text-sm text-gray-600">Parking Available</div>
+          </div>
+        </div>
+
+        {/* Store Cards */}
+        <div className="space-y-6">
+          {filteredStores.map((store) => (
+            <div key={store.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <h2 className="text-2xl font-bold text-gray-900">{store.name}</h2>
+                      {store.englishSpeaking && (
+                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-semibold">
+                          English
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-gray-600 mb-2">{store.type}</p>
+                    <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 text-yellow-500 fill-current mr-1" />
+                        <span className="font-semibold">{store.rating}</span>
+                      </div>
+                      <span className="text-lg font-bold text-green-600">{store.priceRange}</span>
+                      <span className="flex items-center">
+                        <MapPin className="h-4 w-4 mr-1" />
+                        {store.locations[0]}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-gray-600 mb-4">{store.description}</p>
+
+                {/* Features */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {store.features.map((feature, idx) => (
+                    <span key={idx} className="flex items-center bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                      {getFeatureIcon(feature)}
+                      <span className="ml-1">{getFeatureLabel(feature)}</span>
+                    </span>
+                  ))}
+                </div>
+
+                {/* Specialties */}
+                <div className="mb-4">
+                  <h4 className="font-semibold text-gray-900 mb-2">Specialties:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {store.specialties.map((specialty, idx) => (
+                      <span key={idx} className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">
+                        {specialty}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Delivery Apps */}
+                {store.deliveryApps.length > 0 && (
+                  <div className="flex items-center mb-4">
+                    <Package className="h-4 w-4 text-blue-600 mr-2" />
+                    <span className="text-sm text-gray-600">
+                      Delivery: {store.deliveryApps.join(', ')}
+                    </span>
+                  </div>
+                )}
+
+                {/* Tips */}
+                <div className="bg-blue-50 rounded-lg p-4 mb-4">
+                  <h5 className="font-semibold text-blue-800 mb-2">Pro Tips:</h5>
+                  <ul className="text-sm text-blue-700 space-y-1">
+                    {store.tips.map((tip, idx) => (
+                      <li key={idx}>• {tip}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Contact Info */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm border-t border-gray-200 pt-4">
+                  <div>
+                    <span className="font-semibold text-gray-700">Hours:</span>
+                    <p className="text-gray-600">{store.hours}</p>
+                  </div>
+                  {store.phone && (
+                    <div>
+                      <span className="font-semibold text-gray-700">Phone:</span>
+                      <p className="text-gray-600">{store.phone}</p>
+                    </div>
+                  )}
+                  {store.website && (
+                    <div>
+                      <span className="font-semibold text-gray-700">Website:</span>
+                      <a href={`https://${store.website}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
+                        {store.website}
+                        <ExternalLink className="h-3 w-3 ml-1" />
+                      </a>
+                    </div>
+                  )}
+                  <div>
+                    <span className="font-semibold text-gray-700">Parking:</span>
+                    <p className={`${store.parkingAvailable ? 'text-green-600' : 'text-red-600'}`}>
+                      {store.parkingAvailable ? 'Available' : 'Not Available'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {filteredStores.length === 0 && (
+          <div className="text-center py-12">
+            <ShoppingBag className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">No stores found</h3>
+            <p className="text-gray-600">Try adjusting your search or filters.</p>
+          </div>
+        )}
+
+        {/* Shopping Tips */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Shopping Tips for Expats</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-green-50 p-4 rounded-lg">
+              <ShoppingCart className="h-8 w-8 text-green-600 mb-3" />
+              <h3 className="font-semibold text-gray-900 mb-2">Supermarket Shopping</h3>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Loyalty cards offer significant discounts</li>
+                <li>• Markets are cheaper than supermarkets</li>
+                <li>• Fresh produce best in morning</li>
+                <li>• Many stores offer delivery</li>
+              </ul>
+            </div>
+            
+            <div className="bg-blue-50 p-4 rounded-lg">
+              <CreditCard className="h-8 w-8 text-blue-600 mb-3" />
+              <h3 className="font-semibold text-gray-900 mb-2">Payment & Prices</h3>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• Most stores accept cards</li>
+                <li>• Markets usually cash only</li>
+                <li>• Bargaining common at markets</li>
+                <li>• Prices generally lower than Western Europe</li>
+              </ul>
+            </div>
+            
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <Globe className="h-8 w-8 text-purple-600 mb-3" />
+              <h3 className="font-semibold text-gray-900 mb-2">Language & Service</h3>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li>• International chains have English speakers</li>
+                <li>• Learn basic Georgian numbers</li>
+                <li>• Google Translate helpful at markets</li>
+                <li>• Staff generally helpful to foreigners</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
