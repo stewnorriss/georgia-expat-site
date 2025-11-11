@@ -19,7 +19,7 @@ export default function DayTripsPage() {
       difficulty: 'easy',
       cost: '₾₾',
       rating: 4.8,
-      image: 'https://images.unsplash.com/photo-1625504615927-c14f4f309b63?w=800&h=500&fit=crop',
+      image: 'https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?w=800&h=500&fit=crop',
       description: 'Georgia\'s premier seaside resort with beautiful beaches, modern architecture, and vibrant nightlife.',
       highlights: [
         'Batumi Boulevard seaside promenade',
@@ -57,7 +57,7 @@ export default function DayTripsPage() {
       difficulty: 'moderate',
       cost: '₾₾',
       rating: 4.9,
-      image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=500&fit=crop',
+      image: 'https://images.unsplash.com/photo-1580837119756-563d608dd119?w=800&h=500&fit=crop',
       description: 'Dramatic mountain scenery with the iconic Gergeti Trinity Church and views of Mount Kazbek.',
       highlights: [
         'Gergeti Trinity Church (14th century)',
@@ -94,7 +94,7 @@ export default function DayTripsPage() {
       difficulty: 'easy',
       cost: '₾₾',
       rating: 4.7,
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=500&fit=crop',
+      image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=500&fit=crop',
       description: 'Charming hilltop town known as the "City of Love" surrounded by Georgia\'s premier wine region.',
       highlights: [
         'Sighnaghi old town and city walls',
@@ -132,7 +132,7 @@ export default function DayTripsPage() {
       difficulty: 'moderate',
       cost: '₾₾',
       rating: 4.6,
-      image: 'https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=800&h=500&fit=crop',
+      image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&h=500&fit=crop',
       description: 'Incredible 12th-century cave monastery complex carved into a cliff face.',
       highlights: [
         'Cave monastery with 600 rooms',
@@ -169,7 +169,7 @@ export default function DayTripsPage() {
       difficulty: 'easy',
       cost: '₾',
       rating: 4.5,
-      image: 'https://images.unsplash.com/photo-1590073844006-33379778ae09?w=800&h=500&fit=crop',
+      image: 'https://images.unsplash.com/photo-1611416517780-eff3a13b0359?w=800&h=500&fit=crop',
       description: 'UNESCO World Heritage site and former capital of Georgia with ancient churches and monasteries.',
       highlights: [
         'Svetitskhoveli Cathedral',
@@ -207,7 +207,7 @@ export default function DayTripsPage() {
       difficulty: 'easy',
       cost: '₾₾',
       rating: 4.4,
-      image: 'https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&h=500&fit=crop',
+      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop',
       description: 'Famous spa town with mineral water springs and nearby ski resort in the mountains.',
       highlights: [
         'Borjomi mineral water springs',
