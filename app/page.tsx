@@ -315,13 +315,14 @@ const HomePage = () => {
                 მოგესალმებით თბილისში
               </h1>
               <h2 className="text-2xl md:text-4xl font-bold mb-6">
-                Welcome to Stew's Guide To Tbilisi
+                Your Complete Expat Guide to Tbilisi
               </h2>
               <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto leading-relaxed">
-                My guide to expat life in Georgia's capital. 
-                Experience <span className="text-yellow-300 font-semibold">authentic Georgian culture</span>, 
-                discover <span className="text-yellow-300 font-semibold">hidden gems</span>, and navigate 
-                <span className="text-yellow-300 font-semibold">daily life</span>.
+                Living in Tbilisi since 2020. This is everything I wish I knew when I first arrived - 
+                from finding the <span className="text-yellow-300 font-semibold">best khachapuri</span> to 
+                navigating <span className="text-yellow-300 font-semibold">Georgian bureaucracy</span>, 
+                learning the <span className="text-yellow-300 font-semibold">language</span>, and 
+                discovering why this city becomes home.
               </p>
             </>
           }>
@@ -329,14 +330,15 @@ const HomePage = () => {
               მოგესალმებით თბილისში
             </h1>
             <h2 className="text-2xl md:text-4xl font-bold mb-6 animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-              Welcome to Stew's Guide To Tbilisi
+              Your Complete Expat Guide to Tbilisi
             </h2>
             
             <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto animate-slide-in-up leading-relaxed" style={{ animationDelay: '0.4s' }}>
-              My guide to expat life in Georgia's capital. 
-              Experience <span className="text-yellow-300 font-semibold">authentic Georgian culture</span>, 
-              discover <span className="text-yellow-300 font-semibold">hidden gems</span>, and navigate 
-              <span className="text-yellow-300 font-semibold">daily life</span>.
+              Living in Tbilisi since 2020. This is everything I wish I knew when I first arrived - 
+              from finding the <span className="text-yellow-300 font-semibold">best khachapuri</span> to 
+              navigating <span className="text-yellow-300 font-semibold">Georgian bureaucracy</span>, 
+              learning the <span className="text-yellow-300 font-semibold">language</span>, and 
+              discovering why this city becomes home.
             </p>
           </ClientOnlyWrapper>
           
