@@ -19,7 +19,8 @@ export default function NightlifePage() {
       hours: '6 PM - 2 AM',
       highlights: ['Creative cocktails', 'Cozy atmosphere', 'Great music'],
       crowd: 'Expats, locals, cocktail lovers',
-      best_for: 'Date night, craft cocktails'
+      best_for: 'Date night, craft cocktails',
+      instagram: '@divebartbilisi'
     },
     {
       name: 'Canudos',
@@ -43,7 +44,9 @@ export default function NightlifePage() {
       hours: 'Fri-Sun, 11 PM - 8 AM',
       highlights: ['World-class DJs', 'Incredible sound system', 'No photos policy'],
       crowd: 'Ravers, techno lovers, international crowd',
-      best_for: 'Serious clubbing, techno music'
+      best_for: 'Serious clubbing, techno music',
+      website: 'bassiani.com',
+      instagram: '@bassianiklubi'
     },
     {
       name: 'Mtkvarze',
@@ -68,7 +71,9 @@ export default function NightlifePage() {
       hours: 'Thu-Sun, 11 PM - 6 AM',
       highlights: ['Techno & house', 'Riverside location', 'Multiple floors'],
       crowd: 'Electronic music fans, dancers',
-      best_for: 'All-night dancing, electronic music'
+      best_for: 'All-night dancing, electronic music',
+      website: 'khidi.ge',
+      instagram: '@khidi_tbilisi'
     },
     {
       name: 'Rooms Hotel Bar',
@@ -131,7 +136,9 @@ export default function NightlifePage() {
       schedule: 'Weekends, varies',
       cover: '₾10-25',
       highlights: ['Creative space', 'Diverse acts', 'Young crowd'],
-      best_for: 'Alternative music, creative events'
+      best_for: 'Alternative music, creative events',
+      website: 'fabrikatbilisi.com',
+      instagram: '@fabrikatbilisi'
     }
   ]
 

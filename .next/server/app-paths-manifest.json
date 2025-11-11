@@ -1,13 +1,7 @@
 {
-  "/page": "app/page.js",
-  "/internet/page": "app/internet/page.js",
-  "/tools/page": "app/tools/page.js",
-  "/restaurants/page": "app/restaurants/page.js",
-  "/daytrips/page": "app/daytrips/page.js",
-  "/currency/page": "app/currency/page.js",
-  "/transport/page": "app/transport/page.js",
-  "/emergency/page": "app/emergency/page.js",
   "/housing/page": "app/housing/page.js",
+  "/page": "app/page.js",
   "/shopping/page": "app/shopping/page.js",
+  "/nightlife/page": "app/nightlife/page.js",
   "/language/page": "app/language/page.js"
 }

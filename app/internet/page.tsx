@@ -21,7 +21,9 @@ export default function InternetPage() {
       coverage: 'Excellent in Tbilisi',
       installation: '₾0-50 (often free)',
       contract: 'No long-term contract',
-      expat_rating: 5
+      expat_rating: 5,
+      website: 'silknet.com',
+      phone: '+995 32 217 00 17'
     },
     {
       name: 'Magticom',
@@ -35,7 +37,9 @@ export default function InternetPage() {
       coverage: 'Excellent nationwide',
       installation: '₾0-40',
       contract: 'Flexible',
-      expat_rating: 4
+      expat_rating: 4,
+      website: 'magticom.ge',
+      phone: '+995 577 10 01 11'
     },
     {
       name: 'Caucasus Online',
@@ -49,7 +53,9 @@ export default function InternetPage() {
       coverage: 'Good in central Tbilisi',
       installation: '₾30-50',
       contract: 'Monthly',
-      expat_rating: 4
+      expat_rating: 4,
+      website: 'co.ge',
+      phone: '+995 32 251 00 00'
     }
   ]
 
@@ -67,7 +73,8 @@ export default function InternetPage() {
       pros: ['Best coverage', 'Fast 4G/5G', 'Good customer service', 'Easy top-up'],
       cons: ['Slightly expensive', 'Data can be slow in rural areas'],
       sim_cost: '₾5',
-      expat_friendly: 5
+      expat_friendly: 5,
+      website: 'magticom.ge'
     },
     {
       name: 'Beeline',
@@ -82,7 +89,8 @@ export default function InternetPage() {
       pros: ['Cheapest option', 'Good speeds', 'Frequent promotions', 'Easy activation'],
       cons: ['Coverage gaps', 'Customer service in Georgian'],
       sim_cost: '₾3',
-      expat_friendly: 4
+      expat_friendly: 4,
+      website: 'beeline.ge'
     },
     {
       name: 'Silknet Mobile',
@@ -97,7 +105,8 @@ export default function InternetPage() {
       pros: ['Bundle with home internet', 'Good urban coverage', 'Reliable'],
       cons: ['Weaker rural coverage', 'Fewer stores'],
       sim_cost: '₾5',
-      expat_friendly: 4
+      expat_friendly: 4,
+      website: 'silknet.com'
     }
   ]
 
@@ -118,7 +127,8 @@ export default function InternetPage() {
       price: '₾200-400/month',
       rating: 4.9,
       features: ['24/7 access', 'Meeting rooms', 'Events', 'Great community'],
-      best_for: 'Serious digital nomads'
+      best_for: 'Serious digital nomads',
+      website: 'terminal.ge'
     },
     {
       name: 'Impact Hub',
@@ -127,7 +137,8 @@ export default function InternetPage() {
       price: '₾150-350/month',
       rating: 4.7,
       features: ['Networking events', 'Mentorship', 'Modern space', 'Kitchen'],
-      best_for: 'Startups and entrepreneurs'
+      best_for: 'Startups and entrepreneurs',
+      website: 'tbilisi.impacthub.net'
     },
     {
       name: 'Fabrika',
@@ -136,7 +147,8 @@ export default function InternetPage() {
       price: '₾100-250/month',
       rating: 4.6,
       features: ['Creative space', 'Cafe', 'Events', 'Hostel attached'],
-      best_for: 'Creative professionals'
+      best_for: 'Creative professionals',
+      website: 'fabrikatbilisi.com'
     },
     {
       name: 'Nest',
@@ -145,7 +157,8 @@ export default function InternetPage() {
       price: '₾180-320/month',
       rating: 4.5,
       features: ['Quiet environment', 'Private offices', 'Good coffee'],
-      best_for: 'Focus work'
+      best_for: 'Focus work',
+      website: 'nest.ge'
     }
   ]
 

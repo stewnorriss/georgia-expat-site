@@ -19,6 +19,7 @@ export default function BankingPage() {
       accounts: ['Current Account', 'Savings Account', 'Foreign Currency'],
       fees: 'Free basic account, ₾5-10/month for premium',
       website: 'tbcbank.ge',
+      phone: '+995 32 227 27 27',
       expat_friendly: 5,
       documents: ['Passport', 'Proof of address', 'Georgian phone number'],
       opening_time: '30-60 minutes'
@@ -33,6 +34,7 @@ export default function BankingPage() {
       accounts: ['Current Account', 'Savings Account', 'Investment Account'],
       fees: 'Free basic account, ₾8-15/month for premium',
       website: 'bog.ge',
+      phone: '+995 32 244 44 44',
       expat_friendly: 4,
       documents: ['Passport', 'Proof of address', 'Tax ID (for some accounts)'],
       opening_time: '45-90 minutes'
@@ -47,6 +49,7 @@ export default function BankingPage() {
       accounts: ['Current Account', 'Savings Account', 'USD/EUR Accounts'],
       fees: 'Free basic account, ₾5/month for premium',
       website: 'libertybank.ge',
+      phone: '+995 32 255 55 00',
       expat_friendly: 4,
       documents: ['Passport', 'Proof of address'],
       opening_time: '30-45 minutes'
@@ -62,7 +65,8 @@ export default function BankingPage() {
       pros: ['Best rates', 'Transparent fees', 'Multi-currency account', 'Works great in Georgia'],
       cons: ['Not instant', 'Limits on large transfers'],
       supported: ['GEL', 'USD', 'EUR', 'GBP', '50+ currencies'],
-      recommendation: 'Best for regular international transfers'
+      recommendation: 'Best for regular international transfers',
+      website: 'wise.com'
     },
     {
       name: 'Revolut',
@@ -72,7 +76,8 @@ export default function BankingPage() {
       pros: ['Great app', 'Instant transfers', 'Crypto support', 'Virtual cards'],
       cons: ['Monthly limits on free plan', 'Customer service'],
       supported: ['GEL', 'USD', 'EUR', 'GBP', '30+ currencies'],
-      recommendation: 'Best for frequent small transfers'
+      recommendation: 'Best for frequent small transfers',
+      website: 'revolut.com'
     },
     {
       name: 'Bank Wire Transfer',
