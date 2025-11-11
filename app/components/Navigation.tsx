@@ -15,42 +15,27 @@ const CategoryDropdown = ({ category }: { category: any }) => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <button className="flex items-center text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-red-50 dark:hover:bg-red-900/20">
-        <span className="mr-1">{category.icon}</span>
+      <button className="flex items-center text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-2 py-2 text-sm font-medium transition-colors">
+        <span className="mr-1.5">{category.icon}</span>
         <span>{category.title}</span>
         <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
-      <div className={`absolute left-0 mt-2 w-80 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-2xl border border-red-100/50 dark:border-red-800/30 transition-all duration-300 ${
-        isOpen ? 'opacity-100 visible transform translate-y-0' : 'opacity-0 invisible transform -translate-y-2'
+      <div className={`absolute left-0 mt-1 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 ${
+        isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
       }`}>
-        <div className="p-4">
-          <div className="flex items-center mb-4">
-            <span className="text-2xl mr-3">{category.icon}</span>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white">{category.title}</h3>
-          </div>
-          <div className="space-y-2">
+        <div className="p-3">
+          <div className="space-y-1">
             {category.items.map((item: any) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block p-3 rounded-lg hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 transition-all duration-200 group"
+                className="block p-2 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors group"
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
-                      {item.label}
-                    </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                      {item.description}
-                    </p>
-                  </div>
-                  {/* Special badges */}
-                  {item.href === '/language' && (
-                    <span className="ml-2 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full">AI</span>
-                  )}
-                  {item.href === '/recommendations' && (
-                    <span className="ml-2 text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full">Smart</span>
-                  )}
+                <div className="font-medium text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 text-sm">
+                  {item.label}
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                  {item.description}
                 </div>
               </Link>
             ))}
@@ -67,11 +52,8 @@ const Navigation = () => {
 
   const mainNavItems = [
     { href: '/', label: 'Home' },
-    { href: '/moving-checklist', label: 'Moving Checklist' },
-    { href: '/faq', label: 'FAQ & Resources' },
-    { href: '/recommendations', label: 'Recommendations' },
-    { href: '/tools', label: 'Interactive Tools' },
-    { href: '/community', label: 'Community & Events' },
+    { href: '/moving-checklist', label: 'Checklist' },
+    { href: '/faq', label: 'FAQ' },
     { href: '/blog', label: 'Blog' },
   ]
 
@@ -168,7 +150,7 @@ const Navigation = () => {
             {/* AI Search Button */}
             <button
               onClick={() => setShowAISearch(!showAISearch)}
-              className="flex items-center text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-3 py-1.5 text-sm font-medium transition-all rounded-md shadow-md hover:shadow-lg ml-2"
+              className="flex items-center text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 text-sm font-medium transition-colors rounded-md ml-2"
             >
               <Search className="h-4 w-4 mr-1.5" />
               <span>Search</span>

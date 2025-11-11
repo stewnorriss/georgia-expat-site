@@ -334,7 +334,7 @@ const HomePage = () => {
             </h2>
             
             <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto animate-slide-in-up leading-relaxed" style={{ animationDelay: '0.4s' }}>
-              Moving to Tbilisi in 2026. This is everything I hope I need or anyone else might need - 
+              Your complete guide to moving to Tbilisi in 2025-2026. Everything you need - 
               from finding the <span className="text-yellow-300 font-semibold">best khachapuri</span> to 
               navigating <span className="text-yellow-300 font-semibold">Georgian bureaucracy</span>, 
               learning the <span className="text-yellow-300 font-semibold">language</span>, and 

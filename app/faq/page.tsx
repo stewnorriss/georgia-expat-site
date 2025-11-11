@@ -353,6 +353,12 @@ export default function FAQPage() {
             </div>
           </div>
         </div>
+
+        {/* Last Updated */}
+        <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+          <p>Last updated: November 11, 2025</p>
+          <p className="mt-1">Found outdated information? <a href="mailto:contact@georgiaexpat.com" className="text-blue-600 hover:text-blue-700 underline">Let us know</a></p>
+        </div>
       </div>
     </div>
   )
