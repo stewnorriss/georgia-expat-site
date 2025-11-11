@@ -80,6 +80,7 @@ const Navigation = () => {
       items: [
         { href: '/restaurants', label: 'Restaurants & Dining', description: 'Best places to eat in Tbilisi' },
         { href: '/places', label: 'Places to Visit', description: 'Tourist attractions & hidden gems' },
+        { href: '/nightlife', label: 'Nightlife & Entertainment', description: 'Bars, clubs, live music & karaoke' },
         { href: '/accommodation', label: 'Hotels & Stays', description: 'Where to stay in the city' },
         { href: '/activities', label: 'Adventures & Activities', description: 'Things to do and experiences' },
         { href: '/daytrips', label: 'Day Trips & Getaways', description: 'Weekend adventures from Tbilisi' },
