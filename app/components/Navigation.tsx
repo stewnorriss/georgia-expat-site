@@ -68,6 +68,7 @@ const Navigation = () => {
   const mainNavItems = [
     { href: '/', label: 'Home' },
     { href: '/moving-checklist', label: 'Moving Checklist' },
+    { href: '/faq', label: 'FAQ & Resources' },
     { href: '/recommendations', label: 'Recommendations' },
     { href: '/tools', label: 'Interactive Tools' },
     { href: '/community', label: 'Community & Events' },

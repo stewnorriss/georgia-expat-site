@@ -1,7 +1,7 @@
 {
   "/nightlife/page": "app/nightlife/page.js",
+  "/jobs/page": "app/jobs/page.js",
   "/moving-checklist/page": "app/moving-checklist/page.js",
-  "/language/page": "app/language/page.js",
-  "/shopping/page": "app/shopping/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/language/page": "app/language/page.js"
 }
