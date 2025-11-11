@@ -93,7 +93,9 @@ const Navigation = () => {
         { href: '/housing', label: 'Housing & Rentals', description: 'Find your perfect home' },
         { href: '/transport', label: 'Getting Around', description: 'Transportation options' },
         { href: '/medical', label: 'Healthcare & Medical', description: 'Medical services & hospitals' },
-        { href: '/currency', label: 'Currency & Banking', description: 'Money matters & banking' },
+        { href: '/banking', label: 'Banking & Finance', description: 'Banks, transfers & money management' },
+        { href: '/internet', label: 'Internet & Mobile', description: 'WiFi, SIM cards & connectivity' },
+        { href: '/currency', label: 'Currency Exchange', description: 'Exchange rates & converters' },
         { href: '/legal', label: 'Legal & Bureaucracy', description: 'Visas, taxes & official procedures' },
       ]
     },

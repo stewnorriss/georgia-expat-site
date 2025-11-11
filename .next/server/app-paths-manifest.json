@@ -1,7 +1,7 @@
 {
-  "/arts/page": "app/arts/page.js",
-  "/medical/page": "app/medical/page.js",
   "/daytrips/page": "app/daytrips/page.js",
-  "/shopping/page": "app/shopping/page.js",
-  "/page": "app/page.js"
+  "/transport/page": "app/transport/page.js",
+  "/housing/page": "app/housing/page.js",
+  "/page": "app/page.js",
+  "/shopping/page": "app/shopping/page.js"
 }
