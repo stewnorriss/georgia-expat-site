@@ -100,7 +100,7 @@ const HousingPage = () => {
                 <div 
                   className="w-full h-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center hover:scale-105 transition-transform duration-300"
                   style={{
-                    backgroundImage: `url('https://picsum.photos/800/400?random=${index + 700}')`,
+                    backgroundImage: `url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=400&fit=crop')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

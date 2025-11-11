@@ -48,7 +48,7 @@ const ArtsPage = () => {
                 <div 
                   className="w-full h-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center hover:scale-105 transition-transform duration-300"
                   style={{
-                    backgroundImage: `url('https://picsum.photos/800/400?random=${index + 600}')`,
+                    backgroundImage: `url('https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=800&h=400&fit=crop')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

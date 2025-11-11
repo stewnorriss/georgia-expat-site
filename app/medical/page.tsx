@@ -69,7 +69,7 @@ const MedicalPage = () => {
                 <div 
                   className="w-full h-full bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center hover:scale-105 transition-transform duration-300"
                   style={{
-                    backgroundImage: `url('https://picsum.photos/800/400?random=${index + 300}')`,
+                    backgroundImage: `url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=400&fit=crop')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

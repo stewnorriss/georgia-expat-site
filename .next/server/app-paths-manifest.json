@@ -1,3 +1,7 @@
 {
+  "/arts/page": "app/arts/page.js",
+  "/medical/page": "app/medical/page.js",
+  "/daytrips/page": "app/daytrips/page.js",
+  "/shopping/page": "app/shopping/page.js",
   "/page": "app/page.js"
 }
