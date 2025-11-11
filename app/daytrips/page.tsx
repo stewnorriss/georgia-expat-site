@@ -355,8 +355,10 @@ export default function DayTripsPage() {
             <div key={destination.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="md:flex">
                 <div className="md:w-1/3">
-                  <div className="h-64 md:h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <Camera className="h-16 w-16 text-gray-400" />
+                  <div 
+                    className="h-64 md:h-full bg-gradient-to-br from-gray-200 to-gray-300 bg-cover bg-center"
+                    style={{ backgroundImage: `url('${destination.image}')` }}
+                  >
                   </div>
                 </div>
                 
