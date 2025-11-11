@@ -15,11 +15,10 @@ const CategoryDropdown = ({ category }: { category: any }) => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <button className="flex items-center text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 group relative overflow-hidden">
-        <span className="relative z-10 mr-1">{category.icon}</span>
-        <span className="relative z-10">{category.title}</span>
-        <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 relative z-10 ${isOpen ? 'rotate-180' : ''}`} />
-        <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <button className="flex items-center text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-red-50 dark:hover:bg-red-900/20">
+        <span className="mr-1">{category.icon}</span>
+        <span>{category.title}</span>
+        <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       <div className={`absolute left-0 mt-2 w-80 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-2xl border border-red-100/50 dark:border-red-800/30 transition-all duration-300 ${
         isOpen ? 'opacity-100 visible transform translate-y-0' : 'opacity-0 invisible transform -translate-y-2'
@@ -118,29 +117,20 @@ const Navigation = () => {
   ]
 
   return (
-    <nav className="bg-gradient-to-r from-white/95 via-red-50/40 to-white/95 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-gray-900/95 shadow-xl sticky top-0 z-50 border-b border-red-100/50 dark:border-gray-700/80 backdrop-blur-xl backdrop-saturate-150">
+    <nav className="bg-white/95 dark:bg-gray-900/95 shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700 backdrop-blur-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20">
+        <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-red-600 rounded-full blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-                <div className="relative bg-gradient-to-br from-red-500 to-red-600 p-2 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 animate-logo-glow">
-                  <MapPin className="h-6 w-6 text-white group-hover:animate-pulse" />
-                </div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse shadow-sm"></div>
+            <Link href="/" className="flex items-center space-x-2 group">
+              <div className="relative bg-gradient-to-br from-red-500 to-red-600 p-1.5 rounded-full shadow-md group-hover:shadow-lg transition-all duration-200">
+                <MapPin className="h-5 w-5 text-white" />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-baseline space-x-2">
-                  <span className="font-bold text-xl text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-all duration-300">
-                    Tbilisi
-                  </span>
-                  <span className="font-semibold text-lg text-gray-700 dark:text-gray-300 group-hover:text-red-500 dark:group-hover:text-red-400 transition-all duration-300">
-                    Expat Guide
-                  </span>
-                </div>
-                <span className="text-xs text-gray-500 dark:text-gray-500 italic group-hover:text-red-500 dark:group-hover:text-red-400 transition-all duration-300">
-                  by Stew
+              <div className="flex items-baseline space-x-1.5">
+                <span className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                  Tbilisi
+                </span>
+                <span className="font-medium text-sm text-gray-600 dark:text-gray-400">
+                  Expat Guide
                 </span>
               </div>
             </Link>
@@ -148,16 +138,13 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
-            {mainNavItems.map((item, index) => (
+            {mainNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 group overflow-hidden"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-red-50 dark:hover:bg-red-900/20"
               >
-                <span className="relative z-10">{item.label}</span>
-                <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-red-500 to-red-600 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {item.label}
               </Link>
             ))}
 
@@ -175,14 +162,10 @@ const Navigation = () => {
             {/* AI Search Button */}
             <button
               onClick={() => setShowAISearch(!showAISearch)}
-              className="flex items-center text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-4 py-2 text-sm font-semibold transition-all duration-200 rounded-lg shadow-lg hover:shadow-xl group relative overflow-hidden"
+              className="flex items-center text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-3 py-1.5 text-sm font-medium transition-all rounded-md shadow-md hover:shadow-lg ml-2"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <Search className="h-4 w-4 mr-2 relative z-10 group-hover:scale-110 transition-transform duration-200" />
-              <span className="relative z-10">AI Search</span>
-              <div className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse shadow-sm">
-                <Sparkles className="h-2.5 w-2.5" />
-              </div>
+              <Search className="h-4 w-4 mr-1.5" />
+              <span>Search</span>
             </button>
           </div>
 
@@ -200,18 +183,12 @@ const Navigation = () => {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 p-2 rounded-lg hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 transition-all duration-200"
+              className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 p-2 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
             >
-              <div className="relative w-6 h-6">
-                <span className={`absolute block w-6 h-0.5 bg-current transform transition-all duration-300 ${
-                  isOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
-                }`}></span>
-                <span className={`absolute block w-6 h-0.5 bg-current transform transition-all duration-300 ${
-                  isOpen ? 'opacity-0' : 'opacity-100'
-                }`}></span>
-                <span className={`absolute block w-6 h-0.5 bg-current transform transition-all duration-300 ${
-                  isOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'
-                }`}></span>
+              <div className="w-6 h-6 flex flex-col justify-center space-y-1.5">
+                <span className={`block w-6 h-0.5 bg-current transition-transform ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                <span className={`block w-6 h-0.5 bg-current transition-opacity ${isOpen ? 'opacity-0' : ''}`}></span>
+                <span className={`block w-6 h-0.5 bg-current transition-transform ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
               </div>
             </button>
           </div>
