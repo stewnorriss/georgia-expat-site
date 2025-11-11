@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST='{"app/components/AIChatbot.tsx -> ../services/aiService":{"id":8471,"files":["static/chunks/471.63bef5af27f7fb91.js"]}}';
+self.__REACT_LOADABLE_MANIFEST="{}";
