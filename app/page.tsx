@@ -318,7 +318,7 @@ const HomePage = () => {
                 Your Complete Expat Guide to Tbilisi
               </h2>
               <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto leading-relaxed">
-                Living in Tbilisi since 2020. This is everything I wish I knew when I first arrived - 
+                Moving to Tbilisi in 2026. This is everything I hope I need or anyone else - 
                 from finding the <span className="text-yellow-300 font-semibold">best khachapuri</span> to 
                 navigating <span className="text-yellow-300 font-semibold">Georgian bureaucracy</span>, 
                 learning the <span className="text-yellow-300 font-semibold">language</span>, and 
@@ -334,7 +334,7 @@ const HomePage = () => {
             </h2>
             
             <p className="text-lg md:text-xl mb-8 max-w-4xl mx-auto animate-slide-in-up leading-relaxed" style={{ animationDelay: '0.4s' }}>
-              Living in Tbilisi since 2020. This is everything I wish I knew when I first arrived - 
+              Moving to Tbilisi in 2026. This is everything I hope I need or anyone else - 
               from finding the <span className="text-yellow-300 font-semibold">best khachapuri</span> to 
               navigating <span className="text-yellow-300 font-semibold">Georgian bureaucracy</span>, 
               learning the <span className="text-yellow-300 font-semibold">language</span>, and 
