@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Music, Beer, Mic, PartyPopper, Moon, Shield, Clock, MapPin, DollarSign, Star, AlertCircle, CheckCircle, Users, Wine, Coffee, Utensils } from 'lucide-react'
+import { Music, Beer, Mic, PartyPopper, Moon, Shield, Clock, MapPin, DollarSign, Star, AlertCircle, CheckCircle, Users, Wine, Coffee, Utensils, Globe } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Nightlife in Tbilisi - Bars, Clubs, Live Music & Entertainment',
@@ -450,7 +450,7 @@ export default function NightlifePage() {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Highlights</h4>
                     <ul className="space-y-1">
@@ -467,6 +467,33 @@ export default function NightlifePage() {
                     <div className="text-sm text-gray-600 dark:text-gray-400">{bar.best_for}</div>
                   </div>
                 </div>
+
+                {(bar.website || bar.instagram) && (
+                  <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    {bar.website && (
+                      <a 
+                        href={`https://${bar.website}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                      >
+                        <Globe className="h-4 w-4 mr-1" />
+                        {bar.website}
+                      </a>
+                    )}
+                    {bar.instagram && (
+                      <a 
+                        href={`https://instagram.com/${bar.instagram.replace('@', '')}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center text-sm text-pink-600 hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300"
+                      >
+                        <Users className="h-4 w-4 mr-1" />
+                        {bar.instagram}
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -513,10 +540,37 @@ export default function NightlifePage() {
                   </div>
                 </div>
 
-                <div className="p-3 bg-pink-50 dark:bg-pink-900/20 rounded-lg">
+                <div className="p-3 bg-pink-50 dark:bg-pink-900/20 rounded-lg mb-3">
                   <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Best For</div>
                   <div className="text-xs text-gray-600 dark:text-gray-400">{venue.best_for}</div>
                 </div>
+
+                {(venue.website || venue.instagram) && (
+                  <div className="flex flex-wrap gap-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                    {venue.website && (
+                      <a 
+                        href={`https://${venue.website}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                      >
+                        <Globe className="h-4 w-4 mr-1" />
+                        Website
+                      </a>
+                    )}
+                    {venue.instagram && (
+                      <a 
+                        href={`https://instagram.com/${venue.instagram.replace('@', '')}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center text-sm text-pink-600 hover:text-pink-700 dark:text-pink-400 dark:hover:text-pink-300"
+                      >
+                        <Users className="h-4 w-4 mr-1" />
+                        Instagram
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
