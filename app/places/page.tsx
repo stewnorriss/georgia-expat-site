@@ -19,7 +19,7 @@ const PlacesPage = () => {
       website: 'tbilisi.gov.ge',
       hours: '24/7 (Cable car: 11:00-23:00)',
       tips: 'Wear comfortable shoes, bring water, visit during golden hour',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop&crop=center'
+      image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=450&fit=crop' // Narikala Fortress view
     },
     {
       name: 'Old Town (Dzveli Kalaki)',
@@ -36,7 +36,7 @@ const PlacesPage = () => {
       website: 'old-tbilisi.com',
       hours: '24/7 (Shops: 10:00-22:00)',
       tips: 'Get lost in the narrow streets, try local wine, visit Shardeni Street',
-      image: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=800&h=450&fit=crop&crop=center'
+      image: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=800&h=450&fit=crop' // Tbilisi Old Town
     },
     {
       name: 'Sulfur Baths (Abanotubani)',
@@ -53,7 +53,7 @@ const PlacesPage = () => {
       website: 'abanotubani.ge',
       hours: '08:00-24:00 (varies by bathhouse)',
       tips: 'Book private rooms for couples, try traditional scrub massage',
-      image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=450&fit=crop&crop=center'
+      image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=450&fit=crop' // Sulfur baths
     },
     {
       name: 'Bridge of Peace',
@@ -70,7 +70,7 @@ const PlacesPage = () => {
       website: 'tbilisi.gov.ge',
       hours: '24/7 (Light show: 20:00-01:00)',
       tips: 'Visit at night for the light show, great for photos',
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop&crop=center'
+      image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=450&fit=crop' // Bridge of Peace at night
     },
     {
       name: 'Mtatsminda Park',
@@ -87,7 +87,7 @@ const PlacesPage = () => {
       website: 'mtatsmindapark.ge',
       hours: '12:00-24:00 (Funicular: 09:00-02:00)',
       tips: 'Take the historic funicular up, visit Mtatsminda Pantheon nearby',
-      image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&h=450&fit=crop&crop=center'
+      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=450&fit=crop' // Tbilisi cityscape from mountain
     },
     {
       name: 'Georgian National Museum',
@@ -104,7 +104,7 @@ const PlacesPage = () => {
       website: 'museum.ge',
       hours: '10:00-18:00 (Closed Mondays)',
       tips: 'Audio guide recommended, photography allowed in most areas',
-      image: 'https://images.unsplash.com/photo-1566127992631-137a642a90f4?w=800&h=450&fit=crop&crop=center'
+      image: 'https://images.unsplash.com/photo-1566127992631-137a642a90f4?w=800&h=450&fit=crop' // Museum interior
     },
     {
       name: 'Tbilisi Botanical Garden',
@@ -121,7 +121,7 @@ const PlacesPage = () => {
       website: 'nbg.ge',
       hours: '09:00-19:00 (Summer), 10:00-17:00 (Winter)',
       tips: 'Wear comfortable walking shoes, bring water, allow 3+ hours',
-      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=450&fit=crop&crop=center'
+      image: 'https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=800&h=450&fit=crop' // Botanical garden
     },
     {
       name: 'Rustaveli Avenue',
@@ -138,7 +138,7 @@ const PlacesPage = () => {
       website: 'rustaveli.tbilisi.gov.ge',
       hours: '24/7 (Shops: 10:00-22:00)',
       tips: 'Walk the entire length, visit Opera House, try street food',
-      image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=450&fit=crop&crop=center'
+      image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=450&fit=crop' // City street/avenue
     },
     {
       name: 'Dry Bridge Market',

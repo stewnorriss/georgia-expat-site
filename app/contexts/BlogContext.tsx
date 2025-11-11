@@ -66,7 +66,7 @@ const defaultPosts: BlogPost[] = [
     published: true,
     hasImages: true,
     hasVideo: false,
-    featuredImage: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&h=400&fit=crop', // Tbilisi panorama
     tags: ['tbilisi', 'first-impressions', 'georgia', 'expat-life'],
     createdAt: '2024-10-20T10:00:00Z',
     updatedAt: '2024-10-20T10:00:00Z'
@@ -96,7 +96,7 @@ const defaultPosts: BlogPost[] = [
     published: true,
     hasImages: true,
     hasVideo: false,
-    featuredImage: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=400&fit=crop', // Coffee shop
     tags: ['coffee', 'cafes', 'tbilisi', 'food-drink'],
     createdAt: '2024-10-18T09:00:00Z',
     updatedAt: '2024-10-18T09:00:00Z'
@@ -131,7 +131,7 @@ const defaultPosts: BlogPost[] = [
     published: true,
     hasImages: false,
     hasVideo: true,
-    featuredImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=400&fit=crop', // Books/learning
     tags: ['georgian-language', 'learning', 'alphabet', 'culture'],
     createdAt: '2024-10-15T14:00:00Z',
     updatedAt: '2024-10-15T14:00:00Z'
@@ -161,7 +161,7 @@ const defaultPosts: BlogPost[] = [
     published: true,
     hasImages: true,
     hasVideo: true,
-    featuredImage: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=800&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=800&h=400&fit=crop', // Tbilisi Old Town
     tags: ['old-town', 'architecture', 'photography', 'travel'],
     createdAt: '2024-10-12T16:00:00Z',
     updatedAt: '2024-10-12T16:00:00Z'
@@ -199,7 +199,7 @@ const defaultPosts: BlogPost[] = [
     published: true,
     hasImages: true,
     hasVideo: false,
-    featuredImage: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=400&fit=crop', // Apartment interior
     tags: ['apartment-hunting', 'housing', 'expat-tips', 'neighborhoods'],
     createdAt: '2024-10-10T11:00:00Z',
     updatedAt: '2024-10-10T11:00:00Z'
@@ -235,7 +235,7 @@ const defaultPosts: BlogPost[] = [
     published: true,
     hasImages: true,
     hasVideo: false,
-    featuredImage: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&h=400&fit=crop&crop=center',
+    featuredImage: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=400&fit=crop', // Wine/vineyard
     tags: ['wine', 'culture', 'qvevri', 'chacha', 'kakheti'],
     createdAt: '2024-10-08T15:00:00Z',
     updatedAt: '2024-10-08T15:00:00Z'

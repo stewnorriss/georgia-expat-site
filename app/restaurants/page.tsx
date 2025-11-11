@@ -13,13 +13,15 @@ const RestaurantsPage = () => {
 
   const getRestaurantImage = (name: string, index: number) => {
     const restaurantImages: { [key: string]: string } = {
-      'Shavi Lomi': 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=400&fit=crop&crop=center',
-      'Barbarestan': 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop&crop=center',
-      'Cafe Littera': 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=400&fit=crop&crop=center',
-      'Funicular Restaurant Complex': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=400&fit=crop&crop=center',
-      'Azarphesha': 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=400&fit=crop&crop=center'
+      'Shavi Lomi': 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=400&fit=crop', // Georgian traditional food
+      'Barbarestan': 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=400&fit=crop', // Fine dining
+      'Cafe Littera': 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&h=400&fit=crop', // Garden restaurant
+      'Sakhli #11': 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=400&fit=crop', // Traditional Georgian interior
+      'Keto and Kote': 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop', // Cozy restaurant
+      'Machakhela': 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=400&fit=crop', // Casual dining
+      'Culinarium Khasheria': 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=400&fit=crop' // Modern restaurant
     }
-    return restaurantImages[name] || `https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=400&fit=crop&crop=center&sig=${index}`
+    return restaurantImages[name] || `https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=400&fit=crop&sig=${index}`
   }
 
   const filters = [
