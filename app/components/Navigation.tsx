@@ -92,6 +92,7 @@ const Navigation = () => {
       title: 'Living Essentials',
       icon: '🏠',
       items: [
+        { href: '/jobs', label: 'Jobs & Remote Work', description: 'Remote work, freelancing & digital nomad visa' },
         { href: '/housing', label: 'Housing & Rentals', description: 'Find your perfect home' },
         { href: '/transport', label: 'Getting Around', description: 'Transportation options' },
         { href: '/medical', label: 'Healthcare & Medical', description: 'Medical services & hospitals' },
