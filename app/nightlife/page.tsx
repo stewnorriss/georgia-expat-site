@@ -19,7 +19,7 @@ export default function NightlifePage() {
       hours: '6 PM - 2 AM',
       highlights: ['Creative cocktails', 'Cozy atmosphere', 'Great music'],
       crowd: 'Expats, locals, cocktail lovers',
-      best_for: 'Date night, craft cocktails',
+      best_for: 'Romantic dates, impressing cocktail enthusiasts, intimate conversations over expertly crafted drinks',
       instagram: '@divebartbilisi'
     },
     {
@@ -32,7 +32,7 @@ export default function NightlifePage() {
       hours: '5 PM - 1 AM',
       highlights: ['Georgian wines', 'Tapas', 'Knowledgeable staff'],
       crowd: 'Wine enthusiasts, professionals',
-      best_for: 'Wine tasting, relaxed evening'
+      best_for: 'Discovering Georgian wines, sophisticated after-work drinks, impressing wine-loving friends'
     },
     {
       name: 'Bassiani',
@@ -44,7 +44,7 @@ export default function NightlifePage() {
       hours: 'Fri-Sun, 11 PM - 8 AM',
       highlights: ['World-class DJs', 'Incredible sound system', 'No photos policy'],
       crowd: 'Ravers, techno lovers, international crowd',
-      best_for: 'Serious clubbing, techno music',
+      best_for: 'World-class techno experience, dancing until sunrise, experiencing Tbilisi\'s legendary underground scene',
       website: 'bassiani.com',
       instagram: '@bassianiklubi'
     },
@@ -59,7 +59,7 @@ export default function NightlifePage() {
       hours_summer: '12 PM - 4 AM (Summer)',
       highlights: ['River views', 'Outdoor seating', 'Live DJs'],
       crowd: 'Mixed, tourists, locals',
-      best_for: 'Sunset drinks, summer nights'
+      best_for: 'Watching sunset over the river, casual summer evenings, meeting new people in a relaxed setting'
     },
     {
       name: 'Khidi',
@@ -71,7 +71,7 @@ export default function NightlifePage() {
       hours: 'Thu-Sun, 11 PM - 6 AM',
       highlights: ['Techno & house', 'Riverside location', 'Multiple floors'],
       crowd: 'Electronic music fans, dancers',
-      best_for: 'All-night dancing, electronic music',
+      best_for: 'Marathon dancing sessions, exploring multiple music floors, experiencing Tbilisi\'s electronic music culture',
       website: 'khidi.ge',
       instagram: '@khidi_tbilisi'
     },
@@ -85,7 +85,7 @@ export default function NightlifePage() {
       hours: '12 PM - 2 AM',
       highlights: ['Rooftop terrace', 'Premium cocktails', 'Beautiful design'],
       crowd: 'Professionals, hotel guests, upscale crowd',
-      best_for: 'Special occasions, impressive dates'
+      best_for: 'Celebrating special occasions, impressing business clients, luxury rooftop experience with city views'
     }
   ]
 
@@ -100,7 +100,7 @@ export default function NightlifePage() {
       schedule: 'Thu-Sat, 9 PM onwards',
       cover: '₾10-20',
       highlights: ['Local bands', 'International acts', 'Great acoustics'],
-      best_for: 'Live rock and alternative music'
+      best_for: 'Discovering local rock bands, experiencing live alternative music, intimate concert atmosphere'
     },
     {
       name: 'Cafe-Gallery',
@@ -112,7 +112,7 @@ export default function NightlifePage() {
       schedule: 'Wed-Sun, 8 PM',
       cover: '₾15-30',
       highlights: ['Intimate setting', 'Quality musicians', 'Wine selection'],
-      best_for: 'Jazz lovers, sophisticated nights'
+      best_for: 'Jazz enthusiasts, romantic evenings with live music, sophisticated date nights'
     },
     {
       name: 'Shardeni Street Venues',
@@ -124,7 +124,7 @@ export default function NightlifePage() {
       schedule: 'Daily, 7 PM onwards',
       cover: 'Free-₾10',
       highlights: ['Traditional music', 'Tourist-friendly', 'Multiple options'],
-      best_for: 'Georgian music, casual atmosphere'
+      best_for: 'Experiencing authentic Georgian folk music, first-time visitors, casual bar hopping'
     },
     {
       name: 'Fabrika',
@@ -136,7 +136,7 @@ export default function NightlifePage() {
       schedule: 'Weekends, varies',
       cover: '₾10-25',
       highlights: ['Creative space', 'Diverse acts', 'Young crowd'],
-      best_for: 'Alternative music, creative events',
+      best_for: 'Meeting digital nomads, discovering indie artists, experiencing Tbilisi\'s creative scene',
       website: 'fabrikatbilisi.com',
       instagram: '@fabrikatbilisi'
     }
