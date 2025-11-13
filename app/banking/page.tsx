@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Banknote, CreditCard, TrendingUp, Globe, Shield, AlertCircle, CheckCircle, Building2, Smartphone, ArrowRightLeft, Wallet, DollarSign, Euro, Bitcoin } from 'lucide-react'
+import { Banknote, CreditCard, TrendingUp, Globe, Shield, AlertCircle, CheckCircle, Building2, Smartphone, ArrowRightLeft, Wallet, DollarSign, Euro, Bitcoin, Clock } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Banking & Finance in Georgia - Complete Guide for Expats',
@@ -457,6 +457,160 @@ export default function BankingPage() {
           </div>
         </div>
 
+        {/* Step-by-Step Account Opening Guide */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Step-by-Step: Opening a Bank Account</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div className="space-y-6">
+              {[
+                {
+                  step: 1,
+                  title: 'Prepare Your Documents',
+                  time: '1 day before',
+                  details: [
+                    'Valid passport (original, not copy)',
+                    'Proof of address in Georgia (rental agreement, utility bill, or hotel booking)',
+                    'Georgian phone number (get SIM card first - see Internet page)',
+                    'Initial deposit (₾50-100 recommended)',
+                    'Optional: Tax ID if you have one'
+                  ],
+                  tip: 'Pro tip: Get your SIM card and proof of address before going to the bank'
+                },
+                {
+                  step: 2,
+                  title: 'Choose Your Bank',
+                  time: '30 minutes',
+                  details: [
+                    'TBC Bank - Best for expats, excellent app, most ATMs',
+                    'Bank of Georgia - Largest bank, good for business accounts',
+                    'Liberty Bank - Good interest rates, less crowded',
+                    'Visit their website to find nearest branch',
+                    'Check opening hours (usually 9:30-17:30 weekdays)'
+                  ],
+                  tip: 'Recommendation: Start with TBC Bank for your first account'
+                },
+                {
+                  step: 3,
+                  title: 'Visit the Branch',
+                  time: '30-90 minutes',
+                  details: [
+                    'Go to the branch in person (online opening difficult for foreigners)',
+                    'Take a queue number at the entrance',
+                    'Wait for your number to be called',
+                    'Tell the banker you want to open an account',
+                    'Specify: Current account (checking) and/or Savings account',
+                    'Request both GEL and USD/EUR accounts if needed'
+                  ],
+                  tip: 'Best time: Weekday mornings (10:00-12:00) to avoid crowds'
+                },
+                {
+                  step: 4,
+                  title: 'Fill Out Application',
+                  time: '15-20 minutes',
+                  details: [
+                    'Banker will help you fill out application form',
+                    'Provide your passport and proof of address',
+                    'Give your Georgian phone number',
+                    'Choose account currency (GEL, USD, EUR)',
+                    'Decide on account type (free basic or premium)',
+                    'Sign the agreement (get English version if needed)'
+                  ],
+                  tip: 'Ask questions! Bankers at TBC and BOG speak English'
+                },
+                {
+                  step: 5,
+                  title: 'Make Initial Deposit',
+                  time: '5 minutes',
+                  details: [
+                    'Deposit minimum amount (usually ₾50-100)',
+                    'Can deposit cash or transfer from another account',
+                    'Get receipt for your deposit',
+                    'Account is now active!'
+                  ],
+                  tip: 'Keep the receipt - you\'ll need it for mobile banking setup'
+                },
+                {
+                  step: 6,
+                  title: 'Get Your Debit Card',
+                  time: 'Immediate or 3-5 days',
+                  details: [
+                    'Some banks give instant card (TBC often does)',
+                    'Others mail it to your address (3-5 business days)',
+                    'Set your PIN at the bank or via mobile app',
+                    'Activate card before first use',
+                    'Test it at an ATM to make sure it works'
+                  ],
+                  tip: 'Ask for contactless card - widely accepted in Tbilisi'
+                },
+                {
+                  step: 7,
+                  title: 'Set Up Mobile Banking',
+                  time: '10-15 minutes',
+                  details: [
+                    'Download bank app (TBC Bank, BOG Mobile, Liberty Mobile)',
+                    'Register using your account number and phone',
+                    'Create username and password',
+                    'Set up biometric login (fingerprint/face)',
+                    'Link your debit card to the app',
+                    'Enable notifications for transactions'
+                  ],
+                  tip: 'Mobile banking in Georgia is excellent - use it for everything!'
+                },
+                {
+                  step: 8,
+                  title: 'Set Up Online Banking',
+                  time: '10 minutes',
+                  details: [
+                    'Visit bank website and register',
+                    'Use your account number and phone for verification',
+                    'Set up security questions',
+                    'Enable two-factor authentication',
+                    'Add payees for bill payments',
+                    'Set up automatic payments if needed'
+                  ],
+                  tip: 'Online banking is useful for detailed statements and transfers'
+                }
+              ].map((step, index) => (
+                <div key={index} className="flex items-start space-x-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-green-500 transition-colors">
+                  <div className="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg flex-shrink-0">
+                    {step.step}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">{step.title}</h3>
+                      <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                        <Clock className="h-4 w-4 mr-1" />
+                        {step.time}
+                      </span>
+                    </div>
+                    <ul className="space-y-1 mb-3">
+                      {step.details.map((detail, i) => (
+                        <li key={i} className="text-sm text-gray-600 dark:text-gray-400 flex items-start">
+                          <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded text-sm text-blue-800 dark:text-blue-300">
+                      💡 {step.tip}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+              <div className="flex items-center mb-2">
+                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                <span className="font-semibold text-gray-900 dark:text-white">Total Time: 1-2 hours (plus card delivery if not instant)</span>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Most expats successfully open accounts on their first visit. Bring all documents and you'll be banking in Georgia the same day!
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Important Notes */}
         <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-6 rounded-lg">
           <div className="flex items-start">
@@ -474,6 +628,13 @@ export default function BankingPage() {
               </ul>
             </div>
           </div>
+        </div>
+
+        {/* Last Updated */}
+        <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-6">
+          <p className="font-semibold">Last updated: November 11, 2025</p>
+          <p className="mt-2">Banking information verified from TBC Bank, Bank of Georgia, and expat community feedback.</p>
+          <p className="mt-1">Found outdated information? <a href="mailto:contact@georgiaexpat.com" className="text-blue-600 hover:text-blue-700 underline">Let us know</a></p>
         </div>
       </div>
     </div>
