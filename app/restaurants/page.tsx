@@ -12,16 +12,42 @@ const RestaurantsPage = () => {
   const [showFilters, setShowFilters] = useState(false)
 
   const getRestaurantImage = (name: string, index: number) => {
-    const restaurantImages: { [key: string]: string } = {
-      'Shavi Lomi': 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=400&fit=crop', // Georgian traditional food
-      'Barbarestan': 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=400&fit=crop', // Fine dining
-      'Cafe Littera': 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&h=400&fit=crop', // Garden restaurant
-      'Sakhli #11': 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=400&fit=crop', // Traditional Georgian interior
-      'Keto and Kote': 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop', // Cozy restaurant
-      'Machakhela': 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=400&fit=crop', // Casual dining
-      'Culinarium Khasheria': 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=400&fit=crop' // Modern restaurant
-    }
-    return restaurantImages[name] || `https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=400&fit=crop&sig=${index}`
+    // Variety of food and restaurant images from Unsplash
+    const imagePool = [
+      'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&h=400&fit=crop', // Georgian food spread
+      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=400&fit=crop', // Fine dining table
+      'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&h=400&fit=crop', // Garden restaurant
+      'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=400&fit=crop', // Traditional interior
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=400&fit=crop', // Cozy restaurant
+      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=400&fit=crop', // Casual dining
+      'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&h=400&fit=crop', // Modern restaurant
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&h=400&fit=crop', // Wine and cheese
+      'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=800&h=400&fit=crop', // Bread and pastries
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=400&fit=crop', // Food plating
+      'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=400&fit=crop', // Restaurant interior
+      'https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800&h=400&fit=crop', // Meat dishes
+      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=400&fit=crop', // Pizza/bread
+      'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&h=400&fit=crop', // Pancakes/breakfast
+      'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&h=400&fit=crop', // Salad/healthy
+      'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=800&h=400&fit=crop', // Breakfast spread
+      'https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800&h=400&fit=crop', // Coffee/cafe
+      'https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&h=400&fit=crop', // Burger
+      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&h=400&fit=crop', // Salad bowl
+      'https://images.unsplash.com/photo-1559847844-5315695dadae?w=800&h=400&fit=crop', // Sushi/asian
+      'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800&h=400&fit=crop', // Steak
+      'https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=800&h=400&fit=crop', // Soup
+      'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=400&fit=crop', // Dessert
+      'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&h=400&fit=crop', // Wine bar
+      'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&h=400&fit=crop', // Restaurant ambiance
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&h=400&fit=crop', // Wine tasting
+      'https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=800&h=400&fit=crop', // Dumplings
+      'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&h=400&fit=crop', // Grilled food
+      'https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&h=400&fit=crop', // Bakery
+      'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&h=400&fit=crop'  // Restaurant exterior
+    ]
+    
+    // Use index to get different image for each restaurant
+    return imagePool[index % imagePool.length]
   }
 
   const filters = [
