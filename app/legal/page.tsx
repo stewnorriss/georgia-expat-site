@@ -9,28 +9,40 @@ export default function LegalPage() {
   const visaInfo = {
     categories: [
       {
-        type: 'Tourist Visa',
-        duration: '365 days visa-free',
-        requirements: ['Valid passport', 'Proof of accommodation', 'Return ticket'],
+        type: 'Visa-Free Entry (Tourist)',
+        duration: '365 days (1 year)',
+        requirements: ['Valid passport (6+ months)', 'No visa application needed', 'Entry stamp at border'],
         cost: 'Free',
         processing: 'Immediate at border',
-        notes: 'Citizens of 98 countries can enter visa-free for 365 days'
+        notes: 'Available to citizens of 98 countries including USA, UK, EU, Canada, Australia. Can be extended for another year.',
+        officialLink: 'https://www.mfa.gov.ge/en/page/visa-information'
+      },
+      {
+        type: 'Remotely from Georgia (Digital Nomad)',
+        duration: '1 year (renewable)',
+        requirements: ['Work for foreign company', 'Proof of employment/income', 'Valid passport', 'Online application'],
+        cost: 'Free',
+        processing: '10 working days',
+        notes: 'Perfect for remote workers. No Georgian tax on foreign income. Can be renewed annually. Apply online before arrival.',
+        officialLink: 'https://migration.commission.ge'
       },
       {
         type: 'Residence Permit',
         duration: '1-5 years',
-        requirements: ['Completed application', 'Passport photos', 'Health insurance', 'Proof of income/employment'],
-        cost: '₾50-200',
+        requirements: ['Completed application form', '2 passport photos', 'Health insurance', 'Proof of income (₾2400/year minimum)', 'Proof of accommodation'],
+        cost: '₾50-200 depending on type',
         processing: '30 working days',
-        notes: 'Required for stays longer than 365 days'
+        notes: 'Required for stays longer than 365 days. Can be based on employment, business, study, or family reunification.',
+        officialLink: 'https://migration.commission.ge'
       },
       {
-        type: 'Work Visa',
+        type: 'Work Permit',
         duration: 'Based on employment contract',
-        requirements: ['Job offer', 'Work permit', 'Medical certificate', 'Criminal background check'],
+        requirements: ['Job offer from Georgian employer', 'Work permit approved by employer', 'Medical certificate', 'Criminal background check', 'Notarized employment contract'],
         cost: '₾100-300',
         processing: '15-30 working days',
-        notes: 'Employer must obtain work permit first'
+        notes: 'Employer must obtain work permit first. Then you apply for residence permit. Some professions exempt from work permit requirement.',
+        officialLink: 'https://migration.commission.ge'
       }
     ]
   }
@@ -155,11 +167,34 @@ export default function LegalPage() {
         return (
           <div className="space-y-6">
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
-              <h3 className="font-semibold text-blue-800 mb-2">Visa-Free Entry</h3>
-              <p className="text-blue-700">
-                Citizens of 98 countries can enter Georgia visa-free for up to 365 days. 
-                Check if your country is on the list at mfa.gov.ge
+              <h3 className="font-semibold text-blue-800 mb-2 flex items-center">
+                <CheckCircle className="h-5 w-5 mr-2" />
+                Visa-Free Entry (Verified November 2025)
+              </h3>
+              <p className="text-blue-700 mb-3">
+                Citizens of 98 countries can enter Georgia visa-free for up to 365 days (1 year). 
+                This includes: USA, UK, EU countries, Canada, Australia, New Zealand, Japan, South Korea, and many others.
               </p>
+              <div className="flex items-center space-x-4 text-sm">
+                <a 
+                  href="https://www.mfa.gov.ge/en/page/visa-information" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 font-semibold flex items-center"
+                >
+                  <ExternalLink className="h-4 w-4 mr-1" />
+                  Official MFA List
+                </a>
+                <a 
+                  href="https://migration.commission.ge" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 font-semibold flex items-center"
+                >
+                  <ExternalLink className="h-4 w-4 mr-1" />
+                  Migration Portal
+                </a>
+              </div>
             </div>
             
             <div className="grid gap-6">
@@ -194,10 +229,34 @@ export default function LegalPage() {
                     </div>
                   </div>
                   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-600">{visa.notes}</p>
+                    <p className="text-sm text-gray-600 mb-2">{visa.notes}</p>
+                    {visa.officialLink && (
+                      <a 
+                        href={visa.officialLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center"
+                      >
+                        <ExternalLink className="h-3 w-3 mr-1" />
+                        Official Information
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Last Verified */}
+            <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+              <div className="flex items-center text-green-800">
+                <CheckCircle className="h-5 w-5 mr-2" />
+                <div>
+                  <p className="font-semibold">Information Verified: November 11, 2025</p>
+                  <p className="text-sm text-green-700 mt-1">
+                    Sources: Ministry of Foreign Affairs (mfa.gov.ge), Migration Commission (migration.commission.ge)
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         )

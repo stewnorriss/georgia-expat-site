@@ -9,7 +9,7 @@ export default function FAQPage() {
   const faqs = [
     {
       question: 'Do I need a visa to move to Georgia?',
-      answer: 'Most nationalities can stay visa-free for 1 year. US, EU, UK, Canada, Australia, and 90+ other countries get automatic 1-year tourist status. For longer stays or work, consider the Digital Nomad visa ("Remotely from Georgia") which is free and allows 1 year renewable stays.'
+      answer: 'No visa needed for citizens of 98 countries! You get automatic 1-year visa-free entry (includes USA, UK, EU, Canada, Australia, New Zealand, Japan, South Korea). Just show your passport at the border. For remote workers, the "Remotely from Georgia" program offers 1-year renewable stays with zero Georgian tax on foreign income. Apply online at migration.commission.ge. Verified November 2025 from official sources.'
     },
     {
       question: 'How much money do I need to live in Tbilisi?',

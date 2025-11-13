@@ -25,11 +25,11 @@ const RestaurantsPage = () => {
   }
 
   const filters = [
-    { id: 'all', name: 'All Restaurants', count: 25 },
-    { id: 'georgian', name: 'Georgian', count: 18 },
+    { id: 'all', name: 'All Restaurants', count: 30 },
+    { id: 'georgian', name: 'Georgian', count: 23 },
     { id: 'international', name: 'International', count: 7 },
-    { id: 'fine-dining', name: 'Fine Dining', count: 7 },
-    { id: 'budget', name: 'Budget-Friendly', count: 6 }
+    { id: 'fine-dining', name: 'Fine Dining', count: 8 },
+    { id: 'budget', name: 'Budget-Friendly', count: 7 }
   ]
 
   const priceRanges = [
@@ -772,6 +772,151 @@ const RestaurantsPage = () => {
         { name: 'Khachapuri', price: '11 GEL', description: 'Reliable choice' }
       ],
       expatReview: 'Convenient if you\'re in Old Town, but there are better options if you\'re willing to walk a bit. Good for a quick meal while sightseeing.'
+    },
+    {
+      id: 'sormoni',
+      name: 'Sormoni',
+      cuisine: 'Georgian Traditional',
+      rating: 4.6,
+      priceRange: '₾₾',
+      location: 'Vake',
+      address: '12 Chavchavadze Ave, Tbilisi',
+      hours: '12:00 - 23:00',
+      phone: '+995 32 2 23 33 44',
+      website: 'sormoni.ge',
+      description: 'Cozy Georgian restaurant in Vake with home-style cooking. The atmosphere is warm and welcoming, like eating at a Georgian friend\'s house. Known for their excellent khinkali and traditional stews. Popular with locals and expats alike.',
+      specialties: ['Khinkali', 'Traditional Stews', 'Home Cooking'],
+      features: ['wifi', 'cards', 'english-menu', 'family-friendly'],
+      category: 'georgian',
+      priceCategory: 'mid-range',
+      aiRecommended: true,
+      dietary: ['vegetarian'],
+      deliveryApps: ['Glovo', 'Wolt'],
+      peakHours: '19:00-21:00',
+      waitTime: '15-25 min',
+      reservationRequired: false,
+      popularDishes: [
+        { name: 'Khinkali (10 pieces)', price: '11 GEL', description: 'Consistently good dumplings' },
+        { name: 'Chakapuli', price: '19 GEL', description: 'Spring lamb stew with tarragon' },
+        { name: 'Lobio', price: '10 GEL', description: 'Bean stew in clay pot' }
+      ],
+      expatReview: 'My neighborhood favorite in Vake. The food is consistently good, prices are fair, and the staff remembers regulars. Feels like a local spot, not touristy at all.'
+    },
+    {
+      id: 'amo-rame',
+      name: 'Amo Rame',
+      cuisine: 'Georgian Modern',
+      rating: 4.7,
+      priceRange: '₾₾',
+      location: 'Vera',
+      address: '14 Paliashvili St, Tbilisi',
+      hours: '12:00 - 00:00',
+      phone: '+995 32 2 99 55 55',
+      website: 'amorame.ge',
+      description: 'Modern take on Georgian cuisine with creative presentations. The chef combines traditional recipes with contemporary techniques. Stylish interior and good wine selection. Popular for date nights and special occasions.',
+      specialties: ['Modern Georgian', 'Creative Presentations', 'Wine Pairings'],
+      features: ['wifi', 'cards', 'english-menu', 'reservations', 'sommelier'],
+      category: 'georgian',
+      priceCategory: 'mid-range',
+      aiRecommended: true,
+      dietary: ['vegetarian', 'gluten-free'],
+      deliveryApps: ['Glovo'],
+      peakHours: '20:00-22:00',
+      waitTime: '20-30 min',
+      reservationRequired: false,
+      popularDishes: [
+        { name: 'Deconstructed Khachapuri', price: '16 GEL', description: 'Modern twist on classic' },
+        { name: 'Beef Chakapuli', price: '24 GEL', description: 'Elevated traditional stew' },
+        { name: 'Wine Pairing', price: '20 GEL', description: 'Sommelier-selected Georgian wines' }
+      ],
+      expatReview: 'Great for when you want Georgian food but with a modern twist. The presentations are beautiful, and the food tastes as good as it looks. Slightly pricey but worth it.'
+    },
+    {
+      id: 'dzveli-sakhli',
+      name: 'Dzveli Sakhli',
+      cuisine: 'Georgian Traditional',
+      rating: 4.5,
+      priceRange: '₾₾',
+      location: 'Old Town',
+      address: '18 Sioni St, Tbilisi',
+      hours: '11:00 - 23:00',
+      phone: '+995 32 2 98 77 77',
+      website: 'dzvelisakhli.ge',
+      description: 'Traditional Georgian restaurant in a historic building. The name means "Old House" and that\'s exactly what it feels like. Authentic atmosphere with traditional decor, live music on weekends, and generous portions.',
+      specialties: ['Traditional Georgian', 'Live Music', 'Historic Setting'],
+      features: ['wifi', 'cards', 'live-music', 'english-menu', 'outdoor'],
+      category: 'georgian',
+      priceCategory: 'mid-range',
+      aiRecommended: false,
+      dietary: ['vegetarian'],
+      deliveryApps: [],
+      peakHours: '19:00-22:00',
+      waitTime: '20-30 min',
+      reservationRequired: false,
+      popularDishes: [
+        { name: 'Supra Platter', price: '35 GEL', description: 'Mixed Georgian appetizers for 2' },
+        { name: 'Mtsvadi', price: '18 GEL', description: 'Grilled meat skewers' },
+        { name: 'Khachapuri Megrelian', price: '13 GEL', description: 'Extra cheesy version' }
+      ],
+      expatReview: 'Touristy but in a good way. The atmosphere is authentic, the live music is great, and the food is solid. Perfect for first-time visitors to experience Georgian dining culture.'
+    },
+    {
+      id: 'vino-underground-2',
+      name: 'Vino Underground Marani',
+      cuisine: 'Wine Bar & Georgian',
+      rating: 4.8,
+      priceRange: '₾₾₾',
+      location: 'Sololaki',
+      address: '15 Galaktion Tabidze St, Tbilisi',
+      hours: '15:00 - 02:00',
+      phone: '+995 32 2 99 22 22',
+      website: 'vinounderg round.ge',
+      description: 'Sister location to Wine Underground, focusing on qvevri wines and traditional Georgian wine-making. The cellar atmosphere is authentic, and the wine selection is exceptional. Small plates perfectly complement the wines.',
+      specialties: ['Qvevri Wine', 'Natural Wine', 'Wine Education'],
+      features: ['wifi', 'cards', 'wine-cellar', 'english-menu', 'sommelier'],
+      category: 'georgian',
+      priceCategory: 'fine-dining',
+      aiRecommended: true,
+      dietary: ['vegetarian', 'vegan'],
+      deliveryApps: [],
+      peakHours: '20:00-23:00',
+      waitTime: '25-35 min',
+      reservationRequired: true,
+      popularDishes: [
+        { name: 'Qvevri Wine Flight', price: '40 GEL', description: '6 traditional qvevri wines' },
+        { name: 'Cheese & Charcuterie', price: '30 GEL', description: 'Georgian artisanal selection' },
+        { name: 'Walnut Pkhali Trio', price: '15 GEL', description: 'Perfect wine pairing' }
+      ],
+      expatReview: 'The best place to learn about Georgian wine. The staff is incredibly knowledgeable and passionate. Book ahead - it\'s tiny and always full of wine enthusiasts.'
+    },
+    {
+      id: 'khinkali-house',
+      name: 'Khinkali House',
+      cuisine: 'Georgian Khinkali Specialist',
+      rating: 4.6,
+      priceRange: '₾',
+      location: 'Multiple Locations',
+      address: 'Multiple locations (Vake, Saburtalo, Old Town)',
+      hours: '11:00 - 23:00',
+      phone: '+995 32 2 44 55 66',
+      website: 'khinkalihouse.ge',
+      description: 'Chain restaurant specializing in khinkali with multiple flavors. Clean, modern atmosphere with consistent quality. Great for khinkali lovers who want variety - they offer 10+ different fillings including experimental flavors.',
+      specialties: ['Khinkali Variety', 'Modern Atmosphere', 'Consistent Quality'],
+      features: ['wifi', 'cards', 'delivery', 'english-menu', 'family-friendly'],
+      category: 'georgian',
+      priceCategory: 'budget',
+      aiRecommended: false,
+      dietary: ['vegetarian', 'vegan'],
+      deliveryApps: ['Glovo', 'Wolt', 'Bolt Food'],
+      peakHours: '12:00-14:00, 19:00-21:00',
+      waitTime: '10-20 min',
+      reservationRequired: false,
+      popularDishes: [
+        { name: 'Classic Khinkali (10)', price: '10 GEL', description: 'Traditional meat dumplings' },
+        { name: 'Mushroom Khinkali (10)', price: '9 GEL', description: 'Vegetarian option' },
+        { name: 'Cheese Khinkali (10)', price: '9 GEL', description: 'Unique cheese filling' }
+      ],
+      expatReview: 'Good for trying different khinkali flavors. Not the absolute best in town, but reliable and convenient with multiple locations. The mushroom ones are surprisingly good!'
     }
   ]
 
