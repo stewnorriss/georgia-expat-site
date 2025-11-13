@@ -717,6 +717,13 @@ export default function NightlifePage() {
             </div>
           </div>
         </div>
+
+        {/* Last Updated */}
+        <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-6">
+          <p className="font-semibold">Last updated: November 11, 2025</p>
+          <p className="mt-2">Nightlife information verified from venue websites, Instagram, and expat community feedback.</p>
+          <p className="mt-1">Found outdated information? <a href="mailto:contact@georgiaexpat.com" className="text-blue-600 hover:text-blue-700 underline">Let us know</a></p>
+        </div>
       </div>
     </div>
   )
