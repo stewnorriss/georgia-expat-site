@@ -6,68 +6,296 @@ import { HelpCircle, ChevronDown, ChevronUp, Link as LinkIcon, Smartphone, Users
 export default function FAQPage() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0)
 
-  const faqs = [
+  const faqCategories = [
     {
-      question: 'Do I need a visa to move to Georgia?',
-      answer: 'No visa needed for citizens of 98 countries! You get automatic 1-year visa-free entry (includes USA, UK, EU, Canada, Australia, New Zealand, Japan, South Korea). Just show your passport at the border. For remote workers, the "Remotely from Georgia" program offers 1-year renewable stays with zero Georgian tax on foreign income. Apply online at migration.commission.ge. Verified November 2025 from official sources.'
+      category: 'Visa & Immigration',
+      faqs: [
+        {
+          question: 'Do I need a visa to move to Georgia?',
+          answer: 'No visa needed for citizens of 98 countries! You get automatic 1-year visa-free entry (includes USA, UK, EU, Canada, Australia, New Zealand, Japan, South Korea). Just show your passport at the border. For remote workers, the "Remotely from Georgia" program offers 1-year renewable stays with zero Georgian tax on foreign income. Apply online at migration.commission.ge. Verified November 2025 from official sources.'
+        },
+        {
+          question: 'How long can I stay in Georgia without a visa?',
+          answer: '1 year for most nationalities (USA, UK, EU, etc.). You can leave and re-enter to reset the clock, but don\'t abuse this - immigration may question frequent border runs. For longer stays, apply for residence permit or the Digital Nomad visa.'
+        },
+        {
+          question: 'What is the Digital Nomad visa and how do I get it?',
+          answer: 'The "Remotely from Georgia" program allows remote workers to stay 1 year (renewable). Requirements: work for foreign company, earn $2000+/month, have health insurance. Apply online at migration.commission.ge. Processing takes 10-14 days. Cost: ₾100. Benefits: 0% tax on foreign income, legal status, can open bank account easily.'
+        },
+        {
+          question: 'Can I extend my stay beyond 1 year?',
+          answer: 'Yes! Options: 1) Apply for residence permit (requires Georgian employer or business), 2) Renew Digital Nomad visa annually, 3) Leave and re-enter (visa reset), 4) Start a business and get entrepreneur visa. Most digital nomads renew the remote work visa or do visa runs.'
+        },
+        {
+          question: 'Do I need to register my address?',
+          answer: 'Not required for tourists/visa-free stays. If you get residence permit or stay long-term, you should register address at Public Service Hall. Bring rental contract and passport. Free process, takes 15 minutes.'
+        },
+        {
+          question: 'What happens if I overstay my visa?',
+          answer: 'Fine of ₾100-500 depending on duration. You may be banned from re-entry for 1-5 years. Don\'t risk it - leave before your year is up or get proper residence permit. Immigration is generally lenient but don\'t abuse the system.'
+        }
+      ]
     },
     {
-      question: 'How much money do I need to live in Tbilisi?',
-      answer: 'Budget: $800-1200/month, Comfortable: $1500-2000/month, Luxury: $2500+/month. This includes rent, food, transport, and entertainment. Tbilisi is very affordable compared to Western countries.'
+      category: 'Money & Banking',
+      faqs: [
+        {
+          question: 'How much money do I need to live in Tbilisi?',
+          answer: 'Budget: $800-1200/month, Comfortable: $1500-2000/month, Luxury: $2500+/month. This includes rent, food, transport, and entertainment. Tbilisi is very affordable compared to Western countries.'
+        },
+        {
+          question: 'What about banking?',
+          answer: 'Easy to open a bank account. TBC Bank is most expat-friendly. Bring passport and proof of address. Use Wise or Revolut for international transfers (much cheaper than bank wires). Cards widely accepted in cities.'
+        },
+        {
+          question: 'Can I open a bank account as a tourist?',
+          answer: 'Yes! TBC Bank and Bank of Georgia allow tourists to open accounts. Bring: passport, Georgian phone number, proof of address (hotel booking works). Process takes 30-60 minutes. Some banks require residence permit, but TBC is flexible.'
+        },
+        {
+          question: 'Should I use cash or card?',
+          answer: 'Cards accepted everywhere in Tbilisi (Visa/Mastercard). Small shops and markets prefer cash. ATMs everywhere, no fees from Georgian banks. Keep ₾100-200 cash for emergencies. Contactless payment widely available.'
+        },
+        {
+          question: 'How do I send money internationally?',
+          answer: 'Best: Wise (formerly TransferWise) - lowest fees, best rates. Also good: Revolut, Western Union (expensive but fast). Avoid bank wire transfers - high fees (₾50-100). Wise costs ₾5-15 for most transfers.'
+        },
+        {
+          question: 'What\'s the currency and exchange rate?',
+          answer: 'Georgian Lari (₾ or GEL). Rate fluctuates: roughly ₾2.7 = $1 USD, ₾3.2 = €1 EUR (November 2025). Exchange at banks or TBC Bank ATMs for best rates. Avoid airport exchange (bad rates). Use Wise for large amounts.'
+        },
+        {
+          question: 'Are there ATM fees?',
+          answer: 'Georgian banks don\'t charge ATM fees. Your home bank might charge foreign transaction fees (check before traveling). TBC and Bank of Georgia ATMs are everywhere. Withdraw ₾500-1000 at a time to minimize your bank\'s fees.'
+        },
+        {
+          question: 'Can I use cryptocurrency in Georgia?',
+          answer: 'Yes! Georgia is crypto-friendly. Many expats use crypto. Local exchanges: Cryptal.ge, Bitfury. Bitcoin ATMs in Tbilisi. Some cafes accept crypto. Mining is legal and popular. No crypto taxes for individuals (as of 2025).'
+        }
+      ]
     },
     {
-      question: 'Is it safe to live in Tbilisi?',
-      answer: 'Yes, very safe! Tbilisi has low crime rates. Violent crime is extremely rare. Women can walk alone at night safely. The biggest risks are pickpockets in tourist areas and aggressive drivers. Overall, it\'s one of the safest cities in the region.'
+      category: 'Housing & Accommodation',
+      faqs: [
+        {
+          question: 'How do I find an apartment in Tbilisi?',
+          answer: 'Use ss.ge and myhome.ge (main rental sites). Expect to pay ₾800-2000/month for a good apartment. Book temporary accommodation for your first 1-2 weeks, then apartment hunt in person. Landlords prefer meeting tenants.'
+        },
+        {
+          question: 'What\'s the best neighborhood for expats?',
+          answer: 'Vake and Saburtalo are most popular - modern, safe, good amenities. Vera is central and upscale. Old Town is charming but touristy. Each has pros/cons depending on your lifestyle and budget.'
+        },
+        {
+          question: 'How much is rent in Tbilisi?',
+          answer: 'Studio: ₾600-1200, 1-bedroom: ₾800-1500, 2-bedroom: ₾1200-2500. Prices vary by neighborhood. Vake/Vera more expensive, Gldani/Didube cheaper. Utilities extra ₾100-200/month. Furnished apartments common.'
+        },
+        {
+          question: 'Do I need a deposit?',
+          answer: 'Usually 1-2 months rent as deposit. Some landlords want first + last month upfront. Get receipt! Deposits should be returned when you leave (if no damage). Negotiate payment terms before signing.'
+        },
+        {
+          question: 'Are apartments furnished?',
+          answer: 'Most rentals are furnished (bed, sofa, kitchen basics). "Euro renovation" means modern, fully furnished. Older apartments may need furniture. Check before signing. Unfurnished apartments are cheaper but rare.'
+        },
+        {
+          question: 'What are utility costs?',
+          answer: 'Electricity: ₾30-80/month, Gas: ₾20-50/month, Water: ₾10-30/month, Internet: ₾30-80/month. Total: ₾100-200/month. Heating in winter adds ₾50-150. Some apartments include utilities in rent.'
+        },
+        {
+          question: 'Can I negotiate rent?',
+          answer: 'Yes! Especially for long-term leases (6-12 months). Offer to pay 3-6 months upfront for discount. Winter is low season - better deals. Landlords prefer stable tenants. Typical discount: 10-15% for annual lease.'
+        },
+        {
+          question: 'What should I check before renting?',
+          answer: 'Test: hot water, heating, internet speed, water pressure. Check: mold, noise level, elevator, security. Ask about: utility costs, maintenance, building rules. Take photos/video before moving in. Read contract carefully (get English version).'
+        }
+      ]
     },
     {
-      question: 'Do people speak English in Tbilisi?',
-      answer: 'In tourist areas, restaurants, and among young people - yes. Older generations and in residential areas - limited. Learning basic Georgian phrases helps a lot. Most expat-friendly services have English speakers.'
+      category: 'Daily Life & Practical',
+      faqs: [
+        {
+          question: 'Do people speak English in Tbilisi?',
+          answer: 'In tourist areas, restaurants, and among young people - yes. Older generations and in residential areas - limited. Learning basic Georgian phrases helps a lot. Most expat-friendly services have English speakers.'
+        },
+        {
+          question: 'Do I need to learn Georgian?',
+          answer: 'Not essential but helpful. You can survive with English in expat areas. Learning basics (hello, thank you, numbers) makes life easier and locals appreciate it. The alphabet is unique and challenging but worth learning.'
+        },
+        {
+          question: 'Is it safe to live in Tbilisi?',
+          answer: 'Yes, very safe! Tbilisi has low crime rates. Violent crime is extremely rare. Women can walk alone at night safely. The biggest risks are pickpockets in tourist areas and aggressive drivers. Overall, it\'s one of the safest cities in the region.'
+        },
+        {
+          question: 'How\'s the weather?',
+          answer: 'Hot summers (25-35°C), mild winters (0-10°C). Spring and autumn are beautiful. Tbilisi gets little snow. Air quality can be poor in winter. Best months: April-June and September-October.'
+        },
+        {
+          question: 'What\'s the cost of groceries?',
+          answer: 'Weekly shop: ₾40-150 depending on lifestyle. Bread ₾1-3, Milk ₾3-5, Eggs ₾4-6, Chicken ₾10-15/kg, Beef ₾25-35/kg. Local products cheap, imported expensive. Markets 50% cheaper than supermarkets.'
+        },
+        {
+          question: 'How do I get a phone number?',
+          answer: 'Buy SIM card at airport or any mobile store (Magti, Beeline, Silknet). Bring passport. Cost: ₾3-10. Data plans: ₾15-50/month for unlimited. Activation immediate. Top-up at stores or via app. No contracts required.'
+        },
+        {
+          question: 'What about laundry?',
+          answer: 'Most apartments have washing machines. No dryers - air dry on balcony. Laundromats rare but exist (₾10-15/load). Dry cleaning available (₾15-30/item). Some buildings have shared laundry rooms.'
+        },
+        {
+          question: 'Can I drink tap water?',
+          answer: 'Officially yes, but most expats drink bottled water (₾1-2 for 1.5L). Tap water is chlorinated and safe but tastes bad. Use Brita filter or buy bottled. Restaurants serve bottled water (₾2-5).'
+        },
+        {
+          question: 'How do I deal with trash?',
+          answer: 'Put trash in bags, leave outside your door or in building bins. Collection daily in most areas. Recycling limited - some areas have separate bins for plastic/paper. No trash chutes in modern buildings.'
+        },
+        {
+          question: 'What about air conditioning and heating?',
+          answer: 'Most apartments have AC (split units). Heating: gas central heating or electric heaters. Winter heating costs ₾50-150/month. Summer AC costs ₾30-80/month. Older buildings may lack AC - buy portable unit (₾300-600).'
+        }
+      ]
     },
     {
-      question: 'What\'s the internet like in Georgia?',
-      answer: 'Excellent! Georgia has some of the fastest and cheapest internet in Europe. Fiber optic is widely available with speeds up to 1000 Mbps. Home internet costs ₾30-80/month. Mobile data is cheap (₾15-50/month for unlimited). Perfect for digital nomads.'
+      category: 'Transportation',
+      faqs: [
+        {
+          question: 'How do I get around Tbilisi?',
+          answer: 'Metro (₾0.50/ride), buses (₾0.50), marshrutkas (₾1), taxis (Bolt/Yandex ₾3-10 for most trips). Metro is fastest for long distances. Taxis are cheap and convenient. Walking is pleasant in central areas.'
+        },
+        {
+          question: 'Is Uber available?',
+          answer: 'No Uber, but Bolt and Yandex Go are better and cheaper! Download both apps. Rides cost ₾3-10 for most trips in Tbilisi. English interface available. Payment by card or cash. Drivers usually don\'t speak English but apps work great.'
+        },
+        {
+          question: 'Do I need a car in Tbilisi?',
+          answer: 'No! Public transport and taxis are cheap and convenient. Parking is difficult and expensive in central areas. Traffic is chaotic. Most expats don\'t own cars. Rent a car for weekend trips outside Tbilisi (₾80-150/day).'
+        },
+        {
+          question: 'How do I get to/from the airport?',
+          answer: 'Taxi: ₾25-40 (30 min), Bus 37: ₾0.50 (45 min, runs 7am-11pm), Bolt/Yandex: ₾20-35. Airport is 15km from city center. Pre-book taxi or use app. Avoid airport taxi touts (overcharge).'
+        },
+        {
+          question: 'Can I use my foreign driver\'s license?',
+          answer: 'Yes, for up to 1 year. After that, convert to Georgian license (₾100, simple test). International Driving Permit (IDP) recommended but not required. EU licenses easily converted. US licenses require written test.'
+        }
+      ]
     },
     {
-      question: 'Can I work remotely from Georgia?',
-      answer: 'Absolutely! Georgia is one of the best countries for remote workers. If you work for a foreign company and earn income abroad, you pay 0% Georgian tax. The Digital Nomad visa makes it official and legal.'
+      category: 'Work & Business',
+      faqs: [
+        {
+          question: 'Can I work remotely from Georgia?',
+          answer: 'Absolutely! Georgia is one of the best countries for remote workers. If you work for a foreign company and earn income abroad, you pay 0% Georgian tax. The Digital Nomad visa makes it official and legal.'
+        },
+        {
+          question: 'What\'s the internet like in Georgia?',
+          answer: 'Excellent! Georgia has some of the fastest and cheapest internet in Europe. Fiber optic is widely available with speeds up to 1000 Mbps. Home internet costs ₾30-80/month. Mobile data is cheap (₾15-50/month for unlimited). Perfect for digital nomads.'
+        },
+        {
+          question: 'Can I start a business in Georgia?',
+          answer: 'Yes! Georgia is ranked #7 globally for ease of doing business. Register LLC online in 1 day (₾100). Low taxes: 15% corporate tax (only on distributed profits), 1% for small businesses. Minimal bureaucracy. English-speaking accountants available.'
+        },
+        {
+          question: 'Do I pay taxes as a remote worker?',
+          answer: '0% Georgian tax if you work for foreign company and income paid abroad. You may owe taxes in your home country (check with tax advisor). Digital Nomad visa confirms your tax-free status. Keep records of foreign income source.'
+        },
+        {
+          question: 'Where can I work from (coworking)?',
+          answer: 'Terminal (₾200-400/month), Impact Hub (₾150-350/month), Fabrika (₾100-250/month), Nest (₾180-320/month). All have fast WiFi, meeting rooms, events. Many cafes welcome laptop workers. Libraries have free WiFi.'
+        },
+        {
+          question: 'Can I hire employees in Georgia?',
+          answer: 'Yes! Employment laws are business-friendly. Minimum wage: ₾20/month (rarely paid). Average salaries: ₾1500-3000/month for skilled workers. Employer costs: salary + 2% pension + 3% health insurance. Easy to hire and fire (compared to EU).'
+        }
+      ]
     },
     {
-      question: 'How do I find an apartment in Tbilisi?',
-      answer: 'Use ss.ge and myhome.ge (main rental sites). Expect to pay ₾800-2000/month for a good apartment. Book temporary accommodation for your first 1-2 weeks, then apartment hunt in person. Landlords prefer meeting tenants.'
+      category: 'Healthcare',
+      faqs: [
+        {
+          question: 'How\'s the healthcare in Georgia?',
+          answer: 'Good private healthcare at affordable prices. Doctor visits cost ₾50-150. Get health insurance (₾200-500/year). Major hospitals have English-speaking doctors. Quality is good for routine care, serious cases may require travel.'
+        },
+        {
+          question: 'Do I need health insurance?',
+          answer: 'Highly recommended! Local insurance: ₾200-500/year (basic coverage). International insurance: $500-2000/year (comprehensive). Required for Digital Nomad visa. Covers: doctor visits, hospital, emergency. Without insurance, costs are still affordable but add up.'
+        },
+        {
+          question: 'Where do I find English-speaking doctors?',
+          answer: 'Aversi Clinic, Mrcheveli Clinic, New Hospitals, Chapidze Emergency Center. Most private clinics have English speakers. Doctor visit: ₾50-150. Book online or walk-in. Bring passport and insurance card.'
+        },
+        {
+          question: 'What about prescriptions and pharmacies?',
+          answer: 'Pharmacies everywhere (24/7 available). Many drugs available without prescription (antibiotics, etc.). Prices cheap: ₾5-30 for most medications. Pharmacists speak some English. Bring generic drug names, not brand names.'
+        },
+        {
+          question: 'What if I have a medical emergency?',
+          answer: 'Call 112 (emergency number). Ambulance free for emergencies. Go to: Chapidze Emergency Center (best), New Hospitals, Aversi Clinic. Emergency room visit: ₾100-300 without insurance. Quality good for emergencies.'
+        }
+      ]
     },
     {
-      question: 'What\'s the best neighborhood for expats?',
-      answer: 'Vake and Saburtalo are most popular - modern, safe, good amenities. Vera is central and upscale. Old Town is charming but touristy. Each has pros/cons depending on your lifestyle and budget.'
+      category: 'Food & Dining',
+      faqs: [
+        {
+          question: 'What\'s the food like?',
+          answer: 'Amazing! Georgian cuisine is delicious - khachapuri (cheese bread), khinkali (dumplings), mtsvadi (BBQ). Lots of fresh produce, wine, and bread. Vegetarian options available. Eating out is cheap (₾15-30 for a meal).'
+        },
+        {
+          question: 'Is Georgian food spicy?',
+          answer: 'Not spicy! Georgian food uses herbs (cilantro, dill, parsley) not chili peppers. Adjika (spicy sauce) is optional. Food is flavorful but mild. Perfect for those who don\'t like spicy food.'
+        },
+        {
+          question: 'Are there vegetarian/vegan options?',
+          answer: 'Yes! Georgian cuisine has many veggie dishes: lobio (beans), pkhali (vegetable pâté), badrijani (eggplant rolls), mushroom dishes. Vegan harder but possible. Tbilisi has vegetarian restaurants. Specify "ara khortsi" (no meat).'
+        },
+        {
+          question: 'How much does eating out cost?',
+          answer: 'Local restaurant: ₾15-30/meal, Mid-range: ₾30-60/meal, Upscale: ₾60-150/meal. Khachapuri: ₾5-12, Khinkali: ₾0.50-1 each, Beer: ₾3-8, Wine: ₾15-50/bottle. Street food: ₾3-10. Cheaper than most Western countries.'
+        },
+        {
+          question: 'What about international food?',
+          answer: 'Tbilisi has everything: Italian, Asian, Mexican, Indian, American, etc. Quality varies. Italian and Asian most common. Prices similar to Georgian restaurants. Carrefour and Goodwill have imported products (expensive).'
+        },
+        {
+          question: 'Can I find my home country\'s food?',
+          answer: 'Some items yes, some no. Carrefour has international section. Asian stores in Saburtalo. American products rare and expensive. Bring favorite spices/sauces from home. Amazon doesn\'t ship to Georgia - use forwarding services.'
+        }
+      ]
     },
     {
-      question: 'Do I need to learn Georgian?',
-      answer: 'Not essential but helpful. You can survive with English in expat areas. Learning basics (hello, thank you, numbers) makes life easier and locals appreciate it. The alphabet is unique and challenging but worth learning.'
-    },
-    {
-      question: 'How\'s the healthcare in Georgia?',
-      answer: 'Good private healthcare at affordable prices. Doctor visits cost ₾50-150. Get health insurance (₾200-500/year). Major hospitals have English-speaking doctors. Quality is good for routine care, serious cases may require travel.'
-    },
-    {
-      question: 'What\'s the food like?',
-      answer: 'Amazing! Georgian cuisine is delicious - khachapuri (cheese bread), khinkali (dumplings), mtsvadi (BBQ). Lots of fresh produce, wine, and bread. Vegetarian options available. Eating out is cheap (₾15-30 for a meal).'
-    },
-    {
-      question: 'Is Georgia LGBTQ+ friendly?',
-      answer: 'Mixed. Tbilisi has a small LGBTQ+ scene (Bassiani club is welcoming). Society is conservative, public displays of affection may attract attention. No legal protections but also no laws against it. Expat community is accepting.'
-    },
-    {
-      question: 'What about banking?',
-      answer: 'Easy to open a bank account. TBC Bank is most expat-friendly. Bring passport and proof of address. Use Wise or Revolut for international transfers (much cheaper than bank wires). Cards widely accepted in cities.'
-    },
-    {
-      question: 'How\'s the weather?',
-      answer: 'Hot summers (25-35°C), mild winters (0-10°C). Spring and autumn are beautiful. Tbilisi gets little snow. Air quality can be poor in winter. Best months: April-June and September-October.'
-    },
-    {
-      question: 'Can I bring my pet?',
-      answer: 'Yes! Pets need microchip, rabies vaccination, and health certificate. EU pet passports accepted. Many apartments allow pets. Vet care is affordable. Dog-friendly parks available.'
+      category: 'Social & Culture',
+      faqs: [
+        {
+          question: 'Is Georgia LGBTQ+ friendly?',
+          answer: 'Mixed. Tbilisi has a small LGBTQ+ scene (Bassiani club is welcoming). Society is conservative, public displays of affection may attract attention. No legal protections but also no laws against it. Expat community is accepting.'
+        },
+        {
+          question: 'How do I meet other expats?',
+          answer: 'Facebook groups (Expats in Tbilisi, Digital Nomads Georgia), coworking spaces, language exchanges, Fabrika hostel bar, expat events. Tbilisi has active expat community. Easy to make friends. Meetup.com has events.'
+        },
+        {
+          question: 'What\'s the dating scene like?',
+          answer: 'Active! Tinder, Bumble work well. Georgians are friendly and curious about foreigners. Traditional gender roles common. Dating apps popular among young people. Expat dating pool is small but active. Be respectful of cultural differences.'
+        },
+        {
+          question: 'Are Georgians friendly to foreigners?',
+          answer: 'Very friendly! Georgians are known for hospitality. Older generation may be curious/stare but not hostile. Young people speak English and are welcoming. You\'ll be invited to dinners and celebrations. Respect their culture and you\'ll be loved.'
+        },
+        {
+          question: 'What are Georgian cultural norms I should know?',
+          answer: 'Remove shoes indoors, toast properly at supra (feast), don\'t refuse food/drink offers, dress modestly in churches, respect elders, learn basic Georgian phrases. Georgians appreciate effort to understand their culture. Be patient with bureaucracy.'
+        },
+        {
+          question: 'Can I bring my pet?',
+          answer: 'Yes! Pets need microchip, rabies vaccination, and health certificate. EU pet passports accepted. Many apartments allow pets. Vet care is affordable. Dog-friendly parks available.'
+        }
+      ]
     }
   ]
+
+  // Flatten for search/display
+  const faqs = faqCategories.flatMap(cat => cat.faqs.map(faq => ({ ...faq, category: cat.category })))
 
   const resources = [
     {
@@ -198,28 +426,45 @@ export default function FAQPage() {
             <HelpCircle className="h-8 w-8 text-blue-600 mr-3" />
             Frequently Asked Questions
           </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-                <button
-                  onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                >
-                  <span className="font-semibold text-gray-900 dark:text-white pr-4">{faq.question}</span>
-                  {openFAQ === index ? (
-                    <ChevronUp className="h-5 w-5 text-blue-600 flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                  )}
-                </button>
-                {openFAQ === index && (
-                  <div className="px-6 pb-4 text-gray-600 dark:text-gray-400">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            ))}
+          <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>📊 {faqs.length} Questions Answered</strong> - Organized by category for easy navigation. 
+              Click any question to expand the answer. Updated November 2025 with real expat experiences.
+            </p>
           </div>
+          
+          {faqCategories.map((category, catIndex) => (
+            <div key={catIndex} className="mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 pb-2 border-b-2 border-blue-500">
+                {category.category}
+              </h3>
+              <div className="space-y-3">
+                {category.faqs.map((faq, faqIndex) => {
+                  const globalIndex = faqs.findIndex(f => f.question === faq.question)
+                  return (
+                    <div key={faqIndex} className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+                      <button
+                        onClick={() => setOpenFAQ(openFAQ === globalIndex ? null : globalIndex)}
+                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        <span className="font-semibold text-gray-900 dark:text-white pr-4">{faq.question}</span>
+                        {openFAQ === globalIndex ? (
+                          <ChevronUp className="h-5 w-5 text-blue-600 flex-shrink-0" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                        )}
+                      </button>
+                      {openFAQ === globalIndex && (
+                        <div className="px-6 pb-4 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-4">
+                          {faq.answer}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Resources Section */}
