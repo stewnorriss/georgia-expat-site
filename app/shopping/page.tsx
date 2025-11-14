@@ -821,6 +821,152 @@ export default function ShoppingPage() {
           </div>
         </div>
 
+        {/* Price Examples */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Typical Grocery Prices (November 2025)</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <Package className="h-5 w-5 text-blue-600 mr-2" />
+                Basics
+              </h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Bread (white loaf)</span>
+                  <span className="font-semibold text-gray-900">₾1-3</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Milk (1L)</span>
+                  <span className="font-semibold text-gray-900">₾3-5</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Eggs (10 pack)</span>
+                  <span className="font-semibold text-gray-900">₾4-6</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Rice (1kg)</span>
+                  <span className="font-semibold text-gray-900">₾3-5</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Pasta (500g)</span>
+                  <span className="font-semibold text-gray-900">₾2-4</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Butter (200g)</span>
+                  <span className="font-semibold text-gray-900">₾5-8</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Yogurt (500g)</span>
+                  <span className="font-semibold text-gray-900">₾3-5</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <Utensils className="h-5 w-5 text-green-600 mr-2" />
+                Meat & Produce
+              </h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Chicken breast (1kg)</span>
+                  <span className="font-semibold text-gray-900">₾10-15</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Beef (1kg)</span>
+                  <span className="font-semibold text-gray-900">₾25-35</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Pork (1kg)</span>
+                  <span className="font-semibold text-gray-900">₾15-20</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Tomatoes (1kg)</span>
+                  <span className="font-semibold text-gray-900">₾3-6</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Potatoes (1kg)</span>
+                  <span className="font-semibold text-gray-900">₾1-3</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Onions (1kg)</span>
+                  <span className="font-semibold text-gray-900">₾1-2</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Apples (1kg)</span>
+                  <span className="font-semibold text-gray-900">₾3-5</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4 flex items-center">
+                <Coffee className="h-5 w-5 text-orange-600 mr-2" />
+                Drinks & Extras
+              </h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Georgian wine (bottle)</span>
+                  <span className="font-semibold text-gray-900">₾8-50</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Local beer (500ml)</span>
+                  <span className="font-semibold text-gray-900">₾2-4</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Coffee beans (250g)</span>
+                  <span className="font-semibold text-gray-900">₾10-20</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Tea (100 bags)</span>
+                  <span className="font-semibold text-gray-900">₾5-10</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Cheese (local, 1kg)</span>
+                  <span className="font-semibold text-gray-900">₾15-25</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Olive oil (1L)</span>
+                  <span className="font-semibold text-gray-900">₾12-20</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Water (1.5L)</span>
+                  <span className="font-semibold text-gray-900">₾1-2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Weekly Shopping Budget Estimates</h4>
+            <div className="grid md:grid-cols-3 gap-4 text-sm">
+              <div>
+                <div className="font-semibold text-gray-900">Budget (Fresco, markets)</div>
+                <div className="text-2xl font-bold text-green-600">₾40-80</div>
+                <div className="text-xs text-gray-600">Basic local products</div>
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900">Mid-range (Goodwill, Spar)</div>
+                <div className="text-2xl font-bold text-blue-600">₾60-120</div>
+                <div className="text-xs text-gray-600">Mix of local & imported</div>
+              </div>
+              <div>
+                <div className="font-semibold text-gray-900">Premium (Carrefour)</div>
+                <div className="text-2xl font-bold text-purple-600">₾80-150</div>
+                <div className="text-xs text-gray-600">International brands</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 p-4 bg-green-50 rounded-lg">
+            <p className="text-sm text-gray-700">
+              <strong>💡 Money-Saving Tips:</strong> Shop at markets for produce (50% cheaper), buy local brands, 
+              use loyalty cards, shop in the morning for fresh items, and compare prices between Fresco (cheapest) 
+              and Carrefour (most selection). A single person can eat well for ₾200-400/month.
+            </p>
+          </div>
+        </div>
+
         {/* Last Updated */}
         <div className="mt-8 text-center text-sm text-gray-500 border-t border-gray-200 pt-6">
           <p className="font-semibold">Last updated: November 11, 2025</p>
