@@ -143,14 +143,44 @@ export default function JobsPage() {
   ]
 
   const salaryExpectations = [
-    { role: 'English Teacher', local: '₾1500-2500', expat: '$800-1500', notes: 'Most common expat job' },
-    { role: 'Software Developer', local: '₾3000-8000', expat: '$2000-5000', notes: 'High demand, good pay' },
-    { role: 'Digital Marketer', local: '₾2000-4000', expat: '$1500-3000', notes: 'Growing field' },
-    { role: 'Content Writer', local: '₾1500-3000', expat: '$1000-2500', notes: 'Freelance common' },
-    { role: 'Project Manager', local: '₾2500-5000', expat: '$2000-4000', notes: 'Experience required' },
-    { role: 'Graphic Designer', local: '₾1800-3500', expat: '$1200-2500', notes: 'Portfolio important' },
-    { role: 'Customer Support', local: '₾1500-2500', expat: '$800-1500', notes: 'Remote-friendly' },
-    { role: 'Sales/Business Dev', local: '₾2000-5000+', expat: '$1500-4000+', notes: 'Commission-based' }
+    // IT & Tech
+    { role: 'Junior Developer', local: '₾2000-3500', expat: '$1200-2000', notes: 'Entry level, 0-2 years experience' },
+    { role: 'Mid-Level Developer', local: '₾3500-6000', expat: '$2500-4000', notes: '2-5 years experience, most common' },
+    { role: 'Senior Developer', local: '₾6000-12000', expat: '$4500-8000', notes: '5+ years, high demand' },
+    { role: 'Tech Lead', local: '₾8000-15000', expat: '$6000-10000', notes: 'Leadership experience required' },
+    { role: 'DevOps Engineer', local: '₾4000-8000', expat: '$3000-6000', notes: 'Growing demand' },
+    { role: 'UI/UX Designer', local: '₾2500-5000', expat: '$1800-3500', notes: 'Portfolio essential' },
+    
+    // Teaching
+    { role: 'English Teacher (Private)', local: '₾1500-3000', expat: '$1000-2000', notes: 'Most common expat job, flexible hours' },
+    { role: 'International School Teacher', local: '₾2500-5000', expat: '$2000-4000', notes: 'Requires teaching certification' },
+    { role: 'University Lecturer', local: '₾2000-4000', expat: '$1500-3000', notes: 'Advanced degree required' },
+    { role: 'Online English Teacher', local: '₾1200-2500', expat: '$800-1800', notes: 'Remote, flexible, part-time' },
+    
+    // Hospitality & Tourism
+    { role: 'Hotel Staff', local: '₾1000-2000', expat: '$700-1400', notes: 'Entry level, tips extra' },
+    { role: 'Restaurant Manager', local: '₾1500-3000', expat: '$1000-2200', notes: 'Experience required' },
+    { role: 'Tour Guide', local: '₾1200-2500', expat: '$800-1800', notes: 'Seasonal, tips extra' },
+    { role: 'Hostel Manager', local: '₾1500-2500', expat: '$1000-1800', notes: 'Often includes accommodation' },
+    
+    // Business & Marketing
+    { role: 'Digital Marketer', local: '₾2000-5000', expat: '$1500-3500', notes: 'Growing field, remote-friendly' },
+    { role: 'Content Writer', local: '₾1500-3000', expat: '$1000-2200', notes: 'Freelance common' },
+    { role: 'Sales Manager', local: '₾1500-4000', expat: '$1200-3000', notes: 'Plus commission' },
+    { role: 'Business Development', local: '₾2000-5000', expat: '$1500-3500', notes: 'Commission-based' },
+    { role: 'Project Manager', local: '₾3000-6000', expat: '$2200-4500', notes: 'Experience required' },
+    { role: 'Account Manager', local: '₾2000-4000', expat: '$1500-3000', notes: 'Client-facing' },
+    
+    // Customer Service & Support
+    { role: 'Customer Support', local: '₾1500-2500', expat: '$1000-1800', notes: 'Remote-friendly, shift work' },
+    { role: 'Technical Support', local: '₾1800-3000', expat: '$1300-2200', notes: 'Tech knowledge required' },
+    { role: 'Community Manager', local: '₾1500-3000', expat: '$1100-2200', notes: 'Social media focus' },
+    
+    // Creative & Design
+    { role: 'Graphic Designer', local: '₾1800-3500', expat: '$1300-2500', notes: 'Portfolio important' },
+    { role: 'Video Editor', local: '₾2000-4000', expat: '$1500-3000', notes: 'Growing demand' },
+    { role: 'Photographer', local: '₾1500-3500', expat: '$1100-2500', notes: 'Freelance common' },
+    { role: 'Social Media Manager', local: '₾1800-3500', expat: '$1300-2500', notes: 'Remote-friendly' }
   ]
 
   const taxInfo = [
@@ -180,15 +210,127 @@ export default function JobsPage() {
     }
   ]
 
+  const workVisaProcess = [
+    {
+      step: 1,
+      title: 'Find Job with Georgian Employer',
+      time: 'Varies',
+      details: 'Employer must be registered Georgian company willing to sponsor',
+      requirements: ['Job offer letter', 'Employment contract', 'Company registration documents'],
+      cost: '₾0',
+      tip: 'Employer handles most paperwork'
+    },
+    {
+      step: 2,
+      title: 'Employer Applies for Work Permit',
+      time: '15-20 days',
+      details: 'Employer submits application to Ministry of Economy',
+      requirements: ['Employment contract', 'Your passport copy', 'Company documents', 'Justification letter'],
+      cost: '₾100 (employer pays)',
+      tip: 'Employer must prove they need foreign worker'
+    },
+    {
+      step: 3,
+      title: 'You Apply for Residence Permit',
+      time: '30-45 days',
+      details: 'Apply at Public Service Hall with approved work permit',
+      requirements: ['Valid passport', 'Work permit approval', 'Medical certificate', 'Background check', 'Proof of accommodation', 'Photos'],
+      cost: '₾200',
+      tip: 'Can apply from inside Georgia on tourist visa'
+    },
+    {
+      step: 4,
+      title: 'Receive Residence Card',
+      time: '1-2 weeks after approval',
+      details: 'Pick up residence card at Public Service Hall',
+      requirements: ['Approval notification', 'Passport', 'Receipt'],
+      cost: '₾0',
+      tip: 'Valid for duration of employment contract (up to 6 years)'
+    }
+  ]
+
   const jobBoards = [
-    { name: 'jobs.ge', type: 'Local jobs', url: 'jobs.ge', focus: 'Georgian market, all industries' },
-    { name: 'hr.ge', type: 'Local jobs', url: 'hr.ge', focus: 'Professional positions' },
-    { name: 'LinkedIn', type: 'International', url: 'linkedin.com', focus: 'Professional network' },
-    { name: 'We Work Remotely', type: 'Remote', url: 'weworkremotely.com', focus: 'Remote positions' },
-    { name: 'Remote.co', type: 'Remote', url: 'remote.co', focus: 'Remote jobs' },
-    { name: 'Upwork', type: 'Freelance', url: 'upwork.com', focus: 'Freelance projects' },
-    { name: 'Fiverr', type: 'Freelance', url: 'fiverr.com', focus: 'Services marketplace' },
-    { name: 'Toptal', type: 'Freelance', url: 'toptal.com', focus: 'Top 3% talent' }
+    { 
+      name: 'jobs.ge', 
+      type: 'Local Jobs', 
+      url: 'jobs.ge', 
+      languages: ['Georgian', 'English'],
+      focus: 'Most popular job site in Georgia - all industries',
+      best_for: 'Local companies, teaching jobs, hospitality, IT',
+      tip: 'Create profile in both Georgian and English for best results'
+    },
+    { 
+      name: 'hr.ge', 
+      type: 'Local Jobs', 
+      url: 'hr.ge', 
+      languages: ['Georgian', 'English'],
+      focus: 'Professional roles, mid-senior positions',
+      best_for: 'IT, management, professional services',
+      tip: 'Better for experienced professionals than entry-level'
+    },
+    { 
+      name: 'LinkedIn', 
+      type: 'International', 
+      url: 'linkedin.com', 
+      languages: ['English'],
+      focus: 'International companies, remote work',
+      best_for: 'Expat-friendly roles, remote positions, networking',
+      tip: 'Best for finding international companies with Georgia offices'
+    },
+    { 
+      name: 'Facebook Groups', 
+      type: 'Social/Community', 
+      url: 'facebook.com', 
+      languages: ['English', 'Georgian'],
+      focus: 'Jobs in Georgia, Tbilisi Jobs, Digital Nomads Georgia groups',
+      best_for: 'Freelance, part-time, startups, hidden opportunities',
+      tip: 'Great for networking and unadvertised positions'
+    },
+    { 
+      name: 'We Work Remotely', 
+      type: 'Remote', 
+      url: 'weworkremotely.com', 
+      languages: ['English'],
+      focus: 'Remote positions worldwide',
+      best_for: 'Keeping your current career while living in Georgia',
+      tip: 'Filter by time zone compatibility (GMT+4)'
+    },
+    { 
+      name: 'Remote.co', 
+      type: 'Remote', 
+      url: 'remote.co', 
+      languages: ['English'],
+      focus: 'Curated remote jobs',
+      best_for: 'Quality remote positions, all industries',
+      tip: 'Less spam than other remote job boards'
+    },
+    { 
+      name: 'Upwork', 
+      type: 'Freelance', 
+      url: 'upwork.com', 
+      languages: ['English'],
+      focus: 'Freelance projects, hourly & fixed-price',
+      best_for: 'Building freelance income, flexible work',
+      tip: 'Start with lower rates to build profile, then increase'
+    },
+    { 
+      name: 'Fiverr', 
+      type: 'Freelance', 
+      url: 'fiverr.com', 
+      languages: ['English'],
+      focus: 'Services marketplace, gig-based',
+      best_for: 'Creative services, quick projects',
+      tip: 'Create multiple gigs at different price points'
+    },
+    { 
+      name: 'Toptal', 
+      type: 'Freelance', 
+      url: 'toptal.com', 
+      languages: ['English'],
+      focus: 'Top 3% freelance talent',
+      best_for: 'Experienced developers, designers, finance pros',
+      tip: 'Rigorous screening but highest rates'
+    }
   ]
 
   return (
@@ -516,6 +658,77 @@ export default function JobsPage() {
           </div>
         </div>
 
+        {/* Work Visa Process */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+            <FileText className="h-8 w-8 text-red-600 mr-3" />
+            Work Visa Process (For Local Employment)
+          </h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <strong>Note:</strong> This is only needed if you work for a Georgian company. Remote workers for foreign companies don't need work permits!
+              </p>
+            </div>
+            
+            <div className="space-y-6">
+              {workVisaProcess.map((step, index) => (
+                <div key={index} className="border-l-4 border-blue-500 pl-6 pb-6 relative">
+                  <div className="absolute -left-3 top-0 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
+                    {step.step}
+                  </div>
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white">{step.title}</h3>
+                    <div className="text-right">
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Time</div>
+                      <div className="font-semibold text-blue-600">{step.time}</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">{step.details}</p>
+                  
+                  <div className="grid md:grid-cols-2 gap-4 mb-3">
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-2">Requirements:</h4>
+                      <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                        {step.requirements.map((req, i) => (
+                          <li key={i}>• {req}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-2">Cost:</h4>
+                      <div className="text-lg font-bold text-green-600">{step.cost}</div>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                        <strong>💡 Tip:</strong> {step.tip}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Total Process Summary</h4>
+              <div className="grid md:grid-cols-3 gap-4 text-sm">
+                <div>
+                  <div className="text-gray-600 dark:text-gray-400">Total Time</div>
+                  <div className="text-xl font-bold text-gray-900 dark:text-white">45-60 days</div>
+                </div>
+                <div>
+                  <div className="text-gray-600 dark:text-gray-400">Total Cost</div>
+                  <div className="text-xl font-bold text-gray-900 dark:text-white">₾300</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">(₾100 employer + ₾200 you)</div>
+                </div>
+                <div>
+                  <div className="text-gray-600 dark:text-gray-400">Validity</div>
+                  <div className="text-xl font-bold text-gray-900 dark:text-white">Contract duration</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">(up to 6 years)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Job Boards */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
@@ -525,20 +738,34 @@ export default function JobsPage() {
           <div className="grid md:grid-cols-2 gap-4">
             {jobBoards.map((board, index) => (
               <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 hover:shadow-lg transition-shadow">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-2">
                   <div>
                     <h3 className="font-bold text-gray-900 dark:text-white">{board.name}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{board.focus}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      {board.languages && board.languages.map((lang, i) => (
+                        <span key={i} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded">
+                          {lang}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                   <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-2 py-1 rounded text-xs font-semibold">
                     {board.type}
                   </span>
                 </div>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{board.focus}</p>
+                <div className="mb-2">
+                  <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">Best for: </span>
+                  <span className="text-xs text-gray-600 dark:text-gray-400">{board.best_for}</span>
+                </div>
+                <div className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded text-xs text-gray-700 dark:text-gray-300 mb-2">
+                  <strong>💡 Tip:</strong> {board.tip}
+                </div>
                 <a 
                   href={`https://${board.url}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mt-2"
+                  className="flex items-center text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                 >
                   <Globe className="h-4 w-4 mr-1" />
                   {board.url}
