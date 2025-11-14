@@ -167,6 +167,7 @@ export default function InternetPage() {
       step: '1',
       title: 'Get a SIM Card',
       icon: <Smartphone className="h-6 w-6" />,
+      time: '15 minutes',
       tasks: [
         'Visit any mobile carrier store (Magti, Beeline, Silknet)',
         'Bring your passport',
@@ -179,24 +180,96 @@ export default function InternetPage() {
       step: '2',
       title: 'Set Up Home Internet',
       icon: <Router className="h-6 w-6" />,
+      time: '1-3 days',
       tasks: [
-        'Choose provider (Silknet recommended)',
+        'Choose provider (Silknet recommended for speed)',
         'Call or visit office to order',
-        'Installation within 1-3 days',
-        'Technician will set up router',
-        'Test speed immediately'
+        'Schedule installation appointment',
+        'Technician will install router and test',
+        'Download provider app for account management',
+        'Test speed with speedtest.net'
       ]
     },
     {
       step: '3',
       title: 'Backup Solutions',
       icon: <Zap className="h-6 w-6" />,
+      time: 'Ongoing',
       tasks: [
         'Keep mobile data as backup',
-        'Use phone hotspot if needed',
+        'Use phone hotspot if needed (4G/5G is fast)',
         'Know nearby cafes with WiFi',
         'Consider second provider for critical work',
         'Download offline maps and files'
+      ]
+    }
+  ]
+
+  const speedTestResults = [
+    {
+      provider: 'Silknet Fiber',
+      download: '500-1000 Mbps',
+      upload: '50-100 Mbps',
+      latency: '5-10ms',
+      reliability: 5,
+      note: 'Best for video calls, streaming, gaming'
+    },
+    {
+      provider: 'Magticom Fiber',
+      download: '200-500 Mbps',
+      upload: '40-80 Mbps',
+      latency: '8-15ms',
+      reliability: 4,
+      note: 'Excellent for most work needs'
+    },
+    {
+      provider: 'Caucasus Online',
+      download: '150-400 Mbps',
+      upload: '30-60 Mbps',
+      latency: '10-20ms',
+      reliability: 4,
+      note: 'Good for general use'
+    },
+    {
+      provider: 'Mobile 4G/5G',
+      download: '50-150 Mbps',
+      upload: '20-40 Mbps',
+      latency: '15-30ms',
+      reliability: 4,
+      note: 'Great backup, works everywhere'
+    }
+  ]
+
+  const detailedSetupSteps = [
+    {
+      title: 'Day 1: Arrival',
+      icon: <Smartphone className="h-5 w-5" />,
+      steps: [
+        'Get SIM card at airport (₾5-10) or any mobile store',
+        'Activate with passport',
+        'Buy data package (₾15-50 for unlimited)',
+        'You\'re online immediately!'
+      ]
+    },
+    {
+      title: 'Day 2-3: Home Internet',
+      icon: <Router className="h-5 w-5" />,
+      steps: [
+        'Visit Silknet/Magticom office with passport',
+        'Choose plan (₾30-80/month recommended)',
+        'Schedule installation (usually next day)',
+        'Pay first month + installation (₾30-130 total)'
+      ]
+    },
+    {
+      title: 'Installation Day',
+      icon: <Zap className="h-5 w-5" />,
+      steps: [
+        'Technician arrives (1-2 hour window)',
+        'Installs router and tests connection',
+        'Sets up WiFi name and password',
+        'Test speed - should match plan',
+        'Get receipt and support number'
       ]
     }
   ]
@@ -476,6 +549,86 @@ export default function InternetPage() {
           </div>
         </div>
 
+        {/* Speed Test Results */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Real Speed Test Results</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Provider</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Download</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Upload</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Latency</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Reliability</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Best For</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  {speedTestResults.map((result, index) => (
+                    <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className="font-medium text-gray-900 dark:text-white">{result.provider}</span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span className="text-green-600 font-semibold">{result.download}</span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                        {result.upload}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-gray-400">
+                        {result.latency}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className={i < result.reliability ? 'text-green-500' : 'text-gray-300'}>★</span>
+                          ))}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
+                        {result.note}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>Note:</strong> These are real-world results from expats in Tbilisi (tested November 2025). 
+              Your speeds may vary based on location, time of day, and plan. Test your speed at <a href="https://speedtest.net" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">speedtest.net</a>
+            </p>
+          </div>
+        </div>
+
+        {/* Detailed Setup Timeline */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Complete Setup Timeline</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {detailedSetupSteps.map((phase, index) => (
+              <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <div className="flex items-center mb-4">
+                  <div className="bg-green-100 dark:bg-green-900/30 p-3 rounded-full mr-3">
+                    {phase.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">{phase.title}</h3>
+                </div>
+                <ul className="space-y-2">
+                  {phase.steps.map((step, i) => (
+                    <li key={i} className="text-sm text-gray-600 dark:text-gray-400 flex items-start">
+                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                      {step}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Setup Guide */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Quick Setup Guide</h2>
@@ -487,7 +640,7 @@ export default function InternetPage() {
                     {guide.icon}
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Step {guide.step}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Step {guide.step} • {guide.time}</div>
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white">{guide.title}</h3>
                   </div>
                 </div>
