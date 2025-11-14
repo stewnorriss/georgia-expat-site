@@ -625,6 +625,13 @@ const ActivitiesPage = () => {
             ))}
           </div>
         </div>
+
+        {/* Last Updated */}
+        <div className="mt-8 text-center text-sm text-gray-500 border-t border-gray-200 pt-6">
+          <p className="font-semibold">Last updated: November 11, 2025</p>
+          <p className="mt-2">Activity information verified from tour operators and recent experiences.</p>
+          <p className="mt-1">Found outdated info? <a href="mailto:contact@georgiaexpat.com" className="text-blue-600 hover:underline">Let us know</a></p>
+        </div>
       </div>
     </div>
   )
