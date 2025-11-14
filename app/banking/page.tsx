@@ -611,6 +611,132 @@ export default function BankingPage() {
           </div>
         </div>
 
+        {/* Bank Comparison Table */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+            <Building2 className="h-8 w-8 text-purple-600 mr-3" />
+            Complete Bank Comparison
+          </h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Feature</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">TBC Bank</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Bank of Georgia</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Liberty Bank</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Credo Bank</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Expat Friendly</td>
+                    <td className="px-4 py-3 text-sm">
+                      <div className="flex items-center">
+                        <span className="text-yellow-500">★★★★★</span>
+                        <span className="ml-2 text-green-600 font-semibold">Best</span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-yellow-500">★★★★☆</span>
+                    </td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-yellow-500">★★★★☆</span>
+                    </td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-yellow-500">★★★☆☆</span>
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">English Support</td>
+                    <td className="px-4 py-3 text-sm text-green-600 font-semibold">Excellent</td>
+                    <td className="px-4 py-3 text-sm text-blue-600">Good</td>
+                    <td className="px-4 py-3 text-sm text-blue-600">Good</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Limited</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Mobile App</td>
+                    <td className="px-4 py-3 text-sm text-green-600 font-semibold">Best in Georgia</td>
+                    <td className="px-4 py-3 text-sm text-blue-600">Very Good</td>
+                    <td className="px-4 py-3 text-sm text-blue-600">Good</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">Basic</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">ATM Network</td>
+                    <td className="px-4 py-3 text-sm">500+ ATMs</td>
+                    <td className="px-4 py-3 text-sm">400+ ATMs</td>
+                    <td className="px-4 py-3 text-sm">200+ ATMs</td>
+                    <td className="px-4 py-3 text-sm">150+ ATMs</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Account Opening</td>
+                    <td className="px-4 py-3 text-sm">30-60 min</td>
+                    <td className="px-4 py-3 text-sm">45-90 min</td>
+                    <td className="px-4 py-3 text-sm">30-45 min</td>
+                    <td className="px-4 py-3 text-sm">60 min</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Monthly Fee</td>
+                    <td className="px-4 py-3 text-sm">Free - ₾10</td>
+                    <td className="px-4 py-3 text-sm">Free - ₾15</td>
+                    <td className="px-4 py-3 text-sm">Free - ₾5</td>
+                    <td className="px-4 py-3 text-sm">Free</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Debit Card</td>
+                    <td className="px-4 py-3 text-sm text-green-600">Free</td>
+                    <td className="px-4 py-3 text-sm text-green-600">Free</td>
+                    <td className="px-4 py-3 text-sm text-green-600">Free</td>
+                    <td className="px-4 py-3 text-sm">₾5</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">International Transfer</td>
+                    <td className="px-4 py-3 text-sm">₾20-50</td>
+                    <td className="px-4 py-3 text-sm">₾30-60</td>
+                    <td className="px-4 py-3 text-sm">₾25-50</td>
+                    <td className="px-4 py-3 text-sm">₾30-55</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Currency Accounts</td>
+                    <td className="px-4 py-3 text-sm">GEL, USD, EUR, GBP</td>
+                    <td className="px-4 py-3 text-sm">GEL, USD, EUR</td>
+                    <td className="px-4 py-3 text-sm">GEL, USD, EUR</td>
+                    <td className="px-4 py-3 text-sm">GEL, USD</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Savings Interest</td>
+                    <td className="px-4 py-3 text-sm">5-8% (GEL)</td>
+                    <td className="px-4 py-3 text-sm">5-9% (GEL)</td>
+                    <td className="px-4 py-3 text-sm">6-10% (GEL)</td>
+                    <td className="px-4 py-3 text-sm">7-11% (GEL)</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">Customer Service</td>
+                    <td className="px-4 py-3 text-sm">24/7 English</td>
+                    <td className="px-4 py-3 text-sm">24/7 Limited English</td>
+                    <td className="px-4 py-3 text-sm">Business hours</td>
+                    <td className="px-4 py-3 text-sm">Business hours</td>
+                  </tr>
+                  <tr className="bg-blue-50 dark:bg-blue-900/20">
+                    <td className="px-4 py-3 text-sm font-bold text-gray-900 dark:text-white">Best For</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-blue-600">Expats & Digital Nomads</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-blue-600">Locals & Business</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-blue-600">High Interest Savings</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-blue-600">Budget Banking</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="mt-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>💡 Recommendation:</strong> TBC Bank is the clear winner for expats - best app, English support, and most ATMs. 
+              Bank of Georgia is good for business accounts. Liberty Bank offers highest savings rates. Credo Bank is budget-friendly but limited English.
+            </p>
+          </div>
+        </div>
+
         {/* Important Notes */}
         <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-6 rounded-lg">
           <div className="flex items-start">

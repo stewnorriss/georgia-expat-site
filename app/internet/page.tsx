@@ -403,6 +403,71 @@ export default function InternetPage() {
           </div>
         </div>
 
+        {/* Provider Comparison Table */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Quick Provider Comparison</h2>
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Provider</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Speed</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Price</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Reliability</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Setup Time</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Best For</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 font-semibold text-gray-900 dark:text-white">Silknet</td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-green-600 font-semibold">500-1000 Mbps</span>
+                    </td>
+                    <td className="px-4 py-3 text-sm">₾30-80</td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-yellow-500">★★★★★</span>
+                    </td>
+                    <td className="px-4 py-3 text-sm">1-3 days</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-blue-600">Speed & Reliability</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 font-semibold text-gray-900 dark:text-white">Magticom</td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-blue-600 font-semibold">200-500 Mbps</span>
+                    </td>
+                    <td className="px-4 py-3 text-sm">₾25-70</td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-yellow-500">★★★★☆</span>
+                    </td>
+                    <td className="px-4 py-3 text-sm">2-5 days</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-blue-600">Coverage & Bundles</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 font-semibold text-gray-900 dark:text-white">Beeline</td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-gray-600 dark:text-gray-400 font-semibold">100-300 Mbps</span>
+                    </td>
+                    <td className="px-4 py-3 text-sm text-green-600 font-semibold">₾20-60</td>
+                    <td className="px-4 py-3 text-sm">
+                      <span className="text-yellow-500">★★★☆☆</span>
+                    </td>
+                    <td className="px-4 py-3 text-sm">3-7 days</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-blue-600">Budget Option</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <p className="text-sm text-gray-700 dark:text-gray-300">
+              <strong>💡 Recommendation:</strong> Silknet for best speed and reliability (digital nomads, gamers). 
+              Magticom for nationwide coverage and mobile bundles. Beeline for budget-conscious users.
+            </p>
+          </div>
+        </div>
+
         {/* Mobile Carriers */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Mobile Carriers & Data Plans</h2>

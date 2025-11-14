@@ -821,6 +821,102 @@ export default function ShoppingPage() {
           </div>
         </div>
 
+        {/* Supermarket Comparison Table */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <ShoppingCart className="h-7 w-7 text-blue-600 mr-3" />
+            Supermarket Comparison
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Store</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price Level</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Selection</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Locations</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Best For</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                <tr className="hover:bg-gray-50">
+                  <td className="px-4 py-3 font-semibold text-gray-900">Carrefour</td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-orange-600">₾₾₾</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-green-600 font-semibold">Excellent</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">5+ locations</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-blue-600">International products</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="px-4 py-3 font-semibold text-gray-900">Goodwill</td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-green-600">₾₾</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-blue-600">Good</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">20+ locations</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-blue-600">Local products, value</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="px-4 py-3 font-semibold text-gray-900">Spar</td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-orange-600">₾₾₾</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-blue-600">Good</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">10+ locations</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-blue-600">European products</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="px-4 py-3 font-semibold text-gray-900">Fresco</td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-green-600 font-semibold">₾</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-gray-600">Basic</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">50+ locations</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-blue-600">Budget shopping, 24/7</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="px-4 py-3 font-semibold text-gray-900">AgroHub</td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-red-600">₾₾₾₾</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-green-600 font-semibold">Premium</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">3 locations</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-blue-600">Organic, artisan</td>
+                </tr>
+                <tr className="hover:bg-gray-50">
+                  <td className="px-4 py-3 font-semibold text-gray-900">Smart</td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-green-600">₾₾</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className="text-blue-600">Good</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm">15+ locations</td>
+                  <td className="px-4 py-3 text-sm font-semibold text-blue-600">Balance of price/quality</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+            <p className="text-sm text-gray-700">
+              <strong>💡 Money-Saving Strategy:</strong> Shop at Fresco or Goodwill for basics (₾40-80/week), 
+              Carrefour for international products you can't find elsewhere, and local markets for fresh produce (50% cheaper). 
+              Use loyalty cards at Goodwill and Carrefour for 5-10% discounts.
+            </p>
+          </div>
+        </div>
+
         {/* Price Examples */}
         <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Typical Grocery Prices (November 2025)</h2>
