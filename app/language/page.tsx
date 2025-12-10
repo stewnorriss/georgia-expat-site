@@ -15,7 +15,13 @@ export default function LanguagePage() {
   const [quizScore, setQuizScore] = useState(0)
   const [showFlashcards, setShowFlashcards] = useState(false)
   const [currentFlashcard, setCurrentFlashcard] = useState(0)
-  const [studyMode, setStudyMode] = useState<'lesson' | 'flashcard' | 'quiz' | 'alphabet'>('lesson')
+  const [studyMode, setStudyMode] = useState<'lesson' | 'flashcard' | 'quiz' | 'alphabet' | 'conversation' | 'pronunciation'>('lesson')
+  const [voiceRecording, setVoiceRecording] = useState(false)
+  const [userLevel, setUserLevel] = useState<'beginner' | 'intermediate' | 'advanced'>('beginner')
+  const [dailyGoal, setDailyGoal] = useState(15) // minutes
+  const [studyStreak, setStudyStreak] = useState(7)
+  const [totalXP, setTotalXP] = useState(1250)
+  const [showAchievements, setShowAchievements] = useState(false)
   const [showExercises, setShowExercises] = useState<number | null>(null)
   const [exerciseAnswers, setExerciseAnswers] = useState<{[key: string]: string}>({})
 
@@ -983,6 +989,65 @@ export default function LanguagePage() {
     setCurrentFlashcard(prev => prev === 0 ? flashcards.length - 1 : prev - 1)
   }
 
+  // Conversation scenarios for practice
+  const conversationScenarios = [
+    {
+      id: 1,
+      title: "At a Restaurant",
+      difficulty: "Beginner",
+      scenario: "You're ordering food at a traditional Georgian restaurant",
+      dialogue: [
+        { speaker: "Waiter", georgian: "გამარჯობა! რას შეუკვეთავთ?", english: "Hello! What would you like to order?", pronunciation: "gamarjoba! ras sheuketavt?" },
+        { speaker: "You", georgian: "მე მინდა ხაჭაპური", english: "I want khachapuri", pronunciation: "me minda khachapuri" },
+        { speaker: "Waiter", georgian: "რომელი ხაჭაპური?", english: "Which khachapuri?", pronunciation: "romeli khachapuri?" },
+        { speaker: "You", georgian: "აჭარული, თუ შეიძლება", english: "Adjarian, please", pronunciation: "acharuli, tu sheidzleba" }
+      ]
+    },
+    {
+      id: 2,
+      title: "Asking for Directions",
+      difficulty: "Beginner", 
+      scenario: "You're lost in Tbilisi and need to find the metro station",
+      dialogue: [
+        { speaker: "You", georgian: "ბოდიში, სად არის მეტროს სადგური?", english: "Excuse me, where is the metro station?", pronunciation: "bodishi, sad aris metros sadguri?" },
+        { speaker: "Local", georgian: "პირდაპირ წადით და მარჯვნივ მიუხვიეთ", english: "Go straight and turn right", pronunciation: "pirdapir tsadit da marjvniv miukhviet" },
+        { speaker: "You", georgian: "მადლობა!", english: "Thank you!", pronunciation: "madloba!" },
+        { speaker: "Local", georgian: "არაფრის!", english: "You're welcome!", pronunciation: "arapris!" }
+      ]
+    },
+    {
+      id: 3,
+      title: "Shopping at the Market",
+      difficulty: "Intermediate",
+      scenario: "You're buying fresh produce at Dezerter Bazaar",
+      dialogue: [
+        { speaker: "You", georgian: "რამდენი ღირს ეს ყურძენი?", english: "How much do these grapes cost?", pronunciation: "ramdeni ghirs es qurdzeni?" },
+        { speaker: "Vendor", georgian: "სამი ლარი კილოგრამი", english: "Three lari per kilogram", pronunciation: "sami lari kilogrami" },
+        { speaker: "You", georgian: "ძალიან ძვირია. ორი ლარი?", english: "That's very expensive. Two lari?", pronunciation: "dzalian dzviria. ori lari?" },
+        { speaker: "Vendor", georgian: "კარგი, ორი ლარი ორმოცდაათი თეთრი", english: "Okay, two lari fifty tetri", pronunciation: "kargi, ori lari ormotsadaati tetri" }
+      ]
+    }
+  ]
+
+  // Pronunciation challenges
+  const pronunciationChallenges = [
+    { georgian: "ღვინო", english: "Wine", difficulty: "Medium", tip: "The 'ღ' sound is like a soft 'gh'" },
+    { georgian: "ხაჭაპური", english: "Khachapuri", difficulty: "Medium", tip: "Emphasize the 'kh' sound at the beginning" },
+    { georgian: "წყალი", english: "Water", difficulty: "Hard", tip: "The 'წ' is a sharp 'ts' sound" },
+    { georgian: "ჯანმრთელობა", english: "Health", difficulty: "Hard", tip: "Break it down: jan-mr-te-lo-ba" },
+    { georgian: "სტუმარმასპინძლობა", english: "Hospitality", difficulty: "Expert", tip: "Georgia's longest word! Take it slowly" }
+  ]
+
+  // Achievement system
+  const achievements = [
+    { id: 1, title: "First Steps", description: "Complete your first lesson", icon: "🎯", unlocked: true },
+    { id: 2, title: "Week Warrior", description: "Maintain a 7-day streak", icon: "🔥", unlocked: true },
+    { id: 3, title: "Alphabet Master", description: "Learn all 33 Georgian letters", icon: "📝", unlocked: false },
+    { id: 4, title: "Conversation Starter", description: "Complete 5 conversation scenarios", icon: "💬", unlocked: false },
+    { id: 5, title: "Wine Connoisseur", description: "Master Georgian wine vocabulary", icon: "🍷", unlocked: false },
+    { id: 6, title: "Cultural Ambassador", description: "Complete all cultural lessons", icon: "🏛️", unlocked: false }
+  ]
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="relative bg-gradient-to-br from-pink-600 via-pink-700 to-red-600 text-white py-16 overflow-hidden">
@@ -1019,7 +1084,7 @@ export default function LanguagePage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
@@ -1043,13 +1108,13 @@ export default function LanguagePage() {
                 <Zap className="h-6 w-6 text-orange-600 mr-3" />
                 <h3 className="text-lg font-semibold text-gray-900">Streak</h3>
               </div>
-              <span className="text-2xl font-bold text-orange-600">{currentStreak}</span>
+              <span className="text-2xl font-bold text-orange-600">{studyStreak}</span>
             </div>
             <div className="flex items-center space-x-1 mb-2">
               {Array.from({ length: 7 }).map((_, i) => (
                 <div 
                   key={i} 
-                  className={`w-4 h-4 rounded-full ${i < currentStreak ? 'bg-orange-500' : 'bg-gray-200'}`}
+                  className={`w-4 h-4 rounded-full ${i < studyStreak ? 'bg-orange-500' : 'bg-gray-200'}`}
                 ></div>
               ))}
             </div>
@@ -1059,19 +1124,89 @@ export default function LanguagePage() {
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
-                <Brain className="h-6 w-6 text-purple-600 mr-3" />
-                <h3 className="text-lg font-semibold text-gray-900">AI Insights</h3>
+                <Award className="h-6 w-6 text-purple-600 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900">XP Points</h3>
               </div>
-              <Bot className="h-6 w-6 text-purple-600" />
+              <span className="text-2xl font-bold text-purple-600">{totalXP}</span>
             </div>
-            <p className="text-sm text-gray-600 mb-2">
-              Your strongest area: <span className="font-semibold text-purple-600">Greetings</span>
-            </p>
-            <p className="text-sm text-gray-600">
-              Focus on: <span className="font-semibold text-red-600">Numbers & Directions</span>
-            </p>
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+              <div 
+                className="bg-gradient-to-r from-purple-500 to-purple-600 h-2 rounded-full transition-all duration-300"
+                style={{ width: `${(totalXP % 1000) / 10}%` }}
+              ></div>
+            </div>
+            <p className="text-sm text-gray-600">{1000 - (totalXP % 1000)} XP to next level</p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center">
+                <Target className="h-6 w-6 text-blue-600 mr-3" />
+                <h3 className="text-lg font-semibold text-gray-900">Daily Goal</h3>
+              </div>
+              <button 
+                onClick={() => setShowAchievements(true)}
+                className="text-blue-600 hover:text-blue-800"
+              >
+                <Award className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-blue-600 mb-1">{dailyGoal} min</div>
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                <div className="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full w-3/4"></div>
+              </div>
+              <p className="text-sm text-gray-600">11 min completed today</p>
+            </div>
           </div>
         </div>
+
+        {/* Achievements Modal */}
+        {showAchievements && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl p-8 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">🏆 Achievements</h2>
+                <button 
+                  onClick={() => setShowAchievements(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                {achievements.map((achievement) => (
+                  <div 
+                    key={achievement.id} 
+                    className={`p-4 rounded-lg border-2 ${
+                      achievement.unlocked 
+                        ? 'border-green-200 bg-green-50' 
+                        : 'border-gray-200 bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center mb-2">
+                      <span className="text-2xl mr-3">{achievement.icon}</span>
+                      <div>
+                        <h3 className={`font-semibold ${
+                          achievement.unlocked ? 'text-green-800' : 'text-gray-600'
+                        }`}>
+                          {achievement.title}
+                        </h3>
+                        {achievement.unlocked && (
+                          <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                            Unlocked!
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-600">{achievement.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Study Mode Selector */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
@@ -1086,7 +1221,7 @@ export default function LanguagePage() {
             </div>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-4 mb-6">
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
             <button
               onClick={() => setStudyMode('lesson')}
               className={`p-4 rounded-lg border-2 transition-all ${
@@ -1137,6 +1272,32 @@ export default function LanguagePage() {
               <Globe className="h-8 w-8 mx-auto mb-2 text-purple-600" />
               <h3 className="font-semibold text-gray-900">Alphabet</h3>
               <p className="text-sm text-gray-600">Learn script</p>
+            </button>
+
+            <button
+              onClick={() => setStudyMode('conversation')}
+              className={`p-4 rounded-lg border-2 transition-all ${
+                studyMode === 'conversation'
+                  ? 'border-orange-500 bg-orange-50'
+                  : 'border-gray-200 hover:border-orange-300'
+              }`}
+            >
+              <MessageCircle className="h-8 w-8 mx-auto mb-2 text-orange-600" />
+              <h3 className="font-semibold text-gray-900">Conversations</h3>
+              <p className="text-sm text-gray-600">Real scenarios</p>
+            </button>
+
+            <button
+              onClick={() => setStudyMode('pronunciation')}
+              className={`p-4 rounded-lg border-2 transition-all ${
+                studyMode === 'pronunciation'
+                  ? 'border-red-500 bg-red-50'
+                  : 'border-gray-200 hover:border-red-300'
+              }`}
+            >
+              <Volume2 className="h-8 w-8 mx-auto mb-2 text-red-600" />
+              <h3 className="font-semibold text-gray-900">Pronunciation</h3>
+              <p className="text-sm text-gray-600">Perfect accent</p>
             </button>
           </div>
         </div>
@@ -1745,6 +1906,154 @@ export default function LanguagePage() {
           </div>
         )}
 
+        {/* Conversation Mode */}
+        {studyMode === 'conversation' && (
+          <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center">
+                <MessageCircle className="h-6 w-6 text-orange-600 mr-3" />
+                <h2 className="text-xl font-bold text-gray-900">Conversation Practice</h2>
+              </div>
+              <div className="text-sm text-gray-500">
+                Real-world scenarios
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {conversationScenarios.map((scenario) => (
+                <div key={scenario.id} className="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-gray-900">{scenario.title}</h3>
+                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                      scenario.difficulty === 'Beginner' ? 'bg-green-100 text-green-800' :
+                      scenario.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-red-100 text-red-800'
+                    }`}>
+                      {scenario.difficulty}
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-4">{scenario.scenario}</p>
+                  
+                  <div className="space-y-3">
+                    {scenario.dialogue.slice(0, 2).map((line, idx) => (
+                      <div key={idx} className={`p-3 rounded-lg ${
+                        line.speaker === 'You' ? 'bg-blue-100 ml-4' : 'bg-white mr-4'
+                      }`}>
+                        <div className="text-xs font-semibold text-gray-500 mb-1">{line.speaker}:</div>
+                        <div className="georgian-text font-semibold text-gray-900">{line.georgian}</div>
+                        <div className="text-sm text-gray-600">{line.english}</div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <button className="w-full mt-4 bg-orange-600 text-white py-2 rounded-lg font-semibold hover:bg-orange-700 transition-colors">
+                    Practice This Scenario
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Pronunciation Mode */}
+        {studyMode === 'pronunciation' && (
+          <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center">
+                <Volume2 className="h-6 w-6 text-red-600 mr-3" />
+                <h2 className="text-xl font-bold text-gray-900">Pronunciation Training</h2>
+              </div>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setVoiceRecording(!voiceRecording)}
+                  className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
+                    voiceRecording 
+                      ? 'bg-red-600 text-white' 
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {voiceRecording ? '🔴 Recording...' : '🎤 Start Recording'}
+                </button>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Pronunciation Challenges</h3>
+                <div className="space-y-4">
+                  {pronunciationChallenges.map((challenge, idx) => (
+                    <div key={idx} className="bg-gradient-to-r from-red-50 to-pink-50 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="georgian-text text-2xl font-bold text-gray-900">
+                          {challenge.georgian}
+                        </div>
+                        <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                          challenge.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                          challenge.difficulty === 'Hard' ? 'bg-red-100 text-red-800' :
+                          'bg-purple-100 text-purple-800'
+                        }`}>
+                          {challenge.difficulty}
+                        </span>
+                      </div>
+                      <div className="text-gray-700 mb-2">{challenge.english}</div>
+                      <div className="text-sm text-blue-600 mb-3">💡 {challenge.tip}</div>
+                      <div className="flex space-x-2">
+                        <button
+                          onClick={() => playPronunciation(challenge.georgian)}
+                          className="flex items-center bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700 transition-colors"
+                        >
+                          <Play className="h-3 w-3 mr-1" />
+                          Listen
+                        </button>
+                        <button className="flex items-center bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors">
+                          <Volume2 className="h-3 w-3 mr-1" />
+                          Record
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Pronunciation Tips</h3>
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">1</div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Georgian is Phonetic</h4>
+                        <p className="text-sm text-gray-600">Each letter has one consistent sound, making pronunciation predictable once you learn the alphabet.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">2</div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Stress Patterns</h4>
+                        <p className="text-sm text-gray-600">Georgian stress is usually on the first syllable, but there are exceptions in borrowed words.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">3</div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Unique Sounds</h4>
+                        <p className="text-sm text-gray-600">Pay special attention to ღ (gh), ყ (q), ხ (kh), and ჯ (j) - these don't exist in English.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1">4</div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">Practice Daily</h4>
+                        <p className="text-sm text-gray-600">15 minutes of daily pronunciation practice will dramatically improve your Georgian accent.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Quiz Mode */}
         {studyMode === 'quiz' && (
           <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
@@ -2019,13 +2328,21 @@ export default function LanguagePage() {
               <Zap className="h-6 w-6 text-orange-600 mr-3" />
               <h2 className="text-xl font-bold text-gray-900">Daily Challenge</h2>
             </div>
-            <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">
-              +50 XP
-            </span>
+            <div className="flex items-center space-x-2">
+              <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">
+                +50 XP
+              </span>
+              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                2/3 Complete
+              </span>
+            </div>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-white/70 rounded-lg p-4">
+          <div className="grid md:grid-cols-3 gap-4 mb-4">
+            <div className="bg-white/70 rounded-lg p-4 relative">
+              <div className="absolute top-2 right-2">
+                <CheckCircle className="h-5 w-5 text-green-600" />
+              </div>
               <h3 className="font-semibold text-gray-900 mb-2">Word of the Day</h3>
               <div className="georgian-text text-2xl font-bold text-orange-600 mb-1">სტუმარი</div>
               <div className="text-gray-700 mb-1">Guest</div>
@@ -2039,19 +2356,38 @@ export default function LanguagePage() {
               </button>
             </div>
             
-            <div className="bg-white/70 rounded-lg p-4">
+            <div className="bg-white/70 rounded-lg p-4 relative">
+              <div className="absolute top-2 right-2">
+                <CheckCircle className="h-5 w-5 text-green-600" />
+              </div>
               <h3 className="font-semibold text-gray-900 mb-2">Quick Translation</h3>
               <p className="text-gray-700 mb-2">How do you say "Good morning"?</p>
               <div className="georgian-text text-lg font-semibold text-orange-600">დილა მშვიდობისა</div>
               <div className="text-sm text-gray-500 italic">dila mshvidobisa</div>
             </div>
             
-            <div className="bg-white/70 rounded-lg p-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Cultural Tip</h3>
-              <p className="text-sm text-gray-600">
-                Georgians often toast with "გაუმარჯოს!" (gaumarjos) meaning "Victory!" - 
-                it's used for celebrations and good wishes.
-              </p>
+            <div className="bg-white/70 rounded-lg p-4 relative">
+              <div className="absolute top-2 right-2">
+                <Target className="h-5 w-5 text-gray-400" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Pronunciation Challenge</h3>
+              <p className="text-sm text-gray-600 mb-2">Record yourself saying:</p>
+              <div className="georgian-text text-lg font-semibold text-orange-600 mb-1">ღვინო</div>
+              <div className="text-sm text-gray-500 italic mb-2">ghvino (wine)</div>
+              <button className="flex items-center bg-red-100 text-red-700 px-3 py-1 rounded text-sm hover:bg-red-200 transition-colors">
+                <Volume2 className="h-3 w-3 mr-1" />
+                Record
+              </button>
+            </div>
+          </div>
+
+          <div className="bg-white/50 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-semibold text-gray-900">Today's Progress</h3>
+              <span className="text-sm text-gray-600">2 of 3 challenges</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full w-2/3 transition-all duration-300"></div>
             </div>
           </div>
         </div>
