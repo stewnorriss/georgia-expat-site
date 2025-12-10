@@ -67,10 +67,10 @@ export default function LanguagePage() {
   ]
 
   const difficulties = [
-    { id: 'all', name: 'All Levels', count: 20 },
-    { id: 'Beginner', name: 'Beginner', count: 8 },
-    { id: 'Intermediate', name: 'Intermediate', count: 8 },
-    { id: 'Advanced', name: 'Advanced', count: 4 }
+    { id: 'all', name: 'All Levels', count: 30 },
+    { id: 'Beginner', name: 'Beginner', count: 12 },
+    { id: 'Intermediate', name: 'Intermediate', count: 12 },
+    { id: 'Advanced', name: 'Advanced', count: 6 }
   ]
 
   const lessons = [
@@ -573,6 +573,265 @@ export default function LanguagePage() {
       ],
       culturalNotes: 'These expressions show deep cultural understanding and respect for Georgian heritage and values.',
       aiInsights: 'Cultural vocabulary demonstrates serious commitment to integration. Highest level of respect from locals.'
+    },
+    {
+      lesson: 21,
+      title: 'Public Transportation & Travel',
+      georgian: 'ტრანსპორტი (transporti)',
+      english: 'Transportation',
+      difficulty: 'Beginner',
+      category: 'Travel',
+      duration: '18 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 8,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ტრანსპორტი', english: 'Transportation', pronunciation: 'trans-por-ti', difficulty: 'easy' },
+        { georgian: 'მეტროს სადგური', english: 'Metro station', pronunciation: 'met-ros sad-gu-ri', difficulty: 'medium' },
+        { georgian: 'ავტობუსის გაჩერება', english: 'Bus stop', pronunciation: 'av-to-bu-sis ga-che-re-ba', difficulty: 'hard' },
+        { georgian: 'ბილეთი', english: 'Ticket', pronunciation: 'bi-le-ti', difficulty: 'easy' },
+        { georgian: 'რამდენი ღირს ბილეთი?', english: 'How much is the ticket?', pronunciation: 'ram-de-ni ghirs bi-le-ti?', difficulty: 'hard' },
+        { georgian: 'აეროპორტი', english: 'Airport', pronunciation: 'a-e-ro-por-ti', difficulty: 'medium' },
+        { georgian: 'მატარებელი', english: 'Train', pronunciation: 'ma-ta-re-be-li', difficulty: 'medium' }
+      ],
+      culturalNotes: 'Tbilisi has excellent public transport. The metro is clean, efficient, and very affordable at 1 lari per ride.',
+      aiInsights: 'Transport vocabulary is essential for daily life. 98% of expats use public transport regularly in Tbilisi.'
+    },
+    {
+      lesson: 22,
+      title: 'Apartment Hunting & Housing',
+      georgian: 'ბინა (bina)',
+      english: 'Apartment',
+      difficulty: 'Intermediate',
+      category: 'Housing',
+      duration: '30 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 12,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ბინა', english: 'Apartment', pronunciation: 'bi-na', difficulty: 'easy' },
+        { georgian: 'ქირა', english: 'Rent', pronunciation: 'ki-ra', difficulty: 'easy' },
+        { georgian: 'ოთახი', english: 'Room', pronunciation: 'o-ta-khi', difficulty: 'easy' },
+        { georgian: 'სამზარეულო', english: 'Kitchen', pronunciation: 'sam-za-re-u-lo', difficulty: 'hard' },
+        { georgian: 'აბაზანა', english: 'Bathroom', pronunciation: 'a-ba-za-na', difficulty: 'medium' },
+        { georgian: 'ავეჯი', english: 'Furniture', pronunciation: 'a-ve-ji', difficulty: 'medium' },
+        { georgian: 'კომუნალური', english: 'Utilities', pronunciation: 'ko-mu-na-lu-ri', difficulty: 'hard' },
+        { georgian: 'ინტერნეტი შედის?', english: 'Is internet included?', pronunciation: 'in-ter-ne-ti she-dis?', difficulty: 'hard' }
+      ],
+      culturalNotes: 'Most rentals in Tbilisi are unfurnished. Always ask about utilities and internet inclusion in rent.',
+      aiInsights: 'Housing vocabulary crucial for expat life. Knowing these terms helps negotiate better rental deals.'
+    },
+    {
+      lesson: 23,
+      title: 'Georgian Cuisine & Cooking',
+      georgian: 'ქართული სამზარეულო (kartuli samzareulo)',
+      english: 'Georgian cuisine',
+      difficulty: 'Intermediate',
+      category: 'Food',
+      duration: '35 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: false,
+      practiceExercises: 14,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ქართული სამზარეულო', english: 'Georgian cuisine', pronunciation: 'kar-tu-li sam-za-re-u-lo', difficulty: 'hard' },
+        { georgian: 'ხაჭაპური აჭარული', english: 'Adjarian khachapuri', pronunciation: 'kha-cha-pu-ri a-cha-ru-li', difficulty: 'hard' },
+        { georgian: 'მცხეთა', english: 'Mchadi (cornbread)', pronunciation: 'm-che-ta', difficulty: 'medium' },
+        { georgian: 'ლობიო', english: 'Bean stew', pronunciation: 'lo-bi-o', difficulty: 'easy' },
+        { georgian: 'ბადრიჯანი', english: 'Eggplant', pronunciation: 'bad-ri-ja-ni', difficulty: 'medium' },
+        { georgian: 'ნიგვზის საუსი', english: 'Walnut sauce', pronunciation: 'nig-vzis sa-u-si', difficulty: 'hard' },
+        { georgian: 'ტკბილი', english: 'Sweet', pronunciation: 't-k-bi-li', difficulty: 'medium' },
+        { georgian: 'მწარე', english: 'Spicy/Bitter', pronunciation: 'm-ts-a-re', difficulty: 'medium' }
+      ],
+      culturalNotes: 'Georgian cuisine uses many herbs and spices. Walnuts, coriander, and fenugreek are staples.',
+      aiInsights: 'Food vocabulary enhances cultural integration. Cooking Georgian food impresses locals significantly.'
+    },
+    {
+      lesson: 24,
+      title: 'Georgian Wine & Toasting',
+      georgian: 'ღვინო და სუფრა (ghvino da supra)',
+      english: 'Wine and feast',
+      difficulty: 'Advanced',
+      category: 'Cultural',
+      duration: '40 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 15,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ღვინო', english: 'Wine', pronunciation: 'gh-vi-no', difficulty: 'easy' },
+        { georgian: 'სუფრა', english: 'Georgian feast', pronunciation: 'sup-ra', difficulty: 'medium' },
+        { georgian: 'ტამადა', english: 'Toastmaster', pronunciation: 'ta-ma-da', difficulty: 'medium' },
+        { georgian: 'გაუმარჯოს!', english: 'Cheers! (Victory!)', pronunciation: 'gau-mar-jos!', difficulty: 'medium' },
+        { georgian: 'ქართული ღვინო', english: 'Georgian wine', pronunciation: 'kar-tu-li gh-vi-no', difficulty: 'medium' },
+        { georgian: 'საფერავი', english: 'Saperavi (red wine)', pronunciation: 'sa-pe-ra-vi', difficulty: 'medium' },
+        { georgian: 'რქაწითელი', english: 'Rkatsiteli (white wine)', pronunciation: 'r-ka-ts-i-te-li', difficulty: 'hard' },
+        { georgian: 'ჩაჩა', english: 'Chacha (Georgian brandy)', pronunciation: 'cha-cha', difficulty: 'easy' }
+      ],
+      culturalNotes: 'Georgian wine culture is 8000 years old. Toasting is an art form with specific rules and traditions.',
+      aiInsights: 'Wine vocabulary is essential for social integration. Georgians bond deeply over wine and toasts.'
+    },
+    {
+      lesson: 25,
+      title: 'Nature & Outdoor Activities',
+      georgian: 'ბუნება (buneba)',
+      english: 'Nature',
+      difficulty: 'Beginner',
+      category: 'Nature',
+      duration: '22 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: false,
+      practiceExercises: 9,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ბუნება', english: 'Nature', pronunciation: 'bu-ne-ba', difficulty: 'medium' },
+        { georgian: 'მთა', english: 'Mountain', pronunciation: 'm-ta', difficulty: 'easy' },
+        { georgian: 'ტყე', english: 'Forest', pronunciation: 't-ke', difficulty: 'easy' },
+        { georgian: 'მდინარე', english: 'River', pronunciation: 'm-di-na-re', difficulty: 'medium' },
+        { georgian: 'ტბა', english: 'Lake', pronunciation: 't-ba', difficulty: 'easy' },
+        { georgian: 'ფეხით სიარული', english: 'Hiking', pronunciation: 'pe-khit si-a-ru-li', difficulty: 'hard' },
+        { georgian: 'ლაშქრობა', english: 'Camping/Expedition', pronunciation: 'lash-kro-ba', difficulty: 'medium' },
+        { georgian: 'ღია ცის ქვეშ', english: 'Under the open sky', pronunciation: 'ghi-a tsis k-vesh', difficulty: 'hard' }
+      ],
+      culturalNotes: 'Georgia has incredible nature - from Caucasus mountains to Black Sea coast. Georgians love outdoor activities.',
+      aiInsights: 'Nature vocabulary opens up adventure opportunities. Georgia has some of the best hiking in the region.'
+    },
+    {
+      lesson: 26,
+      title: 'Georgian History & Landmarks',
+      georgian: 'ისტორია (istoria)',
+      english: 'History',
+      difficulty: 'Advanced',
+      category: 'Cultural',
+      duration: '45 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: false,
+      practiceExercises: 18,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ისტორია', english: 'History', pronunciation: 'is-to-ri-a', difficulty: 'medium' },
+        { georgian: 'ძველი ქალაქი', english: 'Old city', pronunciation: 'dzve-li ka-la-ki', difficulty: 'medium' },
+        { georgian: 'ნარიყალა', english: 'Narikala fortress', pronunciation: 'na-ri-ka-la', difficulty: 'medium' },
+        { georgian: 'სამება', english: 'Trinity Cathedral', pronunciation: 'sa-me-ba', difficulty: 'medium' },
+        { georgian: 'მცხეთა', english: 'Mtskheta (ancient capital)', pronunciation: 'm-ts-khe-ta', difficulty: 'medium' },
+        { georgian: 'სვეტიცხოველი', english: 'Svetitskhoveli Cathedral', pronunciation: 'sve-tits-kho-ve-li', difficulty: 'hard' },
+        { georgian: 'მუზეუმი', english: 'Museum', pronunciation: 'mu-ze-u-mi', difficulty: 'easy' },
+        { georgian: 'ძეგლი', english: 'Monument', pronunciation: 'dze-gli', difficulty: 'medium' }
+      ],
+      culturalNotes: 'Georgia has 3000+ years of history. Understanding historical context deepens cultural appreciation.',
+      aiInsights: 'Historical vocabulary shows serious cultural interest. Locals appreciate knowledge of Georgian heritage.'
+    },
+    {
+      lesson: 27,
+      title: 'Technology & Digital Life',
+      georgian: 'ციფრული ცხოვრება (tsipruli tskhovreba)',
+      english: 'Digital life',
+      difficulty: 'Beginner',
+      category: 'Technology',
+      duration: '20 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 10,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ციფრული', english: 'Digital', pronunciation: 'tsip-ru-li', difficulty: 'medium' },
+        { georgian: 'სმარტფონი', english: 'Smartphone', pronunciation: 'smart-po-ni', difficulty: 'easy' },
+        { georgian: 'აპლიკაცია', english: 'Application/App', pronunciation: 'ap-li-ka-tsi-a', difficulty: 'medium' },
+        { georgian: 'პაროლი', english: 'Password', pronunciation: 'pa-ro-li', difficulty: 'easy' },
+        { georgian: 'ელექტრონული ფოსტა', english: 'Email', pronunciation: 'e-lek-tro-nu-li pos-ta', difficulty: 'hard' },
+        { georgian: 'სოციალური ქსელი', english: 'Social network', pronunciation: 'so-tsi-a-lu-ri k-se-li', difficulty: 'hard' },
+        { georgian: 'ონლაინ', english: 'Online', pronunciation: 'on-lain', difficulty: 'easy' },
+        { georgian: 'ჩამოტვირთვა', english: 'Download', pronunciation: 'cha-mo-t-virt-va', difficulty: 'hard' }
+      ],
+      culturalNotes: 'Georgia has excellent internet infrastructure. Tech vocabulary is essential for modern life in Tbilisi.',
+      aiInsights: 'Tech terms are crucial for digital nomads. Georgia is becoming a major tech hub in the region.'
+    },
+    {
+      lesson: 28,
+      title: 'Georgian Festivals & Celebrations',
+      georgian: 'ფესტივალები (pestivalebi)',
+      english: 'Festivals',
+      difficulty: 'Intermediate',
+      category: 'Cultural',
+      duration: '32 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 13,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ფესტივალი', english: 'Festival', pronunciation: 'pes-ti-va-li', difficulty: 'medium' },
+        { georgian: 'ახალი წელი', english: 'New Year', pronunciation: 'a-kha-li ts-e-li', difficulty: 'medium' },
+        { georgian: 'შობა', english: 'Christmas', pronunciation: 'sho-ba', difficulty: 'easy' },
+        { georgian: 'აღდგომა', english: 'Easter', pronunciation: 'agh-dgo-ma', difficulty: 'medium' },
+        { georgian: 'თბილისობა', english: 'Tbilisoba (Tbilisi Day)', pronunciation: 'tbi-li-so-ba', difficulty: 'hard' },
+        { georgian: 'რთველი', english: 'Harvest festival', pronunciation: 'rt-ve-li', difficulty: 'medium' },
+        { georgian: 'ცეკვა', english: 'Dance', pronunciation: 'tsek-va', difficulty: 'easy' },
+        { georgian: 'სიმღერა', english: 'Song', pronunciation: 'sim-ghe-ra', difficulty: 'medium' }
+      ],
+      culturalNotes: 'Georgian festivals blend Christian traditions with ancient customs. Music and dance are central elements.',
+      aiInsights: 'Festival vocabulary helps participate in cultural events. Georgians love sharing their traditions with foreigners.'
+    },
+    {
+      lesson: 29,
+      title: 'Sports & Recreation',
+      georgian: 'სპორტი (sporti)',
+      english: 'Sports',
+      difficulty: 'Beginner',
+      category: 'Sports',
+      duration: '25 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: false,
+      practiceExercises: 11,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'სპორტი', english: 'Sports', pronunciation: 'spor-ti', difficulty: 'easy' },
+        { georgian: 'ფეხბურთი', english: 'Football/Soccer', pronunciation: 'pekh-bur-ti', difficulty: 'medium' },
+        { georgian: 'რაგბი', english: 'Rugby', pronunciation: 'rag-bi', difficulty: 'easy' },
+        { georgian: 'ჭიდაობა', english: 'Wrestling', pronunciation: 'chi-da-o-ba', difficulty: 'medium' },
+        { georgian: 'ცურვა', english: 'Swimming', pronunciation: 'tsur-va', difficulty: 'easy' },
+        { georgian: 'სპორტული დარბაზი', english: 'Gym', pronunciation: 'spor-tu-li dar-ba-zi', difficulty: 'hard' },
+        { georgian: 'ვარჯიში', english: 'Exercise/Training', pronunciation: 'var-ji-shi', difficulty: 'medium' },
+        { georgian: 'მოთხილამურე', english: 'Skier', pronunciation: 'mot-khi-la-mu-re', difficulty: 'hard' }
+      ],
+      culturalNotes: 'Rugby and wrestling are very popular in Georgia. The country has produced many world champions.',
+      aiInsights: 'Sports vocabulary helps connect with locals. Georgians are passionate about sports, especially rugby.'
+    },
+    {
+      lesson: 30,
+      title: 'Advanced Business Georgian',
+      georgian: 'ბიზნეს ქართული (biznes kartuli)',
+      english: 'Business Georgian',
+      difficulty: 'Advanced',
+      category: 'Business',
+      duration: '50 min',
+      hasAudio: true,
+      hasVideo: true,
+      aiRecommended: true,
+      practiceExercises: 20,
+      videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      phrases: [
+        { georgian: 'ბიზნეს გეგმა', english: 'Business plan', pronunciation: 'biz-nes geg-ma', difficulty: 'medium' },
+        { georgian: 'ინვესტიცია', english: 'Investment', pronunciation: 'in-ves-ti-tsi-a', difficulty: 'medium' },
+        { georgian: 'მოგება', english: 'Profit', pronunciation: 'mo-ge-ba', difficulty: 'easy' },
+        { georgian: 'ზარალი', english: 'Loss', pronunciation: 'za-ra-li', difficulty: 'easy' },
+        { georgian: 'კონტრაქტი', english: 'Contract', pronunciation: 'kon-trak-ti', difficulty: 'medium' },
+        { georgian: 'მოლაპარაკება', english: 'Negotiation', pronunciation: 'mo-la-pa-ra-ke-ba', difficulty: 'hard' },
+        { georgian: 'პარტნიორობა', english: 'Partnership', pronunciation: 'part-ni-o-ro-ba', difficulty: 'hard' },
+        { georgian: 'წარმატება', english: 'Success', pronunciation: 'ts-ar-ma-te-ba', difficulty: 'medium' }
+      ],
+      culturalNotes: 'Georgia has a growing startup ecosystem. Business relationships are built on personal trust and respect.',
+      aiInsights: 'Business Georgian opens professional opportunities. Essential for entrepreneurs and business professionals.'
     }
   ]
 
@@ -641,6 +900,36 @@ export default function LanguagePage() {
       options: ["მესმის", "არ მესმის", "ვთანხმდები", "საინტერესოა"],
       correct: 1,
       pronunciation: "ar mesmis"
+    },
+    {
+      question: "What does 'ბინა' mean?",
+      options: ["House", "Apartment", "Room", "Kitchen"],
+      correct: 1,
+      pronunciation: "bina"
+    },
+    {
+      question: "How do you say 'Metro station' in Georgian?",
+      options: ["ავტობუსის გაჩერება", "მეტროს სადგური", "აეროპორტი", "ბილეთი"],
+      correct: 1,
+      pronunciation: "metros sadguri"
+    },
+    {
+      question: "What is 'სუფრა'?",
+      options: ["Wine", "Georgian feast", "Dance", "Song"],
+      correct: 1,
+      pronunciation: "supra"
+    },
+    {
+      question: "How do you say 'Mountain' in Georgian?",
+      options: ["ტყე", "მდინარე", "მთა", "ტბა"],
+      correct: 2,
+      pronunciation: "mta"
+    },
+    {
+      question: "What does 'გაუმარჯოს!' mean?",
+      options: ["Hello!", "Goodbye!", "Cheers!/Victory!", "Thank you!"],
+      correct: 2,
+      pronunciation: "gaumarjos!"
     }
   ]
 
@@ -655,7 +944,17 @@ export default function LanguagePage() {
     { georgian: "რამდენი ღირს?", english: "How much does it cost?", pronunciation: "ram-de-ni ghirs?", category: "Shopping" },
     { georgian: "სად არის...?", english: "Where is...?", pronunciation: "sad a-ris...?", category: "Navigation" },
     { georgian: "მე ვარ...", english: "I am...", pronunciation: "me var...", category: "Introduction" },
-    { georgian: "როგორ ხარ?", english: "How are you?", pronunciation: "ro-gor khar?", category: "Conversation" }
+    { georgian: "როგორ ხარ?", english: "How are you?", pronunciation: "ro-gor khar?", category: "Conversation" },
+    { georgian: "ბინა", english: "Apartment", pronunciation: "bi-na", category: "Housing" },
+    { georgian: "ქირა", english: "Rent", pronunciation: "ki-ra", category: "Housing" },
+    { georgian: "მეტრო", english: "Metro", pronunciation: "met-ro", category: "Transport" },
+    { georgian: "ბილეთი", english: "Ticket", pronunciation: "bi-le-ti", category: "Transport" },
+    { georgian: "ღვინო", english: "Wine", pronunciation: "gh-vi-no", category: "Culture" },
+    { georgian: "სუფრა", english: "Georgian feast", pronunciation: "sup-ra", category: "Culture" },
+    { georgian: "მთა", english: "Mountain", pronunciation: "m-ta", category: "Nature" },
+    { georgian: "ტყე", english: "Forest", pronunciation: "t-ke", category: "Nature" },
+    { georgian: "სპორტი", english: "Sports", pronunciation: "spor-ti", category: "Sports" },
+    { georgian: "ბიზნესი", english: "Business", pronunciation: "biz-ne-si", category: "Business" }
   ]
 
   const handleQuizAnswer = (selectedAnswer: number) => {
