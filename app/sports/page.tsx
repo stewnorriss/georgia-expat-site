@@ -364,60 +364,291 @@ const SportsPage = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-6">
-            <h3 className="font-bold text-gray-900 mb-4">Quick Comparison</h3>
+          <div className="bg-white rounded-lg p-6 shadow-lg">
+            <h3 className="font-bold text-gray-900 mb-6 text-xl">Detailed Gym Comparison</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-2 px-3">Feature</th>
-                    <th className="text-center py-2 px-3">Budget</th>
-                    <th className="text-center py-2 px-3">Mid-Range</th>
-                    <th className="text-center py-2 px-3">Premium</th>
+                  <tr className="bg-gradient-to-r from-yellow-100 to-orange-100">
+                    <th className="text-left py-3 px-4 font-bold text-gray-900">Gym Name</th>
+                    <th className="text-center py-3 px-3 font-bold text-gray-900">Price/Month</th>
+                    <th className="text-center py-3 px-3 font-bold text-gray-900">Pool</th>
+                    <th className="text-center py-3 px-3 font-bold text-gray-900">Classes</th>
+                    <th className="text-center py-3 px-3 font-bold text-gray-900">English Staff</th>
+                    <th className="text-center py-3 px-3 font-bold text-gray-900">Sauna/Spa</th>
+                    <th className="text-center py-3 px-3 font-bold text-gray-900">Equipment</th>
+                    <th className="text-center py-3 px-3 font-bold text-gray-900">Best For</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-2 px-3 font-medium">Modern Equipment</td>
-                    <td className="text-center py-2 px-3">⚠️</td>
-                    <td className="text-center py-2 px-3">✅</td>
-                    <td className="text-center py-2 px-3">✅✅</td>
+                  <tr className="border-b border-gray-200 hover:bg-yellow-50 transition-colors">
+                    <td className="py-3 px-4">
+                      <div className="font-bold text-gray-900">World Class</div>
+                      <div className="text-xs text-gray-500">Premium Chain</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <div className="font-bold text-green-600">150-300</div>
+                      <div className="text-xs text-gray-500">GEL</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">25m Olympic</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">15+ types</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Full support</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Sauna+Hammam</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⭐</span>
+                      <div className="text-xs text-gray-600">Top tier</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-semibold">Luxury</span>
+                    </td>
                   </tr>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-2 px-3 font-medium">Group Classes</td>
-                    <td className="text-center py-2 px-3">❌</td>
-                    <td className="text-center py-2 px-3">✅</td>
-                    <td className="text-center py-2 px-3">✅✅</td>
+                  
+                  <tr className="border-b border-gray-200 hover:bg-yellow-50 transition-colors">
+                    <td className="py-3 px-4">
+                      <div className="font-bold text-gray-900">Gold's Gym</div>
+                      <div className="text-xs text-gray-500">International</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <div className="font-bold text-green-600">120-200</div>
+                      <div className="text-xs text-gray-500">GEL</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">❌</span>
+                      <div className="text-xs text-gray-600">No pool</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">CrossFit+Boxing</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Yes</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⚠️</span>
+                      <div className="text-xs text-gray-600">Recovery zone</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⭐</span>
+                      <div className="text-xs text-gray-600">Professional</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-semibold">Bodybuilding</span>
+                    </td>
                   </tr>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-2 px-3 font-medium">Swimming Pool</td>
-                    <td className="text-center py-2 px-3">❌</td>
-                    <td className="text-center py-2 px-3">⚠️</td>
-                    <td className="text-center py-2 px-3">✅</td>
+
+                  <tr className="border-b border-gray-200 hover:bg-yellow-50 transition-colors">
+                    <td className="py-3 px-4">
+                      <div className="font-bold text-gray-900">Impuls Fitness</div>
+                      <div className="text-xs text-gray-500">Local Premium</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <div className="font-bold text-green-600">100-180</div>
+                      <div className="text-xs text-gray-500">GEL</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">20m Indoor</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">10+ types</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⚠️</span>
+                      <div className="text-xs text-gray-600">Some staff</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Sauna+Steam</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Modern</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-semibold">All-round</span>
+                    </td>
                   </tr>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-2 px-3 font-medium">English-Speaking Staff</td>
-                    <td className="text-center py-2 px-3">❌</td>
-                    <td className="text-center py-2 px-3">⚠️</td>
-                    <td className="text-center py-2 px-3">✅</td>
+
+                  <tr className="border-b border-gray-200 hover:bg-yellow-50 transition-colors">
+                    <td className="py-3 px-4">
+                      <div className="font-bold text-gray-900">Orange Fitness</div>
+                      <div className="text-xs text-gray-500">Modern Mid-Range</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <div className="font-bold text-green-600">90-140</div>
+                      <div className="text-xs text-gray-500">GEL</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">❌</span>
+                      <div className="text-xs text-gray-600">No pool</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">8+ types</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⚠️</span>
+                      <div className="text-xs text-gray-600">Reception</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Sauna</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Matrix brand</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold">Best Value</span>
+                    </td>
                   </tr>
-                  <tr className="border-b border-gray-100">
-                    <td className="py-2 px-3 font-medium">Sauna/Spa</td>
-                    <td className="text-center py-2 px-3">❌</td>
-                    <td className="text-center py-2 px-3">⚠️</td>
-                    <td className="text-center py-2 px-3">✅</td>
+
+                  <tr className="border-b border-gray-200 hover:bg-yellow-50 transition-colors">
+                    <td className="py-3 px-4">
+                      <div className="font-bold text-gray-900">Fitness Time</div>
+                      <div className="text-xs text-gray-500">Budget-Friendly</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <div className="font-bold text-green-600">80-150</div>
+                      <div className="text-xs text-gray-500">GEL</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">❌</span>
+                      <div className="text-xs text-gray-600">No pool</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">6+ types</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⚠️</span>
+                      <div className="text-xs text-gray-600">Limited</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">❌</span>
+                      <div className="text-xs text-gray-600">No spa</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Good basics</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-semibold">Budget</span>
+                    </td>
                   </tr>
-                  <tr>
-                    <td className="py-2 px-3 font-medium">Personal Training</td>
-                    <td className="text-center py-2 px-3">⚠️</td>
-                    <td className="text-center py-2 px-3">✅</td>
-                    <td className="text-center py-2 px-3">✅✅</td>
+
+                  <tr className="border-b border-gray-200 hover:bg-yellow-50 transition-colors">
+                    <td className="py-3 px-4">
+                      <div className="font-bold text-gray-900">CrossFit Tbilisi</div>
+                      <div className="text-xs text-gray-500">Specialized Box</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <div className="font-bold text-green-600">200-250</div>
+                      <div className="text-xs text-gray-500">GEL</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">❌</span>
+                      <div className="text-xs text-gray-600">No pool</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">CrossFit WODs</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Full support</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">❌</span>
+                      <div className="text-xs text-gray-600">No spa</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⭐</span>
+                      <div className="text-xs text-gray-600">Rogue gear</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-semibold">CrossFit</span>
+                    </td>
+                  </tr>
+
+                  <tr className="hover:bg-yellow-50 transition-colors">
+                    <td className="py-3 px-4">
+                      <div className="font-bold text-gray-900">Vake Fitness</div>
+                      <div className="text-xs text-gray-500">Boutique</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <div className="font-bold text-green-600">120-180</div>
+                      <div className="text-xs text-gray-500">GEL</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">❌</span>
+                      <div className="text-xs text-gray-600">No pool</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Small groups</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">✅</span>
+                      <div className="text-xs text-gray-600">Full support</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⚠️</span>
+                      <div className="text-xs text-gray-600">Recovery zone</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="text-2xl">⭐</span>
+                      <div className="text-xs text-gray-600">Technogym</div>
+                    </td>
+                    <td className="text-center py-3 px-3">
+                      <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs font-semibold">Personal</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div className="mt-4 text-xs text-gray-500">
-              ✅✅ = Excellent | ✅ = Available | ⚠️ = Limited | ❌ = Not Available
+            <div className="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <div className="font-semibold text-gray-900 mb-2">Legend:</div>
+                <div className="space-y-1 text-gray-600">
+                  <div>✅ = Available</div>
+                  <div>⚠️ = Limited/Some</div>
+                  <div>❌ = Not Available</div>
+                  <div>⭐ = Premium Quality</div>
+                </div>
+              </div>
+              <div className="bg-blue-50 rounded-lg p-3">
+                <div className="font-semibold text-gray-900 mb-2">💡 Quick Tips:</div>
+                <div className="space-y-1 text-gray-600 text-xs">
+                  <div>• World Class = Best overall facilities</div>
+                  <div>• Orange Fitness = Best value for money</div>
+                  <div>• CrossFit Tbilisi = Best community</div>
+                  <div>• Vake Fitness = Most personalized</div>
+                </div>
+              </div>
+              <div className="bg-green-50 rounded-lg p-3">
+                <div className="font-semibold text-gray-900 mb-2">🎯 For Expats:</div>
+                <div className="space-y-1 text-gray-600 text-xs">
+                  <div>• English staff: World Class, Gold's, CrossFit</div>
+                  <div>• Trial available: All except Fitness Club 2000</div>
+                  <div>• Guest passes: World Class, Gold's Gym</div>
+                  <div>• No contract: Fitness Time, Orange</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
