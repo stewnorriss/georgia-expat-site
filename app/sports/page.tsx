@@ -12,17 +12,41 @@ const SportsPage = () => {
       facilities: ['Modern Equipment', 'Pool', 'Group Classes', 'Sauna', 'Personal Training'],
       website: 'worldclass.ge',
       rating: 4.5,
-      expat_friendly: true
+      expat_friendly: true,
+      description: 'The most premium gym chain in Tbilisi with international standards. Features state-of-the-art equipment from Technogym and Life Fitness.',
+      amenities: {
+        equipment: ['200+ Cardio Machines', 'Free Weights up to 50kg', 'Olympic Lifting Platform', 'TRX Suspension', 'Functional Training Zone'],
+        classes: ['Yoga', 'Pilates', 'Spinning', 'Zumba', 'CrossFit', 'Boxing', 'HIIT', 'Aqua Aerobics'],
+        extras: ['Olympic Pool (25m)', 'Finnish Sauna', 'Turkish Hammam', 'Massage Services', 'Nutrition Consultation', 'Kids Club', 'Juice Bar', 'Pro Shop']
+      },
+      hours: 'Mon-Fri: 6:00-23:00, Sat-Sun: 8:00-22:00',
+      trainers: 'Certified personal trainers available, many speak English',
+      membership_options: ['Monthly: 250 GEL', 'Quarterly: 650 GEL', 'Annual: 2,200 GEL (save 27%)', 'Day Pass: 30 GEL'],
+      expat_perks: ['English-speaking staff', 'International payment methods', 'Guest passes available', 'Expat community events'],
+      parking: 'Free parking at all locations',
+      trial: '3-day free trial available'
     },
     {
       name: 'Fitness Time',
       type: 'Mid-range Gym',
-      locations: ['Multiple locations'],
+      locations: ['Saburtalo', 'Vake', 'Gldani', 'Isani', 'Varketili'],
       priceRange: '80-150 GEL/month',
       facilities: ['Cardio Equipment', 'Weight Training', 'Group Classes', 'Locker Rooms'],
       website: 'fitnesstime.ge',
       rating: 4.2,
-      expat_friendly: true
+      expat_friendly: true,
+      description: 'Best value for money in Tbilisi. Clean, well-maintained facilities with modern equipment at affordable prices.',
+      amenities: {
+        equipment: ['100+ Cardio Machines', 'Free Weights', 'Cable Machines', 'Smith Machines', 'Leg Press', 'Rowing Machines'],
+        classes: ['Aerobics', 'Step', 'Body Pump', 'Stretching', 'Dance Fitness', 'Functional Training'],
+        extras: ['Locker Rooms with Showers', 'Changing Rooms', 'Water Fountains', 'Towel Service (extra fee)', 'Protein Shakes Available']
+      },
+      hours: 'Mon-Fri: 7:00-23:00, Sat-Sun: 9:00-21:00',
+      trainers: 'Personal trainers available at extra cost (30-40 GEL/session)',
+      membership_options: ['Monthly: 100 GEL', 'Quarterly: 270 GEL', 'Annual: 900 GEL (save 25%)', 'Student Discount: 15% off'],
+      expat_perks: ['Some English-speaking staff', 'Multiple locations for convenience', 'No long-term contracts required'],
+      parking: 'Limited street parking',
+      trial: '1-day free trial'
     },
     {
       name: 'Gold\'s Gym Tbilisi',
@@ -32,17 +56,41 @@ const SportsPage = () => {
       facilities: ['Professional Equipment', 'CrossFit Area', 'Boxing Ring', 'Yoga Studio', 'Nutritionist'],
       website: 'goldsgym.ge',
       rating: 4.4,
-      expat_friendly: true
+      expat_friendly: true,
+      description: 'World-renowned fitness brand with professional-grade equipment. Popular among serious bodybuilders and fitness enthusiasts.',
+      amenities: {
+        equipment: ['Hammer Strength Machines', 'Olympic Bars & Bumper Plates', 'Dumbbells up to 60kg', 'Assault Bikes', 'Concept2 Rowers', 'Battle Ropes', 'Kettlebells'],
+        classes: ['CrossFit', 'Boxing', 'Kickboxing', 'Yoga', 'Power Lifting', 'Olympic Lifting', 'HIIT', 'Core Training'],
+        extras: ['Boxing Ring', 'Heavy Bags', 'Speed Bags', 'Nutritionist on Staff', 'Body Composition Analysis', 'Supplement Store', 'Recovery Zone']
+      },
+      hours: 'Mon-Fri: 6:00-23:00, Sat-Sun: 8:00-22:00',
+      trainers: 'Certified trainers including former athletes, English-speaking available',
+      membership_options: ['Monthly: 150 GEL', 'Quarterly: 400 GEL', 'Annual: 1,500 GEL', 'Couples Package: 250 GEL/month'],
+      expat_perks: ['International brand recognition', 'English-speaking trainers', 'Expat workout groups', 'Guest passes for visitors'],
+      parking: 'Paid parking nearby',
+      trial: '7-day trial for 20 GEL'
     },
     {
       name: 'Impuls Fitness',
       type: 'Local Premium',
-      locations: ['Vera', 'Saburtalo'],
+      locations: ['Vera', 'Saburtalo', 'Vake Park'],
       priceRange: '100-180 GEL/month',
       facilities: ['Modern Cardio', 'Free Weights', 'Group Classes', 'Swimming Pool', 'Spa'],
       website: 'impulsfitness.ge',
       rating: 4.3,
-      expat_friendly: true
+      expat_friendly: true,
+      description: 'Georgian-owned premium gym with excellent facilities and a strong local community. Known for cleanliness and modern equipment.',
+      amenities: {
+        equipment: ['Latest Cardio Equipment', 'Free Weight Zone', 'Cable Crossover Machines', 'Leg Equipment', 'Chest & Back Machines', 'Core Training Area'],
+        classes: ['Swimming Lessons', 'Aqua Aerobics', 'Yoga', 'Pilates', 'Zumba', 'Spinning', 'Body Sculpting', 'Stretching'],
+        extras: ['Indoor Pool (20m)', 'Sauna', 'Steam Room', 'Massage Services', 'Spa Treatments', 'Cafe', 'Smoothie Bar', 'Retail Shop']
+      },
+      hours: 'Mon-Fri: 7:00-23:00, Sat-Sun: 9:00-22:00',
+      trainers: 'Experienced trainers, some English speakers (40-50 GEL/session)',
+      membership_options: ['Monthly: 130 GEL', 'Quarterly: 350 GEL', 'Annual: 1,200 GEL', 'Pool Only: 80 GEL/month'],
+      expat_perks: ['Friendly atmosphere', 'Clean facilities', 'Good mix of locals and expats', 'Flexible membership terms'],
+      parking: 'Free parking at Saburtalo location',
+      trial: '3-day trial for 15 GEL'
     },
     {
       name: 'CrossFit Tbilisi',
@@ -52,17 +100,85 @@ const SportsPage = () => {
       facilities: ['CrossFit Equipment', 'Olympic Lifting', 'Functional Training', 'Outdoor Area'],
       website: 'crossfittbilisi.com',
       rating: 4.6,
-      expat_friendly: true
+      expat_friendly: true,
+      description: 'Tbilisi\'s premier CrossFit box with certified coaches and a tight-knit community. Perfect for those serious about functional fitness.',
+      amenities: {
+        equipment: ['Rogue Fitness Equipment', 'Olympic Lifting Platforms', 'Pull-up Rigs', 'Assault Bikes', 'Rowing Machines', 'Ski Ergs', 'Sleds', 'Tires', 'Ropes'],
+        classes: ['CrossFit WODs', 'Olympic Lifting', 'Gymnastics', 'Mobility', 'Open Gym', 'Competition Prep', 'Beginners Program'],
+        extras: ['Outdoor Training Area', 'Competition Equipment', 'Chalk Station', 'Recovery Tools', 'Community Events', 'Nutrition Coaching']
+      },
+      hours: 'Mon-Fri: 6:00-22:00, Sat-Sun: 9:00-18:00',
+      trainers: 'CrossFit Level 1 & 2 certified coaches, English-speaking',
+      membership_options: ['Unlimited: 220 GEL/month', '12 Classes: 150 GEL', '8 Classes: 110 GEL', 'Drop-in: 20 GEL', 'Foundations Course: 100 GEL (required for beginners)'],
+      expat_perks: ['Strong expat community', 'English classes available', 'Social events', 'Competition opportunities', 'Visiting athlete rates'],
+      parking: 'Street parking available',
+      trial: 'Free intro class'
     },
     {
       name: 'Fitness Club 2000',
       type: 'Budget-Friendly',
-      locations: ['Didube', 'Gldani'],
+      locations: ['Didube', 'Gldani', 'Station Square'],
       priceRange: '50-80 GEL/month',
       facilities: ['Basic Equipment', 'Cardio Machines', 'Free Weights', 'Locker Rooms'],
       website: null,
       rating: 3.8,
-      expat_friendly: false
+      expat_friendly: false,
+      description: 'No-frills budget gym perfect for basic workouts. Equipment is older but functional. Great for those on a tight budget.',
+      amenities: {
+        equipment: ['Treadmills', 'Exercise Bikes', 'Ellipticals', 'Free Weights up to 30kg', 'Basic Machines', 'Benches'],
+        classes: ['Limited group classes', 'Basic aerobics'],
+        extras: ['Locker Rooms', 'Showers', 'Basic Changing Facilities']
+      },
+      hours: 'Mon-Fri: 8:00-22:00, Sat-Sun: 10:00-20:00',
+      trainers: 'Limited trainer availability, mostly Georgian-speaking',
+      membership_options: ['Monthly: 60 GEL', 'Quarterly: 160 GEL', 'Annual: 550 GEL'],
+      expat_perks: ['Very affordable', 'No contract required', 'Pay-as-you-go options'],
+      parking: 'Street parking',
+      trial: 'No trial available'
+    },
+    {
+      name: 'Orange Fitness',
+      type: 'Modern Mid-Range',
+      locations: ['Saburtalo', 'Vake', 'Isani'],
+      priceRange: '90-140 GEL/month',
+      facilities: ['Modern Equipment', 'Group Classes', 'Personal Training', 'Sauna'],
+      website: 'orangefitness.ge',
+      rating: 4.3,
+      expat_friendly: true,
+      description: 'Growing chain with modern facilities and good equipment. Popular among young professionals and expats.',
+      amenities: {
+        equipment: ['Matrix Cardio Equipment', 'Free Weights', 'Cable Machines', 'Functional Training Zone', 'TRX', 'Kettlebells'],
+        classes: ['HIIT', 'Yoga', 'Pilates', 'Spinning', 'Boxing', 'Dance', 'Stretching', 'Core'],
+        extras: ['Sauna', 'Locker Rooms', 'Showers', 'Towel Service', 'Smoothie Bar', 'WiFi', 'Music System']
+      },
+      hours: 'Mon-Fri: 6:30-23:00, Sat-Sun: 8:00-22:00',
+      trainers: 'Certified trainers, some English speakers (35-45 GEL/session)',
+      membership_options: ['Monthly: 110 GEL', 'Quarterly: 300 GEL', 'Annual: 1,000 GEL', 'Student: 90 GEL/month'],
+      expat_perks: ['Modern facilities', 'English-speaking staff at reception', 'Clean and well-maintained', 'Good music and atmosphere'],
+      parking: 'Free parking at most locations',
+      trial: '2-day trial for 10 GEL'
+    },
+    {
+      name: 'Vake Fitness Club',
+      type: 'Boutique Gym',
+      locations: ['Vake'],
+      priceRange: '120-180 GEL/month',
+      facilities: ['Premium Equipment', 'Small Group Training', 'Personal Training', 'Recovery Zone'],
+      website: 'vakefitness.ge',
+      rating: 4.5,
+      expat_friendly: true,
+      description: 'Boutique gym in upscale Vake neighborhood. Smaller, more intimate setting with personalized attention and high-end equipment.',
+      amenities: {
+        equipment: ['Technogym Equipment', 'Free Weights', 'Functional Training Area', 'Cardio Zone', 'Stretching Area'],
+        classes: ['Small Group Training (max 8 people)', 'Personal Training', 'Yoga', 'Pilates', 'HIIT'],
+        extras: ['Recovery Zone', 'Foam Rollers', 'Massage Guns', 'Towel Service', 'Premium Showers', 'Lounge Area', 'Coffee Bar']
+      },
+      hours: 'Mon-Fri: 7:00-22:00, Sat-Sun: 9:00-20:00',
+      trainers: 'Highly qualified trainers, English-speaking (50-70 GEL/session)',
+      membership_options: ['Monthly: 150 GEL', 'Quarterly: 400 GEL', 'Annual: 1,400 GEL', '10 PT Sessions: 500 GEL'],
+      expat_perks: ['Personalized service', 'English-speaking staff', 'Upscale atmosphere', 'Never crowded', 'Expat-friendly community'],
+      parking: 'Paid parking nearby',
+      trial: '1 free session with trainer'
     }
   ]
 
@@ -218,76 +334,260 @@ const SportsPage = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Quick Gym Finder */}
+        <section className="mb-12 bg-gradient-to-r from-yellow-50 via-orange-50 to-red-50 rounded-xl p-8 shadow-lg">
+          <div className="flex items-center mb-6">
+            <Target className="h-8 w-8 text-yellow-600 mr-3" />
+            <h2 className="text-3xl font-bold text-gray-900">Find Your Perfect Gym</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-white rounded-lg p-4 shadow">
+              <h3 className="font-semibold text-gray-900 mb-2">💰 Budget-Friendly</h3>
+              <p className="text-sm text-gray-600 mb-2">50-100 GEL/month</p>
+              <p className="text-xs text-gray-500">Fitness Time, Fitness Club 2000</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow">
+              <h3 className="font-semibold text-gray-900 mb-2">⭐ Best Value</h3>
+              <p className="text-sm text-gray-600 mb-2">100-150 GEL/month</p>
+              <p className="text-xs text-gray-500">Orange Fitness, Impuls Fitness</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow">
+              <h3 className="font-semibold text-gray-900 mb-2">🏆 Premium</h3>
+              <p className="text-sm text-gray-600 mb-2">150-300 GEL/month</p>
+              <p className="text-xs text-gray-500">World Class, Gold's Gym</p>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow">
+              <h3 className="font-semibold text-gray-900 mb-2">🎯 Specialized</h3>
+              <p className="text-sm text-gray-600 mb-2">200-250 GEL/month</p>
+              <p className="text-xs text-gray-500">CrossFit Tbilisi, Vake Fitness</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-6">
+            <h3 className="font-bold text-gray-900 mb-4">Quick Comparison</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b-2 border-gray-200">
+                    <th className="text-left py-2 px-3">Feature</th>
+                    <th className="text-center py-2 px-3">Budget</th>
+                    <th className="text-center py-2 px-3">Mid-Range</th>
+                    <th className="text-center py-2 px-3">Premium</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-100">
+                    <td className="py-2 px-3 font-medium">Modern Equipment</td>
+                    <td className="text-center py-2 px-3">⚠️</td>
+                    <td className="text-center py-2 px-3">✅</td>
+                    <td className="text-center py-2 px-3">✅✅</td>
+                  </tr>
+                  <tr className="border-b border-gray-100">
+                    <td className="py-2 px-3 font-medium">Group Classes</td>
+                    <td className="text-center py-2 px-3">❌</td>
+                    <td className="text-center py-2 px-3">✅</td>
+                    <td className="text-center py-2 px-3">✅✅</td>
+                  </tr>
+                  <tr className="border-b border-gray-100">
+                    <td className="py-2 px-3 font-medium">Swimming Pool</td>
+                    <td className="text-center py-2 px-3">❌</td>
+                    <td className="text-center py-2 px-3">⚠️</td>
+                    <td className="text-center py-2 px-3">✅</td>
+                  </tr>
+                  <tr className="border-b border-gray-100">
+                    <td className="py-2 px-3 font-medium">English-Speaking Staff</td>
+                    <td className="text-center py-2 px-3">❌</td>
+                    <td className="text-center py-2 px-3">⚠️</td>
+                    <td className="text-center py-2 px-3">✅</td>
+                  </tr>
+                  <tr className="border-b border-gray-100">
+                    <td className="py-2 px-3 font-medium">Sauna/Spa</td>
+                    <td className="text-center py-2 px-3">❌</td>
+                    <td className="text-center py-2 px-3">⚠️</td>
+                    <td className="text-center py-2 px-3">✅</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 px-3 font-medium">Personal Training</td>
+                    <td className="text-center py-2 px-3">⚠️</td>
+                    <td className="text-center py-2 px-3">✅</td>
+                    <td className="text-center py-2 px-3">✅✅</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-4 text-xs text-gray-500">
+              ✅✅ = Excellent | ✅ = Available | ⚠️ = Limited | ❌ = Not Available
+            </div>
+          </div>
+        </section>
+
         {/* Gyms & Fitness Centers */}
         <section className="mb-16">
           <div className="flex items-center mb-8">
             <Dumbbell className="h-8 w-8 text-yellow-600 mr-3" />
             <h2 className="text-3xl font-bold text-gray-900">Gyms & Fitness Centers</h2>
           </div>
-          <div className="grid gap-6">
+          <div className="grid gap-8">
             {gyms.map((gym, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-1">{gym.name}</h3>
-                    <p className="text-lg text-yellow-600 mb-2">{gym.type}</p>
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center">
-                        <Star className="h-4 w-4 text-yellow-500 mr-1" />
-                        <span className="text-sm font-semibold">{gym.rating}</span>
+              <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
+                {/* Header Section */}
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 border-b border-gray-200">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{gym.name}</h3>
+                      <p className="text-lg text-yellow-600 font-semibold mb-3">{gym.type}</p>
+                      <p className="text-gray-700 mb-3">{gym.description}</p>
+                      <div className="flex items-center space-x-4 flex-wrap gap-2">
+                        <div className="flex items-center">
+                          <Star className="h-5 w-5 text-yellow-500 mr-1" />
+                          <span className="text-sm font-bold">{gym.rating}/5.0</span>
+                        </div>
+                        {gym.expat_friendly && (
+                          <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                            ✓ Expat Friendly
+                          </span>
+                        )}
+                        {gym.trial && (
+                          <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                            🎁 {gym.trial}
+                          </span>
+                        )}
                       </div>
-                      {gym.expat_friendly && (
-                        <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold">
-                          Expat Friendly
-                        </span>
-                      )}
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-green-600">{gym.priceRange}</div>
-                    <div className="text-sm text-gray-500">per month</div>
-                  </div>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                      <MapPin className="h-4 w-4 mr-2 text-gray-500" />
-                      Locations:
-                    </h4>
-                    <ul className="space-y-1">
-                      {gym.locations.map((location, idx) => (
-                        <li key={idx} className="text-gray-700 ml-6">
-                          • {location}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                      <Activity className="h-4 w-4 mr-2 text-gray-500" />
-                      Facilities:
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {gym.facilities.map((facility, idx) => (
-                        <span key={idx} className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
-                          {facility}
-                        </span>
-                      ))}
+                    <div className="text-right ml-6">
+                      <div className="text-3xl font-bold text-green-600 mb-1">{gym.priceRange}</div>
+                      <div className="text-sm text-gray-500 mb-3">per month</div>
+                      {gym.website && (
+                        <a 
+                          href={`https://${gym.website}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="inline-flex items-center bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition-colors text-sm font-semibold"
+                        >
+                          Visit Website
+                          <ExternalLink className="h-4 w-4 ml-2" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
 
-                {gym.website && (
-                  <div className="flex items-center text-gray-600 pt-4 border-t border-gray-200">
-                    <Globe className="h-4 w-4 mr-2 text-purple-500" />
-                    <span className="font-semibold mr-2">Website:</span>
-                    <a href={`https://${gym.website}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center">
-                      {gym.website}
-                      <ExternalLink className="h-3 w-3 ml-1" />
-                    </a>
+                {/* Details Section */}
+                <div className="p-6">
+                  <div className="grid md:grid-cols-2 gap-6 mb-6">
+                    {/* Locations */}
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-3 flex items-center text-lg">
+                        <MapPin className="h-5 w-5 mr-2 text-red-500" />
+                        Locations
+                      </h4>
+                      <ul className="space-y-2">
+                        {gym.locations.map((location, idx) => (
+                          <li key={idx} className="text-gray-700 flex items-center">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                            {location}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-3 text-sm text-gray-600">
+                        <Clock className="h-4 w-4 inline mr-2" />
+                        {gym.hours}
+                      </div>
+                      <div className="mt-2 text-sm text-gray-600">
+                        🚗 {gym.parking}
+                      </div>
+                    </div>
+
+                    {/* Membership Options */}
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-3 flex items-center text-lg">
+                        <DollarSign className="h-5 w-5 mr-2 text-green-500" />
+                        Membership Options
+                      </h4>
+                      <ul className="space-y-2">
+                        {gym.membership_options.map((option, idx) => (
+                          <li key={idx} className="text-gray-700 flex items-center">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                            {option}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                )}
+
+                  {/* Equipment */}
+                  <div className="mb-6">
+                    <h4 className="font-bold text-gray-900 mb-3 flex items-center text-lg">
+                      <Dumbbell className="h-5 w-5 mr-2 text-purple-500" />
+                      Equipment & Facilities
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {gym.amenities.equipment.map((item, idx) => (
+                        <span key={idx} className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Classes */}
+                  <div className="mb-6">
+                    <h4 className="font-bold text-gray-900 mb-3 flex items-center text-lg">
+                      <Users className="h-5 w-5 mr-2 text-blue-500" />
+                      Group Classes
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {gym.amenities.classes.map((classType, idx) => (
+                        <span key={idx} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                          {classType}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Extras */}
+                  <div className="mb-6">
+                    <h4 className="font-bold text-gray-900 mb-3 flex items-center text-lg">
+                      <Zap className="h-5 w-5 mr-2 text-orange-500" />
+                      Additional Amenities
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {gym.amenities.extras.map((extra, idx) => (
+                        <span key={idx} className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">
+                          {extra}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Trainers */}
+                  <div className="mb-6 bg-gray-50 rounded-lg p-4">
+                    <h4 className="font-bold text-gray-900 mb-2 flex items-center">
+                      <Target className="h-5 w-5 mr-2 text-pink-500" />
+                      Personal Training
+                    </h4>
+                    <p className="text-gray-700 text-sm">{gym.trainers}</p>
+                  </div>
+
+                  {/* Expat Perks */}
+                  {gym.expat_perks && (
+                    <div className="bg-green-50 rounded-lg p-4 border-2 border-green-200">
+                      <h4 className="font-bold text-green-900 mb-3 flex items-center">
+                        <Globe className="h-5 w-5 mr-2" />
+                        Expat Benefits
+                      </h4>
+                      <ul className="grid md:grid-cols-2 gap-2">
+                        {gym.expat_perks.map((perk, idx) => (
+                          <li key={idx} className="text-green-800 text-sm flex items-center">
+                            <span className="text-green-600 mr-2">✓</span>
+                            {perk}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
