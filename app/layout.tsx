@@ -8,6 +8,7 @@ import { BlogProvider } from './contexts/BlogContext'
 import ThemeToggle from './components/ThemeToggle'
 import PWAInstaller from './components/PWAInstaller'
 import GoogleAnalytics from './components/GoogleAnalytics'
+import EmergencyBanner from './components/EmergencyBanner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -89,6 +90,7 @@ export default function RootLayout({
         <ThemeProvider>
           <BlogProvider>
             <div className="flex flex-col min-h-screen">
+              <EmergencyBanner />
               <Navigation />
               <ThemeToggle />
               <PWAInstaller />

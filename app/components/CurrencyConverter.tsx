@@ -1,282 +1,197 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ArrowRightLeft, TrendingUp, TrendingDown, RefreshCw, Calculator, Info } from 'lucide-react'
+import { DollarSign, TrendingUp, RefreshCw, ArrowRightLeft } from 'lucide-react'
 
-interface ExchangeRateData {
-  rate: number
-  lastUpdated: string
-  change24h?: number
-  trend?: 'up' | 'down' | 'stable'
+interface ExchangeRates {
+  USD: number
+  EUR: number
+  GBP: number
+  GEL: number
 }
 
 const CurrencyConverter = () => {
-  const [gelAmount, setGelAmount] = useState<string>('100')
-  const [gbpAmount, setGbpAmount] = useState<string>('0')
-  const [exchangeRate, setExchangeRate] = useState<ExchangeRateData | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [lastRefresh, setLastRefresh] = useState<Date>(new Date())
-  const [isConverting, setIsConverting] = useState<'gel-to-gbp' | 'gbp-to-gel'>('gel-to-gbp')
+  const [amount, setAmount] = useState<string>('100')
+  const [fromCurrency, setFromCurrency] = useState<string>('USD')
+  const [toCurrency, setToCurrency] = useState<string>('GEL')
+  const [rates, setRates] = useState<ExchangeRates>({ USD: 1, EUR: 0.92, GBP: 0.79, GEL: 2.65 })
+  const [loading, setLoading] = useState(false)
+  const [lastUpdated, setLastUpdated] = useState<string>('')
 
-  // Fetch exchange rate from a free API
-  const fetchExchangeRate = async () => {
-    setLoading(true)
-    setError(null)
-    
-    try {
-      // Using exchangerate-api.com (free tier allows 1500 requests/month)
-      const response = await fetch('https://api.exchangerate-api.com/v4/latest/GEL')
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch exchange rate')
-      }
-      
-      const data = await response.json()
-      const rate = data.rates.GBP
-      
-      if (!rate) {
-        throw new Error('GBP rate not found')
-      }
+  const currencies = [
+    { code: 'GEL', name: 'Georgian Lari', flag: '🇬🇪' },
+    { code: 'USD', name: 'US Dollar', flag: '🇺🇸' },
+    { code: 'EUR', name: 'Euro', flag: '🇪🇺' },
+    { code: 'GBP', name: 'British Pound', flag: '🇬🇧' }
+  ]
 
-      // Calculate 24h change (simulated for demo - in production you'd store previous rates)
-      const previousRate = exchangeRate?.rate || rate
-      const change24h = ((rate - previousRate) / previousRate) * 100
-      const trend = change24h > 0.01 ? 'up' : change24h < -0.01 ? 'down' : 'stable'
-
-      setExchangeRate({
-        rate: rate,
-        lastUpdated: new Date().toISOString(),
-        change24h: change24h,
-        trend: trend
-      })
-      
-      setLastRefresh(new Date())
-      
-      // Update conversion based on current input
-      if (isConverting === 'gel-to-gbp') {
-        const converted = (parseFloat(gelAmount) * rate).toFixed(2)
-        setGbpAmount(converted)
-      } else {
-        const converted = (parseFloat(gbpAmount) / rate).toFixed(2)
-        setGelAmount(converted)
-      }
-      
-    } catch (err) {
-      console.error('Exchange rate fetch error:', err)
-      setError('Unable to fetch current exchange rates. Please try again later.')
-      
-      // Fallback rate (approximate)
-      setExchangeRate({
-        rate: 0.30,
-        lastUpdated: new Date().toISOString(),
-        change24h: 0,
-        trend: 'stable'
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  // Convert GEL to GBP
-  const convertGelToGbp = (amount: string) => {
-    if (!exchangeRate || !amount) return
-    
-    const gelValue = parseFloat(amount)
-    if (isNaN(gelValue)) return
-    
-    const gbpValue = (gelValue * exchangeRate.rate).toFixed(2)
-    setGbpAmount(gbpValue)
-  }
-
-  // Convert GBP to GEL
-  const convertGbpToGel = (amount: string) => {
-    if (!exchangeRate || !amount) return
-    
-    const gbpValue = parseFloat(amount)
-    if (isNaN(gbpValue)) return
-    
-    const gelValue = (gbpValue / exchangeRate.rate).toFixed(2)
-    setGelAmount(gelValue)
-  }
-
-  // Handle GEL input change
-  const handleGelChange = (value: string) => {
-    setGelAmount(value)
-    setIsConverting('gel-to-gbp')
-    convertGelToGbp(value)
-  }
-
-  // Handle GBP input change
-  const handleGbpChange = (value: string) => {
-    setGbpAmount(value)
-    setIsConverting('gbp-to-gel')
-    convertGbpToGel(value)
-  }
-
-  // Swap currencies
-  const swapCurrencies = () => {
-    const tempAmount = gelAmount
-    setGelAmount(gbpAmount)
-    setGbpAmount(tempAmount)
-    setIsConverting(isConverting === 'gel-to-gbp' ? 'gbp-to-gel' : 'gel-to-gbp')
-  }
-
-  // Format last updated time
-  const formatLastUpdated = (dateString: string) => {
-    const date = new Date(dateString)
-    const now = new Date()
-    const diffMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60))
-    
-    if (diffMinutes < 1) return 'Just now'
-    if (diffMinutes < 60) return `${diffMinutes}m ago`
-    if (diffMinutes < 1440) return `${Math.floor(diffMinutes / 60)}h ago`
-    return date.toLocaleDateString()
-  }
-
-  // Auto-refresh every 5 minutes
   useEffect(() => {
-    fetchExchangeRate()
-    
-    const interval = setInterval(() => {
-      fetchExchangeRate()
-    }, 5 * 60 * 1000) // 5 minutes
-    
-    return () => clearInterval(interval)
+    fetchRates()
   }, [])
 
-  // Initial conversion
-  useEffect(() => {
-    if (exchangeRate && gelAmount) {
-      convertGelToGbp(gelAmount)
+  const fetchRates = async () => {
+    setLoading(true)
+    try {
+      // Using exchangerate-api.com (free tier, no API key for basic usage)
+      const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
+      const data = await response.json()
+      
+      if (data.rates) {
+        setRates({
+          USD: 1,
+          EUR: data.rates.EUR || 0.92,
+          GBP: data.rates.GBP || 0.79,
+          GEL: data.rates.GEL || 2.65
+        })
+        setLastUpdated(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }))
+      }
+    } catch (error) {
+      console.error('Failed to fetch rates:', error)
+      // Keep default rates if fetch fails
     }
-  }, [exchangeRate])
+    setLoading(false)
+  }
+
+  const convert = (): number => {
+    const numAmount = parseFloat(amount) || 0
+    
+    // Convert to USD first (base currency)
+    const amountInUSD = fromCurrency === 'USD' ? numAmount : numAmount / rates[fromCurrency as keyof ExchangeRates]
+    
+    // Convert from USD to target currency
+    const result = toCurrency === 'USD' ? amountInUSD : amountInUSD * rates[toCurrency as keyof ExchangeRates]
+    
+    return result
+  }
+
+  const swapCurrencies = () => {
+    setFromCurrency(toCurrency)
+    setToCurrency(fromCurrency)
+  }
+
+  const quickAmounts = [100, 500, 1000, 5000]
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 max-w-md mx-auto">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center">
-          <Calculator className="h-6 w-6 text-blue-600 mr-2" />
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white">Currency Converter</h3>
+    <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center space-x-2">
+          <DollarSign className="h-6 w-6" />
+          <h3 className="text-lg font-bold">Currency Converter</h3>
         </div>
         <button
-          onClick={fetchExchangeRate}
+          onClick={fetchRates}
           disabled={loading}
-          className="p-2 text-gray-500 hover:text-blue-600 transition-colors disabled:opacity-50"
+          className="bg-green-700 hover:bg-green-800 p-2 rounded-lg transition-colors disabled:opacity-50"
           title="Refresh rates"
         >
           <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
         </button>
       </div>
 
-      {/* Exchange Rate Display */}
-      {exchangeRate && !error && (
-        <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/30 dark:to-green-900/30 rounded-lg p-4 mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">1 GEL = {exchangeRate.rate.toFixed(4)} GBP</span>
-            {exchangeRate.trend && exchangeRate.change24h !== undefined && (
-              <div className={`flex items-center text-sm ${
-                exchangeRate.trend === 'up' ? 'text-green-600' : 
-                exchangeRate.trend === 'down' ? 'text-red-600' : 'text-gray-600'
-              }`}>
-                {exchangeRate.trend === 'up' && <TrendingUp className="h-3 w-3 mr-1" />}
-                {exchangeRate.trend === 'down' && <TrendingDown className="h-3 w-3 mr-1" />}
-                {Math.abs(exchangeRate.change24h).toFixed(2)}%
-              </div>
-            )}
-          </div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">
-            Updated: {formatLastUpdated(exchangeRate.lastUpdated)}
-          </div>
+      {lastUpdated && (
+        <div className="text-xs opacity-75 mb-4 flex items-center">
+          <TrendingUp className="h-3 w-3 mr-1" />
+          Updated: {lastUpdated}
         </div>
       )}
 
-      {/* Error Display */}
-      {error && (
-        <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
-          <div className="flex items-center">
-            <Info className="h-4 w-4 text-red-600 dark:text-red-400 mr-2" />
-            <span className="text-sm text-red-700 dark:text-red-300">{error}</span>
-          </div>
-        </div>
-      )}
-
-      {/* Converter Interface */}
-      <div className="space-y-4">
-        {/* GEL Input */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Georgian Lari (GEL)
-          </label>
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 font-medium">
-              ₾
-            </span>
-            <input
-              type="number"
-              value={gelAmount}
-              onChange={(e) => handleGelChange(e.target.value)}
-              className="w-full pl-8 pr-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg placeholder-gray-400 dark:placeholder-gray-500"
-              placeholder="0.00"
-              step="0.01"
-            />
-          </div>
-        </div>
-
-        {/* Swap Button */}
-        <div className="flex justify-center">
+      {/* Quick Amount Buttons */}
+      <div className="flex space-x-2 mb-4">
+        {quickAmounts.map((quickAmount) => (
           <button
-            onClick={swapCurrencies}
-            className="p-2 bg-blue-100 dark:bg-blue-900/50 hover:bg-blue-200 dark:hover:bg-blue-800/50 rounded-full transition-colors"
-            title="Swap currencies"
+            key={quickAmount}
+            onClick={() => setAmount(quickAmount.toString())}
+            className="flex-1 bg-green-700 hover:bg-green-800 py-2 rounded-lg text-sm font-semibold transition-colors"
           >
-            <ArrowRightLeft className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            {quickAmount}
           </button>
-        </div>
+        ))}
+      </div>
 
-        {/* GBP Input */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            British Pound (GBP)
-          </label>
-          <div className="relative">
-            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 font-medium">
-              £
-            </span>
-            <input
-              type="number"
-              value={gbpAmount}
-              onChange={(e) => handleGbpChange(e.target.value)}
-              className="w-full pl-8 pr-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg placeholder-gray-400 dark:placeholder-gray-500"
-              placeholder="0.00"
-              step="0.01"
-            />
+      {/* From Currency */}
+      <div className="bg-white/10 rounded-lg p-4 mb-3">
+        <label className="text-xs opacity-75 block mb-2">From</label>
+        <div className="flex space-x-3">
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            className="flex-1 bg-white/20 border border-white/30 rounded-lg px-3 py-2 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/50"
+            placeholder="Amount"
+          />
+          <select
+            value={fromCurrency}
+            onChange={(e) => setFromCurrency(e.target.value)}
+            className="bg-white/20 border border-white/30 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+          >
+            {currencies.map((currency) => (
+              <option key={currency.code} value={currency.code} className="bg-green-600">
+                {currency.flag} {currency.code}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Swap Button */}
+      <div className="flex justify-center -my-2 relative z-10">
+        <button
+          onClick={swapCurrencies}
+          className="bg-green-700 hover:bg-green-800 p-2 rounded-full transition-colors shadow-lg"
+        >
+          <ArrowRightLeft className="h-4 w-4" />
+        </button>
+      </div>
+
+      {/* To Currency */}
+      <div className="bg-white/10 rounded-lg p-4 mb-4">
+        <label className="text-xs opacity-75 block mb-2">To</label>
+        <div className="flex space-x-3">
+          <div className="flex-1 bg-white/20 border border-white/30 rounded-lg px-3 py-2">
+            <div className="text-2xl font-bold">
+              {convert().toFixed(2)}
+            </div>
           </div>
+          <select
+            value={toCurrency}
+            onChange={(e) => setToCurrency(e.target.value)}
+            className="bg-white/20 border border-white/30 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+          >
+            {currencies.map((currency) => (
+              <option key={currency.code} value={currency.code} className="bg-green-600">
+                {currency.flag} {currency.code}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
-      {/* Quick Conversion Buttons */}
-      <div className="mt-6">
-        <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Quick Convert:</div>
-        <div className="grid grid-cols-4 gap-2">
-          {[10, 50, 100, 500].map((amount) => (
-            <button
-              key={amount}
-              onClick={() => handleGelChange(amount.toString())}
-              className="px-3 py-2 text-sm bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg transition-colors"
-            >
-              ₾{amount}
-            </button>
-          ))}
+      {/* Exchange Rate Info */}
+      <div className="bg-white/10 rounded-lg p-3 text-sm">
+        <div className="flex justify-between items-center">
+          <span className="opacity-75">Exchange Rate:</span>
+          <span className="font-semibold">
+            1 {fromCurrency} = {(rates[toCurrency as keyof ExchangeRates] / rates[fromCurrency as keyof ExchangeRates]).toFixed(4)} {toCurrency}
+          </span>
         </div>
       </div>
 
-      {/* Info Footer */}
-      <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
-        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
-          <Info className="h-3 w-3 mr-1" />
-          <span>Rates update every 5 minutes. For large transactions, check with your bank.</span>
+      {/* Quick Reference */}
+      <div className="mt-4 pt-4 border-t border-white/20">
+        <div className="text-xs opacity-75 mb-2">Quick Reference (1 GEL =)</div>
+        <div className="grid grid-cols-3 gap-2 text-xs">
+          <div className="bg-white/10 rounded p-2 text-center">
+            <div className="font-semibold">${(1 / rates.GEL).toFixed(2)}</div>
+            <div className="opacity-75">USD</div>
+          </div>
+          <div className="bg-white/10 rounded p-2 text-center">
+            <div className="font-semibold">€{(rates.EUR / rates.GEL).toFixed(2)}</div>
+            <div className="opacity-75">EUR</div>
+          </div>
+          <div className="bg-white/10 rounded p-2 text-center">
+            <div className="font-semibold">£{(rates.GBP / rates.GEL).toFixed(2)}</div>
+            <div className="opacity-75">GBP</div>
+          </div>
         </div>
       </div>
     </div>

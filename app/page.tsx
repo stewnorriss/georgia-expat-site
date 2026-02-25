@@ -33,6 +33,8 @@ import {
 } from 'lucide-react'
 import { TbilisiSkyline, GeorgianWineBottle, Khachapuri, GeorgianPattern } from './components/GeorgianIllustrations'
 import ClientOnlyWrapper from './components/ClientOnlyWrapper'
+import WeatherWidget from './components/WeatherWidget'
+import CurrencyConverter from './components/CurrencyConverter'
 
 const HomePage = () => {
   const [heroSearchQuery, setHeroSearchQuery] = useState('')
@@ -419,6 +421,16 @@ const HomePage = () => {
               Stew's Blog
               <ArrowRight className="h-5 w-5 ml-3 group-hover:translate-x-1 transition-transform" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Info Widgets Section */}
+      <section className="py-8 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-6">
+            <WeatherWidget />
+            <CurrencyConverter />
           </div>
         </div>
       </section>
