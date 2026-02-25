@@ -95,11 +95,11 @@ const WeatherWidget = () => {
 
   if (loading) {
     return (
-      <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+      <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white shadow-md">
         <div className="animate-pulse">
-          <div className="h-4 bg-blue-400 rounded w-24 mb-4"></div>
-          <div className="h-8 bg-blue-400 rounded w-16 mb-2"></div>
-          <div className="h-3 bg-blue-400 rounded w-32"></div>
+          <div className="h-3 bg-blue-400 rounded w-20 mb-3"></div>
+          <div className="h-6 bg-blue-400 rounded w-12 mb-2"></div>
+          <div className="h-2 bg-blue-400 rounded w-24"></div>
         </div>
       </div>
     )
@@ -107,68 +107,68 @@ const WeatherWidget = () => {
 
   if (error || !weather) {
     return (
-      <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-xl p-6 text-white shadow-lg">
+      <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-white shadow-md">
         <div className="text-center">
-          <Cloud className="h-12 w-12 mx-auto mb-2 opacity-50" />
-          <p className="text-sm">Weather unavailable</p>
+          <Cloud className="h-8 w-8 mx-auto mb-1 opacity-50" />
+          <p className="text-xs">Weather unavailable</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow duration-300">
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="flex items-center justify-between mb-3">
         <div>
-          <h3 className="text-sm font-semibold opacity-90">Tbilisi Weather</h3>
-          <p className="text-xs opacity-75">Right now</p>
+          <h3 className="text-xs font-semibold opacity-90">Tbilisi Weather</h3>
+          <p className="text-[10px] opacity-75">Right now</p>
         </div>
-        <div className="text-4xl">{weather.icon}</div>
+        <div className="text-2xl">{weather.icon}</div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-3">
         <div className="flex items-baseline">
-          <span className="text-5xl font-bold">{weather.temp}</span>
-          <span className="text-2xl ml-1">°C</span>
+          <span className="text-3xl font-bold">{weather.temp}</span>
+          <span className="text-lg ml-1">°C</span>
         </div>
-        <p className="text-sm opacity-90 capitalize mt-1">{weather.description}</p>
-        <p className="text-xs opacity-75 mt-1">Feels like {weather.feels_like}°C</p>
+        <p className="text-xs opacity-90 capitalize mt-0.5">{weather.description}</p>
+        <p className="text-[10px] opacity-75 mt-0.5">Feels like {weather.feels_like}°C</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 pt-4 border-t border-blue-400">
-        <div className="flex items-center space-x-2">
-          <Droplets className="h-4 w-4 opacity-75" />
+      <div className="grid grid-cols-2 gap-2 pt-3 border-t border-blue-400">
+        <div className="flex items-center space-x-1.5">
+          <Droplets className="h-3 w-3 opacity-75" />
           <div>
-            <p className="text-xs opacity-75">Humidity</p>
-            <p className="text-sm font-semibold">{weather.humidity}%</p>
+            <p className="text-[10px] opacity-75">Humidity</p>
+            <p className="text-xs font-semibold">{weather.humidity}%</p>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <Wind className="h-4 w-4 opacity-75" />
+        <div className="flex items-center space-x-1.5">
+          <Wind className="h-3 w-3 opacity-75" />
           <div>
-            <p className="text-xs opacity-75">Wind</p>
-            <p className="text-sm font-semibold">{weather.wind_speed} km/h</p>
+            <p className="text-[10px] opacity-75">Wind</p>
+            <p className="text-xs font-semibold">{weather.wind_speed} km/h</p>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <Gauge className="h-4 w-4 opacity-75" />
+        <div className="flex items-center space-x-1.5">
+          <Gauge className="h-3 w-3 opacity-75" />
           <div>
-            <p className="text-xs opacity-75">Pressure</p>
-            <p className="text-sm font-semibold">{weather.pressure} hPa</p>
+            <p className="text-[10px] opacity-75">Pressure</p>
+            <p className="text-xs font-semibold">{weather.pressure} hPa</p>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <Eye className="h-4 w-4 opacity-75" />
+        <div className="flex items-center space-x-1.5">
+          <Eye className="h-3 w-3 opacity-75" />
           <div>
-            <p className="text-xs opacity-75">Visibility</p>
-            <p className="text-sm font-semibold">{weather.visibility} km</p>
+            <p className="text-[10px] opacity-75">Visibility</p>
+            <p className="text-xs font-semibold">{weather.visibility} km</p>
           </div>
         </div>
       </div>
 
       <button
         onClick={fetchWeather}
-        className="mt-4 w-full bg-blue-700 hover:bg-blue-800 text-white text-xs py-2 rounded-lg transition-colors"
+        className="mt-3 w-full bg-blue-700 hover:bg-blue-800 text-white text-[10px] py-1.5 rounded transition-colors"
       >
         🔄 Refresh
       </button>
