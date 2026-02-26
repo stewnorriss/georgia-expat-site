@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { MessageCircle, Volume2, BookOpen, Users, Play, Video, Clock, Award, Bot, Sparkles, TrendingUp, CheckCircle, RotateCcw, Target, Brain, Zap, Globe, ChevronLeft, ChevronRight } from 'lucide-react'
+import VideoContent from '../components/VideoContent'
 
 export default function LanguagePage() {
   const [selectedLesson, setSelectedLesson] = useState<number | null>(null)
@@ -2492,6 +2493,28 @@ export default function LanguagePage() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Video Learning Section */}
+      <div className="bg-gradient-to-br from-purple-50 to-pink-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center mb-4 p-3 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full">
+              <Video className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Video Pronunciation Lessons
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Watch native speakers demonstrate proper Georgian pronunciation and learn through visual examples
+            </p>
+          </div>
+          <VideoContent 
+            category="language" 
+            title="Georgian Language Video Lessons"
+            description="Master pronunciation with native speaker guidance"
+          />
         </div>
       </div>
     </div>
