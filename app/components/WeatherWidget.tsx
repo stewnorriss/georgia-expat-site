@@ -19,6 +19,7 @@ const WeatherWidget = () => {
   const [forecast, setForecast] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [selectedDay, setSelectedDay] = useState<number | null>(null)
 
   useEffect(() => {
     fetchWeather()
@@ -28,7 +29,7 @@ const WeatherWidget = () => {
     try {
       // Using Open-Meteo API (free, no API key required)
       const response = await fetch(
-        'https://api.open-meteo.com/v1/forecast?latitude=41.7151&longitude=44.8271&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,pressure_msl&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTbilisi&forecast_days=5'
+        'https://api.open-meteo.com/v1/forecast?latitude=41.7151&longitude=44.8271&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,pressure_msl&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,uv_index_max&timezone=Asia%2FTbilisi&forecast_days=5'
       )
       const data = await response.json()
       
@@ -47,13 +48,16 @@ const WeatherWidget = () => {
           icon: getWeatherIcon(weatherCode)
         })
 
-        // Process 5-day forecast
+        // Process 5-day forecast with more details
         const forecastData = data.daily.time.map((date: string, index: number) => ({
           date: new Date(date),
           maxTemp: Math.round(data.daily.temperature_2m_max[index]),
           minTemp: Math.round(data.daily.temperature_2m_min[index]),
           weatherCode: data.daily.weather_code[index],
-          icon: getWeatherIcon(data.daily.weather_code[index])
+          icon: getWeatherIcon(data.daily.weather_code[index]),
+          precipitation: data.daily.precipitation_probability_max[index] || 0,
+          windSpeed: Math.round(data.daily.wind_speed_10m_max[index]),
+          uvIndex: Math.round(data.daily.uv_index_max[index])
         }))
         setForecast(forecastData)
         
@@ -190,28 +194,63 @@ const WeatherWidget = () => {
         </div>
       </div>
 
-      {/* 5-Day Forecast - Enhanced */}
+      {/* 5-Day Forecast - Enhanced & Clickable */}
       <div>
-        <div className="text-xs font-semibold mb-2 opacity-90">Next 5 Days</div>
+        <div className="text-xs font-semibold mb-2 opacity-90">Next 5 Days (Click for details)</div>
         <div className="space-y-1.5">
           {forecast.map((day, index) => (
-            <div key={index} className="flex items-center justify-between bg-white/10 rounded p-2">
-              <div className="flex items-center space-x-3 flex-1">
-                <div className="text-xs font-semibold w-12">{getDayName(day.date, index)}</div>
-                <div className="text-2xl">{day.icon}</div>
-                <div className="text-xs opacity-90 flex-1 truncate">{getWeatherDescription(day.weatherCode)}</div>
-              </div>
-              <div className="flex items-center space-x-2 text-xs">
-                <div className="text-right">
-                  <div className="font-semibold">{day.maxTemp}°</div>
-                  <div className="opacity-75 text-[10px]">High</div>
+            <div key={index}>
+              <button
+                onClick={() => setSelectedDay(selectedDay === index ? null : index)}
+                className={`w-full flex items-center justify-between rounded p-2 transition-all ${
+                  selectedDay === index 
+                    ? 'bg-white/20 shadow-lg' 
+                    : 'bg-white/10 hover:bg-white/15'
+                }`}
+              >
+                <div className="flex items-center space-x-3 flex-1">
+                  <div className="text-xs font-semibold w-12">{getDayName(day.date, index)}</div>
+                  <div className="text-2xl">{day.icon}</div>
+                  <div className="text-xs opacity-90 flex-1 truncate text-left">{getWeatherDescription(day.weatherCode)}</div>
                 </div>
-                <div className="text-blue-200 opacity-50">/</div>
-                <div className="text-right">
-                  <div className="font-semibold opacity-75">{day.minTemp}°</div>
-                  <div className="opacity-75 text-[10px]">Low</div>
+                <div className="flex items-center space-x-2 text-xs">
+                  <div className="text-right">
+                    <div className="font-semibold">{day.maxTemp}°</div>
+                    <div className="opacity-75 text-[10px]">High</div>
+                  </div>
+                  <div className="text-blue-200 opacity-50">/</div>
+                  <div className="text-right">
+                    <div className="font-semibold opacity-75">{day.minTemp}°</div>
+                    <div className="opacity-75 text-[10px]">Low</div>
+                  </div>
                 </div>
-              </div>
+              </button>
+              
+              {/* Expanded Details */}
+              {selectedDay === index && (
+                <div className="mt-1 bg-white/10 rounded p-3 space-y-2 animate-in slide-in-from-top">
+                  <div className="grid grid-cols-3 gap-2 text-[10px]">
+                    <div className="text-center bg-white/10 rounded p-2">
+                      <Droplets className="h-3 w-3 mx-auto mb-1 opacity-75" />
+                      <div className="font-semibold">{day.precipitation}%</div>
+                      <div className="opacity-75">Rain</div>
+                    </div>
+                    <div className="text-center bg-white/10 rounded p-2">
+                      <Wind className="h-3 w-3 mx-auto mb-1 opacity-75" />
+                      <div className="font-semibold">{day.windSpeed}</div>
+                      <div className="opacity-75">km/h</div>
+                    </div>
+                    <div className="text-center bg-white/10 rounded p-2">
+                      <Sun className="h-3 w-3 mx-auto mb-1 opacity-75" />
+                      <div className="font-semibold">{day.uvIndex}</div>
+                      <div className="opacity-75">UV Index</div>
+                    </div>
+                  </div>
+                  <div className="text-[10px] text-center opacity-75 pt-1 border-t border-white/20">
+                    {day.date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
