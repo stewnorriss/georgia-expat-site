@@ -12,7 +12,7 @@ interface ExchangeRates {
 
 const CurrencyConverter = () => {
   const [amount, setAmount] = useState<string>('100')
-  const [fromCurrency, setFromCurrency] = useState<string>('USD')
+  const [fromCurrency, setFromCurrency] = useState<string>('GBP')
   const [toCurrency, setToCurrency] = useState<string>('GEL')
   const [rates, setRates] = useState<ExchangeRates>({ USD: 1, EUR: 0.92, GBP: 0.79, GEL: 2.65 })
   const [loading, setLoading] = useState(false)
