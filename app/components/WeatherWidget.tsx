@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Cloud, CloudRain, Sun, Wind, Droplets, Eye, Gauge } from 'lucide-react'
+import { Cloud, CloudRain, Sun, Wind, Droplets, Eye, Gauge, RotateCcw } from 'lucide-react'
 
 interface WeatherData {
   temp: number
@@ -52,6 +52,7 @@ const WeatherWidget = () => {
           date: new Date(date),
           maxTemp: Math.round(data.daily.temperature_2m_max[index]),
           minTemp: Math.round(data.daily.temperature_2m_min[index]),
+          weatherCode: data.daily.weather_code[index],
           icon: getWeatherIcon(data.daily.weather_code[index])
         }))
         setForecast(forecastData)
@@ -135,54 +136,86 @@ const WeatherWidget = () => {
 
   return (
     <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-4 text-white shadow-md hover:shadow-lg transition-shadow duration-300">
+      {/* Header */}
       <div className="flex items-center justify-between mb-3">
         <div>
-          <h3 className="text-xs font-semibold opacity-90">Tbilisi Weather</h3>
+          <h3 className="text-sm font-semibold opacity-90">Tbilisi Weather</h3>
           <p className="text-[10px] opacity-75">5-Day Forecast</p>
         </div>
-        <div className="text-2xl">{weather.icon}</div>
+        <button
+          onClick={fetchWeather}
+          className="bg-blue-700 hover:bg-blue-800 p-1.5 rounded transition-colors"
+          title="Refresh"
+        >
+          <RotateCcw className="h-3 w-3" />
+        </button>
       </div>
 
-      {/* Current Weather */}
+      {/* Current Weather - Larger Display */}
       <div className="mb-3 pb-3 border-b border-blue-400">
-        <div className="flex items-baseline">
-          <span className="text-3xl font-bold">{weather.temp}</span>
-          <span className="text-lg ml-1">°C</span>
-        </div>
-        <p className="text-xs opacity-90 capitalize">{weather.description}</p>
-        <p className="text-[10px] opacity-75">Feels like {weather.feels_like}°C</p>
-      </div>
-
-      {/* 5-Day Forecast */}
-      <div className="grid grid-cols-5 gap-1 mb-3">
-        {forecast.map((day, index) => (
-          <div key={index} className="text-center bg-white/10 rounded p-1">
-            <div className="text-[9px] opacity-75 mb-1">{getDayName(day.date, index)}</div>
-            <div className="text-lg mb-1">{day.icon}</div>
-            <div className="text-[10px] font-semibold">{day.maxTemp}°</div>
-            <div className="text-[9px] opacity-75">{day.minTemp}°</div>
+        <div className="flex items-start justify-between">
+          <div>
+            <div className="flex items-baseline mb-1">
+              <span className="text-4xl font-bold">{weather.temp}</span>
+              <span className="text-xl ml-1">°C</span>
+            </div>
+            <p className="text-sm opacity-90 capitalize mb-1">{weather.description}</p>
+            <p className="text-xs opacity-75">Feels like {weather.feels_like}°C</p>
           </div>
-        ))}
+          <div className="text-4xl">{weather.icon}</div>
+        </div>
+        
+        {/* Current Conditions Grid */}
+        <div className="grid grid-cols-4 gap-2 mt-3 text-[10px]">
+          <div className="text-center bg-white/10 rounded p-1.5">
+            <Droplets className="h-3 w-3 mx-auto mb-0.5 opacity-75" />
+            <div className="font-semibold">{weather.humidity}%</div>
+            <div className="opacity-75">Humidity</div>
+          </div>
+          <div className="text-center bg-white/10 rounded p-1.5">
+            <Wind className="h-3 w-3 mx-auto mb-0.5 opacity-75" />
+            <div className="font-semibold">{weather.wind_speed}</div>
+            <div className="opacity-75">km/h</div>
+          </div>
+          <div className="text-center bg-white/10 rounded p-1.5">
+            <Gauge className="h-3 w-3 mx-auto mb-0.5 opacity-75" />
+            <div className="font-semibold">{weather.pressure}</div>
+            <div className="opacity-75">hPa</div>
+          </div>
+          <div className="text-center bg-white/10 rounded p-1.5">
+            <Eye className="h-3 w-3 mx-auto mb-0.5 opacity-75" />
+            <div className="font-semibold">{weather.visibility}</div>
+            <div className="opacity-75">km</div>
+          </div>
+        </div>
       </div>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-2 gap-2 text-[10px]">
-        <div className="flex items-center">
-          <Droplets className="h-3 w-3 mr-1 opacity-75" />
-          <span>{weather.humidity}%</span>
-        </div>
-        <div className="flex items-center">
-          <Wind className="h-3 w-3 mr-1 opacity-75" />
-          <span>{weather.wind_speed} km/h</span>
+      {/* 5-Day Forecast - Enhanced */}
+      <div>
+        <div className="text-xs font-semibold mb-2 opacity-90">Next 5 Days</div>
+        <div className="space-y-1.5">
+          {forecast.map((day, index) => (
+            <div key={index} className="flex items-center justify-between bg-white/10 rounded p-2">
+              <div className="flex items-center space-x-3 flex-1">
+                <div className="text-xs font-semibold w-12">{getDayName(day.date, index)}</div>
+                <div className="text-2xl">{day.icon}</div>
+                <div className="text-xs opacity-90 flex-1 truncate">{getWeatherDescription(day.weatherCode)}</div>
+              </div>
+              <div className="flex items-center space-x-2 text-xs">
+                <div className="text-right">
+                  <div className="font-semibold">{day.maxTemp}°</div>
+                  <div className="opacity-75 text-[10px]">High</div>
+                </div>
+                <div className="text-blue-200 opacity-50">/</div>
+                <div className="text-right">
+                  <div className="font-semibold opacity-75">{day.minTemp}°</div>
+                  <div className="opacity-75 text-[10px]">Low</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-
-      <button
-        onClick={fetchWeather}
-        className="mt-3 w-full bg-blue-700 hover:bg-blue-800 text-white text-[10px] py-1.5 rounded transition-colors"
-      >
-        🔄 Refresh
-      </button>
     </div>
   )
 }
