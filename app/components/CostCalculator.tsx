@@ -1,292 +1,318 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { Calculator, DollarSign, Home, Car, Utensils, ShoppingBag, Heart, Zap, Wifi, Phone, TrendingUp, Info, AlertCircle } from 'lucide-react'
+import { useState } from 'react'
+import { DollarSign, Home, Utensils, Car, Wifi, Zap, Heart, ShoppingBag, Users, TrendingUp, Download } from 'lucide-react'
 
-interface CostItem {
-  id: string
-  category: string
-  name: string
-  min: number
-  max: number
-  average: number
-  unit: string
-  icon: any
-  description: string
-  required: boolean
-}
+const CostCalculator = () => {
+  const [lifestyle, setLifestyle] = useState<'budget' | 'moderate' | 'comfortable'>('moderate')
+  const [people, setPeople] = useState(1)
+  const [hasChildren, setHasChildren] = useState(false)
+  const [hasCar, setHasCar] = useState(false)
 
-export default function CostCalculator() {
-  const [selectedItems, setSelectedItems] = useState<{[key: string]: number}>({})
-  const [currency, setCurrency] = useState('GEL')
-  const [exchangeRate, setExchangeRate] = useState(1)
-  const [lifestyle, setLifestyle] = useState('moderate')
-
-  const costItems: CostItem[] = [
-    // Housing
-    { id: 'rent-studio', category: 'Housing', name: 'Studio Apartment (City Center)', min: 800, max: 1500, average: 1100, unit: 'month', icon: Home, description: 'Small studio in central Tbilisi', required: true },
-    { id: 'rent-1br', category: 'Housing', name: '1BR Apartment (City Center)', min: 1200, max: 2500, average: 1800, unit: 'month', icon: Home, description: 'One bedroom in central location', required: true },
-    { id: 'rent-2br', category: 'Housing', name: '2BR Apartment (City Center)', min: 1800, max: 4000, average: 2800, unit: 'month', icon: Home, description: 'Two bedroom in central location', required: true },
-    { id: 'rent-studio-out', category: 'Housing', name: 'Studio Apartment (Outside Center)', min: 500, max: 1000, average: 700, unit: 'month', icon: Home, description: 'Studio in residential area', required: true },
-    { id: 'utilities', category: 'Housing', name: 'Utilities (Electricity, Gas, Water)', min: 80, max: 200, average: 130, unit: 'month', icon: Zap, description: 'Basic utilities for apartment', required: true },
-    { id: 'internet', category: 'Housing', name: 'Internet (Fiber)', min: 25, max: 60, average: 40, unit: 'month', icon: Wifi, description: 'High-speed internet connection', required: false },
-    { id: 'phone', category: 'Housing', name: 'Mobile Phone Plan', min: 15, max: 50, average: 25, unit: 'month', icon: Phone, description: 'Mobile plan with data', required: false },
-
-    // Food & Dining
-    { id: 'groceries', category: 'Food', name: 'Groceries (Basic)', min: 200, max: 400, average: 300, unit: 'month', icon: ShoppingBag, description: 'Monthly grocery shopping', required: true },
-    { id: 'dining-budget', category: 'Food', name: 'Dining Out (Budget)', min: 100, max: 300, average: 200, unit: 'month', icon: Utensils, description: 'Eating at local restaurants', required: false },
-    { id: 'dining-mid', category: 'Food', name: 'Dining Out (Mid-range)', min: 300, max: 600, average: 450, unit: 'month', icon: Utensils, description: 'Nice restaurants occasionally', required: false },
-    { id: 'coffee', category: 'Food', name: 'Coffee & Cafes', min: 50, max: 150, average: 100, unit: 'month', icon: Utensils, description: 'Regular cafe visits', required: false },
-
-    // Transportation
-    { id: 'metro-bus', category: 'Transport', name: 'Public Transport (Metro/Bus)', min: 20, max: 40, average: 30, unit: 'month', icon: Car, description: 'Monthly transport card', required: false },
-    { id: 'taxi', category: 'Transport', name: 'Taxi/Ride-sharing', min: 50, max: 200, average: 120, unit: 'month', icon: Car, description: 'Occasional taxi rides', required: false },
-    { id: 'car-fuel', category: 'Transport', name: 'Car (Fuel & Maintenance)', min: 200, max: 400, average: 300, unit: 'month', icon: Car, description: 'If you own a car', required: false },
-
-    // Healthcare & Personal
-    { id: 'health-insurance', category: 'Healthcare', name: 'Health Insurance', min: 50, max: 200, average: 120, unit: 'month', icon: Heart, description: 'Private health insurance', required: false },
-    { id: 'gym', category: 'Lifestyle', name: 'Gym Membership', min: 80, max: 200, average: 130, unit: 'month', icon: Heart, description: 'Fitness center membership', required: false },
-    { id: 'entertainment', category: 'Lifestyle', name: 'Entertainment & Activities', min: 100, max: 400, average: 250, unit: 'month', icon: Heart, description: 'Movies, events, activities', required: false },
-    { id: 'shopping', category: 'Lifestyle', name: 'Clothing & Shopping', min: 100, max: 500, average: 250, unit: 'month', icon: ShoppingBag, description: 'Clothes and personal items', required: false },
-  ]
-
-  const lifestyleMultipliers = {
-    budget: 0.7,
-    moderate: 1.0,
-    comfortable: 1.4
-  }
-
-  const exchangeRates = {
-    GEL: 1,
-    USD: 0.37,
-    EUR: 0.34,
-    GBP: 0.29
-  }
-
-  useEffect(() => {
-    setExchangeRate(exchangeRates[currency as keyof typeof exchangeRates])
-  }, [currency])
-
-  const handleItemChange = (itemId: string, value: number) => {
-    setSelectedItems(prev => ({
-      ...prev,
-      [itemId]: value
-    }))
-  }
-
-  const getLifestyleAdjustedPrice = (item: CostItem) => {
-    const multiplier = lifestyleMultipliers[lifestyle as keyof typeof lifestyleMultipliers]
-    return Math.round(item.average * multiplier)
+  const costs = {
+    budget: {
+      rent1bed: 800,
+      rent2bed: 1200,
+      utilities: 100,
+      internet: 30,
+      groceries: 200,
+      dining: 100,
+      transport: 30,
+      entertainment: 50,
+      gym: 40,
+      healthcare: 50,
+      misc: 100
+    },
+    moderate: {
+      rent1bed: 1200,
+      rent2bed: 1800,
+      utilities: 150,
+      internet: 50,
+      groceries: 350,
+      dining: 250,
+      transport: 50,
+      entertainment: 150,
+      gym: 80,
+      healthcare: 100,
+      misc: 200
+    },
+    comfortable: {
+      rent1bed: 2000,
+      rent2bed: 3000,
+      utilities: 200,
+      internet: 70,
+      groceries: 500,
+      dining: 500,
+      transport: 100,
+      entertainment: 300,
+      gym: 150,
+      healthcare: 200,
+      misc: 400
+    }
   }
 
   const calculateTotal = () => {
+    const base = costs[lifestyle]
     let total = 0
-    costItems.forEach(item => {
-      if (selectedItems[item.id] !== undefined) {
-        total += selectedItems[item.id]
-      } else if (item.required) {
-        total += getLifestyleAdjustedPrice(item)
+
+    // Rent
+    total += people === 1 ? base.rent1bed : base.rent2bed
+    
+    // Utilities and internet
+    total += base.utilities + base.internet
+    
+    // Groceries and dining (scales with people)
+    total += (base.groceries + base.dining) * people
+    
+    // Transport
+    if (hasCar) {
+      total += 300 // Car costs (fuel, parking, maintenance)
+    } else {
+      total += base.transport * people
+    }
+    
+    // Entertainment and gym
+    total += base.entertainment + (base.gym * people)
+    
+    // Healthcare
+    total += base.healthcare * people
+    
+    // Children costs
+    if (hasChildren) {
+      total += 400 // School, activities, childcare
+    }
+    
+    // Misc
+    total += base.misc * people
+
+    return Math.round(total)
+  }
+
+  const getBreakdown = () => {
+    const base = costs[lifestyle]
+    return [
+      {
+        category: 'Housing',
+        icon: <Home className="h-5 w-5" />,
+        items: [
+          { name: 'Rent', amount: people === 1 ? base.rent1bed : base.rent2bed },
+          { name: 'Utilities', amount: base.utilities },
+          { name: 'Internet', amount: base.internet }
+        ]
+      },
+      {
+        category: 'Food',
+        icon: <Utensils className="h-5 w-5" />,
+        items: [
+          { name: 'Groceries', amount: base.groceries * people },
+          { name: 'Dining Out', amount: base.dining * people }
+        ]
+      },
+      {
+        category: 'Transportation',
+        icon: <Car className="h-5 w-5" />,
+        items: hasCar 
+          ? [{ name: 'Car (fuel, parking, maintenance)', amount: 300 }]
+          : [{ name: 'Public Transport', amount: base.transport * people }]
+      },
+      {
+        category: 'Lifestyle',
+        icon: <Heart className="h-5 w-5" />,
+        items: [
+          { name: 'Entertainment', amount: base.entertainment },
+          { name: 'Gym/Fitness', amount: base.gym * people },
+          { name: 'Healthcare', amount: base.healthcare * people }
+        ]
+      },
+      {
+        category: 'Other',
+        icon: <ShoppingBag className="h-5 w-5" />,
+        items: [
+          ...(hasChildren ? [{ name: 'Children (school, activities)', amount: 400 }] : []),
+          { name: 'Miscellaneous', amount: base.misc * people }
+        ]
       }
-    })
-    return total
+    ]
   }
 
-  const convertCurrency = (amount: number) => {
-    return Math.round(amount * exchangeRate)
-  }
-
-  const getCurrencySymbol = () => {
-    switch (currency) {
-      case 'USD': return '$'
-      case 'EUR': return '€'
-      case 'GBP': return '£'
-      default: return '₾'
-    }
-  }
-
-  const groupedItems = costItems.reduce((acc, item) => {
-    if (!acc[item.category]) {
-      acc[item.category] = []
-    }
-    acc[item.category].push(item)
-    return acc
-  }, {} as {[key: string]: CostItem[]})
-
-  const totalMonthly = calculateTotal()
-  const totalYearly = totalMonthly * 12
+  const total = calculateTotal()
+  const breakdown = getBreakdown()
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6">
-      <div className="flex items-center mb-6">
-        <Calculator className="h-8 w-8 text-blue-600 mr-3" />
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">Cost of Living Calculator</h2>
-          <p className="text-gray-600">Estimate your monthly expenses in Tbilisi</p>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Header */}
+      <div className="text-center mb-10">
+        <div className="inline-flex items-center justify-center mb-4 p-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full">
+          <DollarSign className="h-8 w-8 text-white" />
         </div>
+        <h1 className="text-4xl font-bold text-gray-900 mb-3">
+          Cost of Living Calculator
+        </h1>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          Estimate your monthly expenses in Tbilisi based on your lifestyle and needs
+        </p>
       </div>
 
-      {/* Controls */}
-      <div className="grid md:grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Lifestyle</label>
-          <select
-            value={lifestyle}
-            onChange={(e) => setLifestyle(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="budget">Budget (30% below average)</option>
-            <option value="moderate">Moderate (Average)</option>
-            <option value="comfortable">Comfortable (40% above average)</option>
-          </select>
-        </div>
-        
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">Currency</label>
-          <select
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="GEL">Georgian Lari (₾)</option>
-            <option value="USD">US Dollar ($)</option>
-            <option value="EUR">Euro (€)</option>
-            <option value="GBP">British Pound (£)</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Cost Categories */}
-      <div className="space-y-6 mb-8">
-        {Object.entries(groupedItems).map(([category, items]) => (
-          <div key={category} className="border border-gray-200 rounded-lg p-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-              {React.createElement(items[0].icon, { className: "h-5 w-5 mr-2 text-blue-600" })}
-              {category}
-            </h3>
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* Configuration Panel */}
+        <div className="lg:col-span-1">
+          <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+            <h2 className="text-xl font-bold text-gray-900 mb-6">Your Situation</h2>
             
-            <div className="space-y-3">
-              {items.map(item => {
-                const adjustedPrice = getLifestyleAdjustedPrice(item)
-                const currentValue = selectedItems[item.id] ?? (item.required ? adjustedPrice : 0)
-                
-                return (
-                  <div key={item.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex-1">
-                      <div className="flex items-center">
-                        <h4 className="font-semibold text-gray-900">{item.name}</h4>
-                        {item.required && (
-                          <span className="ml-2 text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
-                        )}
-                      </div>
-                      <p className="text-sm text-gray-600">{item.description}</p>
-                      <div className="text-xs text-gray-500 mt-1">
-                        Range: {getCurrencySymbol()}{convertCurrency(item.min)} - {getCurrencySymbol()}{convertCurrency(item.max)}
-                      </div>
+            {/* Lifestyle */}
+            <div className="mb-6">
+              <label className="block text-sm font-semibold text-gray-700 mb-3">
+                Lifestyle
+              </label>
+              <div className="space-y-2">
+                {(['budget', 'moderate', 'comfortable'] as const).map((level) => (
+                  <button
+                    key={level}
+                    onClick={() => setLifestyle(level)}
+                    className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition-all ${
+                      lifestyle === level
+                        ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="capitalize">{level}</span>
+                      {lifestyle === level && <span>✓</span>}
                     </div>
-                    
-                    <div className="ml-4 text-right">
-                      <input
-                        type="number"
-                        min="0"
-                        value={currentValue}
-                        onChange={(e) => handleItemChange(item.id, parseInt(e.target.value) || 0)}
-                        className="w-24 p-2 border border-gray-300 rounded text-right focus:ring-2 focus:ring-blue-500"
-                        placeholder="0"
-                      />
-                      <div className="text-xs text-gray-500 mt-1">per {item.unit}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Number of People */}
+            <div className="mb-6">
+              <label className="block text-sm font-semibold text-gray-700 mb-3">
+                Number of Adults
+              </label>
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={() => setPeople(Math.max(1, people - 1))}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg transition-colors"
+                >
+                  -
+                </button>
+                <span className="text-2xl font-bold text-gray-900 w-12 text-center">{people}</span>
+                <button
+                  onClick={() => setPeople(Math.min(4, people + 1))}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg transition-colors"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Children */}
+            <div className="mb-6">
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={hasChildren}
+                  onChange={(e) => setHasChildren(e.target.checked)}
+                  className="w-5 h-5 text-green-600 rounded focus:ring-green-500"
+                />
+                <span className="text-sm font-semibold text-gray-700">
+                  Have children (adds school/childcare costs)
+                </span>
+              </label>
+            </div>
+
+            {/* Car */}
+            <div className="mb-6">
+              <label className="flex items-center space-x-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={hasCar}
+                  onChange={(e) => setHasCar(e.target.checked)}
+                  className="w-5 h-5 text-green-600 rounded focus:ring-green-500"
+                />
+                <span className="text-sm font-semibold text-gray-700">
+                  Own a car (vs public transport)
+                </span>
+              </label>
+            </div>
+
+            {/* Total */}
+            <div className="pt-6 border-t border-gray-200">
+              <div className="text-center">
+                <div className="text-sm text-gray-600 mb-2">Estimated Monthly Cost</div>
+                <div className="text-4xl font-bold text-green-600 mb-1">
+                  ₾{total.toLocaleString()}
+                </div>
+                <div className="text-sm text-gray-600">
+                  ≈ ${Math.round(total / 2.65).toLocaleString()} USD
+                </div>
+                <div className="text-sm text-gray-600">
+                  ≈ £{Math.round(total / 3.35).toLocaleString()} GBP
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Breakdown Panel */}
+        <div className="lg:col-span-2">
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-6">Cost Breakdown</h2>
+            
+            <div className="space-y-6">
+              {breakdown.map((section, index) => (
+                <div key={index} className="border-b border-gray-200 last:border-0 pb-6 last:pb-0">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="text-green-600">{section.icon}</div>
+                    <h3 className="text-lg font-bold text-gray-900">{section.category}</h3>
+                    <div className="flex-1 border-t border-gray-200"></div>
+                    <div className="text-lg font-bold text-gray-900">
+                      ₾{section.items.reduce((sum, item) => sum + item.amount, 0).toLocaleString()}
                     </div>
                   </div>
-                )
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Results */}
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-          <TrendingUp className="h-6 w-6 mr-2 text-blue-600" />
-          Your Estimated Costs
-        </h3>
-        
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg p-4 shadow">
-            <div className="text-sm text-gray-600 mb-1">Monthly Total</div>
-            <div className="text-3xl font-bold text-blue-600">
-              {getCurrencySymbol()}{convertCurrency(totalMonthly).toLocaleString()}
-            </div>
-            <div className="text-sm text-gray-500 mt-1">
-              ≈ ₾{totalMonthly.toLocaleString()} GEL
-            </div>
-          </div>
-          
-          <div className="bg-white rounded-lg p-4 shadow">
-            <div className="text-sm text-gray-600 mb-1">Yearly Total</div>
-            <div className="text-3xl font-bold text-green-600">
-              {getCurrencySymbol()}{convertCurrency(totalYearly).toLocaleString()}
-            </div>
-            <div className="text-sm text-gray-500 mt-1">
-              ≈ ₾{totalYearly.toLocaleString()} GEL
-            </div>
-          </div>
-        </div>
-
-        {/* Breakdown */}
-        <div className="mt-6">
-          <h4 className="font-semibold text-gray-900 mb-3">Cost Breakdown</h4>
-          <div className="space-y-2">
-            {Object.entries(groupedItems).map(([category, items]) => {
-              const categoryTotal = items.reduce((sum, item) => {
-                const value = selectedItems[item.id] ?? (item.required ? getLifestyleAdjustedPrice(item) : 0)
-                return sum + value
-              }, 0)
-              
-              if (categoryTotal === 0) return null
-              
-              const percentage = ((categoryTotal / totalMonthly) * 100).toFixed(1)
-              
-              return (
-                <div key={category} className="flex justify-between items-center">
-                  <span className="text-gray-700">{category}</span>
-                  <div className="text-right">
-                    <span className="font-semibold">{getCurrencySymbol()}{convertCurrency(categoryTotal).toLocaleString()}</span>
-                    <span className="text-sm text-gray-500 ml-2">({percentage}%)</span>
+                  <div className="space-y-2">
+                    {section.items.map((item, itemIndex) => (
+                      <div key={itemIndex} className="flex items-center justify-between text-sm">
+                        <span className="text-gray-600">{item.name}</span>
+                        <span className="font-semibold text-gray-900">₾{item.amount.toLocaleString()}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              )
-            })}
+              ))}
+            </div>
+          </div>
+
+          {/* Tips */}
+          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-4">💡 Money-Saving Tips</h3>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li className="flex items-start">
+                <span className="text-green-600 mr-2">✓</span>
+                <span>Shop at local markets (Didube, Deserters) for 30-40% cheaper groceries</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-600 mr-2">✓</span>
+                <span>Use public transport (₾0.50/ride) instead of taxis to save ₾200+/month</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-600 mr-2">✓</span>
+                <span>Cook at home - eating out daily can double your food costs</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-600 mr-2">✓</span>
+                <span>Negotiate rent - landlords often accept 10-15% less for long-term leases</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-600 mr-2">✓</span>
+                <span>Join expat groups for shared activities and cost-splitting opportunities</span>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-
-      {/* Tips */}
-      <div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg">
-        <div className="flex items-center mb-2">
-          <Info className="h-5 w-5 text-yellow-600 mr-2" />
-          <h4 className="font-semibold text-yellow-800">Money-Saving Tips</h4>
-        </div>
-        <ul className="text-sm text-yellow-700 space-y-1">
-          <li>• Consider living outside the city center to save 30-50% on rent</li>
-          <li>• Use public transport - it's efficient and very affordable</li>
-          <li>• Shop at local markets for fresh produce at better prices</li>
-          <li>• Many activities like hiking and exploring are completely free</li>
-          <li>• Georgian wine offers excellent quality at reasonable prices</li>
-        </ul>
-      </div>
-
-      <div className="mt-4 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
-        <div className="flex items-center mb-2">
-          <AlertCircle className="h-5 w-5 text-blue-600 mr-2" />
-          <h4 className="font-semibold text-blue-800">Important Notes</h4>
-        </div>
-        <ul className="text-sm text-blue-700 space-y-1">
-          <li>• Prices are estimates based on 2024 data and may vary</li>
-          <li>• Exchange rates fluctuate - check current rates for accuracy</li>
-          <li>• Costs can vary significantly between neighborhoods</li>
-          <li>• Consider seasonal variations, especially for utilities</li>
-        </ul>
       </div>
     </div>
   )
 }
+
+export default CostCalculator

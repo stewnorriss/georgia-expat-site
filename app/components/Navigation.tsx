@@ -52,6 +52,9 @@ const Navigation = () => {
 
   const mainNavItems = [
     { href: '/', label: 'Home' },
+    { href: '/neighborhoods', label: 'Neighborhoods' },
+    { href: '/cost-calculator', label: 'Cost Calculator' },
+    { href: '/events', label: 'Events' },
     { href: '/moving-checklist', label: 'Checklist' },
     { href: '/videos', label: 'Videos' },
     { href: '/faq', label: 'FAQ' },
