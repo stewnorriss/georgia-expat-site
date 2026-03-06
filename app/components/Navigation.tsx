@@ -53,11 +53,7 @@ const Navigation = () => {
   const mainNavItems = [
     { href: '/', label: 'Home' },
     { href: '/neighborhoods', label: 'Neighborhoods' },
-    { href: '/cost-calculator', label: 'Cost Calculator' },
     { href: '/events', label: 'Events' },
-    { href: '/moving-checklist', label: 'Checklist' },
-    { href: '/videos', label: 'Videos' },
-    { href: '/faq', label: 'FAQ' },
     { href: '/blog', label: 'Blog' },
   ]
 
@@ -79,13 +75,12 @@ const Navigation = () => {
       title: 'Living Essentials',
       icon: '🏠',
       items: [
-        { href: '/jobs', label: 'Jobs & Remote Work', description: 'Remote work, freelancing & digital nomad visa' },
         { href: '/housing', label: 'Housing & Rentals', description: 'Find your perfect home' },
+        { href: '/jobs', label: 'Jobs & Remote Work', description: 'Remote work, freelancing & digital nomad visa' },
         { href: '/transport', label: 'Getting Around', description: 'Transportation options' },
         { href: '/medical', label: 'Healthcare & Medical', description: 'Medical services & hospitals' },
         { href: '/banking', label: 'Banking & Finance', description: 'Banks, transfers & money management' },
         { href: '/internet', label: 'Internet & Mobile', description: 'WiFi, SIM cards & connectivity' },
-        { href: '/currency', label: 'Currency Exchange', description: 'Exchange rates & converters' },
         { href: '/legal', label: 'Legal & Bureaucracy', description: 'Visas, taxes & official procedures' },
       ]
     },
@@ -100,9 +95,14 @@ const Navigation = () => {
       ]
     },
     {
-      title: 'Safety & Support',
-      icon: '🚨',
+      title: 'Tools & Resources',
+      icon: '🛠️',
       items: [
+        { href: '/cost-calculator', label: 'Cost Calculator', description: 'Estimate your monthly budget' },
+        { href: '/currency', label: 'Currency Converter', description: 'Live GEL exchange rates' },
+        { href: '/moving-checklist', label: 'Moving Checklist', description: 'Step-by-step relocation guide' },
+        { href: '/videos', label: 'Video Guides', description: 'Visual tours and tutorials' },
+        { href: '/faq', label: 'FAQ', description: 'Frequently asked questions' },
         { href: '/emergency', label: 'Emergency & Safety', description: 'Emergency contacts & safety tips' },
       ]
     }
