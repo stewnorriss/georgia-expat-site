@@ -1,58 +1,50 @@
-// Utility functions for generating placeholder images
-export const generatePlaceholderImage = (
-  width: number = 400,
-  height: number = 300,
-  text: string = '',
-  bgColor: string = '6366f1',
-  textColor: string = 'ffffff'
-): string => {
-  return `https://via.placeholder.com/${width}x${height}/${bgColor}/${textColor}?text=${encodeURIComponent(text)}`
+// Real photo URLs for the site using Unsplash (free, no API key needed)
+// These are direct links to high-quality, relevant photos
+
+export const neighborhoodImages: Record<string, string> = {
+  vake: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&h=500&fit=crop',
+  saburtalo: 'https://images.unsplash.com/photo-1555990538-1e7e4b1b6b0f?w=800&h=500&fit=crop',
+  'old-town': 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&h=500&fit=crop',
+  vera: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop',
+  isani: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=500&fit=crop',
+  mtatsminda: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&h=500&fit=crop',
 }
 
-export const getUnsplashImage = (
-  category: string,
-  width: number = 400,
-  height: number = 300,
-  seed?: string
-): string => {
-  const seedParam = seed ? `&sig=${seed}` : ''
-  return `https://source.unsplash.com/${width}x${height}/?${category}${seedParam}`
+// Tbilisi-specific photos
+export const tbilisiPhotos = {
+  skyline: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=1200&h=600&fit=crop',
+  oldTown: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop',
+  narikala: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=500&fit=crop',
+  bridge: 'https://images.unsplash.com/photo-1555990538-1e7e4b1b6b0f?w=800&h=500&fit=crop',
+  sulfurBaths: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&h=500&fit=crop',
+  rustaveli: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&h=500&fit=crop',
 }
 
-// Restaurant image categories
-export const restaurantImages = {
-  georgian: 'https://source.unsplash.com/400x300/?georgian-food,khachapuri',
-  traditional: 'https://source.unsplash.com/400x300/?traditional-restaurant,cozy',
-  fine_dining: 'https://source.unsplash.com/400x300/?fine-dining,elegant',
-  casual: 'https://source.unsplash.com/400x300/?casual-dining,friendly',
-  international: 'https://source.unsplash.com/400x300/?international-cuisine',
-  wine: 'https://source.unsplash.com/400x300/?wine,restaurant'
+// Food & Restaurant photos
+export const foodPhotos = {
+  khachapuri: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&h=500&fit=crop',
+  khinkali: 'https://images.unsplash.com/photo-1625398407796-82650a8c135f?w=800&h=500&fit=crop',
+  wine: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=500&fit=crop',
+  restaurant: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=500&fit=crop',
+  market: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=500&fit=crop',
+  cafe: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=500&fit=crop',
 }
 
-// Place image categories
-export const placeImages = {
-  fortress: 'https://source.unsplash.com/400x300/?ancient-fortress,castle',
-  church: 'https://source.unsplash.com/400x300/?orthodox-church,cathedral',
-  museum: 'https://source.unsplash.com/400x300/?museum,art-gallery',
-  park: 'https://source.unsplash.com/400x300/?city-park,green-space',
-  bridge: 'https://source.unsplash.com/400x300/?modern-bridge,architecture',
-  old_town: 'https://source.unsplash.com/400x300/?old-town,cobblestone',
-  mountain: 'https://source.unsplash.com/400x300/?mountain-view,landscape',
-  thermal: 'https://source.unsplash.com/400x300/?thermal-baths,spa'
+// Activity photos
+export const activityPhotos = {
+  hiking: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=500&fit=crop',
+  kazbegi: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop',
+  cycling: 'https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=500&fit=crop',
+  yoga: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop',
+  swimming: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&h=500&fit=crop',
 }
 
-// Transport image categories
-export const transportImages = {
-  metro: 'https://source.unsplash.com/400x300/?subway-station,metro',
-  bus: 'https://source.unsplash.com/400x300/?city-bus,public-transport',
-  taxi: 'https://source.unsplash.com/400x300/?taxi,urban-transport',
-  airport: 'https://source.unsplash.com/400x300/?airport,terminal'
-}
-
-// Activity image categories
-export const activityImages = {
-  hiking: 'https://source.unsplash.com/400x300/?hiking,mountain-trail',
-  wine_tour: 'https://source.unsplash.com/400x300/?vineyard,wine-tasting',
-  cultural: 'https://source.unsplash.com/400x300/?cultural-activity,traditional',
-  adventure: 'https://source.unsplash.com/400x300/?adventure-sports,outdoor'
+// Event photos
+export const eventPhotos = {
+  meetup: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=500&fit=crop',
+  festival: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=500&fit=crop',
+  cultural: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=500&fit=crop',
+  networking: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=500&fit=crop',
+  cooking: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=500&fit=crop',
+  wine: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&h=500&fit=crop',
 }

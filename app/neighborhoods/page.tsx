@@ -1,7 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, DollarSign, Users, TrendingUp, Home, Utensils, ShoppingBag, Train, Heart, Star, Award } from 'lucide-react'
+import { MapPin, Users, Star } from 'lucide-react'
+import { neighborhoodImages } from '../../lib/images'
+import InteractiveMap from '../components/InteractiveMap'
+import UserReviews from '../components/UserReviews'
 
 export default function NeighborhoodsPage() {
   const neighborhoods = [
@@ -235,15 +238,15 @@ export default function NeighborhoodsPage() {
                 href={`/neighborhoods/${neighborhood.slug}`}
                 className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
               >
-                {/* Image Placeholder */}
-                <div className="h-48 bg-gradient-to-br from-blue-400 to-purple-500 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <MapPin className="h-16 w-16 mx-auto mb-2" />
-                      <div className="text-sm opacity-75">Photo coming soon</div>
-                    </div>
-                  </div>
+                {/* Image */}
+                <div className="h-48 relative overflow-hidden">
+                  <img
+                    src={neighborhoodImages[neighborhood.slug] || ''}
+                    alt={`${neighborhood.name} neighborhood in Tbilisi`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   <div className="absolute top-4 right-4 bg-white/90 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold">
                     {neighborhood.rentPrice}
                   </div>
@@ -294,6 +297,24 @@ export default function NeighborhoodsPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Interactive Map */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Explore Tbilisi on the Map</h2>
+            <p className="text-gray-600">Find neighborhoods, restaurants, gyms, and more</p>
+          </div>
+          <InteractiveMap height="450px" />
+        </div>
+      </section>
+
+      {/* Community Reviews */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <UserReviews category="neighborhood" title="Neighborhood Reviews from Expats" />
         </div>
       </section>
     </div>
