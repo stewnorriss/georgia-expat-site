@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { FileText, Clock, MapPin, Phone, ExternalLink, CheckCircle, AlertTriangle, Users, Building, CreditCard, Home, Briefcase, Globe } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 export default function LegalPage() {
   const [selectedCategory, setSelectedCategory] = useState('visa')
@@ -453,41 +454,13 @@ export default function LegalPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-600 text-white py-16 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <FileText className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Legal & Bureaucracy Guide
-              </h1>
-              <div className="flex items-center space-x-4 text-blue-200">
-                <div className="flex items-center">
-                  <Globe className="h-5 w-5 mr-2" />
-                  <span>Visa & Residence</span>
-                </div>
-                <div className="flex items-center">
-                  <CreditCard className="h-5 w-5 mr-2" />
-                  <span>Tax Information</span>
-                </div>
-                <div className="flex items-center">
-                  <Briefcase className="h-5 w-5 mr-2" />
-                  <span>Business Registration</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Navigate Georgia's legal requirements and bureaucratic processes with confidence. 
-            Essential information for expats on visas, taxes, business registration, and property laws.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Legal & Bureaucracy Guide"
+        description="Navigate Georgia's legal requirements and bureaucratic processes with confidence. Essential information for expats on visas, taxes, business registration, and property laws."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Category Navigation */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">

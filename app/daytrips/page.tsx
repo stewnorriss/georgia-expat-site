@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { MapPin, Clock, Car, Train, Mountain, Waves, Camera, Wine, Castle, Star, DollarSign, Calendar, Users, Thermometer } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 export default function DayTripsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -268,41 +269,13 @@ export default function DayTripsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="relative bg-gradient-to-br from-green-600 via-blue-600 to-purple-600 text-white py-16 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <MapPin className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Day Trips & Weekend Getaways
-              </h1>
-              <div className="flex items-center space-x-4 text-green-200">
-                <div className="flex items-center">
-                  <Mountain className="h-5 w-5 mr-2" />
-                  <span>Mountain Adventures</span>
-                </div>
-                <div className="flex items-center">
-                  <Waves className="h-5 w-5 mr-2" />
-                  <span>Coastal Escapes</span>
-                </div>
-                <div className="flex items-center">
-                  <Wine className="h-5 w-5 mr-2" />
-                  <span>Wine Regions</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Discover Georgia's incredible diversity with these carefully curated day trips and weekend getaways. 
-            From ancient cave cities to pristine mountain peaks and world-class wine regions.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Day Trips & Weekend Getaways"
+        description="Discover Georgia's incredible diversity with these carefully curated day trips and weekend getaways. From ancient cave cities to pristine mountain peaks and world-class wine regions."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Filters */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="grid md:grid-cols-2 gap-6">

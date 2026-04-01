@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Calendar, User, Clock, ArrowRight, BookOpen, Plus, Image, Video, Edit, Trash2, Eye, Search, Filter } from 'lucide-react'
 import Link from 'next/link'
 import { useBlog } from '../contexts/BlogContext'
+import PageHero from '../components/PageHero'
 
 const BlogPage = () => {
   const { posts: allPosts, getPublishedPosts, searchPosts, getPostsByCategory } = useBlog()
@@ -47,71 +48,18 @@ const BlogPage = () => {
   // Posts are already filtered to published only in getFilteredPosts
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="relative bg-gradient-to-br from-blue-600 to-purple-700 text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Crect x='10' y='10' width='100' height='4'/%3E%3Crect x='10' y='25' width='80' height='4'/%3E%3Crect x='10' y='40' width='90' height='4'/%3E%3Crect x='10' y='70' width='100' height='4'/%3E%3Crect x='10' y='85' width='75' height='4'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center">
-              <div className="bg-white/10 p-3 rounded-full mr-4">
-                <BookOpen className="h-12 w-12 text-white" />
-              </div>
-              <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                  Stew's Tbilisi Blog
-                </h1>
-                <div className="flex items-center text-gray-300">
-                  <User className="h-5 w-5 mr-2" />
-                  <span>My Personal Journey in Georgia</span>
-                </div>
-              </div>
-            </div>
-            <Link 
-              href="/blog/admin"
-              className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center"
-            >
-              <Plus className="h-4 w-4 mr-2" />
-              New Post
-            </Link>
-          </div>
-          
-          <p className="text-xl max-w-3xl mb-6">
-            Follow my adventures living in Tbilisi. Stories, photos, videos, and everything in between 
-            as I explore Georgia's incredible capital city.
-          </p>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Stew's Tbilisi Blog"
+        description="Follow my adventures living in Tbilisi. Stories, photos, videos, and everything in between as I explore Georgia's incredible capital city."
+      />
 
-          {/* Search Bar */}
-          <div className="max-w-2xl">
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="block w-full pl-10 pr-4 py-3 border border-transparent rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent"
-                placeholder="Search my posts..."
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Quick Stats */}
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div className="card p-6 mb-8">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Blog Stats</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -138,7 +86,7 @@ const BlogPage = () => {
             </div>
 
             {/* Categories Filter */}
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div className="card p-6 mb-8">
               <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
                 <Filter className="h-5 w-5 mr-2" />
                 Categories
@@ -164,7 +112,7 @@ const BlogPage = () => {
             </div>
 
             {/* About */}
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="card p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4">About This Blog</h3>
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <User className="h-8 w-8 text-white" />
@@ -193,7 +141,7 @@ const BlogPage = () => {
             </div>
 
             {posts.length === 0 ? (
-              <div className="bg-white rounded-lg shadow-md p-12 text-center">
+              <div className="card p-12 text-center">
                 <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">No posts yet</h3>
                 <p className="text-gray-600 mb-6">Start sharing your Tbilisi journey by creating your first blog post!</p>

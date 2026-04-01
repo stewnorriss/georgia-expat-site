@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ShoppingBag, MapPin, Clock, Phone, Star, DollarSign, Wifi, CreditCard, Car, Globe, ExternalLink, Filter, Search, Book, Music, Laptop, ShoppingCart, Coffee, Utensils, Package, Store, TrendingUp, Award, CheckCircle } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 export default function ShoppingPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -952,41 +953,13 @@ export default function ShoppingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="relative bg-gradient-to-br from-purple-600 via-pink-600 to-red-600 text-white py-16 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <ShoppingBag className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Shopping & Retail Guide
-              </h1>
-              <div className="flex items-center space-x-4 text-purple-200">
-                <div className="flex items-center">
-                  <ShoppingCart className="h-5 w-5 mr-2" />
-                  <span>Supermarkets</span>
-                </div>
-                <div className="flex items-center">
-                  <Laptop className="h-5 w-5 mr-2" />
-                  <span>Technology</span>
-                </div>
-                <div className="flex items-center">
-                  <Book className="h-5 w-5 mr-2" />
-                  <span>Books & Music</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Your complete guide to shopping in Tbilisi. From supermarkets and tech stores 
-            to bookshops and specialty food markets - find everything you need.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Shopping & Retail Guide"
+        description="Your complete guide to shopping in Tbilisi. From supermarkets and tech stores to bookshops and specialty food markets - find everything you need."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search and Filters */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="flex flex-col md:flex-row gap-4 mb-4">

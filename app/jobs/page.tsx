@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Briefcase, Laptop, Globe, TrendingUp, DollarSign, Users, CheckCircle, AlertCircle, Coffee, Building2, FileText, Calculator } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 export const metadata: Metadata = {
   title: 'Jobs & Remote Work in Georgia - Complete Guide for Digital Nomads',
@@ -334,36 +335,13 @@ export default function JobsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-indigo-600 to-purple-600 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Crect x='5' y='5' width='20' height='20'/%3E%3Crect x='35' y='5' width='20' height='20'/%3E%3Crect x='5' y='35' width='20' height='20'/%3E%3Crect x='35' y='35' width='20' height='20'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Briefcase className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Jobs & Remote Work in Georgia</h1>
-              <div className="flex items-center text-indigo-200">
-                <Laptop className="h-5 w-5 mr-2" />
-                <span>Complete Guide for Digital Nomads & Expats</span>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Everything you need to know about working in Georgia: remote work, freelancing, local jobs, digital nomad visa, taxes, and coworking spaces.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Jobs & Remote Work in Georgia"
+        description="Everything you need to know about working in Georgia: remote work, freelancing, local jobs, digital nomad visa, taxes, and coworking spaces."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* Quick Stats */}
         <div className="grid md:grid-cols-4 gap-6 mb-12">

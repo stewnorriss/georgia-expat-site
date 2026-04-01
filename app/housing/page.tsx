@@ -1,6 +1,7 @@
 'use client'
 
 import { Home, MapPin, DollarSign, Wifi, Car } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const HousingPage = () => {
   const neighborhoods = [
@@ -198,39 +199,16 @@ const HousingPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="relative bg-gradient-to-br from-purple-600 to-indigo-600 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Crect x='10' y='20' width='60' height='40'/%3E%3Crect x='20' y='10' width='40' height='20'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Home className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Housing in Tbilisi</h1>
-              <div className="flex items-center text-purple-200">
-                <MapPin className="h-5 w-5 mr-2" />
-                <span>Find Your Perfect Home</span>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Find your perfect home in Tbilisi. Explore neighborhoods, understand the rental market, 
-            and get practical tips for securing accommodation as an expat.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Housing in Tbilisi"
+        description="Find your perfect home in Tbilisi. Explore neighborhoods, understand the rental market, and get practical tips for securing accommodation as an expat."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid gap-8 mb-12">
           {neighborhoods.map((area, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div key={index} className="card overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {/* Neighborhood Image */}
               <div className="h-48 bg-gray-200 relative overflow-hidden">
                 <div 
@@ -325,7 +303,7 @@ const HousingPage = () => {
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {housingTips.map((section, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-6">
+            <div key={index} className="card p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">{section.title}</h3>
               <ul className="space-y-2">
                 {section.tips.map((tip, idx) => (

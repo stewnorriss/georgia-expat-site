@@ -1,6 +1,7 @@
 'use client'
 
 import { Palette, MapPin, Clock } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const ArtsPage = () => {
   const venues = [
@@ -28,21 +29,16 @@ const ArtsPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-cyan-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Arts & Culture</h1>
-          <p className="text-xl max-w-3xl">
-            Explore Tbilisi's vibrant arts scene. Discover museums, theaters, galleries, 
-            and cultural venues that showcase Georgia's rich artistic heritage.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Arts & Culture"
+        description="Explore Tbilisi's vibrant arts scene. Discover museums, theaters, galleries, and cultural venues that showcase Georgia's rich artistic heritage."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid gap-8">
           {venues.map((venue, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div key={index} className="card overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {/* Venue Image */}
               <div className="h-48 bg-gray-200 relative overflow-hidden">
                 <div 

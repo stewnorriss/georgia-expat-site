@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Phone, MapPin, AlertTriangle, Shield, Users, Globe, Clock, Heart, Car, Home, Zap, FileText, CheckCircle, ExternalLink } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 export default function EmergencyPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -222,40 +223,13 @@ export default function EmergencyPage() {
     : emergencyNumbers.filter(number => number.category === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="relative bg-gradient-to-br from-red-600 via-red-700 to-orange-600 text-white py-16 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <AlertTriangle className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Emergency & Safety Guide
-              </h1>
-              <div className="flex items-center space-x-4 text-red-200">
-                <div className="flex items-center">
-                  <Phone className="h-5 w-5 mr-2" />
-                  <span>Emergency Numbers</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="h-5 w-5 mr-2" />
-                  <span>Hospital Locations</span>
-                </div>
-                <div className="flex items-center">
-                  <Globe className="h-5 w-5 mr-2" />
-                  <span>Embassy Contacts</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Essential emergency information for expats living in Georgia. Keep this information accessible at all times.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Emergency & Safety Guide"
+        description="Essential emergency information for expats living in Georgia. Keep this information accessible at all times."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Quick Emergency Numbers */}
         <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8 rounded-lg">
           <div className="flex items-center mb-4">

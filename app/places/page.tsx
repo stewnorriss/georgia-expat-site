@@ -1,6 +1,7 @@
 'use client'
 
 import { MapPin, Clock, Camera, Star, Globe, ExternalLink, Phone, DollarSign, Info } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const PlacesPage = () => {
   const places = [
@@ -367,42 +368,16 @@ const PlacesPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-16 overflow-hidden">
-        {/* Geometric Background */}
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpolygon points='30,0 60,30 30,60 0,30'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Camera className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Places to Visit in Tbilisi
-              </h1>
-              <div className="flex items-center text-blue-200">
-                <MapPin className="h-5 w-5 mr-2" />
-                <span>35+ Amazing Destinations & Day Trips</span>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Explore amazing destinations in and around Tbilisi. From ancient fortresses to modern attractions, 
-            discover the perfect blend of history, culture, and natural beauty.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Places to Visit in Tbilisi"
+        description="Explore amazing destinations in and around Tbilisi. From ancient fortresses to modern attractions, discover the perfect blend of history, culture, and natural beauty."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid gap-8">
           {places.map((place, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div key={index} className="card overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {/* Place Image */}
               <div className="h-56 bg-gray-200 relative overflow-hidden">
                 <div 
@@ -537,7 +512,7 @@ const PlacesPage = () => {
           ))}
 
           {/* Additional places in grid format */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="card p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-6">More Places to Explore in Tbilisi</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {additionalPlaces.map((place, index) => (
@@ -561,7 +536,7 @@ const PlacesPage = () => {
           </div>
 
           {/* Day Trips Section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="card p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-6">Day Trips from Tbilisi</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {dayTrips.map((trip, index) => (

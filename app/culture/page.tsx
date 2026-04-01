@@ -33,6 +33,7 @@ import {
   CheckCircle,
   Filter
 } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const CulturePage = () => {
   const [expandedTradition, setExpandedTradition] = useState<string | null>(null)
@@ -158,45 +159,13 @@ const CulturePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Enhanced Header */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-purple-700 to-pink-600 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 10 L40 20 L30 30 L20 20 Z M10 30 L20 40 L10 50 L0 40 Z M50 30 L60 40 L50 50 L40 40 Z'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Users className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Georgian Culture & Traditions
-              </h1>
-              <div className="flex items-center space-x-4 text-purple-200">
-                <div className="flex items-center">
-                  <Heart className="h-5 w-5 mr-2" />
-                  <span>Ancient Hospitality Traditions</span>
-                </div>
-                <div className="flex items-center">
-                  <Bot className="h-5 w-5 mr-2" />
-                  <span>AI-Enhanced Cultural Guide</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Discover the rich cultural heritage of Georgia through interactive guides, practical tips, 
-            and AI-powered insights to help you navigate social customs with confidence.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Georgian Culture & Traditions"
+        description="Discover the rich cultural heritage of Georgia through interactive guides, practical tips, and insights to help you navigate social customs with confidence."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Category Filter */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="flex items-center mb-4">

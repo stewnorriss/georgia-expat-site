@@ -1,6 +1,7 @@
 'use client'
 
 import { Brain, Target, TrendingUp, Calendar, MapPin, Lightbulb } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const RecommendationsPage = () => {
   const aiRecommendations = [
@@ -115,39 +116,14 @@ const RecommendationsPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="relative bg-gradient-to-br from-purple-600 to-pink-600 text-white py-8 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-15"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 10 L40 20 L30 30 L20 20 Z'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-4">
-            <div className="bg-white/10 p-2 rounded-full mr-3">
-              <Brain className="h-8 w-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold mb-1">
-                Stew's Personalized Recommendations
-              </h1>
-              <div className="flex items-center text-purple-200">
-                <Target className="h-4 w-4 mr-2" />
-                <span className="text-sm">AI-Powered Location Suggestions</span>
-              </div>
-            </div>
-          </div>
-          <p className="text-lg max-w-3xl">
-            Machine learning algorithms analyze expat preferences to suggest the most relevant places and experiences in Tbilisi.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Stew's Personalized Recommendations"
+        description="Location suggestions based on expat preferences to help you find the most relevant places and experiences in Tbilisi."
+      />
 
       {/* Recommendations Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           {aiRecommendations.map((rec, index) => (
             <div key={index} className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">

@@ -30,6 +30,7 @@ import {
   ExternalLink,
   Info
 } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const ActivitiesPage = () => {
   const activities = [
@@ -387,42 +388,19 @@ const ActivitiesPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="relative bg-gradient-to-br from-teal-600 to-green-600 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-15"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M40 10 L60 30 L40 50 L20 30 Z'/%3E%3Cpath d='M10 40 L30 60 L50 40 L30 20 Z'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Mountain className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Activities & Adventures</h1>
-              <div className="flex items-center text-teal-200">
-                <Compass className="h-5 w-5 mr-2" />
-                <span>Endless Adventures in Georgia</span>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            From mountain peaks to ancient caves, wine regions to cultural experiences - 
-            discover the incredible diversity of activities that make Georgia an adventurer's paradise.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Activities & Adventures"
+        description="From mountain peaks to ancient caves, wine regions to cultural experiences - discover the incredible diversity of activities that make Georgia an adventurer's paradise."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Activity Categories */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Activity Categories</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {activities.map((category, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <div key={index} className="card overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 {/* Category Header */}
                 <div className={`h-20 bg-gradient-to-r ${category.color} bg-opacity-10 relative overflow-hidden flex items-center px-6`}>
                   <div className="flex items-center">
@@ -521,7 +499,7 @@ const ActivitiesPage = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Seasonal Activity Guide</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {seasonalActivities.map((season, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+              <div key={index} className="card p-6 hover:shadow-xl transition-shadow">
                 <div className="flex items-center mb-4">
                   <div className={`${season.color} text-white p-2 rounded-lg mr-3`}>
                     {season.icon}
@@ -560,7 +538,7 @@ const ActivitiesPage = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Top Adventure Destinations</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {topDestinations.map((destination, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+              <div key={index} className="card p-6 hover:shadow-xl transition-shadow">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl font-bold text-gray-900">{destination.name}</h3>
                   <div className="flex items-center text-gray-500">
@@ -606,7 +584,7 @@ const ActivitiesPage = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Practical Information</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {practicalInfo.map((info, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
+              <div key={index} className="card p-6">
                 <div className="flex items-center mb-4">
                   <div className="bg-teal-100 text-teal-600 p-2 rounded-lg mr-3">
                     {info.icon}

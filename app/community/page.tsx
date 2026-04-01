@@ -1,52 +1,21 @@
 'use client'
 
 import { Users, Calendar, MessageCircle, Heart, Globe, Sparkles } from 'lucide-react'
+import PageHero from '../components/PageHero'
 import EventCalendar from '../components/EventCalendar'
 import ExpatCommunityFinder from '../components/ExpatCommunityFinder'
 import WeatherWidget from '../components/WeatherWidget'
 
 export default function CommunityPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center mb-6 p-4 bg-white/10 rounded-full backdrop-blur-sm">
-              <Users className="h-12 w-12" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Expat Community & Events
-            </h1>
-            <p className="text-xl text-pink-100 max-w-3xl mx-auto leading-relaxed">
-              Connect with fellow expats, join exciting events, and build your social network in Tbilisi
-            </p>
-            
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold mb-1">15K+</div>
-                <div className="text-pink-100 text-sm">Community Members</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold mb-1">50+</div>
-                <div className="text-pink-100 text-sm">Monthly Events</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold mb-1">10+</div>
-                <div className="text-pink-100 text-sm">Active Groups</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-3xl font-bold mb-1">24/7</div>
-                <div className="text-pink-100 text-sm">Support Available</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Expat Community & Events"
+        description="Connect with fellow expats, join exciting events, and build your social network in Tbilisi."
+      />
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Left Column - Events & Communities */}
           <div className="lg:col-span-2 space-y-8">

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import VideoContent from '../components/VideoContent'
 import { Play, MapPin, ChefHat, MessageCircle, Users } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const VideosPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'neighborhood' | 'cooking' | 'language' | 'interview'>('all')
@@ -46,26 +47,15 @@ const VideosPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center mb-6 p-4 bg-white/10 rounded-full">
-            <Play className="h-12 w-12" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Video Content Library
-          </h1>
-          <p className="text-xl text-red-100 max-w-3xl mx-auto">
-            Watch curated videos about living in Tbilisi - from neighborhood tours to cooking tutorials, 
-            language lessons, and expat interviews
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Video Content Library"
+        description="Watch curated videos about living in Tbilisi - from neighborhood tours to cooking tutorials, language lessons, and expat interviews."
+      />
 
       {/* Category Filter */}
       <section className="bg-white border-b border-gray-200 sticky top-26 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-wrap gap-3 justify-center">
             {categories.map((cat) => (
               <button
@@ -97,7 +87,7 @@ const VideosPage = () => {
 
       {/* Additional Info */}
       <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
               <div className="text-3xl mb-2">🎥</div>

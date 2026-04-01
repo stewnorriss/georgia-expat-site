@@ -5,6 +5,7 @@ import { MapPin, Users, Star } from 'lucide-react'
 import { neighborhoodImages } from '../../lib/images'
 import InteractiveMap from '../components/InteractiveMap'
 import UserReviews from '../components/UserReviews'
+import PageHero from '../components/PageHero'
 
 export default function NeighborhoodsPage() {
   const neighborhoods = [
@@ -212,25 +213,15 @@ export default function NeighborhoodsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center mb-6 p-4 bg-white/10 rounded-full">
-            <MapPin className="h-12 w-12" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Tbilisi Neighborhood Guide
-          </h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Find your perfect neighborhood in Tbilisi. Compare areas, prices, and amenities to make the best choice for your lifestyle.
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Tbilisi Neighborhood Guide"
+        description="Find your perfect neighborhood in Tbilisi. Compare areas, prices, and amenities to make the best choice for your lifestyle."
+      />
 
       {/* Neighborhoods Grid */}
       <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {neighborhoods.map((neighborhood) => (
               <Link
@@ -302,7 +293,7 @@ export default function NeighborhoodsPage() {
 
       {/* Interactive Map */}
       <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">Explore Tbilisi on the Map</h2>
             <p className="text-gray-600">Find neighborhoods, restaurants, gyms, and more</p>

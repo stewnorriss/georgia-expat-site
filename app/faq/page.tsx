@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { HelpCircle, ChevronDown, ChevronUp, Link as LinkIcon, Smartphone, Users, BookOpen, Globe, Phone, Facebook, Instagram, MessageCircle } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 export default function FAQPage() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0)
@@ -389,36 +390,13 @@ export default function FAQPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-blue-600 to-cyan-600 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='5'/%3E%3Ccircle cx='10' cy='10' r='3'/%3E%3Ccircle cx='50' cy='50' r='3'/%3E%3Ccircle cx='10' cy='50' r='3'/%3E%3Ccircle cx='50' cy='10' r='3'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <HelpCircle className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">FAQ & Resources</h1>
-              <div className="flex items-center text-blue-200">
-                <BookOpen className="h-5 w-5 mr-2" />
-                <span>Everything You Need to Know</span>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Common questions, essential resources, useful apps, Georgian phrases, and expat slang all in one place.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="FAQ & Resources"
+        description="Common questions, essential resources, useful apps, Georgian phrases, and expat slang all in one place."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* FAQ Section */}
         <div className="mb-12">

@@ -7,6 +7,7 @@ import NeighborhoodComparison from '../components/NeighborhoodComparison'
 import EventCalendar from '../components/EventCalendar'
 import WeatherWidget from '../components/WeatherWidget'
 import ExpatCommunityFinder from '../components/ExpatCommunityFinder'
+import PageHero from '../components/PageHero'
 
 export default function ToolsPage() {
   const [activeTab, setActiveTab] = useState('cost-calculator')
@@ -78,53 +79,14 @@ export default function ToolsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-600 text-white py-16 overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-float"></div>
-          <div className="absolute top-40 right-20 w-24 h-24 bg-yellow-300 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-pink-300 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center mb-6 p-4 bg-white/10 rounded-full backdrop-blur-sm animate-bounce-in">
-              <Sparkles className="h-12 w-12 animate-pulse-glow" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-slide-in-up">
-              Interactive Tools & Resources
-            </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-              AI-powered tools to help you plan your life in Tbilisi. Calculate costs, compare neighborhoods, check weather, find events, and connect with the community.
-            </p>
-
-            {/* Tool Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover-lift animate-fade-in-scale" style={{ animationDelay: '0.3s' }}>
-                <div className="text-3xl font-bold mb-1">{tools.length}+</div>
-                <div className="text-blue-100 text-sm">Interactive Tools</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover-lift animate-fade-in-scale" style={{ animationDelay: '0.4s' }}>
-                <div className="text-3xl font-bold mb-1">Real-time</div>
-                <div className="text-blue-100 text-sm">Data Updates</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover-lift animate-fade-in-scale" style={{ animationDelay: '0.5s' }}>
-                <div className="text-3xl font-bold mb-1">AI-Powered</div>
-                <div className="text-blue-100 text-sm">Recommendations</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 hover-lift animate-fade-in-scale" style={{ animationDelay: '0.6s' }}>
-                <div className="text-3xl font-bold mb-1">100%</div>
-                <div className="text-blue-100 text-sm">Free to Use</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Interactive Tools & Resources"
+        description="Tools to help you plan your life in Tbilisi. Calculate costs, compare neighborhoods, check weather, find events, and connect with the community."
+      />
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Tool Selection Tabs */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">

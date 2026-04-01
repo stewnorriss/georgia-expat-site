@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import CurrencyConverter from '../components/CurrencyConverter'
 import { TrendingUp, DollarSign, CreditCard, Banknote, Calculator, Globe, Info, AlertCircle, CheckCircle } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const CurrencyPage = () => {
   const [currentRates, setCurrentRates] = useState<any>(null)
@@ -71,46 +72,13 @@ const CurrencyPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Header */}
-      <div className="relative bg-gradient-to-br from-green-600 via-blue-600 to-purple-700 text-white py-16 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div 
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3Ccircle cx='10' cy='10' r='8'/%3E%3Ccircle cx='50' cy='50' r='8'/%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          ></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Calculator className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Currency & Banking Guide
-              </h1>
-              <div className="flex items-center space-x-4 text-green-200">
-                <div className="flex items-center">
-                  <TrendingUp className="h-5 w-5 mr-2" />
-                  <span>Live Exchange Rates</span>
-                </div>
-                <div className="flex items-center">
-                  <DollarSign className="h-5 w-5 mr-2" />
-                  <span>Banking Tips for Expats</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Everything you need to know about Georgian Lari, exchange rates, banking, and managing money as an expat in Tbilisi.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Currency & Banking Guide"
+        description="Everything you need to know about Georgian Lari, exchange rates, banking, and managing money as an expat in Tbilisi."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Currency Converter Section */}
         <div className="mb-12">
           <div className="text-center mb-8">

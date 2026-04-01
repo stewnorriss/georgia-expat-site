@@ -1,6 +1,7 @@
 'use client'
 
 import { Stethoscope, Phone, MapPin, Clock, Globe, ExternalLink, CreditCard, Heart, Shield, AlertCircle, CheckCircle, Pill, Activity, Users, Building2 } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const MedicalPage = () => {
   const hospitals = [
@@ -49,21 +50,16 @@ const MedicalPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-red-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Healthcare in Tbilisi</h1>
-          <p className="text-xl max-w-3xl">
-            Navigate Georgia's healthcare system with confidence. Find hospitals, understand insurance options, 
-            and access quality medical care as an expat in Tbilisi.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Healthcare in Tbilisi"
+        description="Navigate Georgia's healthcare system with confidence. Find hospitals, understand insurance options, and access quality medical care as an expat in Tbilisi."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid gap-8 mb-12">
           {hospitals.map((hospital, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div key={index} className="card overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {/* Hospital Image */}
               <div className="h-48 bg-gray-200 relative overflow-hidden">
                 <div 
@@ -148,7 +144,7 @@ const MedicalPage = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="card p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-6">Health Insurance Options</h3>
             <div className="space-y-6">
               {insurance.map((plan, index) => (
@@ -166,7 +162,7 @@ const MedicalPage = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="card p-6">
             <h3 className="text-xl font-bold text-gray-900 mb-6">Emergency Information</h3>
             <div className="space-y-4">
               <div className="bg-red-50 p-4 rounded-lg">
@@ -246,7 +242,7 @@ const MedicalPage = () => {
                 expatReview: 'Modern equipment, reasonable prices. Good for routine dental work.'
               }
             ].map((doctor, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
+              <div key={index} className="card p-6">
                 <div className="flex items-start mb-4">
                   <div className="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">
                     <Stethoscope className="h-6 w-6" />
@@ -354,7 +350,7 @@ const MedicalPage = () => {
                 ]
               }
             ].map((area, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
+              <div key={index} className="card p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
                   <MapPin className="h-5 w-5 text-red-600 mr-2" />
                   {area.neighborhood}
@@ -443,7 +439,7 @@ const MedicalPage = () => {
                 tip: 'Pharmacists often speak English'
               }
             ].map((procedure, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
+              <div key={index} className="card p-6">
                 <div className="text-4xl mb-3 text-center">{procedure.icon}</div>
                 <h3 className="text-lg font-bold text-gray-900 mb-4 text-center">{procedure.situation}</h3>
                 <ol className="space-y-2 mb-4">
@@ -511,7 +507,7 @@ const MedicalPage = () => {
                 website: 'cignaglobal.com'
               }
             ].map((insurance, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
+              <div key={index} className="card p-6">
                 <div className="mb-4">
                   <h3 className="text-xl font-bold text-gray-900">{insurance.provider}</h3>
                   <p className="text-sm text-gray-600">{insurance.type}</p>
@@ -556,7 +552,7 @@ const MedicalPage = () => {
         {/* Vaccination Requirements */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Vaccination Requirements</h2>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="card p-6">
             <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-lg mb-6">
               <h3 className="font-semibold text-green-800 mb-2">Required Vaccinations</h3>
               <p className="text-green-700">Georgia has NO mandatory vaccination requirements for entry. However, routine vaccinations are recommended.</p>
@@ -597,7 +593,7 @@ const MedicalPage = () => {
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Typical Medical Costs</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="card p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Doctor Visits & Tests</h3>
               <div className="space-y-3">
                 {[
@@ -621,7 +617,7 @@ const MedicalPage = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="card p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Dental & Medications</h3>
               <div className="space-y-3">
                 {[
@@ -685,7 +681,7 @@ const MedicalPage = () => {
                 cost: '₾50-400 depending on procedure'
               }
             ].map((health, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
+              <div key={index} className="card p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">{health.issue}</h3>
                 <div className="space-y-2 text-sm">
                   <div>

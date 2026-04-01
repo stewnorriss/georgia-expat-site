@@ -1,6 +1,7 @@
 'use client'
 
 import { Bed, Star, Wifi, Car, Globe, ExternalLink, MapPin, Phone, Clock, DollarSign } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const AccommodationPage = () => {
   const getHotelImage = (name: string, index: number) => {
@@ -100,21 +101,16 @@ const AccommodationPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-indigo-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Accommodation</h1>
-          <p className="text-xl max-w-3xl">
-            Find the perfect place to stay in Tbilisi. From luxury hotels to budget hostels, 
-            discover accommodation options for every traveler and budget.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Accommodation"
+        description="Find the perfect place to stay in Tbilisi. From luxury hotels to budget hostels, discover accommodation options for every traveler and budget."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid gap-8">
           {hotels.map((hotel, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div key={index} className="card overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {/* Hotel Image */}
               <div className="h-48 bg-gray-200 relative overflow-hidden">
                 <div 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Wifi, Smartphone, Zap, MapPin, Coffee, CheckCircle, AlertCircle, TrendingUp, Globe, Signal, Router, Laptop } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 export const metadata: Metadata = {
   title: 'Internet & Mobile in Georgia - Complete Guide for Digital Nomads',
@@ -275,36 +276,13 @@ export default function InternetPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-blue-600 to-purple-600 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Ccircle cx='50' cy='50' r='2'/%3E%3Ccircle cx='10' cy='50' r='2'/%3E%3Ccircle cx='50' cy='10' r='2'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Wifi className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Internet & Mobile in Georgia</h1>
-              <div className="flex items-center text-blue-200">
-                <Signal className="h-5 w-5 mr-2" />
-                <span>Complete Guide for Digital Nomads</span>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Fast, reliable, and affordable internet. Everything you need to stay connected as a digital nomad in Tbilisi.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Internet & Mobile in Georgia"
+        description="Fast, reliable, and affordable internet. Everything you need to stay connected as a digital nomad in Tbilisi."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* Quick Stats */}
         <div className="grid md:grid-cols-4 gap-6 mb-12">

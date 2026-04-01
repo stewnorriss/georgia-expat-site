@@ -22,6 +22,7 @@ import {
   Phone,
   Download
 } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const TransportPage = () => {
   const transportModes = [
@@ -245,42 +246,19 @@ const TransportPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="relative bg-gradient-to-br from-green-600 to-blue-600 text-white py-16 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-15"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M30 10 L50 30 L30 50 L10 30 Z'/%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Route className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Getting Around Tbilisi</h1>
-              <div className="flex items-center text-green-200">
-                <Navigation className="h-5 w-5 mr-2" />
-                <span>Complete Transport Guide for Expats</span>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Master Tbilisi's transport system with our comprehensive guide. From metro and buses to taxis and apps, 
-            everything you need to navigate the city like a local.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Getting Around Tbilisi"
+        description="Master Tbilisi's transport system with our comprehensive guide. From metro and buses to taxis and apps, everything you need to navigate the city like a local."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Transport Modes */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Transport Options</h2>
           <div className="grid gap-8">
             {transportModes.map((mode, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <div key={index} className="card overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 <div className={`h-20 bg-gradient-to-r ${mode.color} bg-opacity-10 relative overflow-hidden flex items-center px-6`}>
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center">
@@ -445,7 +423,7 @@ const TransportPage = () => {
         {/* Transport Card Section */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Tbilisi Transport Card</h2>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="card p-6">
             <div className="flex items-center mb-6">
               <div className="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">
                 <CreditCard className="h-8 w-8" />
@@ -501,7 +479,7 @@ const TransportPage = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Essential Transport Apps</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {mobileApps.map((app, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow">
+              <div key={index} className="card p-6 hover:shadow-xl transition-shadow">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center">
                     <div className="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3">
@@ -544,7 +522,7 @@ const TransportPage = () => {
         {/* Neighborhood Transport Guide */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Transport by Neighborhood</h2>
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="card p-6">
             <div className="grid gap-6">
               {neighborhoods.map((neighborhood, index) => (
                 <div key={index} className="border-l-4 border-green-500 pl-6 hover:bg-green-50 p-4 rounded transition-colors">
@@ -587,7 +565,7 @@ const TransportPage = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Expert Tips for Expats</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {tips.map((tip, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6">
+              <div key={index} className="card p-6">
                 <div className="flex items-center mb-4">
                   <div className="bg-green-100 text-green-600 p-2 rounded-lg mr-3">
                     {tip.icon}

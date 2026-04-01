@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Star, MapPin, Clock, DollarSign, Utensils, Search, Heart, Phone, Globe, Wifi, Car, CreditCard, Users, Wine, ChefHat, Award, TrendingUp, Bot, Sparkles, ExternalLink, Filter, Leaf, AlertCircle, CheckCircle } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const RestaurantsPage = () => {
   const [selectedFilter, setSelectedFilter] = useState('all')
@@ -1002,43 +1003,13 @@ const RestaurantsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="relative bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 text-white py-16 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Utensils className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">
-                Restaurants & Dining
-              </h1>
-              <div className="flex items-center space-x-4 text-orange-200">
-                <div className="flex items-center">
-                  <ChefHat className="h-5 w-5 mr-2" />
-                  <span>Georgian Cuisine</span>
-                </div>
-                <div className="flex items-center">
-                  <Wine className="h-5 w-5 mr-2" />
-                  <span>Fine Dining</span>
-                </div>
-                <div className="flex items-center">
-                  <Award className="h-5 w-5 mr-2" />
-                  <span>Local Favorites</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Discover Tbilisi's incredible culinary scene, from traditional Georgian supra experiences 
-            to modern fusion restaurants. Find your perfect dining experience with detailed reviews, 
-            prices, and insider tips.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Restaurants & Dining"
+        description="Discover Tbilisi's incredible culinary scene, from traditional Georgian supra experiences to modern fusion restaurants. Find your perfect dining experience with detailed reviews, prices, and insider tips."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search and Filters */}
         <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
           <div className="flex flex-col md:flex-row gap-4 mb-4">

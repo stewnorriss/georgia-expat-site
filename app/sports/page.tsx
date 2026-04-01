@@ -1,6 +1,7 @@
 'use client'
 
 import { Dumbbell, MapPin, Clock, DollarSign, Globe, ExternalLink, Users, Star, Zap, Heart, Trophy, Target, Activity, Mountain, Waves, TreePine } from 'lucide-react'
+import PageHero from '../components/PageHero'
 
 const SportsPage = () => {
   const gyms = [
@@ -301,39 +302,13 @@ const SportsPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-br from-yellow-600 via-orange-600 to-red-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center mb-6">
-            <div className="bg-white/10 p-3 rounded-full mr-4">
-              <Dumbbell className="h-12 w-12 text-white" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-2">Sports & Fitness</h1>
-              <div className="flex items-center space-x-4 text-yellow-200">
-                <div className="flex items-center">
-                  <Trophy className="h-5 w-5 mr-2" />
-                  <span>25+ Fitness Options</span>
-                </div>
-                <div className="flex items-center">
-                  <Target className="h-5 w-5 mr-2" />
-                  <span>All Skill Levels</span>
-                </div>
-                <div className="flex items-center">
-                  <Users className="h-5 w-5 mr-2" />
-                  <span>Expat-Friendly</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl max-w-3xl">
-            Stay active in Tbilisi with our comprehensive guide to gyms, outdoor activities, sports clubs, and fitness classes. 
-            From budget-friendly options to premium facilities, find the perfect way to maintain your fitness routine as an expat.
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      <PageHero
+        title="Sports & Fitness"
+        description="Stay active in Tbilisi with our comprehensive guide to gyms, outdoor activities, sports clubs, and fitness classes. From budget-friendly options to premium facilities, find the perfect way to maintain your fitness routine as an expat."
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Quick Gym Finder */}
         <section className="mb-12 bg-gradient-to-r from-yellow-50 via-orange-50 to-red-50 rounded-xl p-8 shadow-lg">
           <div className="flex items-center mb-6">
