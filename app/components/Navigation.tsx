@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { X, MapPin, ChevronDown, Bot, Search, Sparkles } from 'lucide-react'
+import { X, MapPin, ChevronDown, Search } from 'lucide-react'
 import AISearchBar from './AISearchBar'
 import ThemeToggle from './ThemeToggle'
 
@@ -15,26 +15,45 @@ const CategoryDropdown = ({ category }: { category: any }) => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <button className="flex items-center text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-2 py-2 text-sm font-medium transition-colors">
-        <span className="mr-1.5">{category.icon}</span>
+      <button
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setIsOpen(!isOpen)
+          }
+          if (e.key === 'Escape') setIsOpen(false)
+        }}
+        className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-2 py-2 text-sm font-medium transition-colors"
+      >
+        <span className="mr-1.5" aria-hidden="true">{category.icon}</span>
         <span>{category.title}</span>
-        <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform text-gray-400 ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
       </button>
-      <div className={`absolute left-0 mt-1 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 ${
-        isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-      }`}>
-        <div className="p-3">
-          <div className="space-y-1">
+      <div
+        role="menu"
+        aria-label={`${category.title} submenu`}
+        className={`absolute left-0 mt-1 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-xl shadow-gray-200/50 dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700 transition-all duration-200 ${
+          isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-1 pointer-events-none'
+        }`}
+      >
+        <div className="p-2">
+          <div className="space-y-0.5">
             {category.items.map((item: any) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block p-2 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors group"
+                role="menuitem"
+                className="block px-3 py-2.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1"
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') setIsOpen(false)
+                }}
               >
-                <div className="font-medium text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 text-sm">
+                <div className="font-medium text-gray-800 dark:text-gray-200 group-hover:text-red-600 dark:group-hover:text-red-400 text-sm">
                   {item.label}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
                   {item.description}
                 </div>
               </Link>
@@ -109,22 +128,17 @@ const Navigation = () => {
   ]
 
   return (
-    <nav className="bg-white/95 dark:bg-gray-900/95 shadow-md fixed top-10 left-0 right-0 z-50 border-b border-gray-200 dark:border-gray-700 backdrop-blur-lg">
+    <nav aria-label="Main navigation" className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl fixed top-10 left-0 right-0 z-50 border-b border-gray-200/60 dark:border-gray-700/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative bg-gradient-to-br from-red-500 to-red-600 p-1.5 rounded-full shadow-md group-hover:shadow-lg transition-all duration-200">
-                <MapPin className="h-5 w-5 text-white" />
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="bg-red-600 p-1.5 rounded-lg">
+                <MapPin className="h-4 w-4 text-white" />
               </div>
-              <div className="flex items-baseline space-x-1.5">
-                <span className="font-bold text-lg text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
-                  Tbilisi
-                </span>
-                <span className="font-medium text-sm text-gray-600 dark:text-gray-400">
-                  Expat Guide
-                </span>
-              </div>
+              <span className="font-bold text-gray-900 dark:text-white text-base tracking-tight">
+                Tbilisi <span className="font-normal text-gray-500 dark:text-gray-400">Expat Guide</span>
+              </span>
             </Link>
           </div>
 
@@ -151,10 +165,10 @@ const Navigation = () => {
             {/* Theme Toggle */}
             <ThemeToggle />
             
-            {/* AI Search Button */}
+            {/* Search Button */}
             <button
               onClick={() => setShowAISearch(!showAISearch)}
-              className="flex items-center text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 text-sm font-medium transition-colors rounded-md ml-2"
+              className="flex items-center text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-1.5 text-sm font-medium transition-colors rounded-lg ml-2"
             >
               <Search className="h-4 w-4 mr-1.5" />
               <span>Search</span>
@@ -166,18 +180,18 @@ const Navigation = () => {
             <ThemeToggle />
             <button
               onClick={() => setShowAISearch(!showAISearch)}
-              className="text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 p-2 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 relative"
+              aria-label="Search"
+              className="text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors"
             >
               <Search className="h-4 w-4" />
-              <div className="absolute -top-1 -right-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs rounded-full h-3 w-3 flex items-center justify-center">
-                <Sparkles className="h-1.5 w-1.5" />
-              </div>
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
               className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 p-2 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
             >
-              <div className="w-6 h-6 flex flex-col justify-center space-y-1.5">
+              <div className="w-6 h-6 flex flex-col justify-center space-y-1.5" aria-hidden="true">
                 <span className={`block w-6 h-0.5 bg-current transition-transform ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
                 <span className={`block w-6 h-0.5 bg-current transition-opacity ${isOpen ? 'opacity-0' : ''}`}></span>
                 <span className={`block w-6 h-0.5 bg-current transition-transform ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
@@ -190,7 +204,7 @@ const Navigation = () => {
         <div className={`lg:hidden transition-all duration-300 ease-in-out ${
           isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
-          <div className="px-2 pt-2 pb-6 bg-gradient-to-b from-white/95 via-red-50/30 to-gray-50/95 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-gray-800/95 border-t border-red-100/50 dark:border-gray-700/80 backdrop-blur-xl">
+          <div className="px-2 pt-2 pb-6 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
             {/* Main Navigation Items */}
             <div className="space-y-1 mb-4">
               {mainNavItems.map((item, index) => (
@@ -243,40 +257,23 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* AI Search Overlay */}
+      {/* Search Overlay */}
       {showAISearch && (
-        <div className="absolute top-full left-0 right-0 bg-gradient-to-b from-white/98 via-blue-50/40 to-white/98 dark:from-gray-900/98 dark:via-gray-800/98 dark:to-gray-900/98 backdrop-blur-xl backdrop-saturate-150 border-b border-blue-200/50 dark:border-gray-700/80 shadow-2xl z-40">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full blur-lg opacity-20"></div>
-                  <div className="relative bg-gradient-to-br from-blue-500 to-purple-600 p-2 rounded-full shadow-lg">
-                    <Bot className="h-5 w-5 text-white" />
-                  </div>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Stew's AI-Powered Search
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Ask anything about living in Tbilisi</p>
-                </div>
-                <span className="ml-3 text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full shadow-sm animate-pulse">
-                  🚀 Beta
-                </span>
-              </div>
+        <div className="absolute top-full left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200 dark:border-gray-700 shadow-xl z-40">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+                Search the guide
+              </h3>
               <button
                 onClick={() => setShowAISearch(false)}
-                className="text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200"
+                aria-label="Close search"
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
             <AISearchBar />
-            <div className="mt-6 flex items-center justify-center text-sm text-gray-500 dark:text-gray-400 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-3">
-              <Sparkles className="h-4 w-4 mr-2 text-blue-500" />
-              <span>🧠 Powered by advanced AI • Understands context and provides personalized results • Available 24/7</span>
-            </div>
           </div>
         </div>
       )}

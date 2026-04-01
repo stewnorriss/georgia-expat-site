@@ -82,7 +82,7 @@ const CurrencyConverter = () => {
           onClick={fetchRates}
           disabled={loading}
           className="bg-green-700 hover:bg-green-800 p-1.5 rounded transition-colors disabled:opacity-50"
-          title="Refresh rates"
+          aria-label="Refresh exchange rates"
         >
           <RefreshCw className={`h-3 w-3 ${loading ? 'animate-spin' : ''}`} />
         </button>
@@ -110,16 +110,19 @@ const CurrencyConverter = () => {
 
       {/* From Currency */}
       <div className="bg-white/10 rounded-lg p-2.5 mb-2">
-        <label className="text-[10px] opacity-75 block mb-1.5">From</label>
+        <label htmlFor="from-amount" className="text-[10px] opacity-75 block mb-1.5">From</label>
         <div className="flex space-x-2">
           <input
+            id="from-amount"
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             className="flex-1 bg-white/20 border border-white/30 rounded px-2 py-1.5 text-white text-sm placeholder-white/50 focus:outline-none focus:ring-1 focus:ring-white/50"
             placeholder="Amount"
           />
+          <label htmlFor="from-currency" className="sr-only">From currency</label>
           <select
+            id="from-currency"
             value={fromCurrency}
             onChange={(e) => setFromCurrency(e.target.value)}
             className="bg-white/20 border border-white/30 rounded px-2 py-1.5 text-white text-xs focus:outline-none focus:ring-1 focus:ring-white/50"
@@ -137,6 +140,7 @@ const CurrencyConverter = () => {
       <div className="flex justify-center -my-1.5 relative z-10">
         <button
           onClick={swapCurrencies}
+          aria-label={`Swap currencies: convert from ${toCurrency} to ${fromCurrency} instead`}
           className="bg-green-700 hover:bg-green-800 p-1.5 rounded-full transition-colors shadow-md"
         >
           <ArrowRightLeft className="h-3 w-3" />
@@ -147,12 +151,14 @@ const CurrencyConverter = () => {
       <div className="bg-white/10 rounded-lg p-2.5 mb-3">
         <label className="text-[10px] opacity-75 block mb-1.5">To</label>
         <div className="flex space-x-2">
-          <div className="flex-1 bg-white/20 border border-white/30 rounded px-2 py-1.5">
+          <div className="flex-1 bg-white/20 border border-white/30 rounded px-2 py-1.5" aria-live="polite" aria-label={`Converted amount: ${convert().toFixed(2)} ${toCurrency}`}>
             <div className="text-lg font-bold">
               {convert().toFixed(2)}
             </div>
           </div>
+          <label htmlFor="to-currency" className="sr-only">To currency</label>
           <select
+            id="to-currency"
             value={toCurrency}
             onChange={(e) => setToCurrency(e.target.value)}
             className="bg-white/20 border border-white/30 rounded px-2 py-1.5 text-white text-xs focus:outline-none focus:ring-1 focus:ring-white/50"

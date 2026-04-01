@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MessageCircle, Volume2, BookOpen, Users, Play, Video, Clock, Award, Bot, Sparkles, TrendingUp, CheckCircle, RotateCcw, Target, Brain, Zap, Globe, ChevronLeft, ChevronRight } from 'lucide-react'
 import VideoContent from '../components/VideoContent'
 
@@ -27,14 +27,18 @@ export default function LanguagePage() {
   const [exerciseAnswers, setExerciseAnswers] = useState<{[key: string]: string}>({})
 
   // Load progress from localStorage on component mount
-  useState(() => {
+  useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedProgress = localStorage.getItem('georgian-learning-progress')
-      if (savedProgress) {
-        setCompletedLessons(JSON.parse(savedProgress))
+      try {
+        const savedProgress = localStorage.getItem('georgian-learning-progress')
+        if (savedProgress) {
+          setCompletedLessons(JSON.parse(savedProgress))
+        }
+      } catch (e) {
+        console.error('Failed to load progress:', e)
       }
     }
-  })
+  }, [])
 
   // Georgian Alphabet
   const georgianAlphabet = [

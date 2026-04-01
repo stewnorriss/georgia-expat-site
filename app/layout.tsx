@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
+import BackToTop from './components/BackToTop'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { BlogProvider } from './contexts/BlogContext'
 import ThemeToggle from './components/ThemeToggle'
@@ -89,14 +90,18 @@ export default function RootLayout({
         
         <ThemeProvider>
           <BlogProvider>
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[100] focus:bg-red-600 focus:text-white focus:px-4 focus:py-2 focus:text-sm">
+              Skip to main content
+            </a>
             <div className="flex flex-col min-h-screen">
               <EmergencyBanner />
               <Navigation />
               <ThemeToggle />
               <PWAInstaller />
-              <main className="flex-grow pt-24">
+              <main id="main-content" className="flex-grow pt-24" role="main">
                 {children}
               </main>
+              <BackToTop />
               <Footer />
             </div>
           </BlogProvider>

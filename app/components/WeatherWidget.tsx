@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Cloud, CloudRain, Sun, Wind, Droplets, Eye, Gauge, RotateCcw } from 'lucide-react'
+import { Cloud, Sun, Wind, Droplets, Eye, Gauge, RotateCcw } from 'lucide-react'
 
 interface WeatherData {
   temp: number
@@ -125,8 +125,14 @@ const WeatherWidget = () => {
     return (
       <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-4 text-white shadow-md">
         <div className="text-center">
-          <Cloud className="h-8 w-8 mx-auto mb-1 opacity-50" />
+          <Cloud className="h-8 w-8 mx-auto mb-1 opacity-50" aria-hidden="true" />
           <p className="text-xs">Weather unavailable</p>
+          <button
+            onClick={fetchWeather}
+            className="mt-2 text-xs underline opacity-75 hover:opacity-100 transition-opacity"
+          >
+            Try again
+          </button>
         </div>
       </div>
     )
@@ -149,7 +155,7 @@ const WeatherWidget = () => {
         <button
           onClick={fetchWeather}
           className="bg-blue-700 hover:bg-blue-800 p-1.5 rounded transition-colors"
-          title="Refresh"
+          aria-label="Refresh weather data"
         >
           <RotateCcw className="h-3 w-3" />
         </button>
