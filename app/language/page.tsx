@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { Volume2, BookOpen, Clock, CheckCircle, ChevronDown, ChevronRight, ChevronLeft, RotateCcw, ArrowRight } from 'lucide-react'
+import { Volume2, BookOpen, Clock, CheckCircle, ChevronDown, ChevronRight, ChevronLeft, RotateCcw, ArrowRight, Play, ExternalLink } from 'lucide-react'
 import { lessons, georgianAlphabet, quizQuestions, flashcards, conversations } from './data'
-import type { Lesson, Phrase } from './data'
+import type { Lesson } from './data'
 
-type Tab = 'lessons' | 'alphabet' | 'flashcards' | 'quiz' | 'conversations'
+type Tab = 'lessons' | 'alphabet' | 'flashcards' | 'quiz' | 'conversations' | 'videos'
 
 export default function LanguagePage() {
   const [tab, setTab] = useState<Tab>('lessons')
@@ -65,6 +65,7 @@ export default function LanguagePage() {
     { id: 'flashcards', label: 'Flashcards' },
     { id: 'quiz', label: 'Quiz' },
     { id: 'conversations', label: 'Conversations' },
+    { id: 'videos', label: 'Videos' },
   ]
 
   const difficultyColor = (d: string) => {
@@ -355,6 +356,72 @@ export default function LanguagePage() {
                   <RotateCcw className="h-3.5 w-3.5" /> Restart conversation
                 </button>
               )}
+            </div>
+          </div>
+        )}
+
+        {/* ── VIDEOS ── */}
+        {tab === 'videos' && (
+          <div>
+            <p className="text-gray-500 dark:text-gray-400 mb-8">
+              Curated video lessons from Georgian language teachers on YouTube.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-10">
+              {[
+                { title: 'Georgian Alphabet — All 33 Letters', id: 'OqXBOKR1iE8', channel: 'Learn Georgian', duration: '12 min' },
+                { title: 'Basic Georgian Phrases for Beginners', id: 'kGVZHgFhXOg', channel: 'Georgian with Nino', duration: '15 min' },
+                { title: '100 Georgian Words — Vocabulary Builder', id: 'Bh3gYCSTqOo', channel: 'Learn Georgian', duration: '20 min' },
+                { title: 'Georgian Numbers 1-100', id: 'sCbGfi1VByA', channel: 'Hoda Georgia', duration: '10 min' },
+              ].map((video, i) => (
+                <div key={i} className="card overflow-hidden">
+                  <div className="relative aspect-video bg-gray-100 dark:bg-gray-800">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.id}`}
+                      title={video.title}
+                      className="absolute inset-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{video.title}</h3>
+                    <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-400">
+                      <span>{video.channel}</span>
+                      <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{video.duration}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="card p-6">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Recommended YouTube channels</h3>
+              <div className="space-y-3">
+                {[
+                  { name: 'Learn Georgian', url: 'https://www.youtube.com/@learngeorgian', desc: 'Structured lessons from alphabet to advanced grammar' },
+                  { name: 'Georgian with Nino', url: 'https://www.youtube.com/@GeorgianWithNino', desc: 'Conversational Georgian with a native speaker' },
+                  { name: 'Hoda Georgia', url: 'https://www.youtube.com/@HodaGeorgia', desc: 'Short, practical lessons for everyday situations' },
+                  { name: 'Easy Georgian', url: 'https://www.youtube.com/@EasyGeorgian', desc: 'Slow-paced lessons perfect for absolute beginners' },
+                ].map((ch, i) => (
+                  <a
+                    key={i}
+                    href={ch.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
+                  >
+                    <div>
+                      <div className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors flex items-center gap-1.5">
+                        <Play className="h-3.5 w-3.5" /> {ch.name}
+                      </div>
+                      <div className="text-xs text-gray-400 mt-0.5">{ch.desc}</div>
+                    </div>
+                    <ExternalLink className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors shrink-0" />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         )}
