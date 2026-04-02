@@ -364,61 +364,65 @@ export default function LanguagePage() {
         {tab === 'videos' && (
           <div>
             <p className="text-gray-500 dark:text-gray-400 mb-8">
-              Curated video lessons from Georgian language teachers on YouTube.
+              The best free Georgian language video resources on YouTube. These channels are run by native speakers and language teachers.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-10">
+            <div className="space-y-4 mb-10">
               {[
-                { title: 'Georgian Alphabet — All 33 Letters', id: 'OqXBOKR1iE8', channel: 'Learn Georgian', duration: '12 min' },
-                { title: 'Basic Georgian Phrases for Beginners', id: 'kGVZHgFhXOg', channel: 'Georgian with Nino', duration: '15 min' },
-                { title: '100 Georgian Words — Vocabulary Builder', id: 'Bh3gYCSTqOo', channel: 'Learn Georgian', duration: '20 min' },
-                { title: 'Georgian Numbers 1-100', id: 'sCbGfi1VByA', channel: 'Hoda Georgia', duration: '10 min' },
-              ].map((video, i) => (
-                <div key={i} className="card overflow-hidden">
-                  <div className="relative aspect-video bg-gray-100 dark:bg-gray-800">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.id}`}
-                      title={video.title}
-                      className="absolute inset-0 w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">{video.title}</h3>
-                    <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-400">
-                      <span>{video.channel}</span>
-                      <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{video.duration}</span>
+                { name: 'Hoda Georgia', url: 'https://www.youtube.com/@hodageorgia', desc: 'Short, practical video tutorials covering shopping, weather, doctor visits, and everyday situations. Taught in English by native speakers.', topics: ['Beginner phrases', 'Daily situations', 'Vocabulary'] },
+                { name: 'Lingophant — Georgian', url: 'https://www.youtube.com/@lingophant', desc: 'Structured course with listening exercises, grammar breakdowns, and phrase practice. Great for systematic learners.', topics: ['Grammar', 'Listening practice', 'Phrase sets'] },
+                { name: 'Learn Georgian with Nini', url: 'https://www.youtube.com/@LearnGeorgianwithNini', desc: 'Conversational Georgian taught by a native speaker. Covers greetings, numbers, food vocabulary, and cultural context.', topics: ['Conversation', 'Culture', 'Pronunciation'] },
+                { name: 'Georgian for Foreigners (RIC DOG)', url: 'https://www.youtube.com/results?search_query=georgian+for+foreigners+ric+dog', desc: 'A series of 13 short clips (under 2.5 min each) covering the most useful Georgian words and phrases for foreigners.', topics: ['Quick lessons', 'Essential words', 'Beginner friendly'] },
+              ].map((channel, i) => (
+                <a
+                  key={i}
+                  href={channel.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card card-hover p-5 block group"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <Play className="h-4 w-4 text-red-500" />
+                        <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                          {channel.name}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{channel.desc}</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {channel.topics.map((topic, j) => (
+                          <span key={j} className="badge bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-[11px]">{topic}</span>
+                        ))}
+                      </div>
                     </div>
+                    <ExternalLink className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors shrink-0 mt-1" />
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
             <div className="card p-6">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Recommended YouTube channels</h3>
-              <div className="space-y-3">
+              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">More resources</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Other tools to supplement your video learning.</p>
+              <div className="space-y-2.5">
                 {[
-                  { name: 'Learn Georgian', url: 'https://www.youtube.com/@learngeorgian', desc: 'Structured lessons from alphabet to advanced grammar' },
-                  { name: 'Georgian with Nino', url: 'https://www.youtube.com/@GeorgianWithNino', desc: 'Conversational Georgian with a native speaker' },
-                  { name: 'Hoda Georgia', url: 'https://www.youtube.com/@HodaGeorgia', desc: 'Short, practical lessons for everyday situations' },
-                  { name: 'Easy Georgian', url: 'https://www.youtube.com/@EasyGeorgian', desc: 'Slow-paced lessons perfect for absolute beginners' },
-                ].map((ch, i) => (
+                  { name: '50 Languages — Georgian', url: 'https://www.50languages.com/phrasebook/en/ka/', desc: '100 free audio lessons with downloadable MP3s' },
+                  { name: 'Forvo — Georgian Pronunciation', url: 'https://forvo.com/languages/ka/', desc: 'Hear native speakers pronounce any Georgian word' },
+                  { name: 'Learn Georgian Alphabet', url: 'https://www.learnthegeorgianalphabet.com/', desc: '11 lessons to master all 33 letters, with audio' },
+                ].map((res, i) => (
                   <a
                     key={i}
-                    href={ch.url}
+                    href={res.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
                   >
                     <div>
-                      <div className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors flex items-center gap-1.5">
-                        <Play className="h-3.5 w-3.5" /> {ch.name}
-                      </div>
-                      <div className="text-xs text-gray-400 mt-0.5">{ch.desc}</div>
+                      <div className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">{res.name}</div>
+                      <div className="text-xs text-gray-400 mt-0.5">{res.desc}</div>
                     </div>
-                    <ExternalLink className="h-4 w-4 text-gray-300 group-hover:text-gray-500 transition-colors shrink-0" />
+                    <ExternalLink className="h-3.5 w-3.5 text-gray-300 group-hover:text-gray-500 transition-colors shrink-0" />
                   </a>
                 ))}
               </div>
