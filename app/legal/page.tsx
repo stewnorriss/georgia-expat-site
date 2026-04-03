@@ -10,41 +10,66 @@ export default function LegalPage() {
   const visaInfo = {
     categories: [
       {
-        type: 'Visa-Free Entry (Tourist)',
-        duration: '365 days (1 year)',
-        requirements: ['Valid passport (6+ months)', 'No visa application needed', 'Entry stamp at border'],
-        cost: 'Free',
+        type: 'Visa-Free Entry',
+        duration: '90 days in 180-day period (365 days for US citizens)',
+        requirements: [
+          'Valid passport (3+ months beyond stay)',
+          'Mandatory travel insurance — min. 30,000 GEL coverage (since Jan 2026)',
+          'Proof of accommodation',
+          'Proof of funds (~€50/day recommended)',
+          'Return or onward ticket',
+        ],
+        cost: 'Free (insurance cost varies)',
         processing: 'Immediate at border',
-        notes: 'Available to citizens of 98 countries including USA, UK, EU, Canada, Australia. Can be extended for another year.',
+        notes: 'Available to 90+ countries including UK, EU, Canada, Australia. US citizens get 365 days. Insurance is checked at boarding and sometimes at the border — arrive without it and expect to buy on the spot at a 50–100% markup.',
         officialLink: 'https://www.mfa.gov.ge/en/page/visa-information'
       },
       {
-        type: 'Remotely from Georgia (Digital Nomad)',
-        duration: '1 year (renewable)',
-        requirements: ['Work for foreign company', 'Proof of employment/income', 'Valid passport', 'Online application'],
-        cost: 'Free',
-        processing: '10 working days',
-        notes: 'Perfect for remote workers. No Georgian tax on foreign income. Can be renewed annually. Apply online before arrival.',
-        officialLink: 'https://migration.commission.ge'
+        type: 'Work Permit (NEW — March 2026)',
+        duration: 'Tied to employment contract',
+        requirements: [
+          'Job offer or self-employment registration',
+          'Registration in electronic labor migration system',
+          'Employment contract or business documentation',
+          'Medical insurance',
+          'Criminal background check (expected)',
+        ],
+        cost: '₾100–300 (fees TBC)',
+        processing: '15–30 working days (estimated)',
+        notes: 'Mandatory from March 1, 2026 for employees of Georgian companies, self-employed foreigners, entrepreneurs, and remote workers at Georgian startups. Fines: 2,000 GEL per violation, doubled for repeats, possible deportation. Foreigners already registered before March 1 have until Jan 1, 2027 to comply. Digital nomad/remote worker status for foreign employers is still pending clarification.',
+        officialLink: 'https://www.moh.gov.ge'
       },
       {
         type: 'Residence Permit',
-        duration: '1-5 years',
-        requirements: ['Completed application form', '2 passport photos', 'Health insurance', 'Proof of income (₾2400/year minimum)', 'Proof of accommodation'],
-        cost: '₾50-200 depending on type',
+        duration: '1–5 years (new 3-year IT track planned)',
+        requirements: [
+          'Completed application form',
+          '2 passport photos',
+          'Health insurance (30,000 GEL minimum)',
+          'Proof of income (₾2,400/year minimum)',
+          'Proof of accommodation',
+          'Work permit (if employed — from March 2026)',
+        ],
+        cost: '₾50–200 depending on type',
         processing: '30 working days',
-        notes: 'Required for stays longer than 365 days. Can be based on employment, business, study, or family reunification.',
+        notes: 'Required for stays beyond visa-free allowance. Can be based on employment, business, study, investment, or family reunification. A new 3-year residence permit for IT workers is planned alongside the work permit system.',
         officialLink: 'https://migration.commission.ge'
       },
       {
-        type: 'Work Permit',
-        duration: 'Based on employment contract',
-        requirements: ['Job offer from Georgian employer', 'Work permit approved by employer', 'Medical certificate', 'Criminal background check', 'Notarized employment contract'],
-        cost: '₾100-300',
-        processing: '15-30 working days',
-        notes: 'Employer must obtain work permit first. Then you apply for residence permit. Some professions exempt from work permit requirement.',
-        officialLink: 'https://migration.commission.ge'
-      }
+        type: 'E-Visa (C-type)',
+        duration: '30–90 days',
+        requirements: [
+          'Online application via consular portal',
+          'Passport scan and photo',
+          'Travel insurance (30,000 GEL minimum)',
+          'Proof of accommodation and purpose',
+          'Proof of funds',
+        ],
+        cost: '$20–100 depending on type',
+        processing: '~5 working days',
+        notes: 'For nationalities not eligible for visa-free entry. Refusal rate is 5–10%, usually due to incomplete documents. Apply at least 2 weeks before travel.',
+        officialLink: 'https://www.evisa.gov.ge'
+      },
     ]
   }
 
@@ -457,7 +482,8 @@ export default function LegalPage() {
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <PageHero
         title="Legal & Bureaucracy Guide"
-        description="Navigate Georgia's legal requirements and bureaucratic processes with confidence. Essential information for expats on visas, taxes, business registration, and property laws."
+        subtitle="Updated for 2026 regulations"
+        description="Navigate Georgia's legal requirements including the new mandatory work permit system (March 2026), travel insurance requirements, visa rules, taxes, and business registration."
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
