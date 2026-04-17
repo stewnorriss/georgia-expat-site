@@ -241,11 +241,10 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 rounded-lg transition-all duration-200 group"
+                  className="flex items-center px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
                   onClick={() => setIsOpen(false)}
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <span className="w-2 h-2 bg-red-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                   {item.label}
                 </Link>
               ))}
@@ -265,19 +264,14 @@ const Navigation = () => {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex items-start px-6 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/20 dark:hover:to-pink-900/20 rounded-lg transition-all duration-200 group ml-2"
+                      className="flex items-start px-6 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors ml-2"
                       onClick={() => setIsOpen(false)}
                       style={{ animationDelay: `${(mainNavItems.length + groupIndex * 3 + itemIndex) * 50}ms` }}
                     >
-                      <span className="w-1.5 h-1.5 bg-red-400 rounded-full mr-3 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
                       <div className="flex-1">
                         <div className="font-semibold">{item.label}</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">{item.description}</div>
+                        <div className="text-xs text-gray-400 dark:text-gray-500 mt-1">{item.description}</div>
                       </div>
-                      {/* Special badges for mobile */}
-                      {item.href === '/language' && (
-                        <span className="ml-2 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full">AI</span>
-                      )}
                     </Link>
                   ))}
                 </div>

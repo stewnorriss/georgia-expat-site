@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Users, Star } from 'lucide-react'
+import { Users, Star } from 'lucide-react'
 import { neighborhoodImages } from '../../lib/images'
 import InteractiveMap from '../components/InteractiveMap'
 import UserReviews from '../components/UserReviews'
@@ -227,7 +227,7 @@ export default function NeighborhoodsPage() {
               <Link
                 key={neighborhood.id}
                 href={`/neighborhoods/${neighborhood.slug}`}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                className="card card-hover overflow-hidden group"
               >
                 {/* Image */}
                 <div className="h-48 relative overflow-hidden">
@@ -244,42 +244,39 @@ export default function NeighborhoodsPage() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <div className="p-5">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
                     {neighborhood.name}
                   </h3>
-                  <p className="text-sm font-semibold text-blue-600 mb-3">
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">
                     {neighborhood.tagline}
                   </p>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                     {neighborhood.description}
                   </p>
 
                   {/* Stats */}
                   <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center gap-2">
                       <Star className="h-4 w-4 text-yellow-500" />
                       <div>
-                        <div className="text-xs text-gray-600">Popularity</div>
-                        <div className="text-sm font-semibold">{neighborhood.popularity}%</div>
+                        <div className="text-xs text-gray-400">Popularity</div>
+                        <div className="text-sm font-semibold text-gray-900 dark:text-white">{neighborhood.popularity}%</div>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center gap-2">
                       <Users className="h-4 w-4 text-blue-500" />
                       <div>
-                        <div className="text-xs text-gray-600">Expat Friendly</div>
-                        <div className="text-sm font-semibold">{neighborhood.expatFriendly}%</div>
+                        <div className="text-xs text-gray-400">Expat Friendly</div>
+                        <div className="text-sm font-semibold text-gray-900 dark:text-white">{neighborhood.expatFriendly}%</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Best For Tags */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {neighborhood.bestFor.slice(0, 2).map((tag, index) => (
-                      <span
-                        key={index}
-                        className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded"
-                      >
+                      <span key={index} className="badge bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                         {tag}
                       </span>
                     ))}
@@ -292,18 +289,20 @@ export default function NeighborhoodsPage() {
       </section>
 
       {/* Interactive Map */}
-      <section className="py-12 bg-white">
+      <section className="py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Explore Tbilisi on the Map</h2>
-            <p className="text-gray-600">Find neighborhoods, restaurants, gyms, and more</p>
+            <h2 className="section-heading">Explore on the map</h2>
+            <p className="section-subheading">Find neighborhoods, restaurants, gyms, and more</p>
           </div>
-          <InteractiveMap height="450px" />
+          <div className="card overflow-hidden">
+            <InteractiveMap height="450px" />
+          </div>
         </div>
       </section>
 
       {/* Community Reviews */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-12 border-t border-gray-100 dark:border-gray-800">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <UserReviews category="neighborhood" title="Neighborhood Reviews from Expats" />
         </div>

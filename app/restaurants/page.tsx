@@ -1011,21 +1011,23 @@ const RestaurantsPage = () => {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search and Filters */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-          <div className="flex flex-col md:flex-row gap-4 mb-4">
+        <div className="card p-5 mb-8">
+          <div className="flex flex-col md:flex-row gap-3 mb-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <input
                 type="text"
                 placeholder="Search restaurants, cuisine, or location..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-colors"
               />
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+              className={`flex items-center px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                showFilters ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+              }`}
             >
               <Filter className="h-4 w-4 mr-2" />
               Filters
@@ -1033,13 +1035,13 @@ const RestaurantsPage = () => {
           </div>
 
           {showFilters && (
-            <div className="grid md:grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+            <div className="grid md:grid-cols-3 gap-4 pt-4 border-t border-gray-100 dark:border-gray-700">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Cuisine Type</label>
+                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">Cuisine</label>
                 <select
                   value={selectedFilter}
                   onChange={(e) => setSelectedFilter(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:ring-2 focus:ring-red-500/20"
                 >
                   {filters.map(filter => (
                     <option key={filter.id} value={filter.id}>
@@ -1050,11 +1052,11 @@ const RestaurantsPage = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Price Range</label>
+                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">Price</label>
                 <select
                   value={selectedPriceRange}
                   onChange={(e) => setPriceRange(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:ring-2 focus:ring-red-500/20"
                 >
                   {priceRanges.map(range => (
                     <option key={range.id} value={range.id}>
@@ -1065,11 +1067,11 @@ const RestaurantsPage = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Dietary Options</label>
+                <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">Dietary</label>
                 <select
                   value={selectedDietary}
                   onChange={(e) => setSelectedDietary(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:ring-2 focus:ring-red-500/20"
                 >
                   {dietaryOptions.map(option => (
                     <option key={option.id} value={option.id}>
@@ -1083,35 +1085,35 @@ const RestaurantsPage = () => {
         </div>
 
         {/* Quick Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-lg shadow p-4 text-center">
-            <div className="text-2xl font-bold text-orange-600">{filteredRestaurants.length}</div>
-            <div className="text-sm text-gray-600">Restaurants Found</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          <div className="card p-4 text-center">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{filteredRestaurants.length}</div>
+            <div className="text-xs text-gray-500">Restaurants</div>
           </div>
-          <div className="bg-white rounded-lg shadow p-4 text-center">
-            <div className="text-2xl font-bold text-green-600">
+          <div className="card p-4 text-center">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
               {filteredRestaurants.filter(r => r.priceCategory === 'budget').length}
             </div>
-            <div className="text-sm text-gray-600">Budget Options</div>
+            <div className="text-xs text-gray-500">Budget Options</div>
           </div>
-          <div className="bg-white rounded-lg shadow p-4 text-center">
-            <div className="text-2xl font-bold text-blue-600">
+          <div className="card p-4 text-center">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
               {filteredRestaurants.filter(r => r.deliveryApps.length > 0).length}
             </div>
-            <div className="text-sm text-gray-600">Delivery Available</div>
+            <div className="text-xs text-gray-500">Delivery Available</div>
           </div>
-          <div className="bg-white rounded-lg shadow p-4 text-center">
-            <div className="text-2xl font-bold text-purple-600">
+          <div className="card p-4 text-center">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
               {filteredRestaurants.filter(r => r.features.includes('english-menu')).length}
             </div>
-            <div className="text-sm text-gray-600">English Menus</div>
+            <div className="text-xs text-gray-500">English Menus</div>
           </div>
         </div>
 
         {/* Restaurant Cards */}
         <div className="space-y-6">
           {filteredRestaurants.map((restaurant, index) => (
-            <div key={restaurant.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+            <div key={restaurant.id} className="card overflow-hidden card-hover">
               <div className="md:flex">
                 <div className="md:w-1/3">
                   <div className="h-64 md:h-full relative">
@@ -1130,12 +1132,6 @@ const RestaurantsPage = () => {
                     >
                       <Heart className={`h-5 w-5 ${favorites.includes(restaurant.id) ? 'fill-current' : ''}`} />
                     </button>
-                    {restaurant.aiRecommended && (
-                      <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
-                        <Sparkles className="h-3 w-3 mr-1" />
-                        AI Pick
-                      </div>
-                    )}
                   </div>
                 </div>
                 
@@ -1161,9 +1157,9 @@ const RestaurantsPage = () => {
                   <p className="text-gray-600 mb-4">{restaurant.description}</p>
 
                   {/* Features */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
                     {restaurant.features.map((feature, idx) => (
-                      <span key={idx} className="flex items-center bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                      <span key={idx} className="badge bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                         {getFeatureIcon(feature)}
                         <span className="ml-1">{getFeatureLabel(feature)}</span>
                       </span>
@@ -1192,15 +1188,15 @@ const RestaurantsPage = () => {
 
                   {/* Popular Dishes */}
                   <div className="mb-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">Popular Dishes:</h4>
+                    <h4 className="font-semibold text-sm text-gray-900 dark:text-white mb-2">Popular dishes</h4>
                     <div className="grid md:grid-cols-2 gap-2">
                       {restaurant.popularDishes.slice(0, 2).map((dish, idx) => (
-                        <div key={idx} className="bg-gray-50 rounded-lg p-3">
+                        <div key={idx} className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
                           <div className="flex justify-between items-start mb-1">
-                            <span className="font-semibold text-sm">{dish.name}</span>
-                            <span className="text-green-600 font-bold text-sm">{dish.price}</span>
+                            <span className="font-medium text-sm text-gray-900 dark:text-white">{dish.name}</span>
+                            <span className="text-emerald-600 font-bold text-sm">{dish.price}</span>
                           </div>
-                          <p className="text-xs text-gray-600">{dish.description}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">{dish.description}</p>
                         </div>
                       ))}
                     </div>
@@ -1262,39 +1258,37 @@ const RestaurantsPage = () => {
         )}
 
         {/* Dining Tips */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Dining Tips for Expats</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-orange-50 p-4 rounded-lg">
-              <ChefHat className="h-8 w-8 text-orange-600 mb-3" />
-              <h3 className="font-semibold text-gray-900 mb-2">Georgian Dining Culture</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
+        <div className="card p-6 mt-8">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Dining tips for expats</h2>
+          <div className="grid md:grid-cols-3 gap-5">
+            <div className="p-4 rounded-xl bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-900/20">
+              <ChefHat className="h-6 w-6 text-orange-600 dark:text-orange-400 mb-3" />
+              <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-2">Georgian dining culture</h3>
+              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
                 <li>• Supra (feast) is a social experience</li>
-                <li>• Toasts are important - wait for tamada</li>
+                <li>• Wait for the tamada's toasts</li>
                 <li>• Try khachapuri and khinkali</li>
                 <li>• Georgian wine is world-class</li>
               </ul>
             </div>
-            
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <CreditCard className="h-8 w-8 text-blue-600 mb-3" />
-              <h3 className="font-semibold text-gray-900 mb-2">Payment & Tipping</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
+            <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/20">
+              <CreditCard className="h-6 w-6 text-blue-600 dark:text-blue-400 mb-3" />
+              <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-2">Payment & tipping</h3>
+              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
                 <li>• Most places accept cards</li>
-                <li>• 10-15% tip is standard</li>
+                <li>• 10–15% tip is standard</li>
                 <li>• Cash preferred at small places</li>
                 <li>• Service charge sometimes included</li>
               </ul>
             </div>
-            
-            <div className="bg-green-50 p-4 rounded-lg">
-              <Clock className="h-8 w-8 text-green-600 mb-3" />
-              <h3 className="font-semibold text-gray-900 mb-2">Timing & Reservations</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Dinner starts late (8-9 PM)</li>
-                <li>• Lunch: 12-3 PM typically</li>
+            <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-900/20">
+              <Clock className="h-6 w-6 text-emerald-600 dark:text-emerald-400 mb-3" />
+              <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-2">Timing & reservations</h3>
+              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                <li>• Dinner starts late (8–9 PM)</li>
+                <li>• Lunch: 12–3 PM typically</li>
                 <li>• Book fine dining in advance</li>
-                <li>• Peak times: Friday-Sunday evenings</li>
+                <li>• Peak: Friday–Sunday evenings</li>
               </ul>
             </div>
           </div>
