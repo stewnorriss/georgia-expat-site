@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-// @ts-expect-error - no types available for this package
-import googleTTS from 'google-tts-api'
+
+const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY
+// Default voice - "Rachel" is a good multilingual voice
+const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || 'XrExE9yKIg1WjnnlVkGX'
 
 export async function GET(request: NextRequest) {
   const text = request.nextUrl.searchParams.get('q')
-  const lang = request.nextUrl.searchParams.get('tl') || 'ka'
-  const slow = request.nextUrl.searchParams.get('slow') === '1'
 
   if (!text) {
     return NextResponse.json({ error: 'Missing q parameter' }, { status: 400 })
@@ -15,41 +15,50 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Text too long' }, { status: 400 })
   }
 
-  try {
-    const base64 = await googleTTS.getAudioBase64(text, {
-      lang,
-      slow,
-      host: 'https://translate.google.com',
-    })
+  if (!ELEVENLABS_API_KEY) {
+    return NextResponse.json({ error: 'TTS not configured' }, { status: 503 })
+  }
 
-    const audioBuffer = Buffer.from(base64, 'base64')
+  try {
+    const response = await fetch(
+      `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'xi-api-key': ELEVENLABS_API_KEY,
+        },
+        body: JSON.stringify({
+          text,
+          model_id: 'eleven_multilingual_v2',
+          voice_settings: {
+            stability: 0.75,
+            similarity_boost: 0.75,
+            speed: 0.85,
+          },
+        }),
+      }
+    )
+
+    if (!response.ok) {
+      const errText = await response.text()
+      console.error('ElevenLabs error:', response.status, errText)
+      return NextResponse.json(
+        { error: 'TTS generation failed' },
+        { status: 502 }
+      )
+    }
+
+    const audioBuffer = await response.arrayBuffer()
 
     return new NextResponse(audioBuffer, {
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+        'Cache-Control': 'public, max-age=604800, s-maxage=604800',
       },
     })
-  } catch (err: unknown) {
-    // Try alternate host
-    try {
-      const base64 = await googleTTS.getAudioBase64(text, {
-        lang,
-        slow,
-        host: 'https://translate.google.co.uk',
-      })
-
-      const audioBuffer = Buffer.from(base64, 'base64')
-
-      return new NextResponse(audioBuffer, {
-        headers: {
-          'Content-Type': 'audio/mpeg',
-          'Cache-Control': 'public, max-age=86400, s-maxage=86400',
-        },
-      })
-    } catch {
-      const message = err instanceof Error ? err.message : 'Unknown error'
-      return NextResponse.json({ error: 'TTS unavailable', detail: message }, { status: 502 })
-    }
+  } catch (err) {
+    console.error('TTS error:', err)
+    return NextResponse.json({ error: 'TTS request failed' }, { status: 500 })
   }
 }

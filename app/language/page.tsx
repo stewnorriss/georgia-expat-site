@@ -47,25 +47,11 @@ export default function LanguagePage() {
   }
 
   const speak = useCallback((text: string) => {
-    // Play Georgian pronunciation audio from Google Translate TTS.
-    // Request goes directly from the user's browser to Google's servers.
     const encoded = encodeURIComponent(text)
-    const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=ka&total=1&idx=0&textlen=${text.length}&client=tw-ob&prev=input&ttsspeed=0.24`
-
-    const audio = new Audio()
-    audio.src = url
-    audio.crossOrigin = 'anonymous'
-
-    const playAttempt = audio.play()
-    if (playAttempt) {
-      playAttempt.catch(() => {
-        // Try without crossOrigin (some browsers handle this differently)
-        const fallbackAudio = new Audio(url)
-        fallbackAudio.play().catch(() => {
-          // Silent fail — pronunciation text is always visible as fallback
-        })
-      })
-    }
+    const audio = new Audio(`/api/tts?q=${encoded}`)
+    audio.play().catch(() => {
+      // Silent fail — pronunciation text is always visible as fallback
+    })
   }, [])
 
   const filtered = lessons.filter(l => difficulty === 'all' || l.difficulty === difficulty)
