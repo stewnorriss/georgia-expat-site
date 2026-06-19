@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
+// @ts-expect-error - no types available for this package
+import googleTTS from 'google-tts-api'
 
 export async function GET(request: NextRequest) {
   const text = request.nextUrl.searchParams.get('q')
   const lang = request.nextUrl.searchParams.get('tl') || 'ka'
+  const slow = request.nextUrl.searchParams.get('slow') === '1'
 
   if (!text) {
     return NextResponse.json({ error: 'Missing q parameter' }, { status: 400 })
@@ -12,40 +15,41 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Text too long' }, { status: 400 })
   }
 
-  const encoded = encodeURIComponent(text)
-  const textlen = text.length.toString()
+  try {
+    const base64 = await googleTTS.getAudioBase64(text, {
+      lang,
+      slow,
+      host: 'https://translate.google.com',
+    })
 
-  // Try multiple Google Translate TTS endpoints
-  const urls = [
-    `https://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&client=tw-ob&q=${encoded}&total=1&idx=0&textlen=${textlen}`,
-    `https://translate.googleapis.com/translate_tts?ie=UTF-8&tl=${lang}&client=gtx&q=${encoded}&total=1&idx=0&textlen=${textlen}`,
-  ]
+    const audioBuffer = Buffer.from(base64, 'base64')
 
-  for (const url of urls) {
+    return new NextResponse(audioBuffer, {
+      headers: {
+        'Content-Type': 'audio/mpeg',
+        'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+      },
+    })
+  } catch (err: unknown) {
+    // Try alternate host
     try {
-      const response = await fetch(url, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          'Referer': 'https://translate.google.com/',
-        },
+      const base64 = await googleTTS.getAudioBase64(text, {
+        lang,
+        slow,
+        host: 'https://translate.google.co.uk',
       })
 
-      if (response.ok) {
-        const audioBuffer = await response.arrayBuffer()
-        // Verify we got actual audio (not an error page)
-        if (audioBuffer.byteLength > 100) {
-          return new NextResponse(audioBuffer, {
-            headers: {
-              'Content-Type': 'audio/mpeg',
-              'Cache-Control': 'public, max-age=86400, s-maxage=86400',
-            },
-          })
-        }
-      }
+      const audioBuffer = Buffer.from(base64, 'base64')
+
+      return new NextResponse(audioBuffer, {
+        headers: {
+          'Content-Type': 'audio/mpeg',
+          'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+        },
+      })
     } catch {
-      continue
+      const message = err instanceof Error ? err.message : 'Unknown error'
+      return NextResponse.json({ error: 'TTS unavailable', detail: message }, { status: 502 })
     }
   }
-
-  return NextResponse.json({ error: 'TTS unavailable' }, { status: 502 })
 }
