@@ -27,17 +27,6 @@ export default function LanguagePage() {
   const [activeConvo, setActiveConvo] = useState(0)
   const [revealedLines, setRevealedLines] = useState(1)
 
-  // Speech voices
-  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([])
-
-  useEffect(() => {
-    if (!('speechSynthesis' in window)) return
-    const loadVoices = () => setVoices(speechSynthesis.getVoices())
-    loadVoices()
-    speechSynthesis.addEventListener('voiceschanged', loadVoices)
-    return () => speechSynthesis.removeEventListener('voiceschanged', loadVoices)
-  }, [])
-
   useEffect(() => {
     try {
       const saved = localStorage.getItem('georgian-progress')
@@ -58,39 +47,12 @@ export default function LanguagePage() {
   }
 
   const speak = useCallback((text: string) => {
-    if (!('speechSynthesis' in window)) return
-
-    speechSynthesis.cancel()
-    const u = new SpeechSynthesisUtterance(text)
-
-    // Try to find a Georgian voice first
-    const georgianVoice = voices.find(v => v.lang.startsWith('ka'))
-
-    if (georgianVoice) {
-      u.voice = georgianVoice
-      u.lang = 'ka-GE'
-      u.rate = 0.7
-    } else {
-      // No Georgian voice available — transliterate Georgian script
-      // to phonetic Latin and speak with English voice at slow speed.
-      // Georgian has a 1:1 letter-to-sound mapping so this works well.
-      const translitMap: Record<string, string> = {
-        'ა': 'ah', 'ბ': 'b', 'გ': 'g', 'დ': 'd', 'ე': 'eh',
-        'ვ': 'v', 'ზ': 'z', 'თ': 'th', 'ი': 'ee', 'კ': 'k',
-        'ლ': 'l', 'მ': 'm', 'ნ': 'n', 'ო': 'oh', 'პ': 'p',
-        'ჟ': 'zh', 'რ': 'r', 'ს': 's', 'ტ': 't', 'უ': 'oo',
-        'ფ': 'ph', 'ქ': 'kh', 'ღ': 'gh', 'ყ': 'q', 'შ': 'sh',
-        'ჩ': 'ch', 'ც': 'ts', 'ძ': 'dz', 'წ': 'ts', 'ჭ': 'ch',
-        'ხ': 'kh', 'ჯ': 'j', 'ჰ': 'h'
-      }
-      const phonetic = text.split('').map(c => translitMap[c] || c).join('')
-      u.text = phonetic
-      u.lang = 'en-US'
-      u.rate = 0.6
-    }
-
-    speechSynthesis.speak(u)
-  }, [voices])
+    const encoded = encodeURIComponent(text)
+    const audio = new Audio(`/api/tts?q=${encoded}&tl=ka`)
+    audio.play().catch(() => {
+      // If API fails, silently ignore — pronunciation text is always visible
+    })
+  }, [])
 
   const filtered = lessons.filter(l => difficulty === 'all' || l.difficulty === difficulty)
   const progress = Math.round((completedLessons.length / lessons.length) * 100)
