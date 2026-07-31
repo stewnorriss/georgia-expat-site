@@ -266,6 +266,9 @@ export default function LanguagePage() {
                         className={style}
                       >
                         <span className="font-georgian text-lg">{opt}</span>
+                        {quizQuestions[quizIndex].pronunciations[i] && (
+                          <span className="block text-sm text-gray-400 mt-1">{quizQuestions[quizIndex].pronunciations[i]}</span>
+                        )}
                       </button>
                     )
                   })}
