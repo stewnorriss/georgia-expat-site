@@ -95,6 +95,42 @@ const CategoryDropdown = ({ category }: { category: any }) => {
   )
 }
 
+const MobileCategoryGroup = ({ category, onLinkClick }: { category: any; onLinkClick: () => void }) => {
+  const [expanded, setExpanded] = useState(false)
+
+  return (
+    <div className="mb-2">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="flex items-center justify-between w-full px-4 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+      >
+        <div className="flex items-center">
+          <span className="text-lg mr-2">{category.icon}</span>
+          <span className="text-sm font-bold text-gray-700 dark:text-gray-300">{category.title}</span>
+        </div>
+        <ChevronDown className={`h-4 w-4 text-gray-400 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+      </button>
+      <div className={`transition-all duration-200 ease-in-out overflow-hidden ${expanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="space-y-1 pb-2">
+          {category.items.map((item: any) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex items-start px-6 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors ml-2"
+              onClick={onLinkClick}
+            >
+              <div className="flex-1">
+                <div className="font-semibold">{item.label}</div>
+                <div className="text-xs text-gray-400 dark:text-gray-500 mt-1">{item.description}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [showAISearch, setShowAISearch] = useState(false)
@@ -232,9 +268,9 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         <div className={`lg:hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+          isOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}>
-          <div className="px-2 pt-2 pb-6 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
+          <div className="px-2 pt-2 pb-6 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 overflow-y-auto max-h-[75vh]">
             {/* Main Navigation Items */}
             <div className="space-y-1 mb-4">
               {mainNavItems.map((item, index) => (
@@ -250,32 +286,9 @@ const Navigation = () => {
               ))}
             </div>
 
-            {/* Category Groups */}
+            {/* Category Groups — Collapsible on mobile */}
             {navigationCategories.map((category, groupIndex) => (
-              <div key={category.title} className="mb-4">
-                <div className="flex items-center px-4 py-2">
-                  <span className="text-lg mr-2">{category.icon}</span>
-                  <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300">
-                    {category.title}
-                  </h3>
-                </div>
-                <div className="space-y-1">
-                  {category.items.map((item, itemIndex) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="flex items-start px-6 py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors ml-2"
-                      onClick={() => setIsOpen(false)}
-                      style={{ animationDelay: `${(mainNavItems.length + groupIndex * 3 + itemIndex) * 50}ms` }}
-                    >
-                      <div className="flex-1">
-                        <div className="font-semibold">{item.label}</div>
-                        <div className="text-xs text-gray-400 dark:text-gray-500 mt-1">{item.description}</div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              <MobileCategoryGroup key={category.title} category={category} onLinkClick={() => setIsOpen(false)} />
             ))}
           </div>
         </div>
